@@ -1,0 +1,15 @@
+{
+  "name": "lesson-smith",
+  "description": "Personal documentation writing style conventions: Markdown structure and tone, mixed Chinese/English punctuation, and English translation.",
+  "version": "0.1.1",
+  "author": {
+    "name": "Sanhe Hu",
+    "email": "husanhe@email.com"
+  },
+  "homepage": "https://github.com/MacHu-GWU/shsk_lesson_smith-project",
+  "repository": "https://github.com/MacHu-GWU/shsk_lesson_smith-project",
+  "license": "AGPL-3.0-or-later",
+  "keywords": [
+    "claude-code"
+  ]
+}
