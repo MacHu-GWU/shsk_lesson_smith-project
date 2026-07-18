@@ -33,6 +33,8 @@ description: Foundation skill for authoring teaching repositories (hands-on IT l
 
 ## 3. 三类教学仓库
 
+> 注: 类别命名遵循着, 一个词, 精准反应独特特性, 的设计哲学.
+
 - **evolve**: 一个 Repo 多个 branch, 每个 branch 一个 Task. 代码逐步演化, 文件渐增, 能看到项目一点点长大. 适合企业级, 完成度高的复杂项目.
 - **showcase**: 一个 Repo 只有一个 `showcase` branch (单 Task), `examples/01-title/` 下每个目录是一个 mini 教程. 内容偏技能性质, 学完可以抹去所有教学痕迹, 把它当作自己的 repo 拿去面试展示 (含对外 publish 环节).
 - **upskill**: 结构与 showcase 几乎一致, 唯一区别是没有对外 publish. 适合 "如何做某一类事情", "如何改简历" 这类学会即止, 不需外部背书的内容.
