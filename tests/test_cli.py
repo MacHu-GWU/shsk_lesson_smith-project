@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import json as json_module
+import shutil
 from pathlib import Path
 
 import pytest
@@ -60,6 +61,40 @@ class TestLint:
                 Command().lint()
         finally:
             os.chdir(cwd)
+        assert excinfo.value.code == 1
+        assert "ERROR" in capsys.readouterr().err
+
+
+class TestSync:
+    @pytest.fixture
+    def writable_good_repo(self, tmp_path):
+        dst = tmp_path / "good_upskill_repo"
+        shutil.copytree(dir_good_upskill_repo, dst)
+        return dst
+
+    def test_sync_prints_actions_and_returns_zero(self, writable_good_repo, capsys):
+        Command().sync(project_root=str(writable_good_repo))
+        out = capsys.readouterr().out
+        assert "snapshot" in out
+        assert "syllabus" in out
+        assert "Synced" in out
+
+    def test_sync_quiet(self, writable_good_repo, capsys):
+        Command().sync(project_root=str(writable_good_repo), quiet=True)
+        assert capsys.readouterr().out == ""
+
+    def test_sync_json(self, writable_good_repo, capsys):
+        Command().sync(project_root=str(writable_good_repo), json=True)
+        data = json_module.loads(capsys.readouterr().out)
+        assert isinstance(data["actions"], list)
+        assert {"kind", "path", "detail"} <= set(data["actions"][0])
+
+    def test_sync_evolve_errors(self, tmp_path, capsys):
+        root = tmp_path / "evolve"
+        root.mkdir()
+        (root / "lm.json").write_text('{"type": "evolve"}', encoding="utf-8")
+        with pytest.raises(SystemExit) as excinfo:
+            Command().sync(project_root=str(root))
         assert excinfo.value.code == 1
         assert "ERROR" in capsys.readouterr().err
 

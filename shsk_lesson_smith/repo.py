@@ -201,6 +201,19 @@ class Repo:
         """Whether this repo type keeps mini tasks under ``examples/``."""
         return self.repo_type in (RepoTypeEnum.showcase, RepoTypeEnum.upskill)
 
+    @property
+    def single_task_branch(self) -> "str | None":
+        """The fixed task-branch name for a single-branch repo type (``01-<type>``).
+
+        Showcase and upskill repos have exactly one task branch, named after the
+        type (``01-showcase`` / ``01-upskill``). Returns None for evolve, whose
+        branch names are arbitrary and come from git. Shared by the linter (to
+        enforce the name) and by sync (to know where to snapshot).
+        """
+        if self.repo_type in (RepoTypeEnum.showcase, RepoTypeEnum.upskill):
+            return f"01-{self.repo_type.value}"
+        return None
+
     # ------------------------------------------------------------------ #
     # Repo-level special files (project root)
     # ------------------------------------------------------------------ #

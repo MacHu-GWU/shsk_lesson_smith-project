@@ -1,103 +1,141 @@
 # -*- coding: utf-8 -*-
 
-"""The ``sync`` operation: snapshot task files and regenerate the syllabus.
+"""Syncing for teaching repos: keep the generated / archived files up to date.
 
-Currently only the evolve layout is supported (root-level README / TICKET per
-task branch, snapshotted into docs/tasks/<branch>/). The showcase / upskill
-layout (examples/NN-title/) is still TODO.
+Sync is not pass/fail like linting; it *performs actions* and reports what it
+wrote. Design mirrors the linter where it helps:
+
+- Each sync operation is a function ``(repo) -> list[SyncAction]`` that does its
+  work and returns what it did. :func:`sync` runs the :data:`OPERATIONS` list in
+  order and collects the actions into a :class:`SyncReport`. Adding a future
+  sync rule is one entry in that list.
+- The only type-specific input is the branch to snapshot, and that comes from
+  :attr:`Repo.single_task_branch`, so the operations stay uniform across types.
+
+Today there are two operations, run in this order: snapshot the current branch's
+task files into ``docs/tasks/<branch>/``, then regenerate ``SYLLABUS`` from those
+snapshots.
 """
 
+import dataclasses
+import json
 import shutil
-import sys
+from pathlib import Path
 
-from .constants import (
-    TASK_DIR_PATTERN,
-    TASK_FILE_BASES,
-    LangEnum,
-    RepoTypeEnum,
-)
-from .repo import (
-    StandardRepo,
-    get_variant_filename,
-    read_frontmatter_description,
-)
+from .constants import TASK_FILE_BASES, LangEnum
+from .linter_utils import MarkdownFile
+from .repo import Repo, get_variant_filename
+
+# English (None) plus every supported language variant.
+LANGS = (None, *LangEnum)
 
 
-def generate_syllabus(
-    repo: StandardRepo,
-    quiet: bool = False,
-) -> None:
-    """Regenerate docs/tasks/SYLLABUS[-<lang>].md per ref/syllabus-spec.md.
+@dataclasses.dataclass
+class SyncAction:
+    """One file sync wrote, and why."""
 
-    Emits ``# Syllabus`` then, for each task in ascending order, an H2 with the
-    branch dir name verbatim (all lowercase) followed by the task README's
-    frontmatter description verbatim.
+    kind: str  # "snapshot" | "syllabus"
+    path: str
+    detail: str = ""
+
+
+@dataclasses.dataclass
+class SyncReport:
+    """What a sync run did."""
+
+    dir_project_root: Path
+    actions: "list[SyncAction]"
+
+    def to_dict(self) -> dict:
+        return {
+            "dir_project_root": str(self.dir_project_root),
+            "actions": [dataclasses.asdict(a) for a in self.actions],
+        }
+
+    def to_json(self, indent: int = 2) -> str:
+        return json.dumps(self.to_dict(), indent=indent, ensure_ascii=False)
+
+    def render(self) -> str:
+        """Human-readable summary: one line per file written."""
+        lines = []
+        for action in self.actions:
+            marker = "📄" if action.kind == "snapshot" else "📋"
+            suffix = f"  ({action.detail})" if action.detail else ""
+            lines.append(f"{marker} {action.kind}: {action.path}{suffix}")
+        lines.append("")
+        lines.append(f"Synced {len(self.actions)} file(s).")
+        return "\n".join(lines)
+
+
+def op_snapshot_branch(repo: Repo) -> "list[SyncAction]":
+    """Copy the current branch's task files into ``docs/tasks/<branch>/``.
+
+    The branch is :attr:`Repo.single_task_branch` (fixed for showcase / upskill).
+    Evolve, whose branch comes from git, is not supported yet.
     """
-    task_dirs = repo.iter_task_dirs()
-    for lang in (None, *LangEnum):
-        readme_name = get_variant_filename("README", lang)
-        sections = ["# Syllabus"]
-        for directory in task_dirs:
-            desc = read_frontmatter_description(directory / readme_name) or ""
-            sections.append(f"## {directory.name}\n\n{desc}")
-        out_path = repo.get_path_syllabus(lang)
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        out_path.write_text("\n\n".join(sections) + "\n", encoding="utf-8")
-        if not quiet:
-            rel = out_path.relative_to(repo.dir_project_root)
-            print(f"  syllabus: wrote {rel} ({len(task_dirs)} tasks)")
-
-
-def sync_repo(
-    repo: StandardRepo,
-    quiet: bool = False,
-) -> int:
-    """Snapshot the current branch's task files, then regenerate the syllabus.
-
-    Returns an exit code: 0 on success, 1 on failure.
-    """
-    if repo.repo_type is not RepoTypeEnum.evolve:
-        print(
-            "ERROR: sync currently only supports the evolve layout "
-            f"(lm.json type is {repo.repo_type.value if repo.repo_type else None!r})",
-            file=sys.stderr,
+    branch = repo.single_task_branch
+    if branch is None:
+        raise NotImplementedError(
+            "sync for evolve repos (branch from git) is not implemented yet."
         )
-        return 1
-
-    branch = repo.current_branch
-    if not branch:
-        print(
-            "ERROR: could not determine current branch (detached HEAD?)",
-            file=sys.stderr,
-        )
-        return 1
-    if not TASK_DIR_PATTERN.match(branch):
-        print(
-            f"ERROR: current branch {branch!r} is not a task branch "
-            "(expected NN-lowercase-hyphen-words, e.g. 01-branch-name)",
-            file=sys.stderr,
-        )
-        return 1
-
     dst_dir = repo.get_dir_task(branch)
     dst_dir.mkdir(parents=True, exist_ok=True)
 
-    copied = 0
+    actions: "list[SyncAction]" = []
     for base in TASK_FILE_BASES:
-        for lang in (None, *LangEnum):
+        for lang in LANGS:
             name = get_variant_filename(base, lang)
             src = repo.dir_project_root / name
             if src.exists():
-                shutil.copy2(src, dst_dir / name)
-                copied += 1
-                if not quiet:
-                    print(f"  snapshot: {name} -> docs/tasks/{branch}/{name}")
+                dst = dst_dir / name
+                shutil.copy2(src, dst)
+                actions.append(SyncAction("snapshot", str(dst), f"from {name}"))
+    return actions
 
-    if copied == 0 and not quiet:
-        print(f"  warning: no task files found at repo root for branch {branch}")
 
-    generate_syllabus(repo, quiet=quiet)
+def op_generate_syllabus(repo: Repo) -> "list[SyncAction]":
+    """Regenerate ``docs/tasks/SYLLABUS[-<lang>].md`` from the task snapshots.
 
-    if not quiet:
-        print(f"Done. Snapshotted {copied} file(s) into docs/tasks/{branch}/.")
-    return 0
+    One file per language: ``# Syllabus`` then, for each task dir in order, an
+    H2 with the branch name and the matching-language README's frontmatter
+    description verbatim.
+    """
+    task_dirs = repo.iter_dir_tasks()
+    actions: "list[SyncAction]" = []
+    for lang in LANGS:
+        sections = ["# Syllabus"]
+        for dir_task in task_dirs:
+            readme = repo.get_path_task_readme(dir_task.name, lang)
+            desc = MarkdownFile(readme).description if readme.exists() else None
+            sections.append(f"## {dir_task.name}\n\n{desc or ''}")
+        out_path = repo.get_path_syllabus(lang)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text("\n\n".join(sections) + "\n", encoding="utf-8")
+        actions.append(
+            SyncAction("syllabus", str(out_path), f"{len(task_dirs)} task(s)")
+        )
+    return actions
+
+
+# Sync operations, run in order by sync(). Snapshot must precede syllabus, since
+# the syllabus is generated from the freshly snapshotted task READMEs.
+OPERATIONS = [op_snapshot_branch, op_generate_syllabus]
+
+
+def sync(repo: Repo) -> SyncReport:
+    """Run every sync operation on ``repo`` and report what was written."""
+    actions = [action for op in OPERATIONS for action in op(repo)]
+    return SyncReport(repo.dir_project_root, actions)
+
+
+def sync_project(project_root: "Path | str | None" = None) -> SyncReport:
+    """Resolve the teaching repo and sync it. The CLI's entire core.
+
+    With ``project_root`` given, that path is the repo root; without it, the
+    root is found by walking up from the current working directory.
+    """
+    if project_root is not None:
+        repo = Repo(dir_project_root=Path(project_root).resolve())
+    else:
+        repo = Repo.from_cwd()
+    return sync(repo)
