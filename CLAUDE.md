@@ -1,5 +1,12 @@
 # Project Guide for AI Assistants
 
+这是一个把 GitHub Repo 作为教学仓库 (teaching repository) 的项目: 通过对 branch 命名以及文件目录结构定义好规范, 使得整个 Repo 同时适合:
+
+- 人类学生阅读
+- 导师创作课程
+- AI Agent 进行辅助
+- 脚本从 Repo 中提取结构化的信息
+
 This document guides AI assistants on how to navigate and work with this project.
 
 ## Project Overview
