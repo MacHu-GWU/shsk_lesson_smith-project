@@ -118,6 +118,55 @@ class TestRepoMarkdownAccessors:
         assert repo.get_md_readme("cn").description == "学 X."
 
 
+class TestRepoTaskFileAccessors:
+    def test_task_file_paths(self, tmp_path):
+        root = make_root(tmp_path)
+        repo = Repo(dir_project_root=root)
+        task = root / "docs" / "tasks" / "01-intro"
+        assert repo.get_path_task_readme("01-intro") == task / "README.md"
+        assert repo.get_path_task_readme("01-intro", "cn") == task / "README-cn.md"
+        assert repo.get_path_task_ticket("01-intro") == task / "TICKET.md"
+        assert repo.get_path_task_ticket("01-intro", "cn") == task / "TICKET-cn.md"
+
+    def test_task_md_accessors(self, tmp_path):
+        root = make_root(tmp_path)
+        write_special_file(
+            root / "docs" / "tasks" / "01-intro" / "README.md", description="Task X."
+        )
+        repo = Repo(dir_project_root=root)
+        md = repo.get_md_task_readme("01-intro")
+        assert isinstance(md, MarkdownFile)
+        assert md.path == repo.get_path_task_readme("01-intro")
+        assert md.description == "Task X."
+
+
+class TestRepoExampleFileAccessors:
+    def test_example_file_paths(self, tmp_path):
+        root = make_root(tmp_path, "upskill")
+        repo = Repo(dir_project_root=root)
+        example = root / "examples" / "01-hello"
+        assert repo.get_path_example_readme("01-hello") == example / "README.md"
+        assert repo.get_path_example_readme("01-hello", "cn") == example / "README-cn.md"
+        assert repo.get_path_example_ticket("01-hello") == example / "TICKET.md"
+
+    def test_example_md_accessors(self, tmp_path):
+        root = make_root(tmp_path, "upskill")
+        write_special_file(
+            root / "examples" / "01-hello" / "README.md", description="Mini X."
+        )
+        repo = Repo(dir_project_root=root)
+        md = repo.get_md_example_readme("01-hello")
+        assert isinstance(md, MarkdownFile)
+        assert md.description == "Mini X."
+
+    def test_example_accessors_none_for_evolve(self, tmp_path):
+        repo = Repo(dir_project_root=make_root(tmp_path, "evolve"))
+        assert repo.get_path_example_readme("01-hello") is None
+        assert repo.get_path_example_ticket("01-hello") is None
+        assert repo.get_md_example_readme("01-hello") is None
+        assert repo.get_md_example_ticket("01-hello") is None
+
+
 class TestRepoTypeGating:
     def test_metadata_and_repo_type(self, tmp_path):
         root = make_root(tmp_path, "showcase")

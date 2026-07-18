@@ -274,6 +274,28 @@ class Repo:
         """Per-task snapshot directory: ``docs/tasks/<task_name>/``."""
         return self.dir_docs_tasks / task_name
 
+    def get_path_task_readme(
+        self, task_name: str, lang: "LangEnum | str | None" = None
+    ) -> Path:
+        """``docs/tasks/<task_name>/README[-<lang>].md``."""
+        return self.get_dir_task(task_name) / get_variant_filename(README_BASE, lang)
+
+    def get_path_task_ticket(
+        self, task_name: str, lang: "LangEnum | str | None" = None
+    ) -> Path:
+        """``docs/tasks/<task_name>/TICKET[-<lang>].md``."""
+        return self.get_dir_task(task_name) / get_variant_filename(TICKET_BASE, lang)
+
+    def get_md_task_readme(
+        self, task_name: str, lang: "LangEnum | str | None" = None
+    ) -> MarkdownFile:
+        return MarkdownFile(self.get_path_task_readme(task_name, lang))
+
+    def get_md_task_ticket(
+        self, task_name: str, lang: "LangEnum | str | None" = None
+    ) -> MarkdownFile:
+        return MarkdownFile(self.get_path_task_ticket(task_name, lang))
+
     def iter_dir_tasks(self) -> "list[Path]":
         """Task snapshot dirs under ``docs/tasks/``, sorted by branch number."""
         return _iter_numbered_dirs(self.dir_docs_tasks)
@@ -293,6 +315,36 @@ class Repo:
         if self.dir_examples is None:
             return None
         return self.dir_examples / example_name
+
+    def get_path_example_readme(
+        self, example_name: str, lang: "LangEnum | str | None" = None
+    ) -> "Path | None":
+        """``examples/<example_name>/README[-<lang>].md``, or None if not applicable."""
+        dir_example = self.get_dir_example(example_name)
+        if dir_example is None:
+            return None
+        return dir_example / get_variant_filename(README_BASE, lang)
+
+    def get_path_example_ticket(
+        self, example_name: str, lang: "LangEnum | str | None" = None
+    ) -> "Path | None":
+        """``examples/<example_name>/TICKET[-<lang>].md``, or None if not applicable."""
+        dir_example = self.get_dir_example(example_name)
+        if dir_example is None:
+            return None
+        return dir_example / get_variant_filename(TICKET_BASE, lang)
+
+    def get_md_example_readme(
+        self, example_name: str, lang: "LangEnum | str | None" = None
+    ) -> "MarkdownFile | None":
+        path = self.get_path_example_readme(example_name, lang)
+        return MarkdownFile(path) if path is not None else None
+
+    def get_md_example_ticket(
+        self, example_name: str, lang: "LangEnum | str | None" = None
+    ) -> "MarkdownFile | None":
+        path = self.get_path_example_ticket(example_name, lang)
+        return MarkdownFile(path) if path is not None else None
 
     def iter_dir_examples(self) -> "list[Path]":
         """Mini task dirs under ``examples/``, sorted; empty if not applicable."""
