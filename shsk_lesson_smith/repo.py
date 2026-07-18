@@ -22,6 +22,7 @@ from .constants import (
     LangEnum,
     RepoTypeEnum,
 )
+from .linter_utils import MarkdownFile
 
 
 def to_lang(lang: "LangEnum | str | None") -> "LangEnum | None":
@@ -67,6 +68,41 @@ def resolve_repo(dir_cwd: "Path | str | None" = None) -> Path:
     )
 
 
+@dataclasses.dataclass
+class Metadata:
+    """Parsed ``lm.json`` manifest. Base for per-type metadata subclasses.
+
+    Today the manifest carries a single field, ``type``. It is kept as a
+    dataclass (not a bare enum) so the manifest can grow more structured fields
+    later without touching call sites, and so each repo type can subclass it
+    (e.g. ``UpskillMetadata`` in ``repo_for_upskill.py``) to add fields specific
+    to that type. :meth:`Repo.metadata` picks the subclass via
+    :attr:`Repo.metadata_class`.
+
+    ``__post_init__`` coerces and validates ``type`` into a
+    :class:`RepoTypeEnum`, raising ``ValueError`` for anything else.
+    """
+
+    type: RepoTypeEnum
+
+    def __post_init__(self):
+        # Coerce a raw string (or reject anything invalid) into the enum.
+        self.type = RepoTypeEnum(self.type)
+
+    @classmethod
+    def from_dict(cls, data: dict) -> "T.Self":
+        """Build from an already-parsed JSON object."""
+        if not isinstance(data, dict):
+            raise ValueError("lm.json must contain a JSON object")
+        return cls(type=data.get("type"))
+
+    @classmethod
+    def from_json_file(cls, path: "Path | str") -> "T.Self":
+        """Read and parse an ``lm.json`` file into a :class:`Metadata`."""
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        return cls.from_dict(data)
+
+
 @dataclasses.dataclass(frozen=True)
 class Repo:
     """A teaching repository, addressed by paths.
@@ -76,13 +112,21 @@ class Repo:
     for it return ``None`` outside showcase / upskill; everything else is a plain
     path that exists in the model regardless of whether the file is on disk yet.
 
+    The object is a pure in-memory address book: constructing it and reading its
+    ``path_*`` / ``dir_*`` accessors touches no files. Actually reaching the disk
+    happens only when you call a method that needs to (``iter_dir_*`` scans,
+    :attr:`metadata` reads lm.json) or when you pull content through a returned
+    :class:`MarkdownFile` (which itself reads lazily on first ``.text`` access).
+
     Accessor naming:
 
-    - ``path_*`` cached properties are files.
-    - ``dir_*`` cached properties are directories.
-    - ``get_*(lang=...)`` methods build the language variant of a special file
-      (``lang=None`` is English, which carries no suffix). The ``path_*`` twin
-      of each is just the English variant, cached for convenience.
+    - ``path_*`` cached properties are files (a :class:`~pathlib.Path`).
+    - ``dir_*`` cached properties are directories (a :class:`~pathlib.Path`).
+    - ``md_*`` cached properties wrap a special markdown file in a
+      :class:`MarkdownFile`, for convenient content access.
+    - ``get_path_*`` / ``get_md_*`` ``(lang=...)`` methods build the language
+      variant (``lang=None`` is English, which carries no suffix). The
+      ``path_*`` / ``md_*`` twin of each is just the English variant, cached.
 
     Directory layout (union of all repo types)::
 
@@ -102,6 +146,11 @@ class Repo:
                 |-- README.md            + README-<lang>.md
                 `-- TICKET.md            + TICKET-<lang>.md
     """
+
+    # Metadata subclass used to parse lm.json. Per-type Repo subclasses override
+    # this (e.g. UpskillRepo.metadata_class = UpskillMetadata) so `metadata`
+    # yields the right subclass without touching the property.
+    metadata_class: T.ClassVar["type[Metadata]"] = Metadata
 
     dir_project_root: Path
 
@@ -123,20 +172,26 @@ class Repo:
         return self.dir_project_root / "lm.json"
 
     @cached_property
-    def repo_type(self) -> "RepoTypeEnum | None":
-        """Repo type declared in ``lm.json``, or None when missing / invalid.
+    def metadata(self) -> "Metadata | None":
+        """Parsed ``lm.json``, or None when it is missing / unreadable / invalid.
 
-        Kept here (rather than a separate metadata module) because the
-        ``examples/`` accessors gate on it.
+        Kept graceful (None instead of raising) so that consumers like the
+        linter can still run and report the manifest problem themselves. The
+        concrete class is :attr:`metadata_class`, so subclasses parse into their
+        own :class:`Metadata` subclass.
         """
         try:
-            data = json.loads(self.path_lm_json.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError):
+            return self.metadata_class.from_json_file(self.path_lm_json)
+        except (OSError, json.JSONDecodeError, ValueError):
             return None
-        try:
-            return RepoTypeEnum(data.get("type"))
-        except (ValueError, AttributeError):
-            return None
+
+    @property
+    def repo_type(self) -> "RepoTypeEnum | None":
+        """Repo type from the manifest, or None when the manifest is unusable.
+
+        The ``examples/`` accessors gate on this.
+        """
+        return self.metadata.type if self.metadata else None
 
     @property
     def has_examples_layout(self) -> bool:
@@ -167,6 +222,29 @@ class Repo:
     def get_path_readme_original(self, lang: "LangEnum | str | None" = None) -> Path:
         return self.dir_project_root / get_variant_filename(README_ORIGINAL_BASE, lang)
 
+    @cached_property
+    def md_readme(self) -> MarkdownFile:
+        return self.get_md_readme()
+
+    @cached_property
+    def md_ticket(self) -> MarkdownFile:
+        return self.get_md_ticket()
+
+    @cached_property
+    def md_readme_original(self) -> MarkdownFile:
+        return self.get_md_readme_original()
+
+    def get_md_readme(self, lang: "LangEnum | str | None" = None) -> MarkdownFile:
+        return MarkdownFile(self.get_path_readme(lang))
+
+    def get_md_ticket(self, lang: "LangEnum | str | None" = None) -> MarkdownFile:
+        return MarkdownFile(self.get_path_ticket(lang))
+
+    def get_md_readme_original(
+        self, lang: "LangEnum | str | None" = None
+    ) -> MarkdownFile:
+        return MarkdownFile(self.get_path_readme_original(lang))
+
     # ------------------------------------------------------------------ #
     # docs/tasks aggregation view (all repo types)
     # ------------------------------------------------------------------ #
@@ -184,6 +262,13 @@ class Repo:
 
     def get_path_syllabus(self, lang: "LangEnum | str | None" = None) -> Path:
         return self.dir_docs_tasks / get_variant_filename(SYLLABUS_BASE, lang)
+
+    @cached_property
+    def md_syllabus(self) -> MarkdownFile:
+        return self.get_md_syllabus()
+
+    def get_md_syllabus(self, lang: "LangEnum | str | None" = None) -> MarkdownFile:
+        return MarkdownFile(self.get_path_syllabus(lang))
 
     def get_dir_task(self, task_name: str) -> Path:
         """Per-task snapshot directory: ``docs/tasks/<task_name>/``."""
