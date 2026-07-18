@@ -1,123 +1,122 @@
 # -*- coding: utf-8 -*-
 
-from shsk_lesson_smith.linter import (
-    EvolveLinter,
-    Linter,
-    ShowcaseLinter,
-    UpskillLinter,
-    make_linter,
-)
-from shsk_lesson_smith.repo_types import resolve_repo
+import shutil
+from pathlib import Path
 
-from conftest import make_root, write_special_file
+import pytest
 
+from shsk_lesson_smith.linter import CheckResult, LintReport, lint
+from shsk_lesson_smith.repo import Repo
+from shsk_lesson_smith.repo_for_upskill import UpskillRepo
 
-def lint_messages(root):
-    return [str(p) for p in make_linter(resolve_repo(root)).lint()]
+dir_good_upskill_repo = Path(__file__).absolute().parent / "good_upskill_repo"
 
 
-class TestMakeLinter:
-    def test_picks_class_by_repo_type(self, tmp_path):
-        root = make_root(tmp_path, "evolve")
-        assert type(make_linter(resolve_repo(root))) is EvolveLinter
-
-        (root / "lm.json").write_text('{"type": "showcase"}', encoding="utf-8")
-        assert type(make_linter(resolve_repo(root))) is ShowcaseLinter
-
-        (root / "lm.json").write_text('{"type": "upskill"}', encoding="utf-8")
-        assert type(make_linter(resolve_repo(root))) is UpskillLinter
-
-        (root / "lm.json").unlink()
-        assert type(make_linter(resolve_repo(root))) is Linter
+@pytest.fixture
+def upskill_copy(tmp_path):
+    """A writable copy of the good upskill fixture, for mutation tests."""
+    dst = tmp_path / "repo"
+    shutil.copytree(dir_good_upskill_repo, dst)
+    return dst
 
 
-class TestEvolveLint:
-    def test_valid_repo_is_clean(self, evolve_root):
-        assert lint_messages(evolve_root) == []
+class TestGoodUpskillRepoIsClean:
+    def test_base_repo_passes(self):
+        report = lint(Repo(dir_project_root=dir_good_upskill_repo))
+        assert report.passed, report.render()
+        assert report.failures() == []
 
-    def test_missing_manifest(self, evolve_root):
-        (evolve_root / "lm.json").unlink()
-        messages = lint_messages(evolve_root)
-        assert any("lm.json" in m and "missing" in m for m in messages)
+    def test_upskill_subclass_passes(self):
+        report = lint(UpskillRepo(dir_project_root=dir_good_upskill_repo))
+        assert report.passed, report.render()
 
-    def test_invalid_manifest_type(self, evolve_root):
-        (evolve_root / "lm.json").write_text('{"type": "bad"}', encoding="utf-8")
-        messages = lint_messages(evolve_root)
-        assert any("'type' must be one of" in m for m in messages)
+    def test_report_shape(self):
+        report = lint(Repo(dir_project_root=dir_good_upskill_repo))
+        assert isinstance(report, LintReport)
+        assert all(isinstance(r, CheckResult) for r in report.results)
+        # More than one check point ran (per-check-point granularity).
+        assert len(report.results) > 10
 
-    def test_missing_language_variant(self, evolve_root):
-        (evolve_root / "TICKET-cn.md").unlink()
-        messages = lint_messages(evolve_root)
-        assert any(
-            "TICKET-cn.md" in m and "missing language variant" in m
-            for m in messages
-        )
 
-    def test_missing_required_root_file(self, evolve_root):
-        (evolve_root / "TICKET.md").unlink()
-        (evolve_root / "TICKET-cn.md").unlink()
-        messages = lint_messages(evolve_root)
-        assert any("TICKET.md" in m and "required file is missing" in m
-                   for m in messages)
+class TestViolations:
+    def _fail_messages(self, root):
+        return [f.message for f in lint(Repo(dir_project_root=root)).failures()]
 
-    def test_description_rules(self, evolve_root):
-        write_special_file(evolve_root / "README.md", description="x" * 401)
-        write_special_file(
-            evolve_root / "README-cn.md", description='He said "hi" to you'
-        )
-        (evolve_root / "TICKET.md").write_text("# No frontmatter\n", encoding="utf-8")
-        messages = lint_messages(evolve_root)
-        assert any("README.md" in m and "401 chars" in m for m in messages)
-        assert any(
-            "README-cn.md" in m and "forbidden character" in m for m in messages
+    def _fail_locations(self, root):
+        return [f.location for f in lint(Repo(dir_project_root=root)).failures()]
+
+    def test_missing_language_variant(self, upskill_copy):
+        (upskill_copy / "examples" / "01-create-repo" / "README-cn.md").unlink()
+        locations = self._fail_locations(upskill_copy)
+        assert any("README-cn.md" in loc for loc in locations)
+
+    def test_forbidden_char_in_description(self, upskill_copy):
+        target = upskill_copy / "examples" / "01-create-repo" / "README.md"
+        target.write_text(
+            '---\ndescription: He said "hi".\n---\n\n# Title\n', encoding="utf-8"
         )
         assert any(
-            "TICKET.md" in m and "missing a one-line 'description'" in m
-            for m in messages
+            "forbidden character" in (m or "") for m in self._fail_messages(upskill_copy)
         )
 
-    def test_missing_docs_tasks(self, evolve_root):
-        import shutil
+    def test_emoji_in_h1(self, upskill_copy):
+        target = upskill_copy / "examples" / "02-edit-files" / "README.md"
+        target.write_text(
+            "---\ndescription: ok.\n---\n\n# 📋 Files\n", encoding="utf-8"
+        )
+        assert any("emoji" in (m or "") for m in self._fail_messages(upskill_copy))
 
-        shutil.rmtree(evolve_root / "docs")
-        messages = lint_messages(evolve_root)
-        assert any("docs/tasks" in m and "missing" in m for m in messages)
-
-    def test_bad_task_dir_name(self, evolve_root):
-        (evolve_root / "docs" / "tasks" / "01-Bad_Name").mkdir()
-        messages = lint_messages(evolve_root)
-        assert any("01-Bad_Name" in m for m in messages)
-
-    def test_task_snapshot_incomplete(self, evolve_root):
-        (evolve_root / "docs" / "tasks" / "01-intro" / "TICKET-cn.md").unlink()
-        messages = lint_messages(evolve_root)
+    def test_bad_example_dir_name(self, upskill_copy):
+        (upskill_copy / "examples" / "01-create-repo").rename(
+            upskill_copy / "examples" / "01-Bad_Name"
+        )
         assert any(
-            "01-intro" in m and "TICKET-cn.md" in m for m in messages
+            "NN-lowercase-hyphen" in (m or "") for m in self._fail_messages(upskill_copy)
         )
 
-
-class TestShowcaseLint:
-    def test_valid_repo_is_clean(self, showcase_root):
-        assert lint_messages(showcase_root) == []
-
-    def test_root_ticket_not_required(self, showcase_root):
-        # No TICKET at root in the fixture, and that is fine for showcase.
-        assert lint_messages(showcase_root) == []
-
-    def test_missing_examples_dir(self, showcase_root):
-        import shutil
-
-        shutil.rmtree(showcase_root / "examples")
-        messages = lint_messages(showcase_root)
-        assert any("examples" in m and "missing" in m for m in messages)
-
-    def test_example_missing_ticket(self, showcase_root):
-        (showcase_root / "examples" / "01-hello-world" / "TICKET.md").unlink()
-        (showcase_root / "examples" / "01-hello-world" / "TICKET-cn.md").unlink()
-        messages = lint_messages(showcase_root)
+    def test_readme_original_h1_must_match_repo_name(self, upskill_copy):
+        target = upskill_copy / "README-ORIGINAL.md"
+        target.write_text(
+            "---\ndescription: ok.\n---\n\n# Wrong Title\n", encoding="utf-8"
+        )
         assert any(
-            "01-hello-world" in m and "TICKET.md" in m for m in messages
+            "must exactly match the repo name" in (m or "")
+            for m in self._fail_messages(upskill_copy)
         )
+
+    def test_missing_examples_dir(self, upskill_copy):
+        shutil.rmtree(upskill_copy / "examples")
+        assert any(
+            "examples/ directory is missing" in (m or "")
+            for m in self._fail_messages(upskill_copy)
+        )
+
+
+class TestBrokenManifest:
+    def test_broken_manifest_only_runs_manifest_rule(self, upskill_copy):
+        (upskill_copy / "lm.json").write_text("{ not json", encoding="utf-8")
+        report = lint(Repo(dir_project_root=upskill_copy))
+        assert not report.passed
+        assert len(report.results) == 1
+        assert "lm.json is not valid JSON" in report.results[0].message
+
+    def test_missing_manifest(self, upskill_copy):
+        (upskill_copy / "lm.json").unlink()
+        report = lint(Repo(dir_project_root=upskill_copy))
+        assert "lm.json is missing" in report.failures()[0].message
+
+
+class TestRender:
+    def test_render_clean_has_check_marks(self):
+        out = lint(Repo(dir_project_root=dir_good_upskill_repo)).render()
+        assert "✅" in out
+        assert "PASSED" in out
+
+    def test_render_failure_groups_by_file(self, upskill_copy):
+        (upskill_copy / "examples" / "01-create-repo" / "README-cn.md").unlink()
+        out = lint(Repo(dir_project_root=upskill_copy)).render()
+        assert "❌" in out
+        assert "FAILED" in out
 
 
 if __name__ == "__main__":

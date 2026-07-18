@@ -76,8 +76,8 @@ class Metadata:
     dataclass (not a bare enum) so the manifest can grow more structured fields
     later without touching call sites, and so each repo type can subclass it
     (e.g. ``UpskillMetadata`` in ``repo_for_upskill.py``) to add fields specific
-    to that type. :meth:`Repo.metadata` picks the subclass via
-    :attr:`Repo.metadata_class`.
+    to that type. Each per-type Repo subclass overrides its ``metadata`` property
+    to parse into the matching subclass, via :meth:`load_or_none`.
 
     ``__post_init__`` coerces and validates ``type`` into a
     :class:`RepoTypeEnum`, raising ``ValueError`` for anything else.
@@ -101,6 +101,18 @@ class Metadata:
         """Read and parse an ``lm.json`` file into a :class:`Metadata`."""
         data = json.loads(Path(path).read_text(encoding="utf-8"))
         return cls.from_dict(data)
+
+    @classmethod
+    def load_or_none(cls, path: "Path | str") -> "T.Self | None":
+        """Parse ``lm.json`` gracefully: return None instead of raising.
+
+        Consumers like the linter want to keep running and report a bad manifest
+        themselves, so a missing / unreadable / invalid file maps to None.
+        """
+        try:
+            return cls.from_json_file(path)
+        except (OSError, json.JSONDecodeError, ValueError):
+            return None
 
 
 @dataclasses.dataclass(frozen=True)
@@ -147,11 +159,6 @@ class Repo:
                 `-- TICKET.md            + TICKET-<lang>.md
     """
 
-    # Metadata subclass used to parse lm.json. Per-type Repo subclasses override
-    # this (e.g. UpskillRepo.metadata_class = UpskillMetadata) so `metadata`
-    # yields the right subclass without touching the property.
-    metadata_class: T.ClassVar["type[Metadata]"] = Metadata
-
     dir_project_root: Path
 
     def __post_init__(self):
@@ -175,15 +182,11 @@ class Repo:
     def metadata(self) -> "Metadata | None":
         """Parsed ``lm.json``, or None when it is missing / unreadable / invalid.
 
-        Kept graceful (None instead of raising) so that consumers like the
-        linter can still run and report the manifest problem themselves. The
-        concrete class is :attr:`metadata_class`, so subclasses parse into their
-        own :class:`Metadata` subclass.
+        Per-type Repo subclasses override this to parse into their own
+        :class:`Metadata` subclass (see repo_for_upskill.py), which is why it is
+        an explicit override rather than a class-attribute hook.
         """
-        try:
-            return self.metadata_class.from_json_file(self.path_lm_json)
-        except (OSError, json.JSONDecodeError, ValueError):
-            return None
+        return Metadata.load_or_none(self.path_lm_json)
 
     @property
     def repo_type(self) -> "RepoTypeEnum | None":
