@@ -28,21 +28,25 @@ class TestLangHelpers:
 
 
 class TestStandardRepo:
-    def test_root_resolution_walks_up(self, tmp_path):
+    def test_from_cwd_walks_up(self, tmp_path):
         root = make_root(tmp_path)
         nested = root / "docs" / "tasks" / "01-intro"
         nested.mkdir(parents=True)
-        repo = StandardRepo(dir_cwd=nested)
+        repo = StandardRepo.from_cwd(nested)
         assert repo.dir_project_root == root
 
-    def test_root_resolution_fails_outside_repo(self, tmp_path):
-        repo = StandardRepo(dir_cwd=tmp_path)
+    def test_from_cwd_fails_outside_repo(self, tmp_path):
         with pytest.raises(FileNotFoundError):
-            _ = repo.dir_project_root
+            StandardRepo.from_cwd(tmp_path)
+
+    def test_direct_construction_needs_no_root_markers(self, tmp_path):
+        # No .git / mise.toml needed when the root is given directly.
+        repo = StandardRepo(dir_project_root=tmp_path)
+        assert repo.dir_project_root == tmp_path.resolve()
 
     def test_paths(self, tmp_path):
         root = make_root(tmp_path)
-        repo = StandardRepo(dir_cwd=root)
+        repo = StandardRepo(dir_project_root=root)
         assert repo.path_lm_json == root / "lm.json"
         assert repo.path_readme == root / "README.md"
         assert repo.get_path_readme("cn") == root / "README-cn.md"
@@ -58,20 +62,20 @@ class TestStandardRepo:
 
     def test_repo_type(self, tmp_path):
         root = make_root(tmp_path, "showcase")
-        assert StandardRepo(dir_cwd=root).repo_type is RepoTypeEnum.showcase
+        assert StandardRepo(dir_project_root=root).repo_type is RepoTypeEnum.showcase
 
         (root / "lm.json").write_text('{"type": "nope"}', encoding="utf-8")
-        assert StandardRepo(dir_cwd=root).repo_type is None
+        assert StandardRepo(dir_project_root=root).repo_type is None
 
         (root / "lm.json").write_text("not json", encoding="utf-8")
-        assert StandardRepo(dir_cwd=root).repo_type is None
+        assert StandardRepo(dir_project_root=root).repo_type is None
 
         (root / "lm.json").unlink()
-        assert StandardRepo(dir_cwd=root).repo_type is None
+        assert StandardRepo(dir_project_root=root).repo_type is None
 
     def test_iter_task_dirs(self, tmp_path):
         root = make_root(tmp_path)
-        repo = StandardRepo(dir_cwd=root)
+        repo = StandardRepo(dir_project_root=root)
         assert repo.iter_task_dirs() == []
         (root / "docs" / "tasks" / "02-second").mkdir(parents=True)
         (root / "docs" / "tasks" / "01-first").mkdir()
