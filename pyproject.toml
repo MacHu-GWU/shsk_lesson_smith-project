@@ -108,6 +108,7 @@ Download = "https://pypi.org/pypi/shsk-lesson-smith#files"
 
 # For command line interface, read: https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#creating-executable-scripts
 [project.scripts]
+lesson-smith = "shsk_lesson_smith.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
