@@ -22,6 +22,28 @@ from .linter import (
 from .repo import Repo, get_variant_filename
 
 
+#: The single task branch an upskill repo is allowed to have.
+UPSKILL_BRANCH = "01-upskill"
+
+
+def rule_single_branch(repo: Repo) -> "list[CheckResult]":
+    """Upskill has exactly one task branch, and it must be ``01-upskill``.
+
+    The mini tasks live under ``examples/``; ``docs/tasks/`` holds the snapshot
+    of that single branch, so it must contain exactly one dir with this name.
+    """
+
+    def _check() -> None:
+        names = [d.name for d in repo.iter_dir_tasks()]
+        if names != [UPSKILL_BRANCH]:
+            raise LintError(
+                f"An upskill repo must have exactly one task branch named "
+                f"{UPSKILL_BRANCH!r} under docs/tasks/; found {names}."
+            )
+
+    return [run_check(repo.dir_docs_tasks, _check)]
+
+
 def rule_root_overview(repo: Repo) -> "list[CheckResult]":
     """Repo-root README (course overview) and optional TICKET.
 
@@ -69,6 +91,7 @@ RULES = [
     rule_readme_original,
     rule_root_overview,
     rule_examples,
+    rule_single_branch,
     rule_syllabus,
     rule_task_snapshots,
 ]

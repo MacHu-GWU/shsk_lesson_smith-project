@@ -255,15 +255,17 @@ def check_h1_charset(md: MarkdownFile) -> None:
 
 
 def check_h1_matches(md: MarkdownFile, expected: str) -> None:
-    """The file's H1 must exactly equal ``expected`` (used for README-ORIGINAL)."""
+    """The file's H1 must exactly equal ``expected``.
+
+    Used where the title is fixed by convention: README-ORIGINAL (the repo name)
+    and SYLLABUS (the literal ``Syllabus``).
+    """
     title = md.h1
     if title is None:
         raise LintError(
-            "The document has no H1 title, but it must exactly match the repo "
-            f"name {expected!r}."
+            f"The document has no H1 title, but it must be exactly {expected!r}."
         )
     if title != expected:
         raise LintError(
-            f"The H1 title is {title!r}, but it must exactly match the repo "
-            f"name {expected!r}."
+            f"The H1 title is {title!r}, but it must be exactly {expected!r}."
         )

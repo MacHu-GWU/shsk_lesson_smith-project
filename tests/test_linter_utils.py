@@ -194,7 +194,7 @@ class TestCheckH1Matches:
         )
 
     def test_mismatch(self, tmp_path):
-        with pytest.raises(LintError, match="must exactly match"):
+        with pytest.raises(LintError, match="must be exactly"):
             check_h1_matches(self._md(tmp_path, "# Wrong Name\n"), "good_upskill_repo")
 
     def test_missing(self, tmp_path):

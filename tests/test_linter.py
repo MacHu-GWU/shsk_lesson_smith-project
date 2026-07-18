@@ -80,7 +80,7 @@ class TestViolations:
             "---\ndescription: ok.\n---\n\n# Wrong Title\n", encoding="utf-8"
         )
         assert any(
-            "must exactly match the repo name" in (m or "")
+            "must be exactly" in (m or "")
             for m in self._fail_messages(upskill_copy)
         )
 
@@ -88,6 +88,60 @@ class TestViolations:
         shutil.rmtree(upskill_copy / "examples")
         assert any(
             "examples/ directory is missing" in (m or "")
+            for m in self._fail_messages(upskill_copy)
+        )
+
+
+class TestSyllabusContent:
+    def _fail_messages(self, root):
+        return [f.message for f in lint(Repo(dir_project_root=root)).failures()]
+
+    def test_syllabus_h1_must_be_syllabus(self, upskill_copy):
+        target = upskill_copy / "docs" / "tasks" / "SYLLABUS-cn.md"
+        target.write_text(
+            target.read_text(encoding="utf-8").replace("# Syllabus", "# 大纲"),
+            encoding="utf-8",
+        )
+        assert any("must be exactly 'Syllabus'" in (m or "")
+                   for m in self._fail_messages(upskill_copy))
+
+    def test_description_must_match_task_readme(self, upskill_copy):
+        target = upskill_copy / "docs" / "tasks" / "SYLLABUS.md"
+        target.write_text(
+            target.read_text(encoding="utf-8").replace("Overview", "Wrong overview"),
+            encoding="utf-8",
+        )
+        assert any("does not match" in (m or "")
+                   for m in self._fail_messages(upskill_copy))
+
+    def test_sections_must_match_task_dirs(self, upskill_copy):
+        (upskill_copy / "docs" / "tasks" / "01-upskill").rename(
+            upskill_copy / "docs" / "tasks" / "01-course"
+        )
+        assert any("do not match the docs/tasks/" in (m or "")
+                   for m in self._fail_messages(upskill_copy))
+
+
+class TestUpskillSingleBranch:
+    def _fail_messages(self, root):
+        return [f.message for f in lint(Repo(dir_project_root=root)).failures()]
+
+    def test_branch_must_be_01_upskill(self, upskill_copy):
+        (upskill_copy / "docs" / "tasks" / "01-upskill").rename(
+            upskill_copy / "docs" / "tasks" / "01-course"
+        )
+        assert any(
+            "exactly one task branch named '01-upskill'" in (m or "")
+            for m in self._fail_messages(upskill_copy)
+        )
+
+    def test_two_branches_rejected(self, upskill_copy):
+        shutil.copytree(
+            upskill_copy / "docs" / "tasks" / "01-upskill",
+            upskill_copy / "docs" / "tasks" / "02-extra",
+        )
+        assert any(
+            "exactly one task branch named '01-upskill'" in (m or "")
             for m in self._fail_messages(upskill_copy)
         )
 

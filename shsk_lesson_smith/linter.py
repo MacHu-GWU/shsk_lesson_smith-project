@@ -20,6 +20,7 @@ Design (see also linter_for_<type>.py):
 
 import dataclasses
 import json
+import re
 from pathlib import Path
 
 from .constants import (
@@ -221,9 +222,95 @@ def rule_readme_original(repo: Repo) -> "list[CheckResult]":
     )
 
 
+def _parse_syllabus_sections(body: str) -> "list[tuple[str, str]]":
+    """Parse ``## <branch>`` sections into ``[(branch, description), ...]``.
+
+    The description is everything between an H2 and the next H2, stripped.
+    """
+    sections: "list[tuple[str, str]]" = []
+    branch: "str | None" = None
+    desc_lines: "list[str]" = []
+    for line in body.splitlines():
+        if line.startswith("## "):
+            if branch is not None:
+                sections.append((branch, "\n".join(desc_lines).strip()))
+            branch = line[3:].strip()
+            desc_lines = []
+        elif branch is not None:
+            desc_lines.append(line)
+    if branch is not None:
+        sections.append((branch, "\n".join(desc_lines).strip()))
+    return sections
+
+
+def _check_syllabus_matches_tasks(repo: Repo, sections) -> None:
+    branches = [branch for branch, _ in sections]
+    dirs = [d.name for d in repo.iter_dir_tasks()]
+    if branches != dirs:
+        raise LintError(
+            f"SYLLABUS sections {branches} do not match the docs/tasks/ "
+            f"directories {dirs} (same set, same order)."
+        )
+
+
+def _check_syllabus_numbering(sections) -> None:
+    numbers = []
+    for branch, _ in sections:
+        match = re.match(r"^(\d\d)-", branch)
+        if match is None:
+            raise LintError(
+                f"SYLLABUS section {branch!r} must start with a two-digit number."
+            )
+        numbers.append(int(match.group(1)))
+    if numbers != list(range(1, len(numbers) + 1)):
+        raise LintError(
+            f"SYLLABUS task numbers must be consecutive 01, 02, ... with no gaps; "
+            f"got {numbers}."
+        )
+
+
+def _check_syllabus_entry(repo: Repo, lang, branch: str, desc: str) -> None:
+    if not desc:
+        raise LintError(f"SYLLABUS entry {branch!r} has no description line.")
+    if "\n" in desc:
+        raise LintError(
+            f"SYLLABUS entry {branch!r} description must be a single line."
+        )
+    readme = repo.get_path_task_readme(branch, lang)
+    expected = MarkdownFile(readme).description if readme.exists() else None
+    if expected is None:
+        raise LintError(
+            f"SYLLABUS entry {branch!r}: docs/tasks/{branch}/{readme.name} has no "
+            "frontmatter description to match against."
+        )
+    if desc != expected:
+        raise LintError(
+            f"SYLLABUS entry {branch!r} description does not match the description "
+            f"in docs/tasks/{branch}/{readme.name}."
+        )
+
+
 def rule_syllabus(repo: Repo) -> "list[CheckResult]":
-    """docs/tasks/SYLLABUS: generated, so only existence + language completeness."""
-    return lint_file_group(repo.get_path_syllabus, required=True)
+    """docs/tasks/SYLLABUS: existence, language completeness, and content.
+
+    Content is generated from the task READMEs, so linting verifies it did not
+    drift: H1 is ``Syllabus``; the ``## branch`` sections match the docs/tasks/
+    dirs in order; the numbers are consecutive; each one-line description equals
+    the matching-language README's frontmatter description.
+    """
+    out = lint_file_group(repo.get_path_syllabus, required=True)
+    for lang in LANGS:
+        path = repo.get_path_syllabus(lang)
+        if not path.exists():
+            continue
+        md = MarkdownFile(path)
+        out.append(run_check(path, check_h1_matches, md, "Syllabus"))
+        sections = _parse_syllabus_sections(md.body)
+        out.append(run_check(path, _check_syllabus_matches_tasks, repo, sections))
+        out.append(run_check(path, _check_syllabus_numbering, sections))
+        for branch, desc in sections:
+            out.append(run_check(path, _check_syllabus_entry, repo, lang, branch, desc))
+    return out
 
 
 def rule_task_snapshots(repo: Repo) -> "list[CheckResult]":
