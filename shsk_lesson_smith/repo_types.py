@@ -66,11 +66,8 @@ def resolve_repo(dir_cwd: "Path | str | None" = None) -> StandardRepo:
     Falls back to the plain :class:`StandardRepo` when lm.json is missing or
     invalid, so the linter can still run and report the manifest problem.
     """
-    if dir_cwd is None:
-        base = StandardRepo()
-    else:
-        base = StandardRepo(dir_cwd=Path(dir_cwd))
+    base = StandardRepo.from_cwd(dir_cwd)
     klass = REPO_TYPE_TO_CLASS.get(base.repo_type, StandardRepo)
     if klass is StandardRepo:
         return base
-    return klass(dir_cwd=base.dir_cwd)
+    return klass(dir_project_root=base.dir_project_root)

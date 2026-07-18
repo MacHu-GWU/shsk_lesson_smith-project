@@ -10,9 +10,12 @@ type. Naming conventions on the class:
 - ``get_xxx(lang=...)`` methods return the language variant of a special file
   (``lang=None`` means English, which carries no suffix).
 
-The project root is resolved the same way ``git rev-parse --show-toplevel``
-works: walk up from ``dir_cwd`` until a directory containing both ``.git``
-and ``mise.toml`` is found.
+The core field is ``dir_project_root``. Construct a repo directly when the
+root is already known (test fixtures do this, since a nested ``.git`` dir
+cannot be committed to git), or use the :meth:`StandardRepo.from_cwd` factory
+to resolve the root the way ``git rev-parse --show-toplevel`` works: walk up
+from a working directory until a directory containing both ``.git`` and
+``mise.toml`` is found.
 """
 
 import dataclasses
@@ -81,23 +84,26 @@ class StandardRepo:
     ``repo_types.py`` and add their own paths.
     """
 
-    dir_cwd: Path = dataclasses.field(default_factory=Path.cwd)
+    dir_project_root: Path
 
     def __post_init__(self):
-        self.dir_cwd = Path(self.dir_cwd).resolve()
+        self.dir_project_root = Path(self.dir_project_root).resolve()
 
-    @cached_property
-    def dir_project_root(self) -> Path:
-        """Nearest ancestor (including dir_cwd) holding ``.git`` + ``mise.toml``.
+    @classmethod
+    def from_cwd(cls, dir_cwd: "Path | str | None" = None) -> "StandardRepo":
+        """Factory: locate the project root by walking up from ``dir_cwd``.
 
-        ``.git`` only needs to exist (it is a file, not a directory, in a git
-        worktree checkout).
+        The root is the nearest ancestor (including ``dir_cwd`` itself, which
+        defaults to the current working directory) holding both ``.git`` and
+        ``mise.toml``. ``.git`` only needs to exist (it is a file, not a
+        directory, in a git worktree checkout).
         """
-        for directory in [self.dir_cwd, *self.dir_cwd.parents]:
+        dir_cwd = Path(dir_cwd).resolve() if dir_cwd is not None else Path.cwd()
+        for directory in [dir_cwd, *dir_cwd.parents]:
             if (directory / ".git").exists() and (directory / "mise.toml").is_file():
-                return directory
+                return cls(dir_project_root=directory)
         raise FileNotFoundError(
-            f"cannot locate project root from {self.dir_cwd}: "
+            f"cannot locate project root from {dir_cwd}: "
             "no ancestor directory contains both .git and mise.toml"
         )
 
@@ -167,12 +173,7 @@ class StandardRepo:
     # ------------------------------------------------------------------ #
     @cached_property
     def repo_type(self) -> "RepoTypeEnum | None":
-        """Repo type declared in lm.json, or None when missing / invalid.
-
-        A repo root that cannot be located at all still raises
-        ``FileNotFoundError`` (from :attr:`dir_project_root`); only a missing
-        or broken lm.json maps to None.
-        """
+        """Repo type declared in lm.json, or None when missing / invalid."""
         path = self.path_lm_json
         try:
             data = json.loads(path.read_text(encoding="utf-8"))
