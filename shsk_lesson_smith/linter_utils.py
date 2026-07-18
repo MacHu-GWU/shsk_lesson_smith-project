@@ -6,8 +6,8 @@ Nothing here knows about repo types or directory layout. There are two kinds of
 building block:
 
 - :class:`MarkdownFile`: turn a path into a parsed document. It stores only the
-  raw ``path`` and ``text``; everything derived (the frontmatter, the body, the
-  H1 titles) is a lazily computed, cached property.
+  ``path``; the raw ``text`` and everything derived from it (the frontmatter,
+  the body, the H1 titles) is a lazily computed, cached property.
 - ``check_*`` functions: each inspects one thing and either returns quietly or
   raises :class:`LintError` with a friendly message.
 
@@ -106,21 +106,30 @@ class Frontmatter:
 
 @dataclasses.dataclass
 class MarkdownFile:
-    """A parsed markdown file. Stores only ``path`` and raw ``text``.
+    """A parsed markdown file. Stores only ``path``.
 
-    Build one with :meth:`from_path` (the file must already exist; use
-    :func:`check_file_exists` first when existence is itself in question). All
-    derived views are cached properties, so parsing happens at most once.
+    Build one with :meth:`from_path` or directly from a path. Nothing is read
+    from disk until a derived view is accessed: ``text`` reads the file on first
+    access, and everything else (frontmatter, body, H1 titles) is a cached
+    property on top of it, so a file is read and parsed at most once. Use
+    :func:`check_file_exists` first when the file's existence is itself in
+    question, since accessing ``text`` on a missing file raises.
     """
 
     path: Path
-    text: str
+
+    def __post_init__(self):
+        self.path = Path(self.path)
 
     @classmethod
     def from_path(cls, path: "Path | str") -> "T.Self":
-        """Read the markdown file at ``path`` into a :class:`MarkdownFile`."""
-        path = Path(path)
-        return cls(path=path, text=path.read_text(encoding="utf-8"))
+        """Wrap ``path`` in a :class:`MarkdownFile` (contents read lazily)."""
+        return cls(path=Path(path))
+
+    @cached_property
+    def text(self) -> str:
+        """Raw file contents, read from ``path`` on first access."""
+        return self.path.read_text(encoding="utf-8")
 
     @cached_property
     def _frontmatter_lines_and_body(self) -> "tuple[list[str] | None, str]":
@@ -155,7 +164,7 @@ class MarkdownFile:
         """Every H1 title in the body (text of each line starting with ``# ``).
 
         A well-formed document has exactly one; the full list is kept so
-        :func:`check_h1` can flag documents that have none or several.
+        :func:`check_h1_charset` can flag documents that have none or several.
         """
         return [
             line[2:].strip()
@@ -179,8 +188,8 @@ def check_file_exists(path: "Path | str") -> None:
         raise LintError(f"File is missing: expected it to exist at {path}.")
 
 
-def check_description(md: MarkdownFile) -> None:
-    """The file must carry a valid one-line frontmatter ``description``.
+def check_frontmatter_description(md: MarkdownFile) -> None:
+    """The markdown file's frontmatter ``description`` field must be valid.
 
     Valid means: frontmatter is present, has a non-empty ``description`` key,
     within the character limit, and free of quote / backtick characters.
@@ -213,12 +222,13 @@ def check_description(md: MarkdownFile) -> None:
         )
 
 
-def check_h1(md: MarkdownFile) -> None:
-    """The file must have exactly one H1 that uses only the allowed charset.
+def check_h1_charset(md: MarkdownFile) -> None:
+    """The markdown H1 title must use only the allowed character set.
 
-    Allowed: letters, digits, text, and the punctuation , : . Banned: dashes,
-    quotes, brackets, and emoji. (README-ORIGINAL is exempt; use
-    :func:`check_h1_matches` for it instead.)
+    The file must have exactly one H1, and that title may use only letters,
+    digits, text, and the punctuation , : . Banned: dashes, quotes, brackets,
+    and emoji. (README-ORIGINAL is exempt; use :func:`check_h1_matches` for it
+    instead.)
     """
     titles = md.h1_titles
     if not titles:

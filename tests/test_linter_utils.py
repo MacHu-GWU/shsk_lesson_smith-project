@@ -3,12 +3,14 @@
 import pytest
 
 from shsk_lesson_smith.exc import LintError
+from pathlib import Path
+
 from shsk_lesson_smith.linter_utils import (
     Frontmatter,
     MarkdownFile,
-    check_description,
     check_file_exists,
-    check_h1,
+    check_frontmatter_description,
+    check_h1_charset,
     check_h1_matches,
     find_emoji,
 )
@@ -98,6 +100,18 @@ class TestMarkdownFile:
         assert md.h1_titles == []
         assert md.h1 is None
 
+    def test_text_is_read_lazily(self, tmp_path):
+        # Constructing does not touch the disk; only accessing .text does.
+        md = MarkdownFile(tmp_path / "nope.md")
+        with pytest.raises(FileNotFoundError):
+            _ = md.text
+
+    def test_accepts_str_path(self, tmp_path):
+        path = write(tmp_path / "README.md", "# Title\n")
+        md = MarkdownFile(str(path))
+        assert isinstance(md.path, Path)
+        assert md.h1 == "Title"
+
 
 class TestCheckFileExists:
     def test_passes_when_present(self, tmp_path):
@@ -109,61 +123,65 @@ class TestCheckFileExists:
             check_file_exists(tmp_path / "nope.md")
 
 
-class TestCheckDescription:
+class TestCheckFrontmatterDescription:
     def _md(self, tmp_path, text):
         return MarkdownFile.from_path(write(tmp_path / "README.md", text))
 
     def test_valid(self, tmp_path):
-        check_description(self._md(tmp_path, "---\ndescription: Learn X.\n---\n"))
+        check_frontmatter_description(
+            self._md(tmp_path, "---\ndescription: Learn X.\n---\n")
+        )
 
     def test_missing_frontmatter(self, tmp_path):
         with pytest.raises(LintError, match="no YAML frontmatter"):
-            check_description(self._md(tmp_path, "# Title\n"))
+            check_frontmatter_description(self._md(tmp_path, "# Title\n"))
 
     def test_missing_key(self, tmp_path):
         with pytest.raises(LintError, match="no 'description' key"):
-            check_description(self._md(tmp_path, "---\ntitle: x\n---\n"))
+            check_frontmatter_description(self._md(tmp_path, "---\ntitle: x\n---\n"))
 
     def test_empty(self, tmp_path):
         with pytest.raises(LintError, match="is empty"):
-            check_description(self._md(tmp_path, "---\ndescription:   \n---\n"))
+            check_frontmatter_description(
+                self._md(tmp_path, "---\ndescription:   \n---\n")
+            )
 
     def test_too_long(self, tmp_path):
         text = "---\ndescription: " + "x" * 401 + "\n---\n"
         with pytest.raises(LintError, match="401 characters"):
-            check_description(self._md(tmp_path, text))
+            check_frontmatter_description(self._md(tmp_path, text))
 
     def test_forbidden_char(self, tmp_path):
         text = "---\ndescription: He said hi to `you`\n---\n"
         with pytest.raises(LintError, match="forbidden character"):
-            check_description(self._md(tmp_path, text))
+            check_frontmatter_description(self._md(tmp_path, text))
 
 
-class TestCheckH1:
+class TestCheckH1Charset:
     def _md(self, tmp_path, text):
         return MarkdownFile.from_path(write(tmp_path / "README.md", text))
 
     def test_valid(self, tmp_path):
-        check_h1(self._md(tmp_path, "# Create a Repo, edit files: go\n"))
+        check_h1_charset(self._md(tmp_path, "# Create a Repo, edit files: go\n"))
 
     def test_valid_chinese(self, tmp_path):
-        check_h1(self._md(tmp_path, "# 使用 Git Branch 隔离改动\n"))
+        check_h1_charset(self._md(tmp_path, "# 使用 Git Branch 隔离改动\n"))
 
     def test_missing(self, tmp_path):
         with pytest.raises(LintError, match="no H1 title"):
-            check_h1(self._md(tmp_path, "## H2 only\n"))
+            check_h1_charset(self._md(tmp_path, "## H2 only\n"))
 
     def test_multiple(self, tmp_path):
         with pytest.raises(LintError, match="2 H1 titles"):
-            check_h1(self._md(tmp_path, "# One\n\n# Two\n"))
+            check_h1_charset(self._md(tmp_path, "# One\n\n# Two\n"))
 
     def test_forbidden_char(self, tmp_path):
         with pytest.raises(LintError, match="forbidden character"):
-            check_h1(self._md(tmp_path, "# Learn Git — fast\n"))
+            check_h1_charset(self._md(tmp_path, "# Learn Git — fast\n"))
 
     def test_emoji(self, tmp_path):
         with pytest.raises(LintError, match="emoji"):
-            check_h1(self._md(tmp_path, "# 📋 What You Learn\n"))
+            check_h1_charset(self._md(tmp_path, "# 📋 What You Learn\n"))
 
 
 class TestCheckH1Matches:
