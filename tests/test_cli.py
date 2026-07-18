@@ -1,22 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import json as json_module
-import shutil
 from pathlib import Path
 
 import pytest
 
 from shsk_lesson_smith.cli import Command
 
-dir_good_upskill_repo = Path(__file__).absolute().parent / "good_upskill_repo"
-
-
-@pytest.fixture
-def broken_copy(tmp_path):
-    dst = tmp_path / "repo"
-    shutil.copytree(dir_good_upskill_repo, dst)
-    (dst / "lm.json").write_text("{ not json", encoding="utf-8")
-    return dst
+dir_tests = Path(__file__).absolute().parent
+dir_good_upskill_repo = dir_tests / "good_upskill_repo"
+dir_bad_upskill_repo = dir_tests / "bad_upskill_repo"
 
 
 class TestLint:
@@ -38,16 +31,23 @@ class TestLint:
         assert isinstance(data["results"], list)
         assert {"location", "passed", "message"} <= set(data["results"][0])
 
-    def test_failure_exits_nonzero(self, broken_copy):
+    def test_failure_exits_nonzero(self):
         with pytest.raises(SystemExit) as excinfo:
-            Command().lint(project_root=str(broken_copy))
+            Command().lint(project_root=str(dir_bad_upskill_repo))
         assert excinfo.value.code == 1
 
-    def test_quiet_failure_still_exits_nonzero(self, broken_copy, capsys):
+    def test_quiet_failure_still_exits_nonzero(self, capsys):
         with pytest.raises(SystemExit) as excinfo:
-            Command().lint(project_root=str(broken_copy), quiet=True)
+            Command().lint(project_root=str(dir_bad_upskill_repo), quiet=True)
         assert excinfo.value.code == 1
         assert capsys.readouterr().out == ""
+
+    def test_json_failure_output(self, capsys):
+        with pytest.raises(SystemExit):
+            Command().lint(project_root=str(dir_bad_upskill_repo), json=True)
+        data = json_module.loads(capsys.readouterr().out)
+        assert data["passed"] is False
+        assert any(r["passed"] is False for r in data["results"])
 
     def test_not_in_a_repo_errors(self, tmp_path, capsys):
         # No project_root and cwd not in a repo -> friendly error, exit 1.
