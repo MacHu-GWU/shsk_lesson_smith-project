@@ -5,16 +5,19 @@
 Nothing here knows about repo types or directory layout. There are two kinds of
 building block:
 
-- :class:`MarkdownFile`: turn a path into a parsed document (frontmatter split
-  from body, with convenient accessors for the description and H1 title).
+- :class:`MarkdownFile`: turn a path into a parsed document. It stores only the
+  raw ``path`` and ``text``; everything derived (the frontmatter, the body, the
+  H1 titles) is a lazily computed, cached property.
 - ``check_*`` functions: each inspects one thing and either returns quietly or
   raises :class:`LintError` with a friendly message.
 
 The repo-aware linters in ``linter.py`` compose these into full lint runs.
 """
 
+import typing as T
 import dataclasses
 from pathlib import Path
+from functools import cached_property
 
 from .constants import (
     DESCRIPTION_FORBIDDEN_CHARS,
@@ -78,60 +81,92 @@ def _forbidden_in(text: str, forbidden_chars: str) -> str:
 
 
 @dataclasses.dataclass
+class Frontmatter:
+    """The frontmatter key-value pairs lesson-smith actually cares about.
+
+    A dedicated dataclass rather than a raw dict: only the keys the standard
+    uses become typed fields, so callers get autocomplete and a clear contract,
+    and adding a new tracked key is a one-line change here. An instance always
+    means "a frontmatter block was present"; a missing block is modeled as
+    :attr:`MarkdownFile.frontmatter` being None.
+    """
+
+    description: "str | None" = None
+
+    @classmethod
+    def from_lines(cls, lines: "list[str]") -> "T.Self":
+        """Parse the inner lines of a ``---`` block into the tracked fields."""
+        description = None
+        for line in lines:
+            if line.startswith(_DESCRIPTION_KEY):
+                description = _unquote(line[len(_DESCRIPTION_KEY) :].strip())
+                break
+        return cls(description=description)
+
+
+@dataclasses.dataclass
 class MarkdownFile:
-    """A parsed markdown file: raw text split into frontmatter and body.
+    """A parsed markdown file. Stores only ``path`` and raw ``text``.
 
     Build one with :meth:`from_path` (the file must already exist; use
-    :func:`check_file_exists` first when existence is itself in question).
+    :func:`check_file_exists` first when existence is itself in question). All
+    derived views are cached properties, so parsing happens at most once.
     """
 
     path: Path
     text: str
-    frontmatter_lines: "list[str] | None"
-    body: str
 
     @classmethod
-    def from_path(cls, path: "Path | str") -> "MarkdownFile":
-        """Read and parse the markdown file at ``path``."""
+    def from_path(cls, path: "Path | str") -> "T.Self":
+        """Read the markdown file at ``path`` into a :class:`MarkdownFile`."""
         path = Path(path)
-        text = path.read_text(encoding="utf-8")
-        frontmatter_lines, body = _split_frontmatter(text)
-        return cls(
-            path=path,
-            text=text,
-            frontmatter_lines=frontmatter_lines,
-            body=body,
-        )
+        return cls(path=path, text=path.read_text(encoding="utf-8"))
+
+    @cached_property
+    def _frontmatter_lines_and_body(self) -> "tuple[list[str] | None, str]":
+        return _split_frontmatter(self.text)
+
+    @cached_property
+    def frontmatter(self) -> "Frontmatter | None":
+        """Parsed frontmatter, or None when the file has no ``---`` block."""
+        lines, _ = self._frontmatter_lines_and_body
+        if lines is None:
+            return None
+        return Frontmatter.from_lines(lines)
+
+    @cached_property
+    def body(self) -> str:
+        """Everything after the frontmatter block (the whole text if none)."""
+        _, body = self._frontmatter_lines_and_body
+        return body
 
     @property
     def has_frontmatter(self) -> bool:
         """Whether the file opens with a well-formed ``---`` frontmatter block."""
-        return self.frontmatter_lines is not None
+        return self.frontmatter is not None
 
-    @property
+    @cached_property
     def description(self) -> "str | None":
         """The one-line ``description`` value from the frontmatter, if present."""
-        if not self.frontmatter_lines:
-            return None
-        for line in self.frontmatter_lines:
-            if line.startswith(_DESCRIPTION_KEY):
-                return _unquote(line[len(_DESCRIPTION_KEY) :].strip())
-        return None
+        return self.frontmatter.description if self.frontmatter else None
 
-    @property
+    @cached_property
     def h1_titles(self) -> "list[str]":
-        """Every H1 title in the body (text of each line starting with ``# ``)."""
+        """Every H1 title in the body (text of each line starting with ``# ``).
+
+        A well-formed document has exactly one; the full list is kept so
+        :func:`check_h1` can flag documents that have none or several.
+        """
         return [
             line[2:].strip()
             for line in self.body.splitlines()
             if line.startswith("# ")
         ]
 
-    @property
+    @cached_property
     def h1(self) -> "str | None":
         """The first H1 title, or None when the document has none."""
-        titles = self.h1_titles
-        return titles[0] if titles else None
+        return self.h1_titles[0] if self.h1_titles else None
 
 
 # --------------------------------------------------------------------------- #
