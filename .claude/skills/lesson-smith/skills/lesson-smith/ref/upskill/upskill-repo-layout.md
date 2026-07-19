@@ -35,8 +35,12 @@ examples/01-title/README-<lang>.md
 examples/01-title/TICKET.md          mini task 任务卡片
 examples/01-title/TICKET-<lang>.md
 examples/02-title/
-examples/03-title/
 examples/...
+examples/xy-title/                   quiz 环节 mini task (靠后, 通常倒数第 2 到第 3)
+examples/xy-title/README.md          题库真身, 走 examples-quiz-spec (不走教学 README 结构)
+examples/xy-title/README-<lang>.md
+examples/xy-title/TICKET.md
+examples/xy-title/TICKET-<lang>.md
 docs/tasks/
 docs/tasks/SYLLABUS.md               生成
 docs/tasks/SYLLABUS-<lang>.md
@@ -45,6 +49,12 @@ docs/tasks/01-upskill/README.md
 docs/tasks/01-upskill/README-<lang>.md
 docs/tasks/01-upskill/TICKET.md
 docs/tasks/01-upskill/TICKET-<lang>.md
+docs/upskill/                        forge 产出: 学习工具文档
+docs/upskill/01-upskill-learn.md     学习索引
+docs/upskill/02-upskill-runbook.md   跑起来的操作
+docs/upskill/03-upskill-quiz.md      quiz 薄壳 (指向题库真身)
+.claude/skills/upskill-learn/SKILL.md    forge 产出: 带学 skill
+.claude/skills/upskill-quiz/SKILL.md     forge 产出: 自测 skill
 ```
 
 ---
