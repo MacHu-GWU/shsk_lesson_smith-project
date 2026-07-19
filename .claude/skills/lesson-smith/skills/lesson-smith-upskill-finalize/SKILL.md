@@ -66,7 +66,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 按 `upskill-ticket-spec.md` 写, 同样一次产出全部语种.
 
-要点: 三段式 (目标, 要做的事情, 检查清单) 加第 4 个 H2 (关键能力). 第 4 节从各 mini task 的 TICKET 萃取, 纯 bullet, 不带 checkbox, 10 条以内且必须取舍 (按自由说明给的侧重, 没给就自行挑最能代表这门课的). 预计用时用自由说明给的值, 没给就保守估计或省略. **全文不放任何链接或路径** (TICKET 会进 GitHub Issue, 相对路径点不动), 提到 mini task, 系列索引, upskill-quiz 一律用文字提及.
+要点: 三段式 (目标, 要做的事情, 检查清单) 加第 4 个 H2 (关键能力). 第 4 节从各 mini task 的 TICKET 萃取, 纯 bullet, 不带 checkbox, 10 条以内且必须取舍 (按自由说明给的侧重, 没给就自行挑最能代表这门课的). 预计用时用自由说明给的值, 没给就保守估计或省略. **不写指向 repo 内文件或目录的相对路径链接** (TICKET 会进 GitHub Issue, 相对路径点不动; 绝对 URL 可以), 提到 mini task, 系列索引, upskill-quiz 一律用文字提及.
 
 ### Phase 5 — 生成 SYLLABUS 与快照
 

@@ -12,7 +12,10 @@
 
 H1 任务标题: 规则与 README 相同 (只用字母, 数字, 文字, 逗号, 冒号, 句号; 禁 emoji, 引号, 双引号, 破折号). 额外一条: 标题里不许出现 repo 名字作为通用前缀. (为什么: 凡是能用程序批量生成的一律不手写, repo 前缀这类交给程序.)
 
-不放 GitHub 链接: TICKET 正文里不手写指向教程或 Issue 的 GitHub 链接. (为什么: 生成 GitHub Issue 时可以由程序确定性地拼出来, 不手写.)
+链接约定: TICKET 正文最终会被程序放进 GitHub Issue, 所以对链接有讲究.
+- 禁止指向 repo 内文件或目录的相对路径链接 (形如指向 ../ 或 ./ 某个文件的 markdown 链接). 相对路径在 GitHub Issue 里是死的, 点不动. 要指向 repo 里某个文件, 目录或 mini task 时, 用文字提及 (直接说文件名或位置), 不写成链接.
+- 允许绝对 URL: 形如 https://domain/href 的绝对链接完全可以照常用.
+- 另外不手写指向本教程或本 Issue 自身的 GitHub 链接: 生成 Issue 时程序会确定性地拼出来, 不手写.
 
 顶部 frontmatter 的 description 是这个 Task 的 "完成判据": 一句话说清做出什么, 或能当场演示什么, 才算完成 (Definition of Done 压成一句). 它出现在看板 / Issue 列表里, 面向判断 "这活儿是啥, 达没达标" 的人. 和 README 那句是同一个 Task 的两张脸: README 句说学完能做到什么 (承诺), 这句说做出什么才算完 (判据). 纯知识型 Task 就写成可当场检验的理解 (你能解释清楚 X). 长度约束见 repo-layout.md 第 4 节.
 -->

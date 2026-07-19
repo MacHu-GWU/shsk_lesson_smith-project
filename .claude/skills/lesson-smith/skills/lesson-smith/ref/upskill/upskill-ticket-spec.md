@@ -10,7 +10,7 @@
 - 沿用 ticket-spec 的三段式 (目标, 要做的事情, 检查清单), 再加第 4 个 H2 (关键能力). 四个 H2 按 markdown-style 从 1 连续编号, 之间用分隔线隔开.
 - 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
 
-全文不放任何链接或引用 (这条比通用 ticket-spec 更严): TICKET 正文最终会被程序放进 GitHub Issue, 里面的相对路径 (形如指向某目录的链接) 点不动, 所以不写任何 markdown 链接, 也不写文件路径. 需要指向 examples 的某个 mini task, 系列索引, 或 /upskill-quiz 时, 一律用文字 "提及" (例如直接说 examples 里第几个 task, 说系列索引, 说 upskill-quiz), 不带链接和路径.
+链接约定 (沿用通用 ticket-spec 的规则, 这里因为要频繁提到 mini task 而再强调一次): 禁止指向 repo 内文件或目录的相对路径链接 (在 GitHub Issue 里点不动); 绝对 URL (形如 https://domain/href) 则照常可用. 需要指向 examples 的某个 mini task, 系列索引, 或 upskill-quiz 时, 用文字提及 (直接说是 examples 里第几个 task, 说系列索引, 说 upskill-quiz), 不写相对路径链接. 第 4 节 "关键能力" 尤其如此: 纯文字 bullet.
 
 H1 任务标题: 规则同 ticket-spec (只用字母, 数字, 文字, 逗号, 冒号, 句号; 禁 emoji, 引号, 双引号, 破折号; 且标题里不放 repo 名字作为通用前缀).
 
@@ -57,7 +57,7 @@ description: 一句话, 走完整门课, 做出什么或能演示什么才算完
 
 ## 4. 关键能力
 
-[从各 mini task 的 TICKET 里挑最重要的能力汇成 bullet, 10 条以内, 取舍, 每条一句. 纯 bullet, 不带 checkbox, 也不带链接.]
+[从各 mini task 的 TICKET 里挑最重要的能力汇成 bullet, 10 条以内, 取舍, 每条一句. 纯 bullet, 不带 checkbox, 也不带相对路径链接.]
 
 - [关键能力一.]
 - [关键能力二.]
