@@ -54,4 +54,30 @@ description: Foundation skill for authoring teaching repositories (hands-on IT l
 
 ## 5. 渐进式加载: 按需读取 ref/
 
-不要一次读完全部规范. 根据当前任务只加载需要的文件:
+不要一次读完全部规范. 按当前任务, 只加载需要的那几份.
+
+**通用标准 (所有类型的教学仓库共用, 在 ref/ 根):**
+
+- 布局, 命名, 校验有疑问, 或要跑 lesson-smith lint / sync 时 → [ref/repo-layout.md](ref/repo-layout.md): 目录结构与命名标准.
+- 写某个 Task 或 mini task 的教学 README 时 → [ref/readme-spec.md](ref/readme-spec.md): README 规范加模板.
+- 写 TICKET 时 → [ref/ticket-spec.md](ref/ticket-spec.md): 任务卡片规范加模板.
+- 写 repo 对外长介绍 README-ORIGINAL 时 → [ref/readme-original-spec.md](ref/readme-original-spec.md): 电梯陈述规范加模板.
+- 关心 SYLLABUS 的格式或内容 (它由 lesson-smith sync 生成, 也被 lint 校验) 时 → [ref/syllabus-spec.md](ref/syllabus-spec.md).
+
+**通用交互件 (不限教学仓库, 任何互动 skill 都可加载):**
+
+- 写或改一个需要和用户互动的 skill 时 → [ref/agent-skill-interaction-pattern.md](ref/agent-skill-interaction-pattern.md): 通用交互模式底座.
+
+**upskill 类型专属 (在 ref/upskill/ 下, 只在处理 upskill repo 时才读):**
+
+- upskill 的目录结构特化 → [ref/upskill/upskill-repo-layout.md](ref/upskill/upskill-repo-layout.md).
+- 写 examples/README 系列索引 → [ref/upskill/examples-readme-spec.md](ref/upskill/examples-readme-spec.md).
+- 写 docs/upskill/01-upskill-learn.md (学习索引) → [ref/upskill/docs-upskill-learn-spec.md](ref/upskill/docs-upskill-learn-spec.md).
+- 写 docs/upskill/02-upskill-runbook.md (跑起来的操作) → [ref/upskill/docs-upskill-runbook-spec.md](ref/upskill/docs-upskill-runbook-spec.md).
+- 写 docs/upskill/03-upskill-quiz.md (quiz 薄壳) → [ref/upskill/docs-upskill-quiz-spec.md](ref/upskill/docs-upskill-quiz-spec.md).
+- 写 quiz 环节那个 mini task 的 README (题库真身) → [ref/upskill/examples-quiz-spec.md](ref/upskill/examples-quiz-spec.md).
+- 产出 upskill-learn / upskill-quiz 两个子 skill 时 → [ref/upskill/upskill-learn.SKILL.md](ref/upskill/upskill-learn.SKILL.md), [ref/upskill/upskill-quiz.SKILL.md](ref/upskill/upskill-quiz.SKILL.md): 近乎静态的 SKILL 模板.
+
+**维护规范文件本身时:**
+
+- 新增或修改 ref/ 下的 spec 文件时 → [spec-file-format.md](spec-file-format.md): spec 文件的写法 (文件即模板, 规范写在顶部注释).
