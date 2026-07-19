@@ -2,7 +2,7 @@
 
 这个文件只在编写 lesson-smith skill 本身时参考. SKILL 运行时不引用它.
 
-lesson-smith 的每个特殊文件的 spec (例如 `readme-spec.md`, `syllabus-spec.md`) 都按同一套格式写.
+lesson-smith 的每个特殊文件的 spec (例如 `readme-spec.md`, `ticket-spec.md`, `syllabus-spec.md`) 都按同一套格式写.
 
 ## 1. 文件即模板
 
