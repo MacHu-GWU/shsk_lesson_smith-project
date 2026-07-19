@@ -29,7 +29,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 - `ref/upskill/docs-upskill-quiz-spec.md` — 写 `03-upskill-quiz.md` 的规范.
 - `ref/upskill/examples-quiz-spec.md` — 题库真身 (quiz mini task 的 README) 的格式, 用来定位它并写好 `03` 的指针.
 - `ref/upskill/upskill-learn.SKILL.md`, `ref/upskill/upskill-quiz.SKILL.md` — 两个子 skill 的近乎静态模板, 直接拷.
-- `ref/agent-skill-interaction-pattern.md` — 通用交互模式, 生成子 skill 时一并 bundle 进去.
+- `ref/agent-skill-interaction-pattern.md` — 通用交互模式 (英文权威版), 生成子 skill 时拷一份进各自的 ref/ 下.
 
 ## 参数
 
@@ -79,17 +79,18 @@ upskill 的内容是创作者手写的 mini task, 不用像扫陌生代码那样
 
 ### Phase 5 — 落 2 个子 skill
 
-把两个模板拷成真正的 skill:
+把两个模板拷成真正的 skill, 并让它们**自包含** (学生 repo 里没有 lesson-smith, 每个 skill 必须自带交互模式):
 
 - `ref/upskill/upskill-learn.SKILL.md` → `.claude/skills/upskill-learn/SKILL.md`
 - `ref/upskill/upskill-quiz.SKILL.md` → `.claude/skills/upskill-quiz/SKILL.md`
+- `ref/agent-skill-interaction-pattern.md` (英文权威版) → 各拷一份到 `.claude/skills/upskill-learn/ref/agent-skill-interaction-pattern.md` 和 `.claude/skills/upskill-quiz/ref/agent-skill-interaction-pattern.md`.
 
-模板近乎全静态, 落地时只做两件事: 一是把 `ref/agent-skill-interaction-pattern.md` 的内容**内联** 进各 SKILL.md 的 "交互底座" 处 (因为生成出来的 skill 在学生 repo 里够不到 lesson-smith 的 ref/, 所以内联而不是引用外部路径); 二是核对 SKILL.md 里对 `docs/upskill/` 的引用路径正确.
+模板近乎全静态, 落地时只需核对: 每个 SKILL.md 都固定加载它自己 ref/ 下那份交互模式 (路径已写死在模板里), 且对 `docs/upskill/` 的引用路径正确.
 
 ### Phase 6 — Verify 与汇报
 
 1. 列出创建或更新的文件 (3 份 doc + 2 份 SKILL.md).
-2. sanity check: 每个 SKILL.md 都引到 `docs/upskill/` 下的文件; 交互模式已内联, 没有 "由 forge 注入" 这类未兑现的指针; 3 份 doc 都非空.
+2. sanity check: 每个 SKILL.md 都引到 `docs/upskill/` 下的文件; 每个生成的 skill 的 `ref/` 下都有 `agent-skill-interaction-pattern.md`, 且 SKILL.md 固定加载了它; 3 份 doc 都非空.
 3. 跑 `lesson-smith lint` 看仓库结构是否仍合规.
 4. 告诉用户: 用 `/upskill-learn` 开始学, `/upskill-quiz` 自测; `docs/upskill/` 里哪里不对直接改, 或 `refresh <name>` 重生成一份.
 

@@ -66,7 +66,7 @@ description: Foundation skill for authoring teaching repositories (hands-on IT l
 
 **通用交互件 (不限教学仓库, 任何互动 skill 都可加载):**
 
-- 写或改一个需要和用户互动的 skill 时 → [ref/agent-skill-interaction-pattern.md](ref/agent-skill-interaction-pattern.md): 通用交互模式底座.
+- 写或改一个需要和用户互动的 skill 时 → [ref/agent-skill-interaction-pattern.md](ref/agent-skill-interaction-pattern.md): 通用交互模式底座 (英文权威版, forge 会把它拷进生成的每个 skill 的 ref/ 下). 人类维护者读中文版 [ref/agent-skill-interaction-pattern-cn.md](ref/agent-skill-interaction-pattern-cn.md), 两版内容一致, 改一版同步另一版.
 
 **upskill 类型专属 (在 ref/upskill/ 下, 只在处理 upskill repo 时才读):**
 

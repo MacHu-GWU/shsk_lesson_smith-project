@@ -15,7 +15,7 @@ Load whenever the user asks to be quizzed or tested, mentions the quiz, or menti
 
 ## Interaction base
 
-This skill follows the **general agent-skill interaction pattern**; forge inlines that pattern's full text here at generation time. In short: lead at the opening, one question per turn, a confident-teacher tone, locate things by header or keyword, never by line number. Below is only what is specific to upskill-quiz.
+Always load your interaction base first: read `.claude/skills/upskill-quiz/ref/agent-skill-interaction-pattern.md` (bundled with this skill) and follow it. In short: lead at the opening, one question per turn, a confident-teacher tone, locate things by header or keyword, never by line number. Below is only what is specific to upskill-quiz.
 
 ## Knowledge sources (fixed, do not invent)
 

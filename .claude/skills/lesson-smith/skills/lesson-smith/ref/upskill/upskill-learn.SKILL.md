@@ -15,7 +15,7 @@ Load whenever the user mentions or opens any file under `examples/` (that is the
 
 ## Interaction base
 
-This skill follows the **general agent-skill interaction pattern**; forge inlines that pattern's full text here at generation time. In short: lead at the opening, then follow the user's context; one question per turn; keep it short and specific; locate things by header or keyword, never by line number. Below is only what is specific to upskill-learn.
+Always load your interaction base first: read `.claude/skills/upskill-learn/ref/agent-skill-interaction-pattern.md` (bundled with this skill) and follow it. In short: lead at the opening, then follow the user's context; one question per turn; keep it short and specific; locate things by header or keyword, never by line number. Below is only what is specific to upskill-learn.
 
 ## Knowledge sources (fixed, do not invent)
 
