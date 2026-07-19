@@ -1,6 +1,6 @@
 # Upskill 类型仓库目录结构
 
-upskill 是 examples 系列型仓库的一种 (另一种是 showcase, 两者布局几乎一致, 唯一区别是 upskill 学会即止, 不对外 publish). 本文档在 [ref/repo-layout.md](../repo-layout.md) 的通用标准之上, 只说清 upskill 的特化之处; 通用命名与 frontmatter 约束仍以它为准.
+upskill 是 examples 系列型仓库: 整个 repo 就是一门课, 内容拆成 examples 下的一个个 mini task, 学会即止, 不对外 publish. 本文档在 [ref/repo-layout.md](../repo-layout.md) 的通用标准之上, 只说清 upskill 的特化之处; 通用命名与 frontmatter 约束仍以它为准.
 
 ## 1. 定位
 
@@ -10,7 +10,7 @@ upskill 教 "如何做某一类事情", 学会即止, 不需要外部背书. 整
 
 ## 2. 唯一的 Task branch: 01-upskill
 
-upskill 只有一个带序号的 Task branch, 名字固定为 01-upskill (showcase 对应固定为 01-showcase). 因为整门课就是这一个 Task, 序号必然是 01, 名字直接由类型决定, 创作者不用另取. examples 下的那些 mini task 是这一个 branch 内部的内容, 不是各自独立的 branch.
+upskill 只有一个带序号的 Task branch, 名字固定为 01-upskill. 因为整门课就是这一个 Task, 序号必然是 01, 名字直接由类型决定, 创作者不用另取. examples 下的那些 mini task 是这一个 branch 内部的内容, 不是各自独立的 branch.
 
 这一条由 lesson-smith lint 强制: docs/tasks 下必须恰好只有一个目录, 且名为 01-upskill.
 
@@ -57,7 +57,7 @@ README-ORIGINAL 是对外 README, 遵循 [ref/readme-original-spec.md](../readme
 
 examples/NN-title 下的 README 与 TICKET 才是真正的教学文档, 它们直接遵循标准的 [ref/readme-spec.md](../readme-spec.md) 与 [ref/ticket-spec.md](../ticket-spec.md), 不另立 spec: 内容规范和根目录情形完全一样, 唯一区别是所在位置 (examples/NN-title 而非 repo 根). 这也是为什么这两个 spec 的适用范围里已经点名了 examples/XY-title-here.
 
-examples/README 是系列索引, 它不是教程, 也不同于 SYLLABUS 的无脑罗列, 而是把 mini task 按主题分组梳理. 它遵循单独的 [ref/upskill/examples-readme-spec.md](examples-readme-spec.md) (与 showcase 共用).
+examples/README 是系列索引, 它不是教程, 也不同于 SYLLABUS 的无脑罗列, 而是把 mini task 按主题分组梳理. 它遵循单独的 [ref/upskill/examples-readme-spec.md](examples-readme-spec.md).
 
 docs/tasks/01-upskill 下的四个文件是根目录 README 与 TICKET 的快照, 由 lesson-smith sync 生成, 不手写. SYLLABUS 同样由 sync 生成, 对 upskill 来说只有 01-upskill 一段.
 
