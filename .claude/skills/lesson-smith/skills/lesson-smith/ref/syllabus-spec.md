@@ -1,7 +1,7 @@
 <!--
 SYLLABUS 格式规范. 正文是脚本产出的样例; 这段注释只服务于理解规范, 脚本自动生成 SYLLABUS 时本来就不会带上它.
 
-docs/tasks/SYLLABUS.md 是整门课的 Task 清单索引, 由 scripts/lesson_smith.py sync 自动生成, 不手写. 每个语种一份: 英文是 SYLLABUS.md, 其他语种是 SYLLABUS-<lang>.md.
+docs/tasks/SYLLABUS.md 是整门课的 Task 清单索引, 由 lesson-smith CLI 的 sync 子命令 (来自 shsk_lesson_smith Python package) 自动生成, 不手写. 每个语种一份: 英文是 SYLLABUS.md, 其他语种是 SYLLABUS-<lang>.md.
 
 结构: 以 # Syllabus 开头. 之后每个 Task 一段, 二级标题就是这个 branch 的目录名 (全小写, 原样输出, 不做任何大小写转换), 空一行再跟一段描述. Task 按 branch 序号升序排列, 段与段之间空一行.
 
@@ -9,7 +9,7 @@ docs/tasks/SYLLABUS.md 是整门课的 Task 清单索引, 由 scripts/lesson_smi
 
 branch name: 全小写, 连字符分隔 (例如 01-branch-name). 全小写加连字符是为了减少认知负担, 不用记大小写规范, 更容易保持统一.
 
-生成: 由 scripts/lesson_smith.py 用 Python 标准库直接字符串拼接生成, 不引第三方模板引擎.
+生成: 由 shsk_lesson_smith package 的 `lesson-smith sync` 直接字符串拼接生成, 不引第三方模板引擎.
 -->
 
 # Syllabus

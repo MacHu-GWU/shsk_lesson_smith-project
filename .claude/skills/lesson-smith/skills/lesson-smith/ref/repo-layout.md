@@ -1,6 +1,6 @@
 # 教学仓库目录结构标准
 
-所有不同类型的教学仓库共享这套目录与命名标准. 本文档尚未完稿: 各文件的 spec 与 template 文件, 以及校验脚本, 都还没写.
+所有不同类型的教学仓库共享这套目录与命名标准. 各类型在此基础上特化, 特化说明放在 ref 下对应的子目录里 (upskill 见 upskill/upskill-repo-layout.md; showcase, evolve 待补).
 
 ## 1. 命名约定
 
@@ -62,6 +62,11 @@ docs/tasks/02-branch-name/
 
 ---
 
-## 6. 校验脚本
+## 6. 校验与同步工具
 
-维护 `docs/tasks/` 以及校验命名与语种完整性的脚本在 `scripts/` 下 (待完工). 用法待补.
+维护 `docs/tasks/` 以及校验命名, 语种完整性, description 规范的逻辑在本项目的 `shsk_lesson_smith` Python package 里, CLI 入口是 `lesson-smith`:
+
+```bash
+lesson-smith sync   # 快照当前 branch 的 README / TICKET 到 docs/tasks/<branch>/, 并重建 SYLLABUS
+lesson-smith lint   # 只读校验: 目录结构, 语种完整性, frontmatter description, SYLLABUS 内容
+```
