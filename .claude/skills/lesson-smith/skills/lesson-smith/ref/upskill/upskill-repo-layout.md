@@ -6,6 +6,8 @@ upskill 是 examples 系列型仓库: 整个 repo 就是一门课, 内容拆成 
 
 upskill 教 "如何做某一类事情", 学会即止, 不需要外部背书. 整个 repo 就是一门课, 只有一个 Task. 课程内容拆成若干个 mini task, 每个 mini task 放在 examples 下的一个目录里.
 
+为什么这一层叫 examples 而不是 tutorials: 如果这个 repo 最终要拿去给外面看, tutorials 给人的感觉是 "别人在教这个学生", 而 examples 给人的感觉是 "这个学生在教别人, 在展示自己怎么学会的". 后者视角更主动, 更适合展示, 所以统一用 examples.
+
 ---
 
 ## 2. 唯一的 Task branch: 01-upskill
@@ -36,11 +38,16 @@ examples/01-title/TICKET.md          mini task 任务卡片
 examples/01-title/TICKET-<lang>.md
 examples/02-title/
 examples/...
-examples/xy-title/                   quiz 环节 mini task (靠后, 通常倒数第 2 到第 3)
-examples/xy-title/README.md          题库真身, 走 examples-quiz-spec (不走教学 README 结构)
-examples/xy-title/README-<lang>.md
-examples/xy-title/TICKET.md
-examples/xy-title/TICKET-<lang>.md
+examples/NN-prove-i-get-it/     quiz 环节 (靠后, 通常倒数第 2), 标题固定 prove-i-get-it
+examples/NN-prove-i-get-it/README.md        题库真身, 走 examples-quiz-spec (不走教学 README 结构)
+examples/NN-prove-i-get-it/README-<lang>.md
+examples/NN-prove-i-get-it/TICKET.md
+examples/NN-prove-i-get-it/TICKET-<lang>.md
+examples/ZZ-title/                   最后一个 mini task: 梳理已学 + 拔高方向
+examples/ZZ-title/README.md
+examples/ZZ-title/README-<lang>.md
+examples/ZZ-title/TICKET.md
+examples/ZZ-title/TICKET-<lang>.md
 docs/tasks/
 docs/tasks/SYLLABUS.md               生成
 docs/tasks/SYLLABUS-<lang>.md
@@ -68,6 +75,8 @@ README-ORIGINAL 是对外 README, 遵循 [ref/readme-original-spec.md](../readme
 examples/NN-title 下的 README 与 TICKET 才是真正的教学文档, 它们直接遵循标准的 [ref/readme-spec.md](../readme-spec.md) 与 [ref/ticket-spec.md](../ticket-spec.md), 不另立 spec: 内容规范和根目录情形完全一样, 唯一区别是所在位置 (examples/NN-title 而非 repo 根). 这也是为什么这两个 spec 的适用范围里已经点名了 examples/XY-title-here.
 
 examples/README 是系列索引, 它不是教程, 也不同于 SYLLABUS 的无脑罗列, 而是把 mini task 按主题分组梳理. 它遵循单独的 [ref/upskill/examples-readme-spec.md](examples-readme-spec.md).
+
+quiz 那个 mini task 是个例外: 目录固定命名 NN-prove-i-get-it, 它的 README 不走教学 readme-spec 的正文结构, 而走 [ref/upskill/examples-quiz-spec.md](examples-quiz-spec.md) 的问答结构 (TICKET 仍走标准 [ref/ticket-spec.md](../ticket-spec.md)).
 
 docs/tasks/01-upskill 下的四个文件是根目录 README 与 TICKET 的快照, 由 lesson-smith sync 生成, 不手写. SYLLABUS 同样由 sync 生成, 对 upskill 来说只有 01-upskill 一段.
 
