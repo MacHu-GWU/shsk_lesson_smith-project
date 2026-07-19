@@ -48,7 +48,7 @@
 
 ## 8. 写 quiz 并精修
 
-按 [ref/upskill/examples-quiz-spec.md](examples-quiz-spec.md) 写 quiz 题库 (每题四段: 问题, 考察点, 参考回答, 深入解读), 然后精修.
+按 [ref/upskill/examples-quiz-readme-spec.md](examples-quiz-readme-spec.md) 写这个 mini task 的 README (题库, 每题四段: 问题, 考察点, 参考回答, 深入解读), 按 [ref/upskill/examples-quiz-ticket-spec.md](examples-quiz-ticket-spec.md) 写它固定的 TICKET (读一遍题库 + 用 /upskill-quiz 测到 70% 通过), 然后精修.
 
 ---
 

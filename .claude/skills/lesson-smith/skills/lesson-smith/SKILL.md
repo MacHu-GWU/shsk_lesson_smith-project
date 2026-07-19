@@ -76,7 +76,7 @@ description: Foundation skill for authoring teaching repositories (hands-on IT l
 - 写 docs/upskill/01-upskill-learn.md (学习索引) → [ref/upskill/docs-upskill-learn-spec.md](ref/upskill/docs-upskill-learn-spec.md).
 - 写 docs/upskill/02-upskill-runbook.md (跑起来的操作) → [ref/upskill/docs-upskill-runbook-spec.md](ref/upskill/docs-upskill-runbook-spec.md).
 - 写 docs/upskill/03-upskill-quiz.md (quiz 薄壳) → [ref/upskill/docs-upskill-quiz-spec.md](ref/upskill/docs-upskill-quiz-spec.md).
-- 写 quiz 环节那个 mini task 的 README (题库真身) → [ref/upskill/examples-quiz-spec.md](ref/upskill/examples-quiz-spec.md).
+- 写 quiz 环节那个 mini task 的 README (题库真身) → [ref/upskill/examples-quiz-readme-spec.md](ref/upskill/examples-quiz-readme-spec.md); 它的 TICKET → [ref/upskill/examples-quiz-ticket-spec.md](ref/upskill/examples-quiz-ticket-spec.md).
 - 产出 upskill-learn / upskill-quiz 两个子 skill 时 → [ref/upskill/upskill-learn.SKILL.md](ref/upskill/upskill-learn.SKILL.md), [ref/upskill/upskill-quiz.SKILL.md](ref/upskill/upskill-quiz.SKILL.md): 近乎静态的 SKILL 模板.
 
 **维护规范文件本身时:**

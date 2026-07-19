@@ -1,9 +1,9 @@
 <!--
-本文件是 quiz 环节那个 mini task 的 README 的规范加可直接套用的模板. 这段顶部注释只服务于创作; 产出真正的 README-cn.md 时, 把整段注释删掉, 只留后面的正文.
+本文件是 quiz 环节那个 mini task 的 README (题库真身) 的规范加可直接套用的模板. 这段顶部注释只服务于创作; 产出真正的 README-cn.md 时, 把整段注释删掉, 只留后面的正文.
 
 定性: 这是 quiz 的真身, 即题库本身. 它是 examples 里靠后 (通常倒数第 2 到第 3 个) 的那个 mini task 的 README-cn.md. 题目, 考察点, 参考回答, 深入解读全部写在这里; docs/upskill/03-upskill-quiz.md 只是指过来的薄壳. 撰写这一节时会有专门的 skill 辅助, AI 提建议, 人类拍板定题.
 
-适用范围: upskill 类型 repo 里那个 quiz mini task 的 README. 它的目录标题固定为 prove-i-get-it (即 examples/NN-prove-i-get-it), 视角是学生自己检查自己, 便于对外展示. 语言遵循创作铁律 (先写 cn, 定稿后 translate-to-en). 它虽然放在 examples 下, 但正文不走教学 README 的小节结构, 而走下面这套问答结构; frontmatter 的 description 仍要有 (和其它 mini task 一致, 供 lint 与索引用).
+适用范围: upskill 类型 repo 里那个 quiz mini task 的 README. 它的目录标题固定为 prove-i-get-it (即 examples/NN-prove-i-get-it), 视角是学生自己检查自己, 便于对外展示. 语言遵循创作铁律 (先写 cn, 定稿后 translate-to-en). 它虽然放在 examples 下, 但正文不走教学 README 的小节结构, 而走下面这套问答结构; frontmatter 的 description 仍要有 (和其它 mini task 一致, 供 lint 与索引用). 这个 mini task 的 TICKET 另有规范, 见 [ref/upskill/examples-quiz-ticket-spec.md](examples-quiz-ticket-spec.md).
 
 结构:
 - H1 标题下, 固定跟一句话, 说明本文档是对整门课学到的东西的一次验证, 看你是否知其然知其所以然. 措辞可调, 意思不变.
@@ -17,7 +17,6 @@
 写作原则:
 - 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
 - 四段的顺序固定, 但某一段确实无话可说时可以简短带过, 不必硬凑.
-- 这个 mini task 同样有 TICKET, TICKET 走标准的 [ref/ticket-spec.md](../ticket-spec.md), 不在本规范内.
 -->
 
 ---

@@ -20,7 +20,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 - `ref/upskill/upskill-repo-layout.md` — upskill 的目录结构与命名 (含 examples 命名的用意).
 - `ref/readme-spec.md`, `ref/ticket-spec.md` — 各 mini task 的教学 README 与 TICKET.
 - `ref/upskill/examples-readme-spec.md` — 系列索引 examples/README.
-- `ref/upskill/examples-quiz-spec.md` — quiz 那个 mini task 的题库结构.
+- `ref/upskill/examples-quiz-readme-spec.md` 与 `ref/upskill/examples-quiz-ticket-spec.md` — quiz 那个 mini task 的题库 README 结构与固定 TICKET.
 - `ref/agent-skill-interaction-pattern-cn.md` — 你和创作者互动的方式 (读中文版, 因为创作者以中文为母语).
 
 ## 怎么带
