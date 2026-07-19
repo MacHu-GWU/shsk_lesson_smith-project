@@ -1,9 +1,9 @@
 <!--
 本文件是 docs/upskill/02-upskill-runbook.md 的规范加可直接套用的模板. 这段顶部注释只服务于创作; 产出真正的 doc 时, 把整段注释删掉, 只留后面的正文.
 
-定性: 这是 "把课程跑起来的操作手册", 由 lesson-smith-upskill-forge 生成, 给 upskill-learn skill 消费, 学生也能直接读. 它只管 "怎么把要学的东西跑起来", 不讲知识 (知识在 examples 和素材里), 也不做索引 (那是 01-upskill-learn.md 的活).
+定性: 这是 "把课程跑起来的操作手册", 由 lesson-smith-upskill-forge 生成, 给 upskill-learn skill 消费. 它只管 "怎么把要学的东西跑起来", 不讲知识 (知识在 examples 和素材里), 也不做索引 (那是 01-upskill-learn.md 的活).
 
-适用范围: upskill 类型 repo 的 docs/upskill/02-upskill-runbook.md. 语言遵循创作铁律 (先写 cn, 定稿后 translate-to-en), 或按 repo 的语言约定.
+适用范围: upskill 类型 repo 的 docs/upskill/02-upskill-runbook.md. 这是给 AI/skill 看的元文件, 人类读的是真正的教程正文 (examples 下的), 不读这个; 所以它产出内容全英文, 不走 cn-first 铁律. 因此下面的正文模板本身就是英文的.
 
 内容分两块:
 
@@ -16,36 +16,35 @@
 精炼原则: examples/01, 02 ... 如果只是标准地一个个往前推, 没有额外操作, 就用一两句概括整体节奏, 不要逐个 example 枚举. 只有某一步需要跳出常规 (注册账号, 浏览器 setup, 切到某个特殊目录等), 才把那一步单拎出来单独说.
 
 写作原则:
-- 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
 - 命令原样可跑, 逐字照抄, 不要转述或改写.
 - 需要指向文件时用 markdown 链接, 定位用 header 或关键字, 不用 line no.
-- 没有内容的小节保留标题, 写一句占位 (例如 "暂无, 遇到再补"), 不要整节删掉.
+- 没有内容的小节保留标题, 写一句占位 (例如 none yet, fill in as you hit them), 不要整节删掉.
 -->
 
-# [课程名] Runbook
+# [Course Name] Runbook
 
-> 把这门课跑起来: 开始前怎么 setup, 推进过程中有哪些和环境, 命令, 操作相关的步骤. 遇到跑不起来先看这里.
+> How to run this course: how to set up before you start, and which environment / command / operational steps come up as you go. When something will not run, look here first.
 
-## 1. 环境准备
+## 1. Environment Setup
 
-[开始 examples 之前, 一次性把项目 setup 好. 命令大多在 mise.toml 里, 原样照抄.]
+[A one-time setup before the examples begin. Most commands live in mise.toml; copy them verbatim.]
 
-- 前置工具: [工具与版本, 取自 [mise.toml](../../mise.toml)]
-- 首次 setup:
-1. [命令一, 原样可跑]
-2. [命令二]
+- Prerequisites: [tools and versions, from [mise.toml](../../mise.toml)]
+- First-time setup:
+1. [command one, runnable as-is]
+2. [command two]
 
-## 2. 推进中的操作
+## 2. Operations Along the Way
 
-[examples/01, 02 ... 标准推进不用逐个枚举, 用一两句说清整体节奏即可. 把导师默认懂, 但学生 follow 时不懂的隐性操作显式写清; 再把值得单说的步骤单拎出来.]
+[Do not enumerate examples/01, 02 ... one by one; a sentence or two on the overall rhythm is enough. Make explicit the implicit steps a mentor takes for granted but a following student does not know; then call out the steps worth singling out.]
 
-整体节奏: [一句话, 例如: 大部分 example 就是读它的 README 照着做, 无额外操作; 只在下面几处需要跳出常规.]
+Overall rhythm: [one line, e.g. most examples are read-the-README-and-follow, no extra operation; only the spots below step off the beaten path.]
 
-值得单说的步骤:
+Steps worth singling out:
 
-- 做到 [examples/0X] 时: [要做的额外操作, 例如注册某个账号, 在浏览器里开启某项设置, cd 到某个目录, 设某个环境变量]
-- 做到 [examples/0Y] 时: [额外操作]
+- At [examples/0X]: [the extra operation, e.g. register some account, enable some setting in the browser, cd into some dir, set some env var]
+- At [examples/0Y]: [the extra operation]
 
-## 3. 常见卡点
+## 3. Common Snags
 
-[已知的坑与解法. 暂无就写 "暂无, 遇到再补".]
+[Known footguns and fixes. If none, write none yet, fill in as you hit them.]
