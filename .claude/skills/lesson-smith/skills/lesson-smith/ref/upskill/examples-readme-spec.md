@@ -5,7 +5,7 @@
 
 定性: examples/README 是系列索引, 给刚进入 repo 的人一眼看清这门课有哪些 mini task, 以及它们是怎么组织的. 它不是教学文档 (教程在各 mini task 的 README 里).
 
-适用范围: upskill 和 showcase 类型 repo 根目录下的 examples/README(-lang).md. 它不遵循 readme-spec (那是给单个 task 的教学 README 用的).
+适用范围: upskill 和 showcase 类型 repo 根目录下的 examples/README(-lang).md. 它不遵循 [ref/readme-spec.md](../readme-spec.md) (那是给单个 task 的教学 README 用的).
 
 和 SYLLABUS 的区别 (这是本 spec 的核心): SYLLABUS 由脚本生成, 是无脑的平铺罗列, 一个 task 一段, 按 01, 02, 03 顺序排下来, 谁都不挨着谁. examples/README 恰恰相反, 是人手写的 "梳理": 把若干个 mini task 按主题聚成几个 group, 每个 group 一个大主题, 体现出结构, 分类与递进, 读起来是 "这门课分成这么几块, 每块解决什么", 而不是 "这里有 8 个东西". 两者海拔和目的都不同, 因此并存不冲突.
 
