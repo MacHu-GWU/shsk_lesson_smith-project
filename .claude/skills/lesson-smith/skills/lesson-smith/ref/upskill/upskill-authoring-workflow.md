@@ -76,6 +76,8 @@
 
 ---
 
-## 13. 后续
+## 13. 交给 finalize 收尾定型
 
-还有第 13 步及以后, 不过对应的 skill 都还没准备好, 等之后再说.
+到这一步 examples 内容和学习工具链都齐了, 最后给整门课收尾. 用 /lesson-smith-upskill-finalize 写出根目录的 README (仓库总览加 "怎么学" 的操作入口, 遵循 [ref/upskill/upskill-readme-spec.md](upskill-readme-spec.md)) 与 TICKET (整门课的验收清单, 遵循 [ref/upskill/upskill-ticket-spec.md](upskill-ticket-spec.md)). 这两份结构固定, 由 finalize 一次性产出全部语种, 不再走 cn-first 分两步. 随后 finalize 会跑 lesson-smith sync 生成 SYLLABUS 与快照, 再跑 lesson-smith lint 把关. 为方便编辑那次调用的输入, 用模板 [prompts/run-lesson-smith-upskill-finalize.md](../../prompts/run-lesson-smith-upskill-finalize.md).
+
+到此整门 upskill 课创作完成.

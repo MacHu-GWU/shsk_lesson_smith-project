@@ -1,0 +1,64 @@
+<!--
+本文件是 upskill 类型 repo 根目录 TICKET 的规范加可直接套用的模板. 这段顶部注释只服务于创作; 产出真正的 TICKET-cn.md 与 TICKET.md 时, 把整段注释删掉, 只留后面的正文.
+
+定性: 根目录 TICKET 是整门课 (唯一 branch 01-upskill) 的验收清单, 主要给学生自查用. 各 mini task 自己的 TICKET 负责单个 task 的验收; 这一份站在整门课的高度, 汇总成一张 "我是不是把这门课学完学透了" 的核对表.
+
+适用范围: 仅 upskill 类型 repo 根目录的 TICKET(-lang).md. 它在通用 [ref/ticket-spec.md](../ticket-spec.md) 的三段式之上, 多加一个 H2 (关键能力); 通用规范其余部分仍以它为准.
+
+写作原则:
+- 这份文档结构固定, 低歧义, 由 lesson-smith-upskill-finalize 一次性产出全部语种 (英文版加 supported-languages.json 里每个语种), 不走分两步翻译. 思考口径以中文为准, 英文版自然改写.
+- 沿用 ticket-spec 的三段式 (目标, 要做的事情, 检查清单), 再加第 4 个 H2 (关键能力). 四个 H2 按 markdown-style 从 1 连续编号, 之间用分隔线隔开.
+- 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
+
+全文不放任何链接或引用 (这条比通用 ticket-spec 更严): TICKET 正文最终会被程序放进 GitHub Issue, 里面的相对路径 (形如指向某目录的链接) 点不动, 所以不写任何 markdown 链接, 也不写文件路径. 需要指向 examples 的某个 mini task, 系列索引, 或 /upskill-quiz 时, 一律用文字 "提及" (例如直接说 examples 里第几个 task, 说系列索引, 说 upskill-quiz), 不带链接和路径.
+
+H1 任务标题: 规则同 ticket-spec (只用字母, 数字, 文字, 逗号, 冒号, 句号; 禁 emoji, 引号, 双引号, 破折号; 且标题里不放 repo 名字作为通用前缀).
+
+顶部 frontmatter 的 description 是整门课的 "完成判据": 一句话说清走完整门课, 做出什么或能当场演示什么才算完成. 它和根 README 那句承诺是同一门课的两张脸 (README 说学完能做到什么, 这句说做出什么才算完). 长度与字符约束见 repo-layout.md 第 4 节.
+
+四个 H2 各写什么:
+- 第 1 节 目标: 一段, 整门课级别的 Definition of Done (走完这门课要建立起什么整体能力或体感).
+- 第 2 节 要做的事情: 有序的学习路径. 大致是: 先读根目录 README, 再读 examples 的系列索引, 然后按编号顺序刷完全部 mini task (每个照它自己的 TICKET 做), 最后用 upskill-quiz 测到 70% 且思路清晰. 末尾给一个整门课的预计用时.
+- 第 3 节 检查清单: 固定的 markdown todo 骨架 (带 checkbox). 覆盖: 全部 mini task 完成 (各自 TICKET 逐项打勾), upskill-quiz 达到 70%, 能不看教程独立复现, 能用自己的话讲清核心概念. 视课程增删.
+- 第 4 节 关键能力: 从各 mini task 的 TICKET 里萃取出最重要的能力, 汇成一张纯 bullet 清单 (不带 checkbox, 因为逐项打勾的活第 3 节和各 mini task 已经做过; 它是让学员对照 "我是不是真掌握了这些" 的能力核对). 硬性要求取舍: 控制在 10 条以内, 不是每个 mini task 都值得列 (它们各自 TICKET 里都说过了), 挑最能代表这门课的能力, 每条一句话.
+-->
+
+---
+description: 一句话, 走完整门课, 做出什么或能演示什么才算完成. 中文叙述加英文术语.
+---
+
+# 完成 [课程名] 全部课程
+
+## 1. 目标
+
+[一段: 走完本课程全部 mini task, 要建立起什么整体能力或体感.]
+
+---
+
+## 2. 要做的事情
+
+1. 先读根目录的 README, 明白这门课怎么学.
+2. 读 examples 的系列索引, 对整门课有张地图.
+3. 按编号顺序刷完 examples 下全部 mini task, 每个都照它自己的 TICKET 逐项确认.
+4. 全部刷完后, 用 upskill-quiz 自测, 测到 70% 的题都能思路清晰地答出来.
+
+**预计用时:** [X 到 Y] [小时 / 一个周末]
+
+---
+
+## 3. 检查清单
+
+- [ ] **全部 mini task 完成**: examples 下每个 task 的 TICKET 检查清单都已逐项打勾.
+- [ ] **自测达标**: 用 upskill-quiz 测到 70% 的题都能思路清晰地答出来.
+- [ ] **能独立复现**: 不看教程, 能把这门课的核心流程从头独立走一遍.
+- [ ] **能讲清概念**: 能用自己的话解释这门课几个核心概念各自解决什么问题.
+
+---
+
+## 4. 关键能力
+
+[从各 mini task 的 TICKET 里挑最重要的能力汇成 bullet, 10 条以内, 取舍, 每条一句. 纯 bullet, 不带 checkbox, 也不带链接.]
+
+- [关键能力一.]
+- [关键能力二.]
+- [关键能力三.]
