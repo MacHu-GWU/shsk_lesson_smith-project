@@ -25,6 +25,10 @@ Always load your interaction base first: read `.claude/skills/upskill-learn/ref/
 
 If the index or runbook is missing or clearly stale, tell the user and suggest re-running the forge skill first.
 
+## Language
+
+These docs under `docs/upskill/` are written in English and their links point to the English (`.md`) source files. If the user wants to work in another language, keep using these English docs as your index, but when you teach from, quote, or point the user at a referenced file, prefer its localized counterpart: replace the trailing `.md` with `-<lang>.md` (for example `README.md` becomes `README-cn.md`). Those localized files exist alongside the English ones and carry the same content in the user's language. Fall back to the English file only when the localized one does not exist.
+
 ## The four modes
 
 | Mode | When | What you do |

@@ -23,6 +23,10 @@ Always load your interaction base first: read `.claude/skills/upskill-quiz/ref/a
 - The bank itself: the README that link points to. Each question is one H2 with four parts: the question, what it probes, the answer, the deep dive. Grade against the **answer plus deep dive**; the deep dive's source links are what you show the learner for provenance.
 - Context: `docs/upskill/01-upskill-learn.md` — when the learner gets one wrong and wants the source, or when generating fresh questions.
 
+## Language
+
+These docs under `docs/upskill/` are written in English and their links point to the English (`.md`) source files (including the question bank). If the user wants to work in another language, keep using these English docs, but when you quote a question, an answer, or point the user at a referenced file, prefer its localized counterpart: replace the trailing `.md` with `-<lang>.md` (for example `README.md` becomes `README-cn.md`). Those localized files exist alongside the English ones and carry the same content in the user's language. Fall back to the English file only when the localized one does not exist.
+
 ## Opening
 
 1. Read `docs/upskill/03-upskill-quiz.md`, follow the link to the bank, note the total number of questions, and read the human's quiz customization (honor it if present).
