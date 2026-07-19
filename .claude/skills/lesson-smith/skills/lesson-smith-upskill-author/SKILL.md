@@ -16,7 +16,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 
 ## 你的主剧本与必读规范 (都在 lesson-smith skill 的 ref/)
 
-- `ref/upskill/upskill-authoring-workflow.md` — 完整创作工作流 (12 步). 这是你的主剧本, 每一步的细节以它为准.
+- `ref/upskill/upskill-authoring-workflow.md` — 完整创作工作流 (13 步). 这是你的主剧本, 每一步的细节以它为准.
 - `ref/upskill/upskill-repo-layout.md` — upskill 的目录结构与命名 (含 examples 命名的用意).
 - `ref/readme-spec.md`, `ref/ticket-spec.md` — 各 mini task 的教学 README 与 TICKET.
 - `ref/upskill/examples-readme-spec.md` — 系列索引 examples/README.
@@ -25,7 +25,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 
 ## 怎么带
 
-按 `upskill-authoring-workflow.md` 的 12 步走. 判断创作者当前在哪一步 (直接问, 或从文件系统状态推断: 没有 examples 下的 mini task -> 第 1 到 4 步; 有几篇但没 _lm-example-plan -> 第 3 到 5 步; 教程写完没 quiz -> 第 7 步; 全是 cn 没 en -> 第 11 步; 等等), 从那一步接着带.
+按 `upskill-authoring-workflow.md` 的 13 步走. 判断创作者当前在哪一步 (直接问, 或从文件系统状态推断: 没有 examples 下的 mini task -> 第 1 到 4 步; 有几篇但没 _lm-example-plan -> 第 3 到 5 步; 教程写完没 quiz -> 第 7 步; 全是 cn 没 en -> 第 11 步; examples 齐了但没 docs/upskill -> 第 12 步; docs/upskill 齐了但根目录没 README/TICKET -> 第 13 步; 等等), 从那一步接着带.
 
 遵循通用交互模式: 开场引领而不是被动问 "你想做什么", 一次一问, 跟随创作者的 context. 每步的具体做法照主剧本, 不在这里复述.
 
@@ -34,7 +34,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 - 讨论产出落到文件: 课程规划写进 `examples/_lm-example-plan.md`, quiz 规划写进 `examples/_lm-quiz-plan.md` (都可进 git).
 - 创作铁律: 先写 cn, 全部定稿后再用 translate-to-en 多 agent 并行批量翻译成 en.
 - quiz 那个 mini task 目录固定命名 `NN-prove-i-get-it`.
-- 最后一步 (第 12 步) 交给 `/lesson-smith-upskill-forge` 产出 docs/upskill/ 与两个子 skill.
+- 第 12 步交给 `/lesson-smith-upskill-forge` 产出 docs/upskill/ 与两个子 skill; 最后一步 (第 13 步) 交给 `/lesson-smith-upskill-finalize` 写根目录 README/TICKET 并跑 sync 与 lint 收尾.
 
 ## 约束
 

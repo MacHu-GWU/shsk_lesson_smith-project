@@ -46,9 +46,7 @@ description: 一行, 这门课的承诺 (学完你能做到什么). 中文叙述
 
 1. 先读 [examples/README-cn.md](examples/README-cn.md) 的系列索引, 对整门课有张地图.
 2. 按编号顺序刷 examples 下的 mini task (01, 02, ...), 每个都照它自己的 TICKET 做完再往下.
-3. 学的过程中用两个帮手:
-   - `/upskill-learn`: 随叫随到的带学教练. 要地图, 要某一处讲透, 要决定下一步, 或卡住了, 都找它 (环境 setup 也由它带).
-   - `/upskill-quiz`: 面试式自测, 检验你是不是真的学懂了 (know-what 和 know-why).
+3. 学的过程中有两个帮手随叫随到: `/upskill-learn` 是带学教练 (要地图, 要某一处讲透, 要决定下一步, 或卡住了都找它, 环境 setup 也由它带); `/upskill-quiz` 是面试式自测, 检验你是不是真的学懂了 (know-what 和 know-why).
 4. 学到什么算成: 用 `/upskill-quiz` 测到 70% 的题都能思路清晰地答出来.
 
 ---

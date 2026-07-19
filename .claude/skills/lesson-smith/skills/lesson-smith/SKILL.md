@@ -72,6 +72,8 @@ description: Foundation skill for authoring teaching repositories (hands-on IT l
 
 - upskill 的目录结构特化 → [ref/upskill/upskill-repo-layout.md](ref/upskill/upskill-repo-layout.md).
 - 从零创作一个 upskill repo (带创作者走完整流程) → [ref/upskill/upskill-authoring-workflow.md](ref/upskill/upskill-authoring-workflow.md): 完整创作工作流 (由 lesson-smith-upskill-author skill 加载).
+- 写 repo 根目录 README (upskill 仓库总览加怎么学的操作入口) → [ref/upskill/upskill-readme-spec.md](ref/upskill/upskill-readme-spec.md).
+- 写 repo 根目录 TICKET (upskill 整门课的验收清单) → [ref/upskill/upskill-ticket-spec.md](ref/upskill/upskill-ticket-spec.md).
 - 写 examples/README 系列索引 → [ref/upskill/examples-readme-spec.md](ref/upskill/examples-readme-spec.md).
 - 写 docs/upskill/01-upskill-learn.md (学习索引) → [ref/upskill/docs-upskill-learn-spec.md](ref/upskill/docs-upskill-learn-spec.md).
 - 写 docs/upskill/02-upskill-runbook.md (跑起来的操作) → [ref/upskill/docs-upskill-runbook-spec.md](ref/upskill/docs-upskill-runbook-spec.md).

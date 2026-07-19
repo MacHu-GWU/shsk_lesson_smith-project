@@ -68,7 +68,7 @@ docs/upskill/03-upskill-quiz.md      quiz 薄壳 (指向题库真身)
 
 ## 4. 各文件遵循哪个 spec
 
-根目录 README 与 TICKET 是这一个 branch 的 Task 文件. README 同时充当仓库总览, 它带一行 frontmatter description (这门课的 "承诺"), 这行描述会流进 SYLLABUS. 它不遵循 [ref/readme-spec.md](../readme-spec.md) 的教学正文结构 (总览不是教程), 但 description 的约束照 [ref/repo-layout.md](../repo-layout.md) 第 4 节.
+根目录 README 与 TICKET 是这一个 branch 的 Task 文件, 也是整门课的操作入口与验收清单. 它们不遵循教学用的 [ref/readme-spec.md](../readme-spec.md) 与 [ref/ticket-spec.md](../ticket-spec.md) (那是给单个 mini task 的教程正文用的), 而各有专属 spec: root README 遵循 [ref/upskill/upskill-readme-spec.md](upskill-readme-spec.md) (仓库总览加 "怎么学" 的操作入口, 带一行会流进 SYLLABUS 的 description 承诺), root TICKET 遵循 [ref/upskill/upskill-ticket-spec.md](upskill-ticket-spec.md) (整门课的验收清单, 三段式加一个 "关键能力" H2). 这两份结构固定, 由 lesson-smith-upskill-finalize 一次性产出全部语种; description 的长度与字符约束仍照 [ref/repo-layout.md](../repo-layout.md) 第 4 节.
 
 README-ORIGINAL 是对外 README, 遵循 [ref/readme-original-spec.md](../readme-original-spec.md).
 

@@ -31,7 +31,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 ## 参数
 
-把 `$ARGUMENTS` 解析成 `<mode> <自由说明...>`. 第一个 token 若是下列 mode 就用它, 否则整段当自由说明, mode 默认 init.
+把 `$ARGUMENTS` 解析成 `<mode> < 自由说明...>`. 第一个 token 若是下列 mode 就用它, 否则整段当自由说明, mode 默认 init.
 
 - (空) 或 `init`: 全量产出. 若根目录 README 或 TICKET 已存在, 停下让用户确认改用 refresh.
 - `refresh`: 覆盖式重跑 (先跟用户确认).
