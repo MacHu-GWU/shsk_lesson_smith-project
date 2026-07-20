@@ -1,5 +1,5 @@
 ---
-description: Valid description.
+description: "Valid description."
 ---
 
 # 📋 Emoji Title

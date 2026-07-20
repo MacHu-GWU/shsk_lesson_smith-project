@@ -1,5 +1,5 @@
 ---
-description: Has a forbidden `code` char.
+description: "Has a forbidden `code` char."
 ---
 
 # Create Repo

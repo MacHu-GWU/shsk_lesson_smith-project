@@ -1,5 +1,5 @@
 ---
-description: A valid ticket.
+description: "A valid ticket."
 ---
 
 # Create Repo Ticket

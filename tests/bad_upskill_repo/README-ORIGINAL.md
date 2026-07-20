@@ -1,5 +1,5 @@
 ---
-description: A repo that reproduces lint errors.
+description: "A repo that reproduces lint errors."
 ---
 
 # Not The Repo Name
