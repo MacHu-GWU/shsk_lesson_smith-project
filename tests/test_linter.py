@@ -2,8 +2,20 @@
 
 from pathlib import Path
 
-from shsk_lesson_smith.linter import CheckResult, LintReport, lint
-from shsk_lesson_smith.linter_for_upskill import rule_root_overview
+import pytest
+
+from shsk_lesson_smith.exc import LintError
+from shsk_lesson_smith.linter import (
+    CheckResult,
+    LintReport,
+    _check_syllabus_numbering,
+    lint,
+    rule_syllabus,
+)
+from shsk_lesson_smith.linter_for_upskill import (
+    _check_examples_numbering,
+    rule_root_overview,
+)
 from shsk_lesson_smith.repo import Repo
 from shsk_lesson_smith.repo_for_upskill import UpskillRepo
 
@@ -99,6 +111,10 @@ class TestBadUpskillRepoReproducesErrors:
     def test_missing_github_about(self):
         assert self.has("github_about")
 
+    def test_snapshot_language_incomplete(self):
+        # rule_task_snapshots must flag a broken docs/tasks/<branch>/ snapshot.
+        assert self.has("docs/tasks/01-upskill/TICKET-cn.md")
+
 
 class TestManifestAndSingleBranch:
     """Rules that cannot coexist with the bad repo above, built minimally."""
@@ -117,6 +133,13 @@ class TestManifestAndSingleBranch:
     def test_missing_manifest(self, tmp_path):
         report = lint(Repo(dir_project_root=tmp_path))
         assert "lm.json is missing" in report.failures()[0].message
+
+    def test_invalid_manifest_type(self, tmp_path):
+        (tmp_path / "lm.json").write_text('{"type": "bogus"}', encoding="utf-8")
+        report = lint(Repo(dir_project_root=tmp_path))
+        assert not report.passed
+        assert any("lm.json is invalid" in (m or "") for m in
+                   [f.message for f in report.failures()])
 
     def test_single_branch_wrong_name(self, tmp_path):
         root = self._upskill_root(tmp_path)
@@ -180,6 +203,63 @@ class TestRootOverviewContentChecks:
                 tmp_path / name, '---\ndescription: "ok."\n---\n\n# Ticket\n\nAll good.\n'
             )
         assert self._fails(tmp_path) == []
+
+
+class TestLinterInternalBranches:
+    """Cover the check branches not reachable from the good / bad fixtures."""
+
+    def test_syllabus_numbering_non_consecutive(self):
+        with pytest.raises(LintError, match="consecutive"):
+            _check_syllabus_numbering([("01-a", "x"), ("03-b", "y")])
+
+    def test_syllabus_numbering_bad_prefix(self):
+        with pytest.raises(LintError, match="two-digit number"):
+            _check_syllabus_numbering([("intro", "x")])
+
+    def test_examples_numbering_bad_prefix(self):
+        with pytest.raises(LintError, match="two-digit number"):
+            _check_examples_numbering([Path("bad-name")])
+
+    def test_examples_numbering_empty(self):
+        with pytest.raises(LintError, match="no mini task"):
+            _check_examples_numbering([])
+
+    def test_syllabus_rule_entry_and_match_modes(self, tmp_path):
+        # One crafted SYLLABUS trips: sections-vs-dirs mismatch, non-consecutive
+        # numbering, a multi-line entry, an empty entry, and an entry with no
+        # matching task README.
+        tasks = tmp_path / "docs" / "tasks"
+        (tasks / "01-upskill").mkdir(parents=True)
+        (tasks / "SYLLABUS.md").write_text(
+            "# Syllabus\n\n## 01-upskill\n\nmulti\nline\n\n"
+            "## 02-empty\n\n## 04-ghost\n\nghost desc\n",
+            encoding="utf-8",
+        )
+        blob = " | ".join(
+            (r.message or "")
+            for r in rule_syllabus(Repo(dir_project_root=tmp_path))
+            if not r.passed
+        )
+        assert "do not match the docs/tasks/" in blob  # matches-tasks
+        assert "consecutive" in blob  # numbering gap [1, 2, 4]
+        assert "single line" in blob  # 01-upskill multi-line desc
+        assert "no description line" in blob  # 02-empty
+        assert "no frontmatter description to match" in blob  # 04-ghost
+
+
+class TestDispatch:
+    """lint() dispatches on repo type to the matching linter_for_<type> module."""
+
+    def test_showcase_dispatch(self, showcase_root):
+        report = lint(Repo(dir_project_root=showcase_root))
+        assert isinstance(report, LintReport)
+        # More than one result means it ran the showcase RULES, not manifest-only.
+        assert len(report.results) > 1
+
+    def test_evolve_dispatch(self, evolve_root):
+        report = lint(Repo(dir_project_root=evolve_root))
+        assert isinstance(report, LintReport)
+        assert len(report.results) > 1
 
 
 class TestRender:

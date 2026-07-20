@@ -211,6 +211,10 @@ class TestCheckFrontmatterGithubAbout:
             self._md(tmp_path, '---\ngithub_about: "Learn X in the browser."\n---\n')
         )
 
+    def test_no_frontmatter(self, tmp_path):
+        with pytest.raises(LintError, match="github_about"):
+            check_frontmatter_github_about(self._md(tmp_path, "# Title\n"))
+
     def test_missing_key(self, tmp_path):
         with pytest.raises(LintError, match="no 'github_about' key"):
             check_frontmatter_github_about(
@@ -248,6 +252,11 @@ class TestCheckNoRelativeLinks:
 
     def test_passes_with_anchor(self, tmp_path):
         check_no_relative_links(self._md(tmp_path, "# T\n\nJump to [top](#intro).\n"))
+
+    def test_passes_with_angle_bracket_absolute(self, tmp_path):
+        check_no_relative_links(
+            self._md(tmp_path, "# T\n\nSee [x](<https://example.com/y>).\n")
+        )
 
     def test_raises_on_relative_link(self, tmp_path):
         with pytest.raises(LintError, match="relative-path link"):
