@@ -10,6 +10,7 @@ from shsk_lesson_smith.linter_utils import (
     MarkdownFile,
     check_file_exists,
     check_frontmatter_description,
+    check_frontmatter_github_about,
     check_h1_charset,
     check_h1_matches,
     check_no_relative_links,
@@ -199,6 +200,38 @@ class TestCheckH1Charset:
     def test_emoji(self, tmp_path):
         with pytest.raises(LintError, match="emoji"):
             check_h1_charset(self._md(tmp_path, "# 📋 What You Learn\n"))
+
+
+class TestCheckFrontmatterGithubAbout:
+    def _md(self, tmp_path, text):
+        return MarkdownFile.from_path(write(tmp_path / "README-ORIGINAL.md", text))
+
+    def test_valid(self, tmp_path):
+        check_frontmatter_github_about(
+            self._md(tmp_path, '---\ngithub_about: "Learn X in the browser."\n---\n')
+        )
+
+    def test_missing_key(self, tmp_path):
+        with pytest.raises(LintError, match="no 'github_about' key"):
+            check_frontmatter_github_about(
+                self._md(tmp_path, '---\ndescription: "x."\n---\n')
+            )
+
+    def test_not_double_quoted(self, tmp_path):
+        with pytest.raises(LintError, match="double quotes"):
+            check_frontmatter_github_about(
+                self._md(tmp_path, "---\ngithub_about: Learn X.\n---\n")
+            )
+
+    def test_too_long(self, tmp_path):
+        text = '---\ngithub_about: "' + "x" * 201 + '"\n---\n'
+        with pytest.raises(LintError, match="201 characters"):
+            check_frontmatter_github_about(self._md(tmp_path, text))
+
+    def test_forbidden_char(self, tmp_path):
+        text = '---\ngithub_about: "Has a `code` char."\n---\n'
+        with pytest.raises(LintError, match="forbidden character"):
+            check_frontmatter_github_about(self._md(tmp_path, text))
 
 
 class TestCheckNoRelativeLinks:

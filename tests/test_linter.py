@@ -96,6 +96,9 @@ class TestBadUpskillRepoReproducesErrors:
     def test_missing_forge_outputs(self):
         assert self.has("01-upskill-learn.md")
 
+    def test_missing_github_about(self):
+        assert self.has("github_about")
+
 
 class TestManifestAndSingleBranch:
     """Rules that cannot coexist with the bad repo above, built minimally."""

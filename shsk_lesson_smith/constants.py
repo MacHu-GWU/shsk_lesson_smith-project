@@ -52,6 +52,9 @@ REPO_FILE_BASES = (README_BASE, TICKET_BASE, README_ORIGINAL_BASE)
 # verbatim into other strings, so quotes and backticks would need escaping).
 # --------------------------------------------------------------------------- #
 MAX_DESCRIPTION_CHARS = 400
+# The README-ORIGINAL-only ``github_about`` field: a compressed tagline that also
+# fits GitHub's About box, so it is capped tighter than the full description.
+MAX_GITHUB_ABOUT_CHARS = 200
 DESCRIPTION_FORBIDDEN_CHARS = (
     '"'  # straight double quote
     "'"  # straight single quote

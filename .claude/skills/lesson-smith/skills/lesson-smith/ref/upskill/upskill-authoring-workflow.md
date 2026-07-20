@@ -8,6 +8,8 @@
 
 先用概括, 笼统的方式想清楚这个 repo 大致要教一个什么东西, 按规范写 README-ORIGINAL-cn.md (遵循 [ref/readme-original-spec.md](../readme-original-spec.md)). 这是整门课的大背景与电梯陈述, 后面所有内容都长在它之上.
 
+注意这只是一版粗稿种子: 此时 examples 还没写, description 难免粗糙, 也和最终内容对不齐. 等全部内容完工后, 第 13 步的 finalize 会重写整份 README-ORIGINAL (正文, description, github_about, 全语种), 让这门 Lesson 的门面和成品对齐. 所以这一步不用抠 description, 先把大方向写出来即可.
+
 ---
 
 ## 2. 先完成 examples 之外的 "做的部分"
@@ -78,6 +80,6 @@
 
 ## 13. 交给 finalize 收尾定型
 
-到这一步 examples 内容和学习工具链都齐了, 最后给整门课收尾. 用 /lesson-smith-upskill-finalize 写出根目录的 README (仓库总览加 "怎么学" 的操作入口, 遵循 [ref/upskill/upskill-readme-spec.md](upskill-readme-spec.md)) 与 TICKET (整门课的验收清单, 遵循 [ref/upskill/upskill-ticket-spec.md](upskill-ticket-spec.md)). 这两份结构固定, 由 finalize 一次性产出全部语种, 不再走 cn-first 分两步. 随后 finalize 会跑 lesson-smith sync 生成 SYLLABUS 与快照, 再跑 lesson-smith lint 把关. 为方便编辑那次调用的输入, 用模板 [prompts/run-lesson-smith-upskill-finalize.md](../../prompts/run-lesson-smith-upskill-finalize.md).
+到这一步 examples 内容和学习工具链都齐了, 最后给整门课收尾. 用 /lesson-smith-upskill-finalize 完成: 重写 README-ORIGINAL (整个 Repo 也就是这门 Lesson 的对外门面, 让 description 与 github_about 和最终内容对齐, 遵循 [ref/readme-original-spec.md](../readme-original-spec.md)); 写出根目录的 README (仓库总览加 "怎么学" 的操作入口, 遵循 [ref/upskill/upskill-readme-spec.md](upskill-readme-spec.md)) 与 TICKET (整门课的验收清单, 遵循 [ref/upskill/upskill-ticket-spec.md](upskill-ticket-spec.md)). 这几份结构固定, 由 finalize 一次性产出全部语种, 不再走 cn-first 分两步. 随后 finalize 会跑 lesson-smith sync 生成 SYLLABUS 与快照, 再跑 lesson-smith lint 把关. 为方便编辑那次调用的输入, 用模板 [prompts/run-lesson-smith-upskill-finalize.md](../../prompts/run-lesson-smith-upskill-finalize.md).
 
 到此整门 upskill 课创作完成.

@@ -31,6 +31,7 @@ from .constants import (
     DESCRIPTION_FORBIDDEN_CHARS,
     H1_FORBIDDEN_CHARS,
     MAX_DESCRIPTION_CHARS,
+    MAX_GITHUB_ABOUT_CHARS,
 )
 from .exc import LintError
 
@@ -47,6 +48,7 @@ _EMOJI_RANGES = (
 
 _FRONTMATTER_FENCE = "---"
 _DESCRIPTION_KEY = "description:"
+_GITHUB_ABOUT_KEY = "github_about:"
 
 # Inline markdown link target: the "..." in [text](...). A target is allowed in a
 # TICKET only when it is an absolute URL or an in-page anchor; anything else is a
@@ -107,23 +109,34 @@ class Frontmatter:
 
     description: "str | None" = None
     description_raw: "str | None" = None
+    github_about: "str | None" = None
+    github_about_raw: "str | None" = None
 
     @classmethod
     def from_lines(cls, lines: "list[str]") -> "T.Self":
         """Parse the inner lines of a ``---`` block into the tracked fields.
 
-        ``description`` is the usable value (surrounding quotes stripped, if any);
-        ``description_raw`` keeps the value exactly as written, so a check can tell
-        whether the standard double-quote wrapping is present.
+        For each tracked key the ``*_raw`` field keeps the value exactly as
+        written, while the plain field is the usable value (surrounding quotes
+        stripped, if any), so a check can tell whether the standard double-quote
+        wrapping is present.
         """
-        description = None
-        description_raw = None
+        fields: "dict[str, str]" = {}
         for line in lines:
             if line.startswith(_DESCRIPTION_KEY):
-                description_raw = line[len(_DESCRIPTION_KEY) :].strip()
-                description = _unquote(description_raw)
-                break
-        return cls(description=description, description_raw=description_raw)
+                fields.setdefault("description", line[len(_DESCRIPTION_KEY) :].strip())
+            elif line.startswith(_GITHUB_ABOUT_KEY):
+                fields.setdefault(
+                    "github_about", line[len(_GITHUB_ABOUT_KEY) :].strip()
+                )
+        desc_raw = fields.get("description")
+        about_raw = fields.get("github_about")
+        return cls(
+            description=None if desc_raw is None else _unquote(desc_raw),
+            description_raw=desc_raw,
+            github_about=None if about_raw is None else _unquote(about_raw),
+            github_about_raw=about_raw,
+        )
 
 
 @dataclasses.dataclass
@@ -191,6 +204,16 @@ class MarkdownFile:
         return self.frontmatter.description_raw if self.frontmatter else None
 
     @cached_property
+    def github_about(self) -> "str | None":
+        """The ``github_about`` value (surrounding quotes stripped), if present."""
+        return self.frontmatter.github_about if self.frontmatter else None
+
+    @cached_property
+    def github_about_raw(self) -> "str | None":
+        """The ``github_about`` value exactly as written (quotes not stripped)."""
+        return self.frontmatter.github_about_raw if self.frontmatter else None
+
+    @cached_property
     def h1_titles(self) -> "list[str]":
         """Every H1 title in the body (text of each line starting with ``# ``).
 
@@ -219,6 +242,45 @@ def check_file_exists(path: "Path | str") -> None:
         raise LintError(f"File is missing: expected it to exist at {path}.")
 
 
+def _validate_quoted_oneliner(
+    raw: "str | None", value: "str | None", *, field: str, max_chars: int
+) -> None:
+    """Shared rules for a one-line frontmatter field (description, github_about).
+
+    ``value`` is the usable (unquoted) value and ``raw`` the value as written.
+    The field must be present, wrapped in double quotes, non-empty, within
+    ``max_chars``, and free of quote / backtick characters inside the quotes.
+    Presence of the frontmatter block itself is the caller's responsibility.
+    """
+    if value is None:
+        raise LintError(
+            f"The frontmatter has no '{field}' key. Add a one-line "
+            f"'{field}:' entry."
+        )
+    text = raw or ""
+    if not (len(text) >= 2 and text[0] == '"' and text[-1] == '"'):
+        raise LintError(
+            f"The {field} value must be wrapped in double quotes, like "
+            f'{field}: "your text here". The value is one line and never '
+            "contains a quote, so wrapping it keeps it unambiguous for YAML "
+            "editors."
+        )
+    if not value.strip():
+        raise LintError(f"The frontmatter '{field}' is empty.")
+    if len(value) > max_chars:
+        raise LintError(
+            f"The {field} is {len(value)} characters long, over the "
+            f"{max_chars}-character limit. Tighten it to one short line."
+        )
+    forbidden = _forbidden_in(value, DESCRIPTION_FORBIDDEN_CHARS)
+    if forbidden:
+        raise LintError(
+            f"The {field} contains forbidden character(s): {forbidden}. "
+            f"Quotes and backticks are not allowed, because the {field} is "
+            "embedded verbatim into other strings."
+        )
+
+
 def check_frontmatter_description(md: MarkdownFile) -> None:
     """The markdown file's frontmatter ``description`` field must be valid.
 
@@ -232,34 +294,28 @@ def check_frontmatter_description(md: MarkdownFile) -> None:
             "one-line 'description'. Add a '---' block at the top with a "
             "'description:' entry."
         )
-    desc = md.description
-    if desc is None:
+    _validate_quoted_oneliner(
+        md.description_raw, md.description,
+        field="description", max_chars=MAX_DESCRIPTION_CHARS,
+    )
+
+
+def check_frontmatter_github_about(md: MarkdownFile) -> None:
+    """The frontmatter ``github_about`` field must be valid (README-ORIGINAL only).
+
+    A compressed tagline that also fits GitHub's About box: same wrapping and
+    charset rules as ``description``, but capped at ``MAX_GITHUB_ABOUT_CHARS``.
+    """
+    if not md.has_frontmatter:
         raise LintError(
-            "The frontmatter has no 'description' key. Add a one-line "
-            "'description:' entry."
+            "The file has no YAML frontmatter, so it is missing the required "
+            "'github_about' tagline. Add a '---' block at the top with a "
+            "'github_about:' entry."
         )
-    raw = md.description_raw or ""
-    if not (len(raw) >= 2 and raw[0] == '"' and raw[-1] == '"'):
-        raise LintError(
-            "The description value must be wrapped in double quotes, like "
-            'description: "your text here". The value is one line and never '
-            "contains a quote, so wrapping it keeps it unambiguous for YAML "
-            "editors."
-        )
-    if not desc.strip():
-        raise LintError("The frontmatter 'description' is empty.")
-    if len(desc) > MAX_DESCRIPTION_CHARS:
-        raise LintError(
-            f"The description is {len(desc)} characters long, over the "
-            f"{MAX_DESCRIPTION_CHARS}-character limit. Tighten it to one short line."
-        )
-    forbidden = _forbidden_in(desc, DESCRIPTION_FORBIDDEN_CHARS)
-    if forbidden:
-        raise LintError(
-            f"The description contains forbidden character(s): {forbidden}. "
-            "Quotes and backticks are not allowed, because the description is "
-            "embedded verbatim into other strings."
-        )
+    _validate_quoted_oneliner(
+        md.github_about_raw, md.github_about,
+        field="github_about", max_chars=MAX_GITHUB_ABOUT_CHARS,
+    )
 
 
 def check_h1_charset(md: MarkdownFile) -> None:

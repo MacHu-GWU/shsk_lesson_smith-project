@@ -52,9 +52,11 @@ docs/tasks/02-branch-name/
 
 ## 4. 一行摘要 frontmatter
 
-`README.md`, `TICKET.md`, `README-ORIGINAL.md` 顶部都带 YAML frontmatter, 其中 `description` 是一行, 最多 400 字符 (不含包裹的双引号), 最多 2 句, 供索引拼成一条 bullet. 这些约束由校验脚本 lint (为什么必须一行: 它要被程序读取, 拼成 "一行一个" 的 bullet 或表格里的一个 cell; 多于一行就很难排版).
+`README.md`, `TICKET.md`, `README-ORIGINAL.md` 顶部都带 YAML frontmatter, 其中 `description` 是一行 (不含换行), 最多 400 字符 (不含包裹的双引号), 供索引拼成一条 bullet. 句数按海拔分档: Task 级的 `README.md` 与 `TICKET.md` 的 description 要紧, 1 到 2 句; Lesson 级的 `README-ORIGINAL.md` 的 description 是整门课的门面, 会进 org 级课程索引, 鼓励写长, 用足预算到接近 400 字符, 详见 [readme-original-spec.md](readme-original-spec.md). 这些约束由校验脚本 lint (为什么必须一行: 它要被程序读取, 拼成 "一行一个" 的 bullet 或表格里的一个 cell; 多于一行就很难排版).
 
-`description` 的值必须用双引号包起来, 形如 `description: "..."`. 因为值里永远不含引号类字符 (单双引号, 反引号都被禁), 用双引号包裹绝不会有歧义, 却能让 YAML 编辑器不把值中的冒号误当成映射, 也让 "这是一整行字符串" 一目了然. 这一条同样由 lint 强制: 未加双引号或用单引号都会报错. 长度只算双引号内的内容. 三个文件的 description 目的各不相同: README 是 "承诺" (学完能做到什么), TICKET 是 "完成判据" (做出什么才算完), README-ORIGINAL 是 "电梯陈述" (整个 repo 是什么, 到什么水平); 精确定义见各自的 spec.
+`README-ORIGINAL.md` 额外多带一个 `github_about` 字段: 压缩版 tagline, 一行, 最多 200 字符, 专门给 GitHub 仓库的 About box 用 (About 上限约 350, 收到 200 更稳; 长的 description 进不了 About, 所以单列这个). 只有 README-ORIGINAL 有这个字段, 由 lint 强制存在与校验.
+
+`description` 与 `github_about` 的值都必须用双引号包起来, 形如 `description: "..."`. 因为值里永远不含引号类字符 (单双引号, 反引号都被禁), 用双引号包裹绝不会有歧义, 却能让 YAML 编辑器不把值中的冒号误当成映射, 也让 "这是一整行字符串" 一目了然. 这一条同样由 lint 强制: 未加双引号或用单引号都会报错. 长度只算双引号内的内容. 三个文件的 description 目的各不相同: README 是 "承诺" (学完能做到什么), TICKET 是 "完成判据" (做出什么才算完), README-ORIGINAL 是 "电梯陈述" (整个 repo 是什么, 到什么水平); 精确定义见各自的 spec.
 
 ---
 

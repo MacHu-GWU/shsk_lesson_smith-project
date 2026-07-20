@@ -40,6 +40,7 @@ from .linter_utils import (
     MarkdownFile,
     check_file_exists,
     check_frontmatter_description,
+    check_frontmatter_github_about,
     check_h1_charset,
     check_h1_matches,
     check_no_relative_links,
@@ -139,17 +140,21 @@ def lint_file_content(
     h1: "str | None" = None,
     h1_expected: "str | None" = None,
     no_relative_links: bool = False,
+    github_about: bool = False,
 ) -> "list[CheckResult]":
     """Content checks for one existing markdown file.
 
     ``h1`` is ``"charset"`` (allowed character set), ``"match"`` (must equal
     ``h1_expected``), or None (skip the H1 check). ``no_relative_links`` adds the
     TICKET-only check that the body carries no relative-path links.
+    ``github_about`` adds the README-ORIGINAL-only tagline check.
     """
     md = MarkdownFile(path)
     out: "list[CheckResult]" = []
     if description:
         out.append(run_check(path, check_frontmatter_description, md))
+    if github_about:
+        out.append(run_check(path, check_frontmatter_github_about, md))
     if h1 == "charset":
         out.append(run_check(path, check_h1_charset, md))
     elif h1 == "match":
@@ -230,11 +235,17 @@ def rule_manifest(repo: Repo) -> "list[CheckResult]":
 
 
 def rule_readme_original(repo: Repo) -> "list[CheckResult]":
-    """Root README-ORIGINAL: complete, valid description, H1 equal to repo name."""
+    """Root README-ORIGINAL: complete, valid description and github_about, H1 == repo name.
+
+    README-ORIGINAL is the Lesson-level (whole-repo) intro. Its ``description`` is
+    the fuller catalog blurb; its ``github_about`` is the compressed tagline that
+    also fits GitHub's About box.
+    """
     return lint_file_group(
         repo.get_path_readme_original,
         required=True,
         description=True,
+        github_about=True,
         h1="match",
         h1_expected=repo.dir_project_root.name,
     )
