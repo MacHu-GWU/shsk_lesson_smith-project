@@ -1,5 +1,5 @@
 ---
-description: Finish every mini task in the course and independently demonstrate the full collaboration loop, from creating a repository to merging via a Pull Request.
+description: "Finish every mini task in the course and independently demonstrate the full collaboration loop, from creating a repository to merging via a Pull Request."
 ---
 
 # Finish the Whole GitHub Collaboration Basics Course

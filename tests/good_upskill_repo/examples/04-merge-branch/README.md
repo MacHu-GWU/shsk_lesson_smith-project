@@ -1,5 +1,5 @@
 ---
-description: Learn to merge a branch back into the main line through a reviewed Pull Request, closing the full collaboration loop.
+description: "Learn to merge a branch back into the main line through a reviewed Pull Request, closing the full collaboration loop."
 ---
 
 # Merge a Branch through a Pull Request

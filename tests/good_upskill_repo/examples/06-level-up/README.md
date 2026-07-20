@@ -1,5 +1,5 @@
 ---
-description: Review the whole GitHub collaboration loop you learned, and get directions and keywords for going further.
+description: "Review the whole GitHub collaboration loop you learned, and get directions and keywords for going further."
 ---
 
 # Review and Level Up

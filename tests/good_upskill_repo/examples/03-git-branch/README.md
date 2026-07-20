@@ -1,5 +1,5 @@
 ---
-description: Learn to use a branch to keep unfinished changes off the main line, and understand why collaboration depends on branches.
+description: "Learn to use a branch to keep unfinished changes off the main line, and understand why collaboration depends on branches."
 ---
 
 # Isolating Your Changes With a Branch

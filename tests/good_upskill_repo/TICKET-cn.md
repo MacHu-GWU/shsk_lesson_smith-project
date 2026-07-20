@@ -1,5 +1,5 @@
 ---
-description: 走完整门课全部 mini task, 并能独立演示从建 repository 到用 Pull Request 合并的完整协作闭环.
+description: "走完整门课全部 mini task, 并能独立演示从建 repository 到用 Pull Request 合并的完整协作闭环."
 ---
 
 # 完成 GitHub 基础协作全部课程

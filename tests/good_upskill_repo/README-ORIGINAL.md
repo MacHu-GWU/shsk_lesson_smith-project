@@ -1,5 +1,5 @@
 ---
-description: A browser-only GitHub collaboration basics course that walks you through the minimal loop of create repo, edit files, branch, and merge via Pull Request, from zero to a basic level.
+description: "A browser-only GitHub collaboration basics course that walks you through the minimal loop of create repo, edit files, branch, and merge via Pull Request, from zero to a basic level."
 ---
 
 # good_upskill_repo

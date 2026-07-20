@@ -35,13 +35,15 @@ class TestFindEmoji:
 class TestFrontmatter:
     def test_from_lines_extracts_description(self):
         fm = Frontmatter.from_lines(["title: x", "description: Learn X.", "tags: a"])
-        assert fm == Frontmatter(description="Learn X.")
+        assert fm == Frontmatter(description="Learn X.", description_raw="Learn X.")
 
     def test_from_lines_no_description(self):
         assert Frontmatter.from_lines(["title: x"]) == Frontmatter(description=None)
 
     def test_from_lines_unquotes(self):
-        assert Frontmatter.from_lines(['description: "Learn X."']).description == "Learn X."
+        fm = Frontmatter.from_lines(['description: "Learn X."'])
+        assert fm.description == "Learn X."
+        assert fm.description_raw == '"Learn X."'
 
 
 class TestMarkdownFile:
@@ -52,7 +54,9 @@ class TestMarkdownFile:
         )
         md = MarkdownFile.from_path(path)
         assert md.has_frontmatter is True
-        assert md.frontmatter == Frontmatter(description="Learn X.")
+        assert md.frontmatter == Frontmatter(
+            description="Learn X.", description_raw="Learn X."
+        )
         assert md.description == "Learn X."
         assert md.h1 == "Title"
         assert md.h1_titles == ["Title"]
@@ -129,7 +133,7 @@ class TestCheckFrontmatterDescription:
 
     def test_valid(self, tmp_path):
         check_frontmatter_description(
-            self._md(tmp_path, "---\ndescription: Learn X.\n---\n")
+            self._md(tmp_path, '---\ndescription: "Learn X."\n---\n')
         )
 
     def test_missing_frontmatter(self, tmp_path):
@@ -140,19 +144,31 @@ class TestCheckFrontmatterDescription:
         with pytest.raises(LintError, match="no 'description' key"):
             check_frontmatter_description(self._md(tmp_path, "---\ntitle: x\n---\n"))
 
+    def test_not_double_quoted(self, tmp_path):
+        with pytest.raises(LintError, match="double quotes"):
+            check_frontmatter_description(
+                self._md(tmp_path, "---\ndescription: Learn X.\n---\n")
+            )
+
+    def test_single_quoted_is_rejected(self, tmp_path):
+        with pytest.raises(LintError, match="double quotes"):
+            check_frontmatter_description(
+                self._md(tmp_path, "---\ndescription: 'Learn X.'\n---\n")
+            )
+
     def test_empty(self, tmp_path):
         with pytest.raises(LintError, match="is empty"):
             check_frontmatter_description(
-                self._md(tmp_path, "---\ndescription:   \n---\n")
+                self._md(tmp_path, '---\ndescription: ""\n---\n')
             )
 
     def test_too_long(self, tmp_path):
-        text = "---\ndescription: " + "x" * 401 + "\n---\n"
+        text = '---\ndescription: "' + "x" * 401 + '"\n---\n'
         with pytest.raises(LintError, match="401 characters"):
             check_frontmatter_description(self._md(tmp_path, text))
 
     def test_forbidden_char(self, tmp_path):
-        text = "---\ndescription: He said hi to `you`\n---\n"
+        text = '---\ndescription: "He said hi to `you`"\n---\n'
         with pytest.raises(LintError, match="forbidden character"):
             check_frontmatter_description(self._md(tmp_path, text))
 

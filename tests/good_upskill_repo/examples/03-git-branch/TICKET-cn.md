@@ -1,5 +1,5 @@
 ---
-description: 建出一个 branch 并在其上提交改动, 主干 (默认分支) 保持不受影响.
+description: "建出一个 branch 并在其上提交改动, 主干 (默认分支) 保持不受影响."
 ---
 
 # 开一个 Branch 并在上面提交改动

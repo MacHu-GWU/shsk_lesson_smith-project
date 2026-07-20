@@ -1,5 +1,5 @@
 ---
-description: 学会用 Pull Request 把 branch 的改动 review 后合并回主干, 走完一次协作闭环.
+description: "学会用 Pull Request 把 branch 的改动 review 后合并回主干, 走完一次协作闭环."
 ---
 
 # 用 Pull Request 合并 Branch

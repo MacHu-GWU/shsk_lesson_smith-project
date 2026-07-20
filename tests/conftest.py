@@ -16,7 +16,7 @@ def write_special_file(
     """Write a special file with a one-line frontmatter description."""
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
-        f"---\ndescription: {description}\n---\n\n{body}",
+        f'---\ndescription: "{description}"\n---\n\n{body}',
         encoding="utf-8",
     )
 

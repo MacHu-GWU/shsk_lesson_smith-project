@@ -1,5 +1,5 @@
 ---
-description: Open and complete a Pull Request that merges the branch back into main, deleting the branch after the merge.
+description: "Open and complete a Pull Request that merges the branch back into main, deleting the branch after the merge."
 ---
 
 # Complete a Merge with a Pull Request

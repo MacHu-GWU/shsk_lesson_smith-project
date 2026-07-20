@@ -1,5 +1,5 @@
 ---
-description: Create a branch and commit changes on it while the main line (default branch) stays untouched.
+description: "Create a branch and commit changes on it while the main line (default branch) stays untouched."
 ---
 
 # Open a Branch and Commit Changes on It

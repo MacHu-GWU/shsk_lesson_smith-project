@@ -1,5 +1,5 @@
 ---
-description: Learn to create and edit files right in the GitHub web interface, capturing every change as one clear commit.
+description: "Learn to create and edit files right in the GitHub web interface, capturing every change as one clear commit."
 ---
 
 # Creating and Editing Files on GitHub

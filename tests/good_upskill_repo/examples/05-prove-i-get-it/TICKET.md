@@ -1,5 +1,5 @@
 ---
-description: Self-test whether you truly learned this course, reaching 70% or more with /upskill-quiz.
+description: "Self-test whether you truly learned this course, reaching 70% or more with /upskill-quiz."
 ---
 
 # Pass the Self Test

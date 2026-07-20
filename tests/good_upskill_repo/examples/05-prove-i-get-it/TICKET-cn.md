@@ -1,5 +1,5 @@
 ---
-description: 自测这门课是否真的学会, 用 /upskill-quiz 测到 70% 以上.
+description: "自测这门课是否真的学会, 用 /upskill-quiz 测到 70% 以上."
 ---
 
 # 自测通关

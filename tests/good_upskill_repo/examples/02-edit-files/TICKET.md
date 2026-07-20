@@ -1,5 +1,5 @@
 ---
-description: Create and edit a few files in your repository, leaving behind several commits with clear, meaningful messages.
+description: "Create and edit a few files in your repository, leaving behind several commits with clear, meaningful messages."
 ---
 
 # Land Your First Few Commits with the Web Editor

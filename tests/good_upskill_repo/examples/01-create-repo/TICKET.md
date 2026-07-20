@@ -1,5 +1,5 @@
 ---
-description: Create a public repository with a README under your own account, and be able to explain what a repository and a commit are.
+description: "Create a public repository with a README under your own account, and be able to explain what a repository and a commit are."
 ---
 
 # Build Your First Public Repository

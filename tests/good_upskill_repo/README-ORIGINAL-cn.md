@@ -1,5 +1,5 @@
 ---
-description: 一门完全在浏览器里完成的 GitHub 基础协作课, 带你走通建仓库, 改文件, 开分支, 用 Pull Request 合并这条最小协作闭环, 从零到 basic 水平.
+description: "一门完全在浏览器里完成的 GitHub 基础协作课, 带你走通建仓库, 改文件, 开分支, 用 Pull Request 合并这条最小协作闭环, 从零到 basic 水平."
 ---
 
 # good_upskill_repo

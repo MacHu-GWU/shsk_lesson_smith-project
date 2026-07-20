@@ -1,5 +1,5 @@
 ---
-description: 在自己账号下建出一个带 README 的公开 repository, 并能说清 repository 与 commit.
+description: "在自己账号下建出一个带 README 的公开 repository, 并能说清 repository 与 commit."
 ---
 
 # 建出你的第一个公开 Repository

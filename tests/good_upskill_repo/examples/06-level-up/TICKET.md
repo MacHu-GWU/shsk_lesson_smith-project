@@ -1,5 +1,5 @@
 ---
-description: Explain the whole collaboration loop in your own words, and choose one direction to dig into next.
+description: "Explain the whole collaboration loop in your own words, and choose one direction to dig into next."
 ---
 
 # Sum Up and Choose Your Next Step

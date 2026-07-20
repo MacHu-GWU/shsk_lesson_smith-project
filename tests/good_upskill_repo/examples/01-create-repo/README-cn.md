@@ -1,5 +1,5 @@
 ---
-description: 在 GitHub 上从零建出你的第一个 repository, 并搞懂 repository 与 commit 到底是什么.
+description: "在 GitHub 上从零建出你的第一个 repository, 并搞懂 repository 与 commit 到底是什么."
 ---
 
 # 创建你的第一个 Repository

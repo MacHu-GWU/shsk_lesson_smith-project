@@ -1,5 +1,5 @@
 ---
-description: 发起并完成一个 Pull Request, 把 branch 合并回 main, merge 后删除该 branch.
+description: "发起并完成一个 Pull Request, 把 branch 合并回 main, merge 后删除该 branch."
 ---
 
 # 用 Pull Request 完成一次合并

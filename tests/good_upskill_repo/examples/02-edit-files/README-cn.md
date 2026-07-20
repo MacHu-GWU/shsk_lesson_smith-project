@@ -1,5 +1,5 @@
 ---
-description: 学会在 GitHub 网页上新建与修改文件, 每次改动都用一条清晰的 commit 记录下来.
+description: "学会在 GitHub 网页上新建与修改文件, 每次改动都用一条清晰的 commit 记录下来."
 ---
 
 # 在 GitHub 上创建与编辑文件

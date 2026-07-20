@@ -1,5 +1,5 @@
 ---
-description: 在你的 repository 里新建并编辑若干文件, 留下几条语义清晰的 commit.
+description: "在你的 repository 里新建并编辑若干文件, 留下几条语义清晰的 commit."
 ---
 
 # 用 Web Editor 提交你的前几条 Commit

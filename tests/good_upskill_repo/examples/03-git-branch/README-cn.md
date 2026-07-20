@@ -1,5 +1,5 @@
 ---
-description: 学会用 branch 把没写完的改动和主干隔开, 理解为什么协作离不开分支.
+description: "学会用 branch 把没写完的改动和主干隔开, 理解为什么协作离不开分支."
 ---
 
 # 用 Branch 隔离你的改动

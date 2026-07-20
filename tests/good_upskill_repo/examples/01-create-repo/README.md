@@ -1,5 +1,5 @@
 ---
-description: Build your very first GitHub repository from scratch, and actually understand what a repository and a commit really are.
+description: "Build your very first GitHub repository from scratch, and actually understand what a repository and a commit really are."
 ---
 
 # Create Your First Repository
