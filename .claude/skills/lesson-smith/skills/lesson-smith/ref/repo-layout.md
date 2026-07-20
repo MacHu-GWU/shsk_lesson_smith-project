@@ -52,7 +52,9 @@ docs/tasks/02-branch-name/
 
 ## 4. 一行摘要 frontmatter
 
-`README.md`, `TICKET.md`, `README-ORIGINAL.md` 顶部都带 YAML frontmatter, 其中 `description` 是一行, 最多 400 字符, 最多 2 句, 供索引拼成一条 bullet. 这些约束由校验脚本 lint (为什么必须一行: 它要被程序读取, 拼成 "一行一个" 的 bullet 或表格里的一个 cell; 多于一行就很难排版). 三个文件的 description 目的各不相同: README 是 "承诺" (学完能做到什么), TICKET 是 "完成判据" (做出什么才算完), README-ORIGINAL 是 "电梯陈述" (整个 repo 是什么, 到什么水平); 精确定义见各自的 spec.
+`README.md`, `TICKET.md`, `README-ORIGINAL.md` 顶部都带 YAML frontmatter, 其中 `description` 是一行, 最多 400 字符 (不含包裹的双引号), 最多 2 句, 供索引拼成一条 bullet. 这些约束由校验脚本 lint (为什么必须一行: 它要被程序读取, 拼成 "一行一个" 的 bullet 或表格里的一个 cell; 多于一行就很难排版).
+
+`description` 的值必须用双引号包起来, 形如 `description: "..."`. 因为值里永远不含引号类字符 (单双引号, 反引号都被禁), 用双引号包裹绝不会有歧义, 却能让 YAML 编辑器不把值中的冒号误当成映射, 也让 "这是一整行字符串" 一目了然. 这一条同样由 lint 强制: 未加双引号或用单引号都会报错. 长度只算双引号内的内容. 三个文件的 description 目的各不相同: README 是 "承诺" (学完能做到什么), TICKET 是 "完成判据" (做出什么才算完), README-ORIGINAL 是 "电梯陈述" (整个 repo 是什么, 到什么水平); 精确定义见各自的 spec.
 
 ---
 

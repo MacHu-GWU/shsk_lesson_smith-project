@@ -92,16 +92,24 @@ class Frontmatter:
     """
 
     description: "str | None" = None
+    description_raw: "str | None" = None
 
     @classmethod
     def from_lines(cls, lines: "list[str]") -> "T.Self":
-        """Parse the inner lines of a ``---`` block into the tracked fields."""
+        """Parse the inner lines of a ``---`` block into the tracked fields.
+
+        ``description`` is the usable value (surrounding quotes stripped, if any);
+        ``description_raw`` keeps the value exactly as written, so a check can tell
+        whether the standard double-quote wrapping is present.
+        """
         description = None
+        description_raw = None
         for line in lines:
             if line.startswith(_DESCRIPTION_KEY):
-                description = _unquote(line[len(_DESCRIPTION_KEY) :].strip())
+                description_raw = line[len(_DESCRIPTION_KEY) :].strip()
+                description = _unquote(description_raw)
                 break
-        return cls(description=description)
+        return cls(description=description, description_raw=description_raw)
 
 
 @dataclasses.dataclass
@@ -156,8 +164,17 @@ class MarkdownFile:
 
     @cached_property
     def description(self) -> "str | None":
-        """The one-line ``description`` value from the frontmatter, if present."""
+        """The one-line ``description`` value from the frontmatter, if present.
+
+        Surrounding quotes are stripped, so this is the usable value that flows
+        into the SYLLABUS and index.
+        """
         return self.frontmatter.description if self.frontmatter else None
+
+    @cached_property
+    def description_raw(self) -> "str | None":
+        """The ``description`` value exactly as written (quotes not stripped)."""
+        return self.frontmatter.description_raw if self.frontmatter else None
 
     @cached_property
     def h1_titles(self) -> "list[str]":
@@ -191,8 +208,9 @@ def check_file_exists(path: "Path | str") -> None:
 def check_frontmatter_description(md: MarkdownFile) -> None:
     """The markdown file's frontmatter ``description`` field must be valid.
 
-    Valid means: frontmatter is present, has a non-empty ``description`` key,
-    within the character limit, and free of quote / backtick characters.
+    Valid means: frontmatter is present, has a ``description`` key whose value is
+    wrapped in double quotes, non-empty, within the character limit, and free of
+    quote / backtick characters inside the quotes.
     """
     if not md.has_frontmatter:
         raise LintError(
@@ -205,6 +223,14 @@ def check_frontmatter_description(md: MarkdownFile) -> None:
         raise LintError(
             "The frontmatter has no 'description' key. Add a one-line "
             "'description:' entry."
+        )
+    raw = md.description_raw or ""
+    if not (len(raw) >= 2 and raw[0] == '"' and raw[-1] == '"'):
+        raise LintError(
+            "The description value must be wrapped in double quotes, like "
+            'description: "your text here". The value is one line and never '
+            "contains a quote, so wrapping it keeps it unambiguous for YAML "
+            "editors."
         )
     if not desc.strip():
         raise LintError("The frontmatter 'description' is empty.")

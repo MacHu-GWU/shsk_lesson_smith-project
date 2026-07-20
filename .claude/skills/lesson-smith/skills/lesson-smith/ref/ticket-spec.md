@@ -17,11 +17,11 @@ H1 任务标题: 规则与 README 相同 (只用字母, 数字, 文字, 逗号, 
 - 允许绝对 URL: 形如 https://domain/href 的绝对链接完全可以照常用.
 - 另外不手写指向本教程或本 Issue 自身的 GitHub 链接: 生成 Issue 时程序会确定性地拼出来, 不手写.
 
-顶部 frontmatter 的 description 是这个 Task 的 "完成判据": 一句话说清做出什么, 或能当场演示什么, 才算完成 (Definition of Done 压成一句). 它出现在看板 / Issue 列表里, 面向判断 "这活儿是啥, 达没达标" 的人. 和 README 那句是同一个 Task 的两张脸: README 句说学完能做到什么 (承诺), 这句说做出什么才算完 (判据). 纯知识型 Task 就写成可当场检验的理解 (你能解释清楚 X). 长度约束见 repo-layout.md 第 4 节.
+顶部 frontmatter 的 description 是这个 Task 的 "完成判据": 一句话说清做出什么, 或能当场演示什么, 才算完成 (Definition of Done 压成一句). 它出现在看板 / Issue 列表里, 面向判断 "这活儿是啥, 达没达标" 的人. 和 README 那句是同一个 Task 的两张脸: README 句说学完能做到什么 (承诺), 这句说做出什么才算完 (判据). 纯知识型 Task 就写成可当场检验的理解 (你能解释清楚 X). description 的值必须用双引号包起来 (形如 description 冒号空格再双引号), 长度与该约束见 repo-layout.md 第 4 节.
 -->
 
 ---
-description: 一句话, 做出什么或能演示什么才算这个 Task 完成. 中文叙述 + 英文术语.
+description: "一句话, 做出什么或能演示什么才算这个 Task 完成. 中文叙述 + 英文术语."
 ---
 
 # [任务标题]

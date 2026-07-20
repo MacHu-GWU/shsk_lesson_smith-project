@@ -8,10 +8,11 @@
 写作原则:
 - 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
 - 措辞可按课程微调, 但 "读一遍题库" 和 "测到 70% 通过" 这两条判据固定, 不要删.
+- frontmatter 的 description 值必须用双引号包起来 (和其它特殊文件一致, 见 repo-layout.md 第 4 节).
 -->
 
 ---
-description: 自测这门课是否真的学会, 用 /upskill-quiz 测到 70% 以上.
+description: "自测这门课是否真的学会, 用 /upskill-quiz 测到 70% 以上."
 ---
 
 # 自测通关
