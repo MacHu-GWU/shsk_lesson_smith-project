@@ -16,6 +16,13 @@ Design (see also linter_for_<type>.py):
   composing these shared rules with its own type-specific ones. :func:`lint`
   dispatches on ``repo.repo_type`` to the right module. Splitting a type into
   its own file is a "grow into it" knob, not an upfront commitment.
+
+Spec source of truth: the shared rules here enforce the type-agnostic specs in the
+top-level ``.claude/skills/lesson-smith/skills/lesson-smith/ref/*.md`` files (that
+directory's own ``.md`` files, not its subfolders): repo-layout, readme-spec,
+ticket-spec, readme-original-spec, syllabus-spec. Type-specific rules live in the
+``linter_for_<type>`` modules and reference that type's spec subfolder. Those specs
+are authoritative; keep these checks in sync with them.
 """
 
 import dataclasses

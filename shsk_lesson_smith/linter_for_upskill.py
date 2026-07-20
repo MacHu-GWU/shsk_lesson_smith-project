@@ -5,6 +5,13 @@
 Reuses the shared rules from ``linter.py`` and adds the two upskill-only ones:
 the repo-root overview files, and the ``examples/`` mini tasks. ``RULES`` is the
 composed rule list that :func:`linter.lint` runs for an upskill repo.
+
+Spec source of truth: the upskill-only rules here enforce the specs in
+``.claude/skills/lesson-smith/skills/lesson-smith/ref/upskill/*.md`` (upskill-repo-layout,
+upskill-readme-spec, upskill-ticket-spec, examples-readme-spec, examples-quiz-*-spec,
+docs-upskill-*-spec). The shared, type-agnostic checks come from ``linter.py`` and
+its top-level ``ref/*.md`` specs. Those specs are authoritative; keep these rules in
+sync with them.
 """
 
 from .constants import README_BASE
