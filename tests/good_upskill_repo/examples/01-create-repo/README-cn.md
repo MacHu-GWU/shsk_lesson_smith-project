@@ -1,42 +1,174 @@
 ---
-description: 学完你能独立创建一个配置合理的 GitHub repository, 并说清 visibility, README, .gitignore 各项设置的作用.
+description: 在 GitHub 上从零建出你的第一个 repository, 并搞懂 repository 与 commit 到底是什么.
 ---
 
-# 创建你的第一个 GitHub Repository
+# 创建你的第一个 Repository
 
-> 教你从零创建一个配置合理的 GitHub repository.
+> 只用浏览器, 在 GitHub 上建出你的第一个 repository, 顺便把 repository 和 commit 这两个最核心的概念一次讲透.
 
 ## 1. 概览
 
-Repository (简称 repo) 是 GitHub 上一个项目的家: 它存文件, 记录每一次修改, 支持多人协作和权限控制. 每个数字项目的第一步都是建一个 repo.
+你要在 github.com 上, 用鼠标点几下, 建出一个属于你自己的项目仓库, 里面躺着一个 README 文件. 全程不用装 git, 不碰命令行, 只需要一个浏览器和一个 GitHub 账号.
+
+这听起来很小, 但它是所有 GitHub 协作的起点. 建 repository 这个动作背后藏着两个概念: repository 是什么, commit 是什么. 把这两个词搞懂, 后面的 branch, Pull Request, merge 才有地方生根. 所以这节课的重点不是 "点对按钮", 而是 "点完之后你知道自己做了什么".
 
 ---
 
 ## 2. 学习目标
 
-没有 repo, 团队协作就退化成 "文件在邮件和聊天记录里飞": 谁改了什么, 哪个是最新版, 没人说得清. 建一个 repo, 就是给项目一个唯一的, 可追溯的家.
+先说为什么值得学. 想象 Maria Garcia 在做一个记菜谱的小项目. 一开始她把文件散在桌面, 名字叫 recipe-final.txt, recipe-final-v2.txt, recipe-really-final.txt. 一个月后她自己都分不清哪个是最新的, 更别提让朋友 John Smith 帮她一起改. 文件在邮件和聊天记录里飞来飞去, 谁改了什么, 哪版最新, 没人说得清.
+
+Repository 就是来终结这种混乱的. 它给项目一个唯一的, 可追溯的家: 所有文件放在一起, 每一次改动都被记录下来, 任何人任何时候都能看到 "现在是什么样, 之前是什么样, 是谁改的". 这是团队协作的地基, 而地基必须你亲手打一次才踏实.
 
 学完这个 Task, 你将能够:
 
-1. 解释 repository 是什么, 它和普通文件夹的区别.
-2. 独立创建一个配置合理的 repository.
-3. 说清 visibility, README, .gitignore 各项设置的作用.
+1. 用自己的话解释 repository 是什么, 它和电脑上一个普通文件夹的区别在哪.
+2. 说清 commit 是什么, 为什么说它是 GitHub 记录改动的最小单位.
+3. 在浏览器里独立建出一个带 README 的公开 repository, 并能解释 public 和 private 的区别.
 
 ---
 
-## 3. 动手做
+## 3. 前置知识
 
-1. 登录 GitHub, 点击右上角的加号, 选择 New repository.
-2. 填写 repository name: 全小写, 用连字符分隔单词, 例如 my-first-project.
-3. Visibility 选 Private (工作项目的默认选择, 之后可以随时改成 Public).
-4. 打开 Add a README, 让 repo 从第一天起就有自我介绍.
-5. 按项目类型选一个 .gitignore 模板, 不确定就先选 None.
-6. 点击 Create repository, 确认页面跳转到新 repo 的主页.
+- 有一个能登录的 GitHub 账号 (在 github.com 免费注册即可).
+- 会用浏览器: 会点按钮, 会填输入框, 会看页面上的文字.
+- 不需要装任何软件, 不需要懂命令行, 不需要提前会 git.
 
 ---
 
-## 4. 回顾
+## 4. 你将构建或学到什么
 
-- Repository 是项目的容器, 协作的单位, 也是权限管理的最小单位.
-- 命名用全小写加连字符; visibility 默认选 Private; README 一定要开.
-- 养成 "新项目第一件事就是建 repo" 的习惯.
+做完这节, 你的 GitHub 账号下会多出一个真实存在的公开 repository, 比如叫 recipe-box, 主页上能看到一个 README 文件, 文件里有一行你自己写的介绍. 你可以把这个页面的网址发给任何人, 他们打开就能看到你的项目.
+
+更重要的是, 你会真正理解这个页面上每个东西的含义, 而不只是照着截图点完就走.
+
+---
+
+## 5. Repository 到底是什么
+
+先建立心智模型. **Repository (简称 repo) 就是一个项目的家.** 它长得像一个文件夹, 但比文件夹多了三样本事:
+
+- **它记账.** 普通文件夹只保存 "现在" 的文件. Repository 还保存 "历史": 每一个文件曾经是什么样, 谁在什么时候改成了现在这样, 全都留底.
+- **它能被很多人共享.** 一个 repo 可以让一群人同时协作, 各自改各自的部分, 而不会互相覆盖.
+- **它有一个网址.** 你的 repo 会有一个像 github.com/mariagarcia/recipe-box 这样的地址, 这个地址就是这个项目在互联网上唯一的家.
+
+打个比方: 普通文件夹像一张桌子, 你只能看到桌面上现在摆着什么. Repository 像一台装了监控录像的桌子, 你不仅能看现在, 还能倒带看任意一个历史时刻, 甚至看到是谁的手把东西挪动的.
+
+一个项目对应一个 repository. 你的菜谱项目一个 repo, 你的读书笔记项目 (比如 my-notes) 另一个 repo. 它们各自独立, 互不干扰.
+
+---
+
+## 6. Commit 是什么, 为什么它是核心
+
+如果说 repository 是那台带监控的桌子, 那 **commit 就是监控录像里的一帧关键画面 (一个存档点).**
+
+每当你对项目做了一组有意义的改动, 你就 "提交" 一次, 这个动作叫 commit. 一个 commit 会记下三件事:
+
+- 这次改了哪些文件, 具体改了什么.
+- 是谁改的.
+- 什么时候改的, 以及一句话说明 (commit message), 解释这次为什么改.
+
+最贴切的类比是打游戏存档. 你玩一段, 打赢一个 boss, 就存个档. 万一后面走错路, 你可以读回任意一个存档点, 从那里重来. Commit 就是项目的存档点: 只要你提交过, 那个版本就永远躺在历史里, 你随时能回去看, 甚至回退过去.
+
+这里有个关键点很多新手会忽略: **建 repository 的时候勾选 Add a README, GitHub 会自动帮你做出第一个 commit.** 也就是说, 你这节课不只建了个空壳, 你还在不知不觉中完成了人生第一次 commit, 项目的历史从这一刻开始记账. 后面第二节课你会亲手做 commit, 到时候你就会明白 GitHub 这一步替你做了什么.
+
+---
+
+## 7. README 是什么, 为什么第一天就要有
+
+README 是一个约定俗成的文件, 名字就叫 README (通常是 README.md). 它是项目的门面: 谁打开你的 repo, GitHub 都会把 README 的内容直接显示在主页上, 就像一家店的门口招牌.
+
+好的 README 至少回答三个问题: 这个项目是干什么的, 怎么用, 谁在维护. 哪怕现在只写一句 "这是 Maria 的菜谱收藏", 也远好过一片空白. 让 repo 从第一天起就能自我介绍, 是一个专业的习惯.
+
+这也是为什么建 repo 时我们强烈建议勾上 Add a README: 它既给了你门面, 又顺手帮你完成了第一个 commit, 一举两得.
+
+---
+
+## 8. Public 还是 Private
+
+建 repo 时 GitHub 会让你选 visibility (可见性), 两个选项:
+
+- **Public (公开):** 互联网上任何人都能看到这个 repo 的内容和历史. 注意, 能看不等于能改, 别人默认只能看, 改不了.
+- **Private (私有):** 只有你, 以及你明确邀请的人, 才能看到.
+
+怎么选? 一个简单的判断标准: 如果这个项目本身不含任何秘密 (密码, 私人信息, 未公开的商业内容), 而你又愿意让别人看到甚至学习, 就选 Public. 开源项目, 学习练习, 作品展示, 都用 Public.
+
+**这节课我们选 Public.** 原因很实际: 公开的 repo 你可以把网址发给任何人炫耀, 也方便后面几节课演示协作. 别担心安全, 里面只有一个 README, 没有任何敏感内容. 记住这条底线: 永远不要把密码, API key 这类秘密放进 public repo.
+
+---
+
+## 9. 练习
+
+### 练习 1: 建出你的第一个 public repository
+
+**目标:** 在你自己的账号下, 建出一个带 README 的公开 repository.
+
+**怎么做:**
+
+1. 登录 github.com, 看向页面右上角, 点那个加号 (+), 在弹出的菜单里选 New repository.
+2. 在 Repository name 框里填名字. 用全小写, 单词之间用连字符连, 比如 recipe-box. GitHub 会在下面实时提示这个名字可不可用.
+3. Description 框可填可不填, 填一句话简介 (比如 A place to keep my favorite recipes) 会让 repo 更专业.
+4. Visibility 选 Public.
+5. 找到 Initialize this repository with 那一组选项, 勾上 Add a README file.
+6. 点页面底部绿色的 Create repository 按钮.
+
+**你会观察到:**
+
+页面会跳转到你的新 repo 主页, 网址形如 github.com/USERNAME/recipe-box (USERNAME 是你的用户名). 页面中间显示着 README 文件的内容. 往上看文件列表, 你会看到一行提交记录 (通常写着 Initial commit) 和刚刚的时间, 这就是 GitHub 替你做的第一个 commit.
+
+> **关键洞见:** 你没写一行代码, 就已经拥有了一个有历史, 有门面, 有网址的项目. Repository 加上第一个 commit, 就是一个项目在 GitHub 上 "出生" 的完整仪式.
+
+### 练习 2: 找到并读懂第一个 commit
+
+**目标:** 亲眼确认那个自动生成的 commit 真的存在.
+
+**怎么做:**
+
+1. 在 repo 主页, 找到文件列表上方那行提交信息 (Initial commit), 它旁边通常有一个像时钟或分叉的小图标, 写着提交数量, 比如 1 Commit.
+2. 点它, 进入 commit 历史列表.
+3. 点开那条 Initial commit, 看它记录了什么.
+
+**你会观察到:**
+
+你会看到这次 commit 新增了一个 README 文件, 标注了作者 (你) 和时间. 绿色的行表示新增的内容.
+
+> **关键洞见:** 历史从第一个 commit 就开始记了. 从今往后, repo 里发生的每一次改动都会像这样被一条一条记录下来, 永不丢失.
+
+---
+
+## 10. 回顾: 我们学到了什么
+
+- **Repository** 是项目的家: 一个会记账, 能共享, 有网址的文件夹. 一个项目对应一个 repo.
+- **Commit** 是项目历史的最小单位, 相当于游戏存档: 记录了改了什么, 谁改的, 何时改的, 为什么改.
+- 建 repo 时勾选 **Add a README**, 会同时给你一个门面文件, 并自动完成第一个 commit.
+- **Public vs Private** 是可见性设置: Public 谁都能看 (但默认改不了), Private 只有你和受邀者能看. 不含秘密且愿意公开就选 Public.
+
+---
+
+## 11. 导师寄语
+
+**为什么这个练习重要:**
+
+我见过太多人把 GitHub 当成一个 "上传文件的网盘", 上传完就以为万事大吉. 他们错过的, 恰恰是 GitHub 最值钱的部分: 历史. 你今天亲手建的这个 repo, 从第一个 commit 起就开始记账了, 这份 "记账能力" 才是它和网盘的本质区别. 网盘只知道文件现在长什么样, GitHub 知道它的一生.
+
+**关键洞见:**
+
+- Repository 和文件夹的差别, 不在于存了什么, 而在于它记得什么. 它记得每一步.
+- Commit 不是 "保存" 那么简单, 它是给项目历史盖了一个不可篡改的时间戳. 这是团队之间能互相信任, 能追责, 能回退的根基.
+
+**下一步:**
+
+现在你的 repo 里只有一个 README. 真实项目里, 你要不断往里加文件, 改文件, 每一次都留下一个清晰的 commit. 下一节课 (02 在 GitHub 上创建与编辑文件) 你就会亲手做这件事, 感受一下 "自己按下 commit" 是什么体验.
+
+---
+
+## 12. 速查
+
+**建 repo 的路径:** 右上角 + 号 -> New repository -> 填名字 -> Visibility 选 Public -> 勾 Add a README -> Create repository.
+
+**关键概念:**
+
+- `repository`: 项目的家, 会记录全部历史的 "文件夹".
+- `commit`: 一次改动的存档点, 记录改了什么, 谁改的, 何时, 为什么.
+- `README`: 显示在 repo 主页的项目门面文件.
+- `visibility`: Public (谁都能看) 或 Private (仅你和受邀者可看).

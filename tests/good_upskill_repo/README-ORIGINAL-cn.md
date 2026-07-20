@@ -1,9 +1,11 @@
 ---
-description: 一个 GitHub 基础协作入门课: 从建 repo 到 merge branch 的最小闭环, 带你到 basic 水平.
+description: 一门完全在浏览器里完成的 GitHub 基础协作课, 带你走通建仓库, 改文件, 开分支, 用 Pull Request 合并这条最小协作闭环, 从零到 basic 水平.
 ---
 
 # good_upskill_repo
 
-GitHub 是现代协作的业内标准: 代码, 文档, 数据资产, 几乎一切数字项目都可以用它做版本管理和多人协作. 不会用 GitHub, 就等于被挡在现代团队工作流之外.
+GitHub 是今天全球开发者协作的事实标准: 从个人项目到大型开源软件, 代码的托管, 版本管理和团队协作几乎都发生在这里. 会用 GitHub 已经不只是程序员的技能, 产品, 设计, 写作, 数据分析的人也越来越多地用它来协作和留痕. 这门课把最核心的那条协作闭环拆开讲清楚.
 
-这门课用 4 个 mini task 带你走完 GitHub 协作的最小闭环: 创建 repository, 创建与编辑文件, 使用 branch, 合并 branch. 学完你能独立完成日常协作里最常用的操作, 水平定位是 basic: 不涉及 rebase, conflict resolution 等进阶话题.
+学完你能独立在 GitHub 上从零建起一个 repository, 用 commit 记录每一次改动, 开 branch 隔离未完成的工作, 再用 Pull Request 把改动 review 后合并回主干. 全程只用浏览器, 不需要安装 git, 不需要命令行. 难度定位在 basic: 目标是让完全没接触过 GitHub 的人建立起扎实, 正确的第一印象和肌肉记忆.
+
+这是一门 upskill 课, 学会即止: 走完这条闭环, 你就有了后续学习 git 命令行, 分支策略, CI/CD 等进阶主题的地基.

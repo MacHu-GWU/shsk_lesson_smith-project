@@ -1,8 +1,34 @@
-# 课程索引
+# GitHub 基础协作 系列索引
 
-按编号顺序学习下面的 mini task, 每个目录里有 README (教程) 和 TICKET (验收清单):
+这门课把 GitHub 上最核心的一次协作拆成六个 mini task. 前四个按顺序带你走一遍完整闭环 (建仓库, 改文件, 开分支, 合并), 后两个帮你检验和巩固. 建议从 01 一路按编号做下去, 每个都真在自己的 GitHub 账号上操作一遍.
 
-- [01-create-repo](01-create-repo/README-cn.md): 创建你的第一个 GitHub Repository.
-- [02-edit-files](02-edit-files/README-cn.md): 在 Repository 里创建与编辑文件.
-- [03-git-branch](03-git-branch/README-cn.md): 使用 Git Branch 隔离改动.
-- [04-merge-branch](04-merge-branch/README-cn.md): 通过 Pull Request 合并 Branch.
+## 1. 建立你的仓库
+
+先把 "东西放哪, 改动怎么记" 搞定. 这一组让你拥有一个真正的 repository, 并学会用 commit 记录每一次改动.
+
+- [01-create-repo](01-create-repo/README-cn.md): 从零建出你的第一个 repository, 搞懂 repository 与 commit 是什么.
+- [02-edit-files](02-edit-files/README-cn.md): 在网页上新建和修改文件, 用清晰的 commit message 把每次改动记下来.
+
+---
+
+## 2. 分支与 Pull Request
+
+这一组是协作的核心: 学会不在主干上直接改, 而是开一条 branch 做事, 做完再用 Pull Request 请人 review 后合并回去.
+
+- [03-git-branch](03-git-branch/README-cn.md): 用 branch 把没写完的改动和主干隔开, 理解为什么协作离不开分支.
+- [04-merge-branch](04-merge-branch/README-cn.md): 用 Pull Request 把 branch 的改动 review 后合并回主干, 走完整条闭环.
+
+---
+
+## 3. 检验与进阶
+
+内容学完后, 这一组帮你确认自己是真懂了, 并指出下一步往哪走.
+
+- [05-prove-i-get-it](05-prove-i-get-it/README-cn.md): 一套面试式自测题, 检验你对整门课是否知其然知其所以然.
+- [06-level-up](06-level-up/README-cn.md): 回顾整条协作闭环, 并给出继续进阶的方向与搜索关键字.
+
+---
+
+## 4. 小结
+
+走完这六个 mini task, 你就完整掌握了 GitHub 上最常用的那条协作闭环: 从建仓库, 到用 commit 记录改动, 到用 branch 隔离工作, 再到用 Pull Request review 并合并. 这条闭环是后面学 git 命令行, 团队分支策略, 自动化流程的地基.
