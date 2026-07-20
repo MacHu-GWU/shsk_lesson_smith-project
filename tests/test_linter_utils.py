@@ -12,6 +12,7 @@ from shsk_lesson_smith.linter_utils import (
     check_frontmatter_description,
     check_h1_charset,
     check_h1_matches,
+    check_no_relative_links,
     find_emoji,
 )
 
@@ -198,6 +199,34 @@ class TestCheckH1Charset:
     def test_emoji(self, tmp_path):
         with pytest.raises(LintError, match="emoji"):
             check_h1_charset(self._md(tmp_path, "# 📋 What You Learn\n"))
+
+
+class TestCheckNoRelativeLinks:
+    def _md(self, tmp_path, body):
+        return MarkdownFile.from_path(write(tmp_path / "TICKET.md", body))
+
+    def test_passes_with_no_links(self, tmp_path):
+        check_no_relative_links(self._md(tmp_path, "# T\n\nPlain text, no links.\n"))
+
+    def test_passes_with_absolute_url(self, tmp_path):
+        check_no_relative_links(
+            self._md(tmp_path, "# T\n\nSee [docs](https://example.com/x) here.\n")
+        )
+
+    def test_passes_with_anchor(self, tmp_path):
+        check_no_relative_links(self._md(tmp_path, "# T\n\nJump to [top](#intro).\n"))
+
+    def test_raises_on_relative_link(self, tmp_path):
+        with pytest.raises(LintError, match="relative-path link"):
+            check_no_relative_links(
+                self._md(tmp_path, "# T\n\nSee [readme](../01-x/README.md).\n")
+            )
+
+    def test_raises_on_bare_relative_path_link(self, tmp_path):
+        with pytest.raises(LintError, match="relative-path link"):
+            check_no_relative_links(
+                self._md(tmp_path, "# T\n\nOpen [it](notes.md) first.\n")
+            )
 
 
 class TestCheckH1Matches:

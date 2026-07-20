@@ -42,6 +42,7 @@ from .linter_utils import (
     check_frontmatter_description,
     check_h1_charset,
     check_h1_matches,
+    check_no_relative_links,
 )
 from .repo import Metadata, Repo
 
@@ -137,11 +138,13 @@ def lint_file_content(
     description: bool = False,
     h1: "str | None" = None,
     h1_expected: "str | None" = None,
+    no_relative_links: bool = False,
 ) -> "list[CheckResult]":
     """Content checks for one existing markdown file.
 
     ``h1`` is ``"charset"`` (allowed character set), ``"match"`` (must equal
-    ``h1_expected``), or None (skip the H1 check).
+    ``h1_expected``), or None (skip the H1 check). ``no_relative_links`` adds the
+    TICKET-only check that the body carries no relative-path links.
     """
     md = MarkdownFile(path)
     out: "list[CheckResult]" = []
@@ -151,6 +154,8 @@ def lint_file_content(
         out.append(run_check(path, check_h1_charset, md))
     elif h1 == "match":
         out.append(run_check(path, check_h1_matches, md, h1_expected))
+    if no_relative_links:
+        out.append(run_check(path, check_no_relative_links, md))
     return out
 
 
@@ -193,7 +198,13 @@ def lint_task_dir(dir_path: Path, get_readme, get_ticket) -> "list[CheckResult]"
         lint_file_group(get_readme, required=True, description=True, h1="charset")
     )
     out.extend(
-        lint_file_group(get_ticket, required=True, description=True, h1="charset")
+        lint_file_group(
+            get_ticket,
+            required=True,
+            description=True,
+            h1="charset",
+            no_relative_links=True,
+        )
     )
     return out
 

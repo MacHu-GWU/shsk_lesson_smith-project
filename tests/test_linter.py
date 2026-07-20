@@ -3,6 +3,7 @@
 from pathlib import Path
 
 from shsk_lesson_smith.linter import CheckResult, LintReport, lint
+from shsk_lesson_smith.linter_for_upskill import rule_root_overview
 from shsk_lesson_smith.repo import Repo
 from shsk_lesson_smith.repo_for_upskill import UpskillRepo
 
@@ -83,6 +84,18 @@ class TestBadUpskillRepoReproducesErrors:
     def test_syllabus_description_mismatch(self):
         assert self.has("does not match the description")
 
+    def test_ticket_relative_link(self):
+        assert self.has("relative-path link")
+
+    def test_examples_numbering_gap(self):
+        assert self.has("numbered consecutively from 01")
+
+    def test_missing_quiz_task(self):
+        assert self.has("prove-i-get-it")
+
+    def test_missing_forge_outputs(self):
+        assert self.has("01-upskill-learn.md")
+
 
 class TestManifestAndSingleBranch:
     """Rules that cannot coexist with the bad repo above, built minimally."""
@@ -120,6 +133,50 @@ class TestManifestAndSingleBranch:
             "exactly one task branch named '01-upskill'" in (m or "")
             for m in messages
         )
+
+
+class TestRootOverviewContentChecks:
+    """The upskill root README/TICKET get full description + H1 checks, and the
+    root TICKET is checked for relative-path links."""
+
+    def _fails(self, root):
+        return [
+            r.message
+            for r in rule_root_overview(Repo(dir_project_root=root))
+            if not r.passed
+        ]
+
+    def _write(self, path, body):
+        path.write_text(body, encoding="utf-8")
+
+    def test_root_readme_bad_h1_flagged(self, tmp_path):
+        for name in ("README.md", "README-cn.md"):
+            self._write(tmp_path / name, '---\ndescription: "ok."\n---\n\n# Bad — Title\n')
+        assert any("H1" in (m or "") for m in self._fails(tmp_path))
+
+    def test_root_readme_unquoted_description_flagged(self, tmp_path):
+        for name in ("README.md", "README-cn.md"):
+            self._write(tmp_path / name, "---\ndescription: ok.\n---\n\n# Title\n")
+        assert any("double quotes" in (m or "") for m in self._fails(tmp_path))
+
+    def test_root_ticket_relative_link_flagged(self, tmp_path):
+        for name in ("README.md", "README-cn.md"):
+            self._write(tmp_path / name, '---\ndescription: "ok."\n---\n\n# Title\n')
+        for name in ("TICKET.md", "TICKET-cn.md"):
+            self._write(
+                tmp_path / name,
+                '---\ndescription: "ok."\n---\n\n# Ticket\n\nSee [x](../y.md).\n',
+            )
+        assert any("relative-path link" in (m or "") for m in self._fails(tmp_path))
+
+    def test_valid_root_files_pass(self, tmp_path):
+        for name in ("README.md", "README-cn.md"):
+            self._write(tmp_path / name, '---\ndescription: "ok."\n---\n\n# Title\n')
+        for name in ("TICKET.md", "TICKET-cn.md"):
+            self._write(
+                tmp_path / name, '---\ndescription: "ok."\n---\n\n# Ticket\n\nAll good.\n'
+            )
+        assert self._fails(tmp_path) == []
 
 
 class TestRender:

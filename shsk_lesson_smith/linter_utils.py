@@ -21,6 +21,7 @@ change, update these checks to match, and when adding a check, anchor it to the
 spec clause it enforces.
 """
 
+import re
 import typing as T
 import dataclasses
 from pathlib import Path
@@ -46,6 +47,12 @@ _EMOJI_RANGES = (
 
 _FRONTMATTER_FENCE = "---"
 _DESCRIPTION_KEY = "description:"
+
+# Inline markdown link target: the "..." in [text](...). A target is allowed in a
+# TICKET only when it is an absolute URL or an in-page anchor; anything else is a
+# relative path, which does not resolve once the TICKET is pasted into an Issue.
+_MD_LINK_TARGET = re.compile(r"\]\(\s*([^)]+?)\s*\)")
+_ALLOWED_LINK_TARGET = re.compile(r"^(?:https?://|mailto:|#)", re.IGNORECASE)
 
 
 def find_emoji(text: str) -> "str | None":
@@ -301,4 +308,28 @@ def check_h1_matches(md: MarkdownFile, expected: str) -> None:
     if title != expected:
         raise LintError(
             f"The H1 title is {title!r}, but it must be exactly {expected!r}."
+        )
+
+
+def check_no_relative_links(md: MarkdownFile) -> None:
+    """The markdown body must not contain relative-path links.
+
+    Used for TICKET files: a TICKET body is embedded verbatim into a GitHub Issue,
+    where relative links do not resolve. Absolute ``http(s)://`` / ``mailto:`` URLs
+    and in-page ``#anchor`` links are fine; a link whose target is anything else
+    (``./x``, ``../x``, ``x/y.md``) is a relative path and is flagged.
+    """
+    relative = []
+    for target in _MD_LINK_TARGET.findall(md.body):
+        cleaned = target.strip()
+        if cleaned.startswith("<") and cleaned.endswith(">"):
+            cleaned = cleaned[1:-1].strip()
+        if not _ALLOWED_LINK_TARGET.match(cleaned):
+            relative.append(target.strip())
+    if relative:
+        joined = ", ".join(relative)
+        raise LintError(
+            f"The TICKET body has relative-path link(s): {joined}. A TICKET is "
+            "embedded into a GitHub Issue, where relative links do not resolve. "
+            "Refer to files in plain text, or use an absolute http(s):// URL."
         )
