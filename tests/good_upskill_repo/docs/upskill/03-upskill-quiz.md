@@ -4,7 +4,7 @@
 
 ## 1. Question Bank Location
 
-The bank is the README of the quiz mini task: [examples/05-prove-i-get-it](../../examples/05-prove-i-get-it/README.md). It holds 20 questions covering the key points of the whole course, from repository and commit through branch, Pull Request, and merge.
+The bank is the README of the quiz mini task: [examples/05-prove-i-get-it](../../examples/05-prove-i-get-it/README.md). It holds 20 questions covering the key points of the whole course — repository and commit, creating and editing files with history, branches and the default branch main, Pull Requests, code review, merge, deleting a merged branch, and merge conflicts.
 
 ## 2. Quiz Customization
 
