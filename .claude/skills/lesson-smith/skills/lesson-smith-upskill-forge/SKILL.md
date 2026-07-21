@@ -81,7 +81,16 @@ upskill 的内容是创作者手写的 mini task, 不用像扫陌生代码那样
 
 ### Phase 5 — 落 2 个子 skill
 
-把两个模板拷成真正的 skill, 并让它们**自包含** (学生 repo 里没有 lesson-smith, 每个 skill 必须自带交互模式):
+把两个模板拷成真正的 skill, 并让它们**自包含** (学生 repo 里没有 lesson-smith, 每个 skill 必须自带交互模式).
+
+交互模式的落地方式固定是**拷贝进 ref/ 再加载, 不是内联**, 必须严格照此, 别自作主张改成别的形式:
+
+- 做法: 把英文权威版 `ref/agent-skill-interaction-pattern.md` 原样拷一份进每个生成 skill 的 `ref/` 下; SKILL.md 通过读取它自己 `ref/` 下那份 (bundled) 来加载. 模板里 "Interaction base" 那节只有一句话摘要加一个指向 bundled 全文的指针, 那句摘要不等于把规范内联了.
+- 不要把交互模式全文内联进 SKILL.md: 会让 SKILL.md 臃肿, 也会和权威版各自漂移.
+- 不要让生成的 skill 在运行时去 lesson-smith 里加载交互模式: 学生 repo 里根本没有 lesson-smith.
+- 为什么是拷贝: 生成的 skill 要在没有 lesson-smith 的学生 repo 里独立运行, 每个 skill 靠自带这份副本做到自包含; 权威版仍是 lesson-smith 里那一份, 改了它下次 forge 或 refresh 会重新拷入.
+
+具体拷贝:
 
 - `ref/upskill/upskill-learn.SKILL.md` → `.claude/skills/upskill-learn/SKILL.md`
 - `ref/upskill/upskill-quiz.SKILL.md` → `.claude/skills/upskill-quiz/SKILL.md`
