@@ -1,6 +1,6 @@
 {
   "name": "lesson-smith",
-  "description": "Personal documentation writing style conventions: Markdown structure and tone, mixed Chinese/English punctuation, and English translation.",
+  "description": "Author teaching GitHub repositories with AI: the lesson-smith agent-skill family scaffolds, forges the learning tools for, and finalizes upskill and showcase course repos.",
   "version": "0.1.1",
   "author": {
     "name": "Sanhe Hu",
@@ -10,6 +10,10 @@
   "repository": "https://github.com/MacHu-GWU/shsk_lesson_smith-project",
   "license": "AGPL-3.0-or-later",
   "keywords": [
-    "claude-code"
+    "claude-code",
+    "lesson-smith",
+    "teaching-repository",
+    "agent-skill",
+    "education"
   ]
 }

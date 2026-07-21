@@ -50,7 +50,7 @@ Welcome to ``shsk_lesson_smith`` Documentation
 .. image:: https://shsk-lesson-smith.readthedocs.io/en/latest/_static/shsk_lesson_smith-logo.png
     :target: https://shsk-lesson-smith.readthedocs.io/en/latest/
 
-Documentation for ``shsk_lesson_smith``.
+``shsk_lesson_smith`` is a course-production system that uses AI agents to create teaching GitHub repositories. A family of Claude Code agent skills scaffolds, authors, and finalizes a course repo, backed by a Python ``lesson-smith`` CLI that lints its structure and syncs its generated views.
 
 
 .. _install:
