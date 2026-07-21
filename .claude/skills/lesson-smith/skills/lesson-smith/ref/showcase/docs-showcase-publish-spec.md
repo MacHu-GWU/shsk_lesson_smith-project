@@ -9,7 +9,7 @@
 
 正文是五块, 就是下面五个 H2:
 
-1. Cardinal deletes (铁律删除, 永不可发布). 每一项都是一眼就暴露 "这来自教学" 的文件或目录, 发布前必删. showcase 里通常包括: 各语种本地化 README (形如 README-cn.md, 任意深度, 用 glob 声明再展开成真实清单); README-ORIGINAL 及其语种; lesson-smith 的清单与汇总视图 (lm.json, docs/tasks 整个目录含 SYLLABUS 与快照, docs/showcase 整个目录); 四个生成的子 skill (.claude/skills 下的 showcase-learn, showcase-quiz, showcase-demo, showcase-publish); demo 那个 mini task (examples 下的 how-i-build-this 整个目录); quiz 那个 mini task (examples 下的 prove-i-get-it 整个目录); 各级 TICKET 及其语种 (根目录与每个 example 下的 TICKET, 是教学任务卡); 以及创作底稿 (examples 下的 _lm 开头的 plan 文件). 每项写清 path, reason, detected_by 三个字段.
+1. Cardinal deletes (铁律删除, 永不可发布). 每一项都是一眼就暴露 "这来自教学" 的文件或目录, 发布前必删. showcase 里通常包括: 各语种本地化 README (形如 README-cn.md, 任意深度, 用 glob 声明再展开成真实清单); examples/README 系列索引及其各语种 (它是教学阶段的梳理, 不是作品内容); README-ORIGINAL 及其语种; lesson-smith 的清单与汇总视图 (lm.json, docs/tasks 整个目录含 SYLLABUS 与快照, docs/showcase 整个目录); 四个生成的子 skill (.claude/skills 下的 showcase-learn, showcase-quiz, showcase-demo, showcase-publish); examples 里从 quiz 那个 mini task (prove-i-get-it) 起, 连同排在它之后的所有 mini task (how-i-build-this, 以及任何位于 quiz 之后的收尾梳理 task) 的整个目录 (这些都是教学阶段的梳理与自查, 不是作品本身; 排在 quiz 之前的技术教学 mini task 才是要保留的作品内容, 归第 2 块 borderline 处理); 各级 TICKET 及其语种 (根目录与每个 example 下的 TICKET, 是教学任务卡); 以及创作底稿 (examples 下的 _lm 开头的 plan 文件). 每项写清 path, reason, detected_by 三个字段.
 
 2. Borderline items (待定项, 问学生). 对这个具体 repo 扫一遍, 找那些不是明显教学但可疑的东西, 交给学生判断而不是自动删. showcase 尤其要处理教学 example 本身: examples 下那些教学 mini task 是作品内容的载体, 通常保留, 但它们的教学口吻 README (以及 examples 这层的命名) 可能要改写得不像教程. 其它常见待定项: tmp 目录, 草稿笔记, 半成品. 每项写 path, reason, default (keep 或 ask).
 
@@ -42,12 +42,12 @@
 - path: `.claude/skills/showcase-learn/`, `.claude/skills/showcase-quiz/`, `.claude/skills/showcase-demo/`, `.claude/skills/showcase-publish/`
   reason: the four generated child skills
   detected_by: dir presence
-- path: `examples/ZZ-how-i-build-this/`
-  reason: the demo story mini task (pure teaching-process meta)
-  detected_by: dir presence
-- path: `examples/NN-prove-i-get-it/`
-  reason: the quiz mini task (self-test bank)
-  detected_by: dir presence
+- path: `examples/README.md` (and locales)
+  reason: the series index — teaching-stage scaffolding, not portfolio content
+  detected_by: filename match
+- path: the quiz mini task and every mini task from it onward — `examples/NN-prove-i-get-it/`, `examples/ZZ-how-i-build-this/`, and any closing recap task after the quiz (whole dirs)
+  reason: the quiz, the demo story, and any wrap-up are teaching-stage self-check and recap, not portfolio content; only the technical teaching mini tasks BEFORE the quiz survive (handled as borderline in section 2)
+  detected_by: dir presence, from the quiz mini task's index position onward
 - path: `**/TICKET.md` (and locales)
   reason: teaching task cards at the root and in each example
   detected_by: filename match
@@ -59,7 +59,7 @@
 
 [Bootstrap-time scan of this specific repo for not-obviously-teaching but suspicious content. Flag for the user's judgment; do not auto-delete.]
 
-- path: `examples/` teaching mini tasks (the surviving example content)
+- path: the technical teaching mini tasks BEFORE the quiz (the surviving example content)
   reason: this is the portfolio content, but the teaching-voice README and the examples/ naming may need rewriting so it does not read like a course
   default: ask
 - path: [e.g. `tmp/`, `notes/`, `*.draft.md`]

@@ -101,4 +101,4 @@ showcase 在 [ref/repo-layout.md](../repo-layout.md) 的基础上做了两处特
 
 publish 是 showcase 区别于其它类型的核心. 它不是一份静态文件, 而是一个由 /showcase-publish skill 执行的运行时步骤: 学完全部课程后, 学生跑一次 publish, 把这个教学 repo 就地转成一个可以放上自己 GitHub 的 portfolio repo. 它的清单 (删哪些教学痕迹, 怎么排 commit, 怎么重写 README, 怎么做敌意扫描) 由 forge 产出的 docs/showcase/05-showcase-publish.md 承载, 规范见 [docs-showcase-publish-spec.md](docs-showcase-publish-spec.md).
 
-publish 会删掉的教学痕迹通常包括: demo 那个 mini task (how-i-build-this), docs/showcase 整个目录, 四个生成的子 skill (showcase-learn/quiz/demo/publish), 各语种的本地化 README (形如 README-cn.md), 以及 README-ORIGINAL. 换言之 demo 底稿本身也是教学痕迹, publish 时会一并抹去; 学生是在 publish 之前读 demo, 排练好怎么讲这段经历, 之后再 publish 出一个干净的作品 repo 拿去展示. 这个 "抹痕迹发布" 环节 upskill 没有, 是 showcase 独有的.
+具体删掉哪些教学痕迹, 怎么改写, 唯一真相在 [docs-showcase-publish-spec.md](docs-showcase-publish-spec.md), 这里不重复. 布局层面只点明一个时序: demo 底稿本身也是教学痕迹, 会在 publish 时被删掉, 所以学生是在 publish 之前读 demo, 排练好怎么讲这段经历, 之后再 publish 出一个干净的作品 repo 拿去展示. 这个 "抹痕迹发布" 环节 upskill 没有, 是 showcase 独有的.

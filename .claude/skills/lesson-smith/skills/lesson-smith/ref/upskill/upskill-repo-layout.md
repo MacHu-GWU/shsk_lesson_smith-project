@@ -80,6 +80,8 @@ quiz 那个 mini task 是个例外: 目录固定命名 NN-prove-i-get-it, 它的
 
 docs/tasks/01-upskill 下的四个文件是根目录 README 与 TICKET 的快照, 由 lesson-smith sync 生成, 不手写. SYLLABUS 同样由 sync 生成, 对 upskill 来说只有 01-upskill 一段.
 
+docs/upskill 下的三份 doc 由 lesson-smith-upskill-forge 产出, 各自的规范见 [docs-upskill-learn-spec.md](docs-upskill-learn-spec.md), [docs-upskill-runbook-spec.md](docs-upskill-runbook-spec.md), [docs-upskill-quiz-spec.md](docs-upskill-quiz-spec.md).
+
 ---
 
 ## 5. 与通用标准的关系
