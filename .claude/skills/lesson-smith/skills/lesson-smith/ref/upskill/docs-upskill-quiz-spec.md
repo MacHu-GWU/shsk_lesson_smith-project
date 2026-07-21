@@ -22,7 +22,7 @@
 
 ## 1. Question Bank Location
 
-The bank is the README of the quiz mini task: [examples/0X-quiz-title](../../examples/0X-quiz-title/README.md). It holds [N] questions covering the key points of the whole course.
+The bank is the README of the quiz mini task: [examples/NN-prove-i-get-it](../../examples/NN-prove-i-get-it/README.md). It holds [N] questions covering the key points of the whole course.
 
 ## 2. Quiz Customization
 
