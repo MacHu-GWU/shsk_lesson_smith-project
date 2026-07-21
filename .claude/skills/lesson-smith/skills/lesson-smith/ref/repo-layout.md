@@ -68,9 +68,13 @@ docs/tasks/02-branch-name/
 
 ## 6. 校验与同步工具
 
-维护 `docs/tasks/` 以及校验命名, 语种完整性, description 规范的逻辑在本项目的 `shsk_lesson_smith` Python package 里, CLI 入口是 `lesson-smith`:
+维护 `docs/tasks/` 以及校验命名, 语种完整性, description 规范的逻辑在 `shsk_lesson_smith` Python package 里 (已发布到 PyPI, 项目名 `shsk-lesson-smith`), CLI 入口是 `lesson-smith`, 两个子命令 `sync` 与 `lint`.
+
+教学仓库自己不依赖这个 package (它不在教学 repo 的依赖里), 所以在教学 repo 根目录下, 用 uvx 临时拉取一个 pin 死的版本来跑, 不必预装:
 
 ```bash
-lesson-smith sync   # 快照当前 branch 的 README / TICKET 到 docs/tasks/<branch>/, 并重建 SYLLABUS
-lesson-smith lint   # 只读校验: 目录结构, 语种完整性, frontmatter description, SYLLABUS 内容
+uvx --from shsk-lesson-smith==<version> lesson-smith sync -p .   # 快照当前 branch 的 README / TICKET 到 docs/tasks/<branch>/, 并重建 SYLLABUS
+uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .   # 只读校验: 目录结构, 语种完整性, frontmatter description, SYLLABUS 内容
 ```
+
+`<version>` 填创作时的最新发布版本 (当前是 0.1.1; 最新版见 https://pypi.org/pypi/shsk-lesson-smith). pin 死版本是为了让校验规范可复现, 不随新版悄悄漂移. 若创作者本地已经装好这个 package, 直接跑 `lesson-smith sync` / `lesson-smith lint` 效果相同.

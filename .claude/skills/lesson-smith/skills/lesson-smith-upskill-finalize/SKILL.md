@@ -3,7 +3,7 @@ name: lesson-smith-upskill-finalize
 description: 给一个 upskill 教学仓库收尾定型. 重写 README-ORIGINAL (Lesson 门面), 写出根目录的 README 与 TICKET (仓库总览加整门课验收清单, 一次产出全部语种), 再跑 lesson-smith sync 生成 SYLLABUS 与快照, 最后跑 lesson-smith lint 把关. 创作流的最后一步, examples 与 forge 都做完之后用. 关键词, finalize upskill, 重写 README-ORIGINAL, 写根 README TICKET, 生成 SYLLABUS, upskill 收尾.
 disable-model-invocation: true
 argument-hint: [init | refresh] [自由说明...]
-allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(git rev-parse *) Bash(git branch *) Bash(lesson-smith *)
+allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(git rev-parse *) Bash(git branch *) Bash(uvx *) Bash(lesson-smith *)
 ---
 
 # lesson-smith-upskill-finalize
@@ -12,8 +12,8 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 1. 重写 `README-ORIGINAL` (整个 Repo 也就是这门 Lesson 的对外门面), 让它和最终内容对齐, 一次产出全部语种.
 2. 根目录 `README` 与 `TICKET` (仓库总览加整门课验收清单), 一次产出全部语种.
-3. 跑 `lesson-smith sync` 生成 `docs/tasks/SYLLABUS` 与 `docs/tasks/01-upskill/` 快照.
-4. 跑 `lesson-smith lint` 把关整仓结构.
+3. 用 uvx 跑 `lesson-smith sync` 生成 `docs/tasks/SYLLABUS` 与 `docs/tasks/01-upskill/` 快照.
+4. 用 uvx 跑 `lesson-smith lint` 把关整仓结构.
 
 这是创作流的最后一步: 默认 examples 已全部写完, 且 `/lesson-smith-upskill-forge` 已产出 `docs/upskill/` 与两个子 skill.
 
@@ -78,11 +78,11 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 ### Phase 6 — 生成 SYLLABUS 与快照
 
-跑 `lesson-smith sync` (它生成 `docs/tasks/SYLLABUS` 与 `docs/tasks/01-upskill/` 下的 README, TICKET 快照). 若命令不可用或报错, 如实告诉用户, 不要手写这些生成物.
+在 repo 根目录跑 `uvx --from shsk-lesson-smith==<version> lesson-smith sync -p .` (`<version>` 取当前最新发布版, uvx 与 pin 版本的说明见 lesson-smith skill 的 `ref/repo-layout.md` 第 6 节; 若本地已装好该 package, 直接 `lesson-smith sync` 亦可). 它生成 `docs/tasks/SYLLABUS` 与 `docs/tasks/01-upskill/` 下的 README, TICKET 快照. 若命令不可用或报错, 如实告诉用户, 不要手写这些生成物.
 
 ### Phase 7 — Verify 与汇报
 
-1. 跑 `lesson-smith lint` 看整仓结构是否合规; 有问题按报告修到通过.
+1. 在 repo 根目录跑 `uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .` (命令细节同上, 见 `ref/repo-layout.md` 第 6 节) 看整仓结构是否合规; 有问题按报告修到通过.
 2. 列出创建或更新的文件 (README-ORIGINAL, 根 README 与 TICKET 各语种, SYLLABUS 与快照).
 3. sanity check: README-ORIGINAL 的 description 与 github_about 都在且 H1 等于 repo 名; 根 README 提及了两个子 skill 且没提 runbook; 根 TICKET 有第 4 节关键能力且无相对路径链接.
 4. 告诉用户: 这门 upskill 课到此收尾完成, 可以从根目录 README 进入开始学.

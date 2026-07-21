@@ -3,7 +3,7 @@ name: lesson-smith-upskill-forge
 description: 为当前这个 upskill 教学仓库锻造出 "学这门课" 的工具链. 扫一遍 examples 渐进序列, 向创作者问清学习素材与考法, 写出 docs/upskill/ 下的 3 份文档 (learn, runbook, quiz), 并落下 upskill-learn 与 upskill-quiz 两个子 skill. 接手或刷新一个 upskill repo 的学习工具时用. 关键词, forge upskill, 生成 upskill 学习 skill, 刷新 upskill 文档.
 disable-model-invocation: true
 argument-hint: [init | refresh | learn | runbook | quiz] [自由说明...]
-allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(git rev-parse *)
+allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(git rev-parse *) Bash(uvx *)
 ---
 
 # lesson-smith-upskill-forge
@@ -102,7 +102,7 @@ upskill 的内容是创作者手写的 mini task, 不用像扫陌生代码那样
 
 1. 列出创建或更新的文件 (3 份 doc + 2 份 SKILL.md).
 2. sanity check: 每个 SKILL.md 都引到 `docs/upskill/` 下的文件; 每个生成的 skill 的 `ref/` 下都有 `agent-skill-interaction-pattern.md`, 且 SKILL.md 固定加载了它; 3 份 doc 都非空.
-3. 跑 `lesson-smith lint` 看仓库结构是否仍合规.
+3. 用 uvx 跑 `lesson-smith lint` 看仓库结构是否仍合规 (`uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .`; `<version>` 与 pin 版本的说明见 lesson-smith skill 的 `ref/repo-layout.md` 第 6 节, 本地已装 package 则直接 `lesson-smith lint`).
 4. 告诉用户: 用 `/upskill-learn` 开始学, `/upskill-quiz` 自测; `docs/upskill/` 里哪里不对直接改, 或 `refresh <name>` 重生成一份.
 
 ## 约束
