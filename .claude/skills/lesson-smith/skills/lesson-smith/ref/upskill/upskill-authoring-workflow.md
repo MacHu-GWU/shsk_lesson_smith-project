@@ -50,7 +50,7 @@
 
 ## 8. 写 quiz 并精修
 
-按 [ref/upskill/examples-quiz-readme-spec.md](examples-quiz-readme-spec.md) 写这个 mini task 的 README (题库, 每题四段: 问题, 考察点, 参考回答, 深入解读), 按 [ref/upskill/examples-quiz-ticket-spec.md](examples-quiz-ticket-spec.md) 写它固定的 TICKET (读一遍题库 + 用 /upskill-quiz 测到 70% 通过), 然后精修.
+按 [ref/upskill/upskill-examples-quiz-readme-spec.md](upskill-examples-quiz-readme-spec.md) 写这个 mini task 的 README (题库, 每题四段: 问题, 考察点, 参考回答, 深入解读), 按 [ref/upskill/upskill-examples-quiz-ticket-spec.md](upskill-examples-quiz-ticket-spec.md) 写它固定的 TICKET (读一遍题库 + 用 /upskill-quiz 测到 70% 通过), 然后精修.
 
 ---
 
@@ -62,7 +62,7 @@
 
 ## 10. 写 examples/README 系列索引
 
-写 examples/README.md 做梳理, 按 [ref/upskill/examples-readme-spec.md](examples-readme-spec.md) 来. 重点是避免陈列 (不是无脑罗列 mini task), 而是按主题分组梳理. 人类主要在前后插入个性化的内容和观点.
+写 examples/README.md 做梳理, 按 [ref/upskill/upskill-examples-readme-spec.md](upskill-examples-readme-spec.md) 来. 重点是避免陈列 (不是无脑罗列 mini task), 而是按主题分组梳理. 人类主要在前后插入个性化的内容和观点.
 
 ---
 

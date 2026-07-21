@@ -39,7 +39,7 @@ examples/01-title/TICKET-<lang>.md
 examples/02-title/
 examples/...
 examples/NN-prove-i-get-it/     quiz 环节 (靠后, 通常倒数第 2), 标题固定 prove-i-get-it
-examples/NN-prove-i-get-it/README.md        题库真身, 走 examples-quiz-readme-spec (不走教学 README 结构)
+examples/NN-prove-i-get-it/README.md        题库真身, 走 upskill-examples-quiz-readme-spec (不走教学 README 结构)
 examples/NN-prove-i-get-it/README-<lang>.md
 examples/NN-prove-i-get-it/TICKET.md
 examples/NN-prove-i-get-it/TICKET-<lang>.md
@@ -74,9 +74,9 @@ README-ORIGINAL 是对外 README, 遵循 [ref/readme-original-spec.md](../readme
 
 examples/NN-title 下的 README 与 TICKET 才是真正的教学文档, 它们直接遵循标准的 [ref/readme-spec.md](../readme-spec.md) 与 [ref/ticket-spec.md](../ticket-spec.md), 不另立 spec: 内容规范和根目录情形完全一样, 唯一区别是所在位置 (examples/NN-title 而非 repo 根). 这也是为什么这两个 spec 的适用范围里已经点名了 examples/XY-title-here.
 
-examples/README 是系列索引, 它不是教程, 也不同于 SYLLABUS 的无脑罗列, 而是把 mini task 按主题分组梳理. 它遵循单独的 [ref/upskill/examples-readme-spec.md](examples-readme-spec.md).
+examples/README 是系列索引, 它不是教程, 也不同于 SYLLABUS 的无脑罗列, 而是把 mini task 按主题分组梳理. 它遵循单独的 [ref/upskill/upskill-examples-readme-spec.md](upskill-examples-readme-spec.md).
 
-quiz 那个 mini task 是个例外: 目录固定命名 NN-prove-i-get-it, 它的 README 不走教学 readme-spec 的正文结构, 而走 [ref/upskill/examples-quiz-readme-spec.md](examples-quiz-readme-spec.md) 的问答结构. 它的 TICKET 另有规范 [ref/upskill/examples-quiz-ticket-spec.md](examples-quiz-ticket-spec.md) (内容固定极简: 读一遍题库 + /upskill-quiz 测到 70% 通过, 结构沿用 [ref/ticket-spec.md](../ticket-spec.md)).
+quiz 那个 mini task 是个例外: 目录固定命名 NN-prove-i-get-it, 它的 README 不走教学 readme-spec 的正文结构, 而走 [ref/upskill/upskill-examples-quiz-readme-spec.md](upskill-examples-quiz-readme-spec.md) 的问答结构. 它的 TICKET 另有规范 [ref/upskill/upskill-examples-quiz-ticket-spec.md](upskill-examples-quiz-ticket-spec.md) (内容固定极简: 读一遍题库 + /upskill-quiz 测到 70% 通过, 结构沿用 [ref/ticket-spec.md](../ticket-spec.md)).
 
 docs/tasks/01-upskill 下的四个文件是根目录 README 与 TICKET 的快照, 由 lesson-smith sync 生成, 不手写. SYLLABUS 同样由 sync 生成, 对 upskill 来说只有 01-upskill 一段.
 

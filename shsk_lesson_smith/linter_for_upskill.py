@@ -8,7 +8,7 @@ composed rule list that :func:`linter.lint` runs for an upskill repo.
 
 Spec source of truth: the upskill-only rules here enforce the specs in
 ``.claude/skills/lesson-smith/skills/lesson-smith/ref/upskill/*.md`` (upskill-repo-layout,
-upskill-readme-spec, upskill-ticket-spec, examples-readme-spec, examples-quiz-*-spec,
+upskill-readme-spec, upskill-ticket-spec, upskill-examples-readme-spec, upskill-examples-quiz-*-spec,
 docs-upskill-*-spec). The shared, type-agnostic checks come from ``linter.py`` and
 its top-level ``ref/*.md`` specs. Those specs are authoritative; keep these rules in
 sync with them.

@@ -1,7 +1,7 @@
 <!--
 本文件是 docs/upskill/03-upskill-quiz.md 的规范加可直接套用的模板. 这段顶部注释只服务于创作; 产出真正的 doc 时, 把整段注释删掉, 只留后面的正文.
 
-定性: 这是 quiz 的薄壳, 由 lesson-smith-upskill-forge 生成, 给 upskill-quiz skill 消费. 它本身不出题: 题目, 参考回答, 深入解读全在那个 quiz mini task 的 README 里 (规范见 [examples-quiz-readme-spec.md](examples-quiz-readme-spec.md)). 这份 doc 只做两件事: 指出题库在哪, 以及记录人类对考法的自定义要求.
+定性: 这是 quiz 的薄壳, 由 lesson-smith-upskill-forge 生成, 给 upskill-quiz skill 消费. 它本身不出题: 题目, 参考回答, 深入解读全在那个 quiz mini task 的 README 里 (规范见 [upskill-examples-quiz-readme-spec.md](upskill-examples-quiz-readme-spec.md)). 这份 doc 只做两件事: 指出题库在哪, 以及记录人类对考法的自定义要求.
 
 适用范围: upskill 类型 repo 的 docs/upskill/03-upskill-quiz.md. 这是给 AI/skill 看的元文件, 人类读的是真正的教程正文 (examples 下的 quiz 题库真身也是给人读的), 不读这份薄壳; 所以它产出内容全英文, 不走 cn-first 铁律. 因此下面的正文模板本身就是英文的. 注意区分: 题库真身 (examples 下那个 mini task) 是人类看的, 走 cn-first 双语; 这份指针薄壳是 skill 看的, 全英文.
 

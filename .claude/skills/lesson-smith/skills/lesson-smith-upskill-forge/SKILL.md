@@ -27,7 +27,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 - `ref/upskill/docs-upskill-learn-spec.md` — 写 `01-upskill-learn.md` 的规范.
 - `ref/upskill/docs-upskill-runbook-spec.md` — 写 `02-upskill-runbook.md` 的规范.
 - `ref/upskill/docs-upskill-quiz-spec.md` — 写 `03-upskill-quiz.md` 的规范.
-- `ref/upskill/examples-quiz-readme-spec.md` — 题库真身 (quiz mini task 的 README) 的格式, 用来定位它并写好 `03` 的指针.
+- `ref/upskill/upskill-examples-quiz-readme-spec.md` — 题库真身 (quiz mini task 的 README) 的格式, 用来定位它并写好 `03` 的指针.
 - `ref/upskill/upskill-learn.SKILL.md`, `ref/upskill/upskill-quiz.SKILL.md` — 两个子 skill 的近乎静态模板, 直接拷.
 - `ref/agent-skill-interaction-pattern.md` — 通用交互模式 (英文权威版), 生成子 skill 时拷一份进各自的 ref/ 下.
 
@@ -54,7 +54,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 upskill 的内容是创作者手写的 mini task, 不用像扫陌生代码那样重. 直接:
 
 - 读 `examples/README` 与各 `examples/NN-title/README` 顶部的 description (或 `docs/tasks/SYLLABUS`), 拼出**引导路径** (即 learn 文档的 #2).
-- 按 `examples-quiz-readme-spec.md` 的特征 (H1 下有固定句, 每题一个 H2, 四段结构) 定位那个 **quiz 环节 mini task** (通常在倒数第 2 到第 3).
+- 按 `upskill-examples-quiz-readme-spec.md` 的特征 (H1 下有固定句, 每题一个 H2, 四段结构) 定位那个 **quiz 环节 mini task** (通常在倒数第 2 到第 3).
 - 顺带记下 examples 之外看起来是学习素材的东西 (根目录代码, 其它文档, `mise.toml`), 作为 **#1 学习素材** 的候选.
 
 读 examples 时只读英文版 (无后缀的 `.md`), **跳过本地化变体** `examples/*-<lang>.md` 与 `examples/*/*-<lang>.md` (例如 `-cn.md`): 它们内容和英文版一致, 两份都读是浪费 token; 反正产出都是英文文件, 索引的也是英文文件. 但 examples 之外的脚本, 数据, 配置等要照常通读, 不受此限.

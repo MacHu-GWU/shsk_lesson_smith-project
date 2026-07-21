@@ -1,7 +1,7 @@
 <!--
 本文件是 quiz 环节那个 mini task 的 TICKET 的规范加可直接套用的模板. 这段顶部注释只服务于创作; 产出真正的 TICKET-cn.md 时, 把整段注释删掉, 只留后面的正文.
 
-定性: 这是 quiz 那个 mini task (examples/NN-prove-i-get-it) 的 TICKET. 它沿用 [ref/ticket-spec.md](../ticket-spec.md) 的三段式结构 (目标, 要做的事情, 检查清单), 但内容固定且极简: 把题库通读一遍, 再用 /upskill-quiz 抽测到 70% 通过. 不同课程可微调措辞, 意思固定. 对应的题库真身 README 另有规范, 见 [ref/upskill/examples-quiz-readme-spec.md](examples-quiz-readme-spec.md).
+定性: 这是 quiz 那个 mini task (examples/NN-prove-i-get-it) 的 TICKET. 它沿用 [ref/ticket-spec.md](../ticket-spec.md) 的三段式结构 (目标, 要做的事情, 检查清单), 但内容固定且极简: 把题库通读一遍, 再用 /upskill-quiz 抽测到 70% 通过. 不同课程可微调措辞, 意思固定. 对应的题库真身 README 另有规范, 见 [ref/upskill/upskill-examples-quiz-readme-spec.md](upskill-examples-quiz-readme-spec.md).
 
 适用范围: upskill 类型 repo 里那个 quiz mini task 的 TICKET. 语言遵循创作铁律 (先写 cn, 定稿后 translate-to-en).
 
