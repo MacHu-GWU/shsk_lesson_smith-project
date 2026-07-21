@@ -358,6 +358,59 @@ def rule_task_snapshots(repo: Repo) -> "list[CheckResult]":
 
 
 # --------------------------------------------------------------------------- #
+# Shared helpers for examples-based repo types (upskill / showcase)
+#
+# These are type-agnostic but only apply to the two types that keep mini tasks
+# under examples/, so they live here and each of those linter_for_<type> modules
+# composes them (upskill re-exports them for backward-compatible imports).
+# --------------------------------------------------------------------------- #
+def rule_root_overview(repo: Repo) -> "list[CheckResult]":
+    """Repo-root README (course overview) and TICKET (whole-course acceptance).
+
+    Both carry a mandated frontmatter description and H1, so beyond existence and
+    language completeness they get the full description + H1-charset checks. The
+    root TICKET is optional, but when present it is also checked for relative-path
+    links (it ends up in a GitHub Issue). The root README may link relatively, so
+    it is not.
+    """
+    out = lint_file_group(
+        repo.get_path_readme, required=True, description=True, h1="charset"
+    )
+    out += lint_file_group(
+        repo.get_path_ticket,
+        required=False,
+        description=True,
+        h1="charset",
+        no_relative_links=True,
+    )
+    return out
+
+
+def _check_examples_numbering(example_dirs: "list") -> None:
+    """The examples mini tasks must be numbered consecutively from 01, no gaps."""
+    numbers = []
+    for dir_example in example_dirs:
+        match = re.match(r"^(\d\d)-", dir_example.name)
+        if match is None:
+            raise LintError(
+                f"examples mini task {dir_example.name!r} must start with a "
+                "two-digit number, e.g. 01-title."
+            )
+        numbers.append(int(match.group(1)))
+    if not numbers:
+        raise LintError(
+            "examples/ has no mini task directories; expected 01-title, "
+            "02-title, and so on."
+        )
+    numbers.sort()
+    if numbers != list(range(1, len(numbers) + 1)):
+        raise LintError(
+            "examples mini tasks must be numbered consecutively from 01 with no "
+            f"gaps; got {numbers}."
+        )
+
+
+# --------------------------------------------------------------------------- #
 # Dispatch
 # --------------------------------------------------------------------------- #
 def _rules_module_for(repo_type: "RepoTypeEnum | None"):

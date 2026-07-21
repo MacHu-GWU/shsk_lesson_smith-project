@@ -28,6 +28,10 @@ from .linter import (
     rule_task_snapshots,
     run_check,
 )
+from .linter import (  # re-exported: shared helpers now live in linter.py
+    _check_examples_numbering,
+    rule_root_overview,
+)
 from .linter_utils import check_file_exists
 from .repo import Repo, get_variant_filename
 
@@ -60,52 +64,6 @@ def rule_single_branch(repo: Repo) -> "list[CheckResult]":
             )
 
     return [run_check(repo.dir_docs_tasks, _check)]
-
-
-def rule_root_overview(repo: Repo) -> "list[CheckResult]":
-    """Repo-root README (course overview) and TICKET (whole-course acceptance).
-
-    Both carry a mandated frontmatter description and H1 (see upskill-readme-spec
-    and upskill-ticket-spec), so beyond existence and language completeness they
-    get the full description + H1-charset checks. The root TICKET is optional for
-    upskill, but when present it is also checked for relative-path links (it ends
-    up in a GitHub Issue). The root README may link relatively, so it is not.
-    """
-    out = lint_file_group(
-        repo.get_path_readme, required=True, description=True, h1="charset"
-    )
-    out += lint_file_group(
-        repo.get_path_ticket,
-        required=False,
-        description=True,
-        h1="charset",
-        no_relative_links=True,
-    )
-    return out
-
-
-def _check_examples_numbering(example_dirs: "list") -> None:
-    """The examples mini tasks must be numbered consecutively from 01, no gaps."""
-    numbers = []
-    for dir_example in example_dirs:
-        match = re.match(r"^(\d\d)-", dir_example.name)
-        if match is None:
-            raise LintError(
-                f"examples mini task {dir_example.name!r} must start with a "
-                "two-digit number, e.g. 01-title."
-            )
-        numbers.append(int(match.group(1)))
-    if not numbers:
-        raise LintError(
-            "examples/ has no mini task directories; expected 01-title, "
-            "02-title, and so on."
-        )
-    numbers.sort()
-    if numbers != list(range(1, len(numbers) + 1)):
-        raise LintError(
-            "examples mini tasks must be numbered consecutively from 01 with no "
-            f"gaps; got {numbers}."
-        )
 
 
 def _check_quiz_task_present(example_dirs: "list") -> None:

@@ -18,10 +18,13 @@ from shsk_lesson_smith.linter_for_upskill import (
 )
 from shsk_lesson_smith.repo import Repo
 from shsk_lesson_smith.repo_for_upskill import UpskillRepo
+from shsk_lesson_smith.repo_for_showcase import ShowcaseRepo
 
 dir_tests = Path(__file__).absolute().parent
 dir_good_upskill_repo = dir_tests / "good_upskill_repo"
 dir_bad_upskill_repo = dir_tests / "bad_upskill_repo"
+dir_good_showcase_repo = dir_tests / "good_showcase_repo"
+dir_bad_showcase_repo = dir_tests / "bad_showcase_repo"
 
 
 def lint_good():
@@ -114,6 +117,128 @@ class TestBadUpskillRepoReproducesErrors:
     def test_snapshot_language_incomplete(self):
         # rule_task_snapshots must flag a broken docs/tasks/<branch>/ snapshot.
         assert self.has("docs/tasks/01-upskill/TICKET-cn.md")
+
+
+class TestGoodShowcaseRepoIsClean:
+    def test_base_repo_passes(self):
+        report = lint(Repo(dir_project_root=dir_good_showcase_repo))
+        assert report.passed, report.render()
+        assert report.failures() == []
+
+    def test_showcase_subclass_passes(self):
+        report = lint(ShowcaseRepo(dir_project_root=dir_good_showcase_repo))
+        assert report.passed, report.render()
+
+
+class TestBadShowcaseRepoReproducesErrors:
+    """The committed bad_showcase_repo bakes in one error per check type.
+
+    Mirrors bad_upskill_repo (same shared errors) plus the showcase-only demo
+    mini task rule.
+    """
+
+    def messages(self):
+        return [
+            f.message
+            for f in lint(Repo(dir_project_root=dir_bad_showcase_repo)).failures()
+        ]
+
+    def has(self, needle):
+        return any(needle in (m or "") for m in self.messages())
+
+    def test_overall_fails(self):
+        assert lint(Repo(dir_project_root=dir_bad_showcase_repo)).passed is False
+
+    def test_readme_original_h1_mismatch(self):
+        assert self.has("must be exactly 'bad_showcase_repo'")
+
+    def test_root_readme_language_incomplete(self):
+        assert self.has("README-cn.md")
+
+    def test_description_forbidden_char(self):
+        assert self.has("description contains forbidden character")
+
+    def test_description_too_long(self):
+        assert self.has("over the 400-character limit")
+
+    def test_task_ticket_language_incomplete(self):
+        assert self.has("examples/01-create-repo/TICKET-cn.md")
+
+    def test_bad_example_dir_name(self):
+        assert self.has("must be NN-lowercase-hyphen-words")
+
+    def test_emoji_in_h1(self):
+        assert self.has("contains an emoji")
+
+    def test_missing_frontmatter_description(self):
+        assert self.has("missing the required one-line 'description'")
+
+    def test_forbidden_char_in_h1(self):
+        assert self.has("The H1 title")
+        assert self.has("An H1 may use only")
+
+    def test_syllabus_h1_must_be_syllabus(self):
+        assert self.has("must be exactly 'Syllabus'")
+
+    def test_syllabus_description_mismatch(self):
+        assert self.has("does not match the description")
+
+    def test_ticket_relative_link(self):
+        assert self.has("relative-path link")
+
+    def test_examples_numbering_gap(self):
+        assert self.has("numbered consecutively from 01")
+
+    def test_missing_quiz_task(self):
+        assert self.has("prove-i-get-it")
+
+    def test_missing_demo_task(self):
+        # Showcase-only: the demo mini task NN-how-i-build-this must exist.
+        assert self.has("how-i-build-this")
+
+    def test_missing_forge_outputs(self):
+        assert self.has("01-showcase-learn.md")
+
+    def test_missing_github_about(self):
+        assert self.has("github_about")
+
+    def test_snapshot_language_incomplete(self):
+        assert self.has("docs/tasks/01-showcase/TICKET-cn.md")
+
+
+class TestShowcaseSingleBranch:
+    """rule_single_branch for showcase: exactly one 01-showcase task branch."""
+
+    def _showcase_root(self, tmp_path):
+        (tmp_path / "lm.json").write_text('{"type": "showcase"}', encoding="utf-8")
+        return tmp_path
+
+    def test_single_branch_wrong_name(self, tmp_path):
+        root = self._showcase_root(tmp_path)
+        (root / "docs" / "tasks" / "01-course").mkdir(parents=True)
+        messages = [f.message for f in lint(Repo(dir_project_root=root)).failures()]
+        assert any(
+            "exactly one task branch named '01-showcase'" in (m or "")
+            for m in messages
+        )
+
+    def test_single_branch_too_many(self, tmp_path):
+        root = self._showcase_root(tmp_path)
+        (root / "docs" / "tasks" / "01-showcase").mkdir(parents=True)
+        (root / "docs" / "tasks" / "02-extra").mkdir(parents=True)
+        messages = [f.message for f in lint(Repo(dir_project_root=root)).failures()]
+        assert any(
+            "exactly one task branch named '01-showcase'" in (m or "")
+            for m in messages
+        )
+
+    def test_demo_not_last_flagged(self, tmp_path):
+        # A how-i-build-this that is not the highest-numbered example is flagged.
+        from shsk_lesson_smith.linter_for_showcase import _check_demo_task_present
+
+        dirs = [Path("06-how-i-build-this"), Path("07-extra")]
+        with pytest.raises(LintError, match="must be the last example"):
+            _check_demo_task_present(dirs)
 
 
 class TestManifestAndSingleBranch:
