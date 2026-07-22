@@ -1,8 +1,8 @@
 ---
 name: lesson-smith-showcase-forge
-description: 为当前这个 showcase 教学仓库锻造出 "学这门课, 并把它变成作品" 的工具链. 扫一遍 examples 渐进序列, 向创作者问清学习素材, 考法, 讲法与发布口径, 写出 docs/showcase/ 下的 5 份文档 (learn, runbook, quiz, demo, publish), 并落下 showcase-learn, showcase-quiz, showcase-demo, showcase-publish 四个子 skill. 接手或刷新一个 showcase repo 的工具链时用. 关键词, forge showcase, 生成 showcase 学习 skill, 刷新 showcase 文档.
+description: "为当前 showcase 教学仓库锻造学习与展示工具链: 产出 docs/showcase 五份文档 (learn, runbook, quiz, demo, publish) 与四个子 skill (showcase-learn, showcase-quiz, showcase-demo, showcase-publish). 课程内容写完后手动跑一次."
 disable-model-invocation: true
-argument-hint: [init | refresh | learn | runbook | quiz | demo | publish] [自由说明...]
+argument-hint: "[init | refresh | learn | runbook | quiz | demo | publish] [自由说明...]"
 allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(git rev-parse *) Bash(uvx *)
 ---
 

@@ -1,8 +1,8 @@
 ---
 name: lesson-smith-showcase-author
-description: 带教程创作者从零创作一个符合 showcase 规范的 repo, 主要是 examples 下那一整套课程内容. 讨论规划, 试水前几篇锁风格, 迭代往后写, 收尾写 quiz 与 demo 讲故事底稿, 批量翻译, 最后交给 forge 与 finalize. 创作或续写 showcase 课程时用. 关键词, 写 showcase 课程, 创作 examples, 规划这门课.
+description: 带创作者从零把一门 showcase 课的 examples 内容一步步做出来 (规划, 试水锁风格, 迭代, 写 quiz 与 demo 底稿, 批量翻译), 直到交给 forge. 手动创作或续写 showcase 课程时用.
 disable-model-invocation: true
-argument-hint: [步骤号或阶段] [自由说明...]
+argument-hint: "[步骤号或阶段] [自由说明...]"
 allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 ---
 

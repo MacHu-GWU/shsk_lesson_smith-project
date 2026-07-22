@@ -1,6 +1,6 @@
 ---
 name: lesson-smith
-description: Foundation skill for authoring teaching repositories (hands-on IT learning courses). Defines the shared concept model, language/format conventions, and document templates that the whole lesson-smith-* skill family builds on. Load when creating or updating any course material — README.md, README-cn.md, TICKET.md, CLAUDE.md, TEACHING.md, Syllabus.md, about.md.
+description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整个 lesson-smith-* skill 家族共享的概念模型, 语言与格式规范, 文档模板. 创建或修改任何课程材料 (README, README-cn, TICKET, README-ORIGINAL, SYLLABUS 等) 时加载.
 ---
 
 # LessonSmith: 教学仓库规范基座

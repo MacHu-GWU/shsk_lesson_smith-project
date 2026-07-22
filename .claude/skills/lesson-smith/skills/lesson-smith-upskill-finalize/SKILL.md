@@ -1,8 +1,8 @@
 ---
 name: lesson-smith-upskill-finalize
-description: 给一个 upskill 教学仓库收尾定型. 重写 README-ORIGINAL (Lesson 门面), 写出根目录的 README 与 TICKET (仓库总览加整门课验收清单, 一次产出全部语种), 再跑 lesson-smith sync 生成 SYLLABUS 与快照, 最后跑 lesson-smith lint 把关. 创作流的最后一步, examples 与 forge 都做完之后用. 关键词, finalize upskill, 重写 README-ORIGINAL, 写根 README TICKET, 生成 SYLLABUS, upskill 收尾.
+description: "给 upskill 教学仓库收尾定型: 重写 README-ORIGINAL, 写根目录 README 与 TICKET (全语种), 跑 sync 生成 SYLLABUS 与快照, 再跑 lint 把关. 创作流最后一步, forge 之后手动跑."
 disable-model-invocation: true
-argument-hint: [init | refresh] [自由说明...]
+argument-hint: "[init | refresh] [自由说明...]"
 allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(git rev-parse *) Bash(git branch *) Bash(uvx *) Bash(lesson-smith *)
 ---
 

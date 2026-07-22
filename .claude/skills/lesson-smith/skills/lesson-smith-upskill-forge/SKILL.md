@@ -1,8 +1,8 @@
 ---
 name: lesson-smith-upskill-forge
-description: 为当前这个 upskill 教学仓库锻造出 "学这门课" 的工具链. 扫一遍 examples 渐进序列, 向创作者问清学习素材与考法, 写出 docs/upskill/ 下的 3 份文档 (learn, runbook, quiz), 并落下 upskill-learn 与 upskill-quiz 两个子 skill. 接手或刷新一个 upskill repo 的学习工具时用. 关键词, forge upskill, 生成 upskill 学习 skill, 刷新 upskill 文档.
+description: "为当前 upskill 教学仓库锻造学习工具链: 产出 docs/upskill 三份文档 (learn, runbook, quiz) 与 upskill-learn, upskill-quiz 两个子 skill. 课程内容写完后手动跑一次."
 disable-model-invocation: true
-argument-hint: [init | refresh | learn | runbook | quiz] [自由说明...]
+argument-hint: "[init | refresh | learn | runbook | quiz] [自由说明...]"
 allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(git rev-parse *) Bash(uvx *)
 ---
 
