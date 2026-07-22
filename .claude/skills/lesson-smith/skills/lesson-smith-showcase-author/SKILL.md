@@ -32,6 +32,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 
 ## 几个关键把手
 
+- README 与 TICKET 成对联动: 每个 mini task 的 README (教什么) 和 TICKET (怎么验收) 是一对, 一起写, 也一起改. TICKET 的 "要做的事情" 呼应 README 的练习与操作步骤, "检查清单" 呼应 README 的学习目标; 动了任一方就顺手同步另一方, 别写完 README 再单独补一个对不上的 TICKET.
 - 讨论产出落到文件: 课程规划写进 `examples/_lm-example-plan.md`, quiz 规划写进 `examples/_lm-quiz-plan.md` (都可进 git).
 - 创作铁律: 先写 cn, 全部定稿后再用 translate-to-en 多 agent 并行批量翻译成 en.
 - quiz 那个 mini task 目录固定命名 `NN-prove-i-get-it`; demo 讲故事底稿那个 mini task 目录固定命名 `how-i-build-this`, 是 examples 的最后一个.

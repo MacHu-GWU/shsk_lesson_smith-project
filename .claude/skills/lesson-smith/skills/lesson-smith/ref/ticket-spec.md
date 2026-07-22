@@ -7,6 +7,7 @@
 
 写作原则:
 - 以 TICKET-cn.md 中文版为准: 先写中文, 定稿后用 translate-to-en 生成英文 TICKET.md.
+- 与同目录 README 联动: TICKET (怎么验收) 和同目录 README (教什么) 是同一个 Task 的一对. 正文也要对齐: "要做的事情" 呼应 README 的练习与操作步骤, "检查清单" 呼应 README 的学习目标 (学完能做到的, 逐条能验收); 动了任一方就顺手同步另一方, 别让两者漂移.
 - 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
 - 三段式结构 (必须遵守): 目标, 要做的事情, 检查清单. 三个 H2 按 markdown-style 从 1 连续编号, 之间用 markdown 分隔线隔开.
 
