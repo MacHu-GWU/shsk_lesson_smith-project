@@ -358,10 +358,10 @@ def rule_task_snapshots(repo: Repo) -> "list[CheckResult]":
 
 
 # --------------------------------------------------------------------------- #
-# Shared helpers for examples-based repo types (upskill / showcase)
+# Shared helpers for examples-based repo types (upskill / showcase / readup)
 #
-# These are type-agnostic but only apply to the two types that keep mini tasks
-# under examples/, so they live here and each of those linter_for_<type> modules
+# These are type-agnostic but only apply to the types that keep mini tasks under
+# examples/, so they live here and each of those linter_for_<type> modules
 # composes them (upskill re-exports them for backward-compatible imports).
 # --------------------------------------------------------------------------- #
 def rule_root_overview(repo: Repo) -> "list[CheckResult]":
@@ -419,6 +419,8 @@ def _rules_module_for(repo_type: "RepoTypeEnum | None"):
         from . import linter_for_upskill as module
     elif repo_type is RepoTypeEnum.showcase:
         from . import linter_for_showcase as module
+    elif repo_type is RepoTypeEnum.readup:
+        from . import linter_for_readup as module
     elif repo_type is RepoTypeEnum.evolve:
         from . import linter_for_evolve as module
     else:

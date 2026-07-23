@@ -22,6 +22,8 @@ from .repo_for_upskill import UpskillMetadata
 from .repo_for_upskill import UpskillRepo
 from .repo_for_showcase import ShowcaseMetadata
 from .repo_for_showcase import ShowcaseRepo
+from .repo_for_readup import ReadupMetadata
+from .repo_for_readup import ReadupRepo
 from .repo_for_evolve import EvolveMetadata
 from .repo_for_evolve import EvolveRepo
 from .linter import CheckResult

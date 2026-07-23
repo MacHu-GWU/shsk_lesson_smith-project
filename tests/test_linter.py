@@ -19,12 +19,15 @@ from shsk_lesson_smith.linter_for_upskill import (
 from shsk_lesson_smith.repo import Repo
 from shsk_lesson_smith.repo_for_upskill import UpskillRepo
 from shsk_lesson_smith.repo_for_showcase import ShowcaseRepo
+from shsk_lesson_smith.repo_for_readup import ReadupRepo
 
 dir_tests = Path(__file__).absolute().parent
 dir_good_upskill_repo = dir_tests / "good_upskill_repo"
 dir_bad_upskill_repo = dir_tests / "bad_upskill_repo"
 dir_good_showcase_repo = dir_tests / "good_showcase_repo"
 dir_bad_showcase_repo = dir_tests / "bad_showcase_repo"
+dir_good_readup_repo = dir_tests / "good_readup_repo"
+dir_bad_readup_repo = dir_tests / "bad_readup_repo"
 
 
 def lint_good():
@@ -206,6 +209,121 @@ class TestBadShowcaseRepoReproducesErrors:
         assert self.has("docs/tasks/01-showcase/TICKET-cn.md")
 
 
+class TestGoodReadupRepoIsClean:
+    def test_base_repo_passes(self):
+        report = lint(Repo(dir_project_root=dir_good_readup_repo))
+        assert report.passed, report.render()
+        assert report.failures() == []
+
+    def test_readup_subclass_passes(self):
+        report = lint(ReadupRepo(dir_project_root=dir_good_readup_repo))
+        assert report.passed, report.render()
+
+
+class TestBadReadupRepoReproducesErrors:
+    """The committed bad_readup_repo bakes in one error per shared check type.
+
+    Readup is upskill minus the toolchain, so it reproduces every shared error
+    but has no quiz-task rule and no forge-output rule (and thus no such intended
+    error): those two are what set it apart from bad_upskill_repo.
+    """
+
+    def messages(self):
+        return [
+            f.message
+            for f in lint(Repo(dir_project_root=dir_bad_readup_repo)).failures()
+        ]
+
+    def has(self, needle):
+        return any(needle in (m or "") for m in self.messages())
+
+    def test_overall_fails(self):
+        assert lint(Repo(dir_project_root=dir_bad_readup_repo)).passed is False
+
+    def test_readme_original_h1_mismatch(self):
+        assert self.has("must be exactly 'bad_readup_repo'")
+
+    def test_root_readme_language_incomplete(self):
+        assert self.has("README-cn.md")
+
+    def test_description_forbidden_char(self):
+        assert self.has("description contains forbidden character")
+
+    def test_description_too_long(self):
+        assert self.has("over the 400-character limit")
+
+    def test_task_ticket_language_incomplete(self):
+        assert self.has("examples/01-create-repo/TICKET-cn.md")
+
+    def test_bad_example_dir_name(self):
+        assert self.has("must be NN-lowercase-hyphen-words")
+
+    def test_emoji_in_h1(self):
+        assert self.has("contains an emoji")
+
+    def test_missing_frontmatter_description(self):
+        assert self.has("missing the required one-line 'description'")
+
+    def test_forbidden_char_in_h1(self):
+        assert self.has("The H1 title")
+        assert self.has("An H1 may use only")
+
+    def test_syllabus_h1_must_be_syllabus(self):
+        assert self.has("must be exactly 'Syllabus'")
+
+    def test_syllabus_description_mismatch(self):
+        assert self.has("does not match the description")
+
+    def test_ticket_relative_link(self):
+        assert self.has("relative-path link")
+
+    def test_examples_numbering_gap(self):
+        assert self.has("numbered consecutively from 01")
+
+    def test_missing_github_about(self):
+        assert self.has("github_about")
+
+    def test_snapshot_language_incomplete(self):
+        # rule_task_snapshots must flag a broken docs/tasks/<branch>/ snapshot.
+        assert self.has("docs/tasks/01-readup/TICKET-cn.md")
+
+    def test_no_quiz_task_rule(self):
+        # Readup has no quiz mini task, so it never complains about one missing.
+        assert not self.has("prove-i-get-it")
+
+    def test_no_forge_output_rule(self):
+        # Readup ships no learning docs or child skills: no forge-output check.
+        assert not self.has("-learn.md")
+        assert not self.has("-quiz.md")
+
+
+class TestReadupSingleBranch:
+    """rule_single_branch for readup: exactly one 01-readup task branch."""
+
+    def _readup_root(self, tmp_path):
+        (tmp_path / "lm.json").write_text('{"type": "readup"}', encoding="utf-8")
+        return tmp_path
+
+    def test_single_branch_wrong_name(self, tmp_path):
+        root = self._readup_root(tmp_path)
+        (root / "docs" / "tasks" / "01-course").mkdir(parents=True)
+        messages = [f.message for f in lint(Repo(dir_project_root=root)).failures()]
+        assert any(
+            "exactly one task branch named '01-readup'" in (m or "")
+            for m in messages
+        )
+
+    def test_single_branch_too_many(self, tmp_path):
+        root = self._readup_root(tmp_path)
+        (root / "docs" / "tasks" / "01-readup").mkdir(parents=True)
+        (root / "docs" / "tasks" / "02-extra").mkdir(parents=True)
+        messages = [f.message for f in lint(Repo(dir_project_root=root)).failures()]
+        assert any(
+            "exactly one task branch named '01-readup'" in (m or "")
+            for m in messages
+        )
+
+
 class TestShowcaseSingleBranch:
     """rule_single_branch for showcase: exactly one 01-showcase task branch."""
 
@@ -379,6 +497,12 @@ class TestDispatch:
         report = lint(Repo(dir_project_root=showcase_root))
         assert isinstance(report, LintReport)
         # More than one result means it ran the showcase RULES, not manifest-only.
+        assert len(report.results) > 1
+
+    def test_readup_dispatch(self, readup_root):
+        report = lint(Repo(dir_project_root=readup_root))
+        assert isinstance(report, LintReport)
+        # More than one result means it ran the readup RULES, not manifest-only.
         assert len(report.results) > 1
 
     def test_evolve_dispatch(self, evolve_root):

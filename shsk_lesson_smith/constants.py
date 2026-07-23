@@ -21,11 +21,12 @@ class LangEnum(str, enum.Enum):
 
 
 class RepoTypeEnum(str, enum.Enum):
-    """The three kinds of teaching repositories, declared in ``lm.json``."""
+    """The four kinds of teaching repositories, declared in ``lm.json``."""
 
     evolve = "evolve"
     showcase = "showcase"
     upskill = "upskill"
+    readup = "readup"
 
 
 # --------------------------------------------------------------------------- #
