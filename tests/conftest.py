@@ -56,3 +56,16 @@ def showcase_root(tmp_path: Path) -> Path:
     for name in ("README.md", "README-cn.md", "TICKET.md", "TICKET-cn.md"):
         write_special_file(example_dir / name)
     return root
+
+
+@pytest.fixture
+def readup_root(tmp_path: Path) -> Path:
+    """A fully valid readup repo: root files + one example mini task."""
+    root = make_root(tmp_path, "readup")
+    for name in ("README.md", "README-cn.md",
+                 "README-ORIGINAL.md", "README-ORIGINAL-cn.md"):
+        write_special_file(root / name)
+    example_dir = root / "examples" / "01-hello-world"
+    for name in ("README.md", "README-cn.md", "TICKET.md", "TICKET-cn.md"):
+        write_special_file(example_dir / name)
+    return root
