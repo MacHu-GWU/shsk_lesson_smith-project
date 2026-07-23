@@ -1,6 +1,6 @@
 # 教学仓库目录结构标准
 
-所有不同类型的教学仓库共享这套目录与命名标准. 各类型在此基础上特化, 特化说明放在 ref 下对应的子目录里 (upskill 见 upskill/upskill-repo-layout.md; showcase, evolve 待补).
+所有不同类型的教学仓库共享这套目录与命名标准. 各类型在此基础上特化, 特化说明放在 ref 下对应的子目录里 (upskill 见 upskill/upskill-repo-layout.md; readup 见 readup/readup-repo-layout.md; showcase, evolve 待补).
 
 ## 1. 命名约定
 
@@ -46,7 +46,7 @@ docs/tasks/02-branch-name/
 
 `SYLLABUS.md` 是整个 Repo 所有 Task 的清单索引. 它不手写, 而是由脚本从各 Task 的 `README.md` 顶部 frontmatter 的 `description` 解析汇总而成. 规范与模板详见 `syllabus-spec.md`.
 
-`lm.json` 是 Repo 根目录的机器可读清单 (manifest), 记录这个 repo 的结构化字段. 它不是文档, 不走上面的 spec 加注释格式. 目前 schema 只有一个字段: `type`, 取值 `evolve` | `showcase` | `upskill`, 声明这个 repo 属于哪一类. 以后可以往里加更多结构化字段, 也方便校验脚本按 `type` 分支处理不同布局.
+`lm.json` 是 Repo 根目录的机器可读清单 (manifest), 记录这个 repo 的结构化字段. 它不是文档, 不走上面的 spec 加注释格式. 目前 schema 只有一个字段: `type`, 取值 `evolve` | `showcase` | `upskill` | `readup`, 声明这个 repo 属于哪一类. 以后可以往里加更多结构化字段, 也方便校验脚本按 `type` 分支处理不同布局.
 
 ---
 
