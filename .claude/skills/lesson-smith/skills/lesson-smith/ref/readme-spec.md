@@ -3,7 +3,7 @@
 
 定性 (与 repo-layout.md 一致): 这是教学文档, 给学生阅读. 教学生如何完成这个 Task 或 mini task, 包含概念讲解, 步骤指导, 练习, 导师寄语.
 
-适用范围: 教学用的 Task 或 mini task 级 README. 在 upskill 和 showcase 类型的 Repo 里, 是 examples/XY-title-here/README-cn.md; Repo 根目录的 README-cn.md (仓库总览) 和 examples/README-cn.md (系列索引) 不遵循本规范. 在 evolve 类型的 Repo 里, 就在 Repo 根目录下.
+适用范围: 教学用的 Task 或 mini task 级 README. 在 upskill, showcase 和 readup 类型的 Repo 里, 是 examples/XY-title-here/README-cn.md; Repo 根目录的 README-cn.md (仓库总览) 和 examples/README-cn.md (系列索引) 不遵循本规范. 在 evolve 类型的 Repo 里, 就在 Repo 根目录下.
 
 写作原则:
 - 以 README-cn.md 中文版为准: 先写中文, 定稿后用 translate-to-en 生成英文 README.md.

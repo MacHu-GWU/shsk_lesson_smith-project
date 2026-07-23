@@ -77,4 +77,4 @@ uvx --from shsk-lesson-smith==<version> lesson-smith sync -p .   # 快照当前 
 uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .   # 只读校验: 目录结构, 语种完整性, frontmatter description, SYLLABUS 内容
 ```
 
-`<version>` 填创作时的最新发布版本 (当前是 0.1.1; 最新版见 https://pypi.org/pypi/shsk-lesson-smith). pin 死版本是为了让校验规范可复现, 不随新版悄悄漂移. 若创作者本地已经装好这个 package, 直接跑 `lesson-smith sync` / `lesson-smith lint` 效果相同.
+`<version>` 填创作时的最新发布版本 (当前是 0.2.1; 最新版见 https://pypi.org/pypi/shsk-lesson-smith). pin 死版本是为了让校验规范可复现, 不随新版悄悄漂移. 若创作者本地已经装好这个 package, 直接跑 `lesson-smith sync` / `lesson-smith lint` 效果相同.

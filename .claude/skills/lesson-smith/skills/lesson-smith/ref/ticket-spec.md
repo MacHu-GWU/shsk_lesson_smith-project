@@ -3,7 +3,7 @@
 
 定性: 这是任务卡片 (GitHub Project Issue). 给学生看 (主要), 也给导师或验收者看. 用途是告诉学生要做什么, 怎么做, 怎么检查和提交, 同时为验收者提供验收标准.
 
-适用范围: 教学用的 Task 或 mini task 级 TICKET, 位置标准与 README 一致. 在 upskill 和 showcase 类型的 Repo 里, 是 examples/XY-title-here/TICKET-cn.md. 在 evolve 类型的 Repo 里, 就在 Repo 根目录下.
+适用范围: 教学用的 Task 或 mini task 级 TICKET, 位置标准与 README 一致. 在 upskill, showcase 和 readup 类型的 Repo 里, 是 examples/XY-title-here/TICKET-cn.md. 在 evolve 类型的 Repo 里, 就在 Repo 根目录下.
 
 写作原则:
 - 以 TICKET-cn.md 中文版为准: 先写中文, 定稿后用 translate-to-en 生成英文 TICKET.md.

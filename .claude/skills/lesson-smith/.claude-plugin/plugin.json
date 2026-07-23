@@ -1,7 +1,7 @@
 {
   "name": "lesson-smith",
-  "description": "Author teaching GitHub repositories with AI: the lesson-smith agent-skill family scaffolds, forges the learning tools for, and finalizes upskill and showcase course repos.",
-  "version": "0.1.1",
+  "description": "Author teaching GitHub repositories with AI: the lesson-smith agent-skill family scaffolds, forges the learning tools for, and finalizes upskill, showcase, and readup course repos.",
+  "version": "0.2.1",
   "author": {
     "name": "Sanhe Hu",
     "email": "husanhe@email.com"

@@ -15,6 +15,35 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
+0.2.1 (2026-07-23)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Features and Improvements**
+
+- Add a third teaching repository type: **readup** — a pared-down variant of
+  upskill for pure-reading courses. It keeps the ``examples/`` mini-task layout
+  but drops the entire AI toolchain: no learn/quiz child skills, no generated
+  learning docs, and no quiz mini task. A reader who has never heard of AI agent
+  skills just opens ``examples/`` and reads the mini tasks in order, which is why
+  its root README and TICKET carry no slash commands. Ships the
+  ``lesson-smith-readup-author`` and ``lesson-smith-readup-finalize`` skills
+  (there is no forge step) plus a self-contained ``ref/readup/`` spec set.
+- Teach the ``shsk_lesson_smith`` package and the ``lesson-smith`` CLI about the
+  readup type: ``lint`` and ``sync`` now recognize ``{"type": "readup"}``, enforce
+  the single ``01-readup`` task branch, and validate the readup layout with a rule
+  set that omits the quiz-task and forge-output checks. Adds ``ReadupRepo`` and
+  ``ReadupMetadata`` to the public API.
+
+**Minor Improvements**
+
+- Broaden the shared README, TICKET, and README-ORIGINAL specs to name readup
+  alongside upskill and showcase, so their scope statements stay accurate.
+
+**Miscellaneous**
+
+- Add committed ``good_readup_repo`` / ``bad_readup_repo`` test fixtures and
+  linter and sync regression tests for the readup type.
+
+
 0.1.1 (2026-07-22)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Features and Improvements**

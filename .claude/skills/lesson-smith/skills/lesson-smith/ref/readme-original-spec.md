@@ -5,9 +5,9 @@
 
 适用范围: 各类型 Repo 根目录的 README-ORIGINAL.
 
-Lesson 级 vs Task 级 (关键区分): README-ORIGINAL 的 description 是 **Lesson (整个 Repo) 的介绍**, 会进 org 级的课程索引 (可能几百个 Repo 的目录), 面向还没进来的冷读者. 而 Repo 根目录那个 README 的 description 是 **Task (某个 branch) 的介绍**, 会进本 repo 的 SYLLABUS, 面向已经进门的读者. 在 upskill / showcase 里只有一个 Task, 两者 scope 几乎重叠, 但角色和索引不同; 在 evolve 里一个 Repo 多个 Task, 两者明显分开.
+Lesson 级 vs Task 级 (关键区分): README-ORIGINAL 的 description 是 **Lesson (整个 Repo) 的介绍**, 会进 org 级的课程索引 (可能几百个 Repo 的目录), 面向还没进来的冷读者. 而 Repo 根目录那个 README 的 description 是 **Task (某个 branch) 的介绍**, 会进本 repo 的 SYLLABUS, 面向已经进门的读者. 在 upskill / showcase / readup 里只有一个 Task, 两者 scope 几乎重叠, 但角色和索引不同; 在 evolve 里一个 Repo 多个 Task, 两者明显分开.
 
-生命周期 (为什么这份要重写): README-ORIGINAL 在创作最早期先写一版粗稿 (大背景, 电梯陈述), 作为后面所有内容生长的种子. 但那版往往和最终写出来的 examples 对不齐, description 也太粗, 撑不起一门 Lesson 的介绍. 所以内容全部完工后, 由 lesson-smith-upskill-finalize 重写整份 README-ORIGINAL (正文 + description + github_about, 全语种一起产出), 让它和成品对齐.
+生命周期 (为什么这份要重写): README-ORIGINAL 在创作最早期先写一版粗稿 (大背景, 电梯陈述), 作为后面所有内容生长的种子. 但那版往往和最终写出来的 examples 对不齐, description 也太粗, 撑不起一门 Lesson 的介绍. 所以内容全部完工后, 由对应类型的 finalize skill (upskill 是 lesson-smith-upskill-finalize, readup 是 lesson-smith-readup-finalize) 重写整份 README-ORIGINAL (正文 + description + github_about, 全语种一起产出), 让它和成品对齐.
 
 写作原则:
 - 早期种子稿遵循创作铁律 (先写 cn); finalize 阶段的重写结构已稳, 各语种一次产出, 思考以中文为准, 英文自然改写.

@@ -11,6 +11,7 @@ from shsk_lesson_smith.sync import SyncReport, sync
 
 dir_tests = Path(__file__).absolute().parent
 dir_good_upskill_repo = dir_tests / "good_upskill_repo"
+dir_good_readup_repo = dir_tests / "good_readup_repo"
 
 
 @pytest.fixture
@@ -72,6 +73,50 @@ class TestSync:
         (root / "lm.json").write_text('{"type": "evolve"}', encoding="utf-8")
         with pytest.raises(NotImplementedError):
             sync(Repo(dir_project_root=root))
+
+
+@pytest.fixture
+def writable_good_readup_repo(tmp_path):
+    """A writable copy of the good readup repo, keeping its name.
+
+    Same rationale as ``writable_good_repo``: sync writes files, and the name is
+    preserved so the README-ORIGINAL H1 (which must equal the repo dir name)
+    stays valid. This nails down that sync snapshots the readup branch to
+    ``docs/tasks/01-readup``.
+    """
+    dst = tmp_path / "good_readup_repo"
+    shutil.copytree(dir_good_readup_repo, dst)
+    return dst
+
+
+class TestSyncReadup:
+    """Sync is type-agnostic (it keys off single_task_branch), so readup only
+    needs to confirm the branch resolves to ``01-readup`` and stays lint clean."""
+
+    def test_snapshots_to_01_readup(self, writable_good_readup_repo):
+        shutil.rmtree(writable_good_readup_repo / "docs" / "tasks" / "01-readup")
+        sync(Repo(dir_project_root=writable_good_readup_repo))
+        snapshot = writable_good_readup_repo / "docs" / "tasks" / "01-readup"
+        for name in ("README.md", "README-cn.md", "TICKET.md", "TICKET-cn.md"):
+            assert (snapshot / name).exists()
+
+    def test_generates_syllabus_from_task_readme(self, writable_good_readup_repo):
+        (writable_good_readup_repo / "docs" / "tasks" / "SYLLABUS.md").unlink()
+        sync(Repo(dir_project_root=writable_good_readup_repo))
+        syllabus = (
+            writable_good_readup_repo / "docs" / "tasks" / "SYLLABUS.md"
+        ).read_text(encoding="utf-8")
+        assert syllabus.startswith("# Syllabus\n")
+        assert "## 01-readup" in syllabus
+        # Description is taken verbatim from the task README.
+        assert "Overview of this GitHub basics readup course" in syllabus
+
+    def test_sync_output_is_lint_clean(self, writable_good_readup_repo):
+        shutil.rmtree(writable_good_readup_repo / "docs" / "tasks" / "01-readup")
+        (writable_good_readup_repo / "docs" / "tasks" / "SYLLABUS.md").unlink()
+        sync(Repo(dir_project_root=writable_good_readup_repo))
+        report = lint(Repo(dir_project_root=writable_good_readup_repo))
+        assert report.passed, report.render()
 
 
 def _read_docs(root: Path):
