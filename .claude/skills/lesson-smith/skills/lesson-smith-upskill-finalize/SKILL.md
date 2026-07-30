@@ -62,7 +62,9 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 按 `readme-original-spec.md` 重写整份 README-ORIGINAL (正文加 description 加 github_about), 一次产出全部语种. 早期那版 README-ORIGINAL 是内容还没写时的粗稿, description 太粗, 也和最终 examples 对不齐; 现在内容齐了, 重写它让这门 Lesson 的对外门面和成品对齐.
 
-要点: description 是 Lesson (整个 Repo) 级的介绍, 结果先行加企业视角, 用足预算写到接近 400 字符, 覆盖 "学完能做什么, 涵盖什么主题, 到什么深度", 不枚举 examples; github_about 是压缩版 tagline, 200 字符以内, 给 GitHub About box 用; 两个字段都用双引号包起来. H1 保持与 repo 名一模一样, 不改. 正文是 3 段 pitch, 保持简洁.
+要点: `description` 写给学生, 黄金标准是这段话能原样复制粘贴发给一个学生. 两段式, 两件事都要有: 先一句人话说清这门课学的是什么, 再说清为什么值得学 (动机) 以及学完有什么收获 (能力). 用足预算写到接近 400 字符. **绝不罗列知识点**: 一旦写出 "涵盖 A, B, C, D" 这种把各 mini task 串成一串的句式就是跑偏了, 哪怕前面加了 "学完你能" 也一样, 主题边界靠一句人话交代. `github_about` 写给老师 (创作者本人与同行), 一句话说清这个 repo 教什么即可, 望文生义, 不写收获, 200 字符以内. 两个字段都用双引号包起来; 写 cn 版时术语, 产品名, 技术名词一律保留英文原文, 不要强行译成中文. H1 保持与 repo 名一模一样, 不改. 正文是 3 段 pitch, 保持简洁.
+
+**初稿写完必须停下来让创作者拍板 (不可跳过)**: 把 `description` 与 `github_about` 两句单独摆给创作者看 (拿不准时给两三个不同侧重的候选让他挑), 问他 ok 不 ok, 哪里要调, 按他的意见改完再进 Phase 4. 这两句是这门课的门面, 不许你单方面定稿. 正文那 3 段不需要这道 gate.
 
 ### Phase 4 — 写根目录 README (全部语种)
 
@@ -84,7 +86,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 1. 在 repo 根目录跑 `uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .` (命令细节同上, 见 `ref/repo-layout.md` 第 6 节) 看整仓结构是否合规; 有问题按报告修到通过.
 2. 列出创建或更新的文件 (README-ORIGINAL, 根 README 与 TICKET 各语种, SYLLABUS 与快照).
-3. sanity check: README-ORIGINAL 的 description 与 github_about 都在且 H1 等于 repo 名; 根 README 提及了两个子 skill 且没提 runbook; 根 TICKET 有第 4 节关键能力且无相对路径链接.
+3. sanity check: README-ORIGINAL 的 description 与 github_about 都在, 都经创作者确认过, description 是能发给学生的两段式而不是知识点罗列, 且 H1 等于 repo 名; 根 README 提及了两个子 skill 且没提 runbook; 根 TICKET 有第 4 节关键能力且无相对路径链接.
 4. 告诉用户: 这门 upskill 课到此收尾完成, 可以从根目录 README 进入开始学.
 
 ## 约束

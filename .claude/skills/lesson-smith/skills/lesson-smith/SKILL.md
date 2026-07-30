@@ -25,7 +25,7 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 
 - `README.md`: `description` 最多 2 句话, 概括这个 Task 教什么.
 - `TICKET.md`: `description` 一句话, 概括这个 Task 要交付什么.
-- `README-ORIGINAL.md`: `description` 一句话, 概括整个 Repo.
+- `README-ORIGINAL.md`: `description` 是写给学生的一段话 (可多句, 用足 400 字符预算), 说清这门课学什么, 为什么值得学, 学完有什么收获, 标准是能原样复制粘贴发给一个学生. 它还额外带一个 `github_about`, 那句是写给老师的, 一句话说清这个 repo 教什么即可.
 
 `docs/tasks/SYLLABUS.md` 是整门课的 Task 清单, 由脚本把每个 Task 的 `README.md` 顶部 `description` 按 branch 顺序汇总而成, 不手写.
 
