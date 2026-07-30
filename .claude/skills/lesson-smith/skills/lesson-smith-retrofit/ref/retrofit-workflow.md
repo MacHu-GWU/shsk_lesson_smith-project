@@ -1,0 +1,133 @@
+# 教学仓库 Retrofit 工作流 (旧 repo 改造)
+
+这份文档定义如何把一个内容已经够好, 但不符合 lesson-smith 规范的旧 repo, 改造成一个合规的新 repo. 它由 lesson-smith-retrofit skill 加载, AI 按这份剧本带着创作者往前走.
+
+它随 lesson-smith-retrofit skill 自包含 (住在这个 skill 自己的 `ref/` 下), 不放进基座 lesson-smith. 因为 retrofit 是过渡性的: 旧 repo 全部改造完之后, 整个 lesson-smith-retrofit 目录直接删掉即可, 基座不留痕迹. 但下面提到的各类 spec 仍以基座 lesson-smith 的 `ref/` 为准, 本文档不复制它们.
+
+retrofit 与从零创作的关系: **retrofit 就是 author, 不是别的东西**. 区别在于从零创作时 author 那一段是创作者一篇篇构思写出来的, 而这里 90% 的内容早就写在旧 repo 里了, 所以 AI 的主要活儿变成 "知道去哪找到旧材料, 再把它映射进新布局", 剩下的判断交给创作者拍板. 也因此 retrofit 只覆盖 author 这一段, 精修做完就结束: forge 与 finalize 决策密度高, 必须创作者亲自跑.
+
+三种类型 (readup, upskill, showcase) 共用这一份剧本. 差异只有两处, 分别收在第 5 步和第 6 步的表里.
+
+前置: 创作者以中文为母语, 遵循创作铁律 (先写 cn, 定稿后 translate-to-en) 和 markdown-style, chinese-english-punctuation 两个 Agent Skill.
+
+## 1. 认清类型与两个 repo
+
+全程有两个 repo, 角色分明, 不要搞混:
+
+- **新 repo**: retrofit 在这里跑 (当前工作目录), 所有产物都落在这里. 它已经 clone 好, 脚手架与 `lm.json` 就绪, retrofit 不负责初始化它.
+- **旧 repo**: 创作者给的本地绝对路径, 已 clone 到本地. **全程只读**, 唯一的例外是第 2 步的 checkout. 绝不在旧 repo 里写文件, 提交, 或丢弃创作者的未提交改动.
+
+目标类型读新 repo 根目录的 `lm.json`, `type` 字段就是唯一真相, 不要从 repo 名字或目录结构猜.
+
+以下任一条不满足就停下问创作者, 不要硬着头皮往下走: 新 repo 没有 `lm.json`; `type` 不是 readup, upskill, showcase 三者之一 (例如 `evolve`, 目前 retrofit 不支持); 创作者没给旧 repo 路径; 那个路径不存在或不是一个 git repo.
+
+---
+
+## 2. 把旧 repo 切到最大的教学 branch
+
+列出旧 repo 的全部 branch (含 remote), **只看序号在 50 以下的那些**, 取序号最大的一个 checkout 过去, **然后才开始探索**.
+
+顺序不能反. 不同 branch 的教程内容不一样, 序号越大的 branch 内容越全; 在错的 branch 上探索会漏掉后面几课.
+
+为什么以 50 划线: 序号 50 及以上 (例如 98, 99) 留给归档, 实验这类非教学用途的 branch, 它们不是课程内容.
+
+旧 repo 的 branch 名可能带大小写 (例如 `08-Control-Output-Format`), 挑选时只看开头那两位数序号, 不要被大小写干扰. 如果有未提交的改动导致切不过去, 停下告诉创作者, 不要自作主张 stash 或丢弃.
+
+---
+
+## 3. 探索旧 repo, 定位要迁移的材料
+
+### 3.1 先判断旧 repo 是哪种形态
+
+| 形态 | 判据 (只看序号 < 50 的 branch) | 课程材料在 | 截图在 |
+| :--- | :--- | :--- | :--- |
+| learn-this-project | 只有一个, 名为 `01-Learn-This-Project` (大小写不敏感) | `examples/NN-title/` 与 `docs/learn-this-project/` | 通常已在各 mini task 目录内 |
+| 多 branch 教程 | 有 `01`, `02`, ... 多个 | `docs/tutorials/NN-Title/` | `img/NN-Title/` |
+
+learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已经接近新规范, 迁移主要是重命名与补齐. 多 branch 形态离新规范远一些, 迁移动作更大.
+
+上面是常见落点, 不是铁律. 判完形态仍要实际列一遍目录确认材料真在那里; 找不到就问创作者, 不要猜一个路径继续往下走.
+
+### 3.2 无论哪种形态, 都要额外探这三处
+
+这三处不属于课程正文, 但很可能要一起迁过去:
+
+1. **源代码**: 读旧 repo 的 `pyproject.toml` 取包名, 然后看 `<package_name>/**/*.py` 与 `tests/**/*.py`. **包名在新 repo 通常不一样, 迁的时候必须一并改写**: 目录名, import 语句, `pyproject.toml` 里的 name, 以及测试里的引用.
+2. **mise.toml**: 和新 repo 的那份对比一下, 旧 repo 可能有额外的依赖或 task 要搬过来. 是补差集, 不是整份覆盖.
+3. **AI 配置**: `.claude/agents/`, `.claude/skills/`, `.claude/prompts/` 下的东西也可能要复制. 新 repo 已有同名的就跳过, 不要覆盖.
+
+旧 repo 的 `README-ORIGINAL` 和旧的 Syllabus 只读来理解课程定位, 不迁 (理由见 4.2 最后一条).
+
+### 3.3 产出一张迁移清单
+
+探索完不要直接动手. 先把清单摆给创作者过目: 旧 repo 停在哪个 branch, 判成哪种形态, 每个旧 tutorial 或 mini task 映射到新 repo 的哪个路径, 截图有几张各归到哪, 源代码与 AI 配置各要搬什么.
+
+清单写进新 repo 的 `examples/_lm-example-plan.md` (可进 git), 复用 author 那套约定. 创作者点头之后再进第 4 步.
+
+---
+
+## 4. 迁徙
+
+这一步把旧 repo 已有的内容整体合并进新 repo. 走完之后, 课程主线就算告一段落.
+
+### 4.1 先问清人类把关的几件事
+
+下面这几件事机器猜不出, 必须问. 创作者可能在调用时就主动说了 (见本 skill 自带的输入模板 `prompts/run-lesson-smith-retrofit.md`), 说了的直接采纳, 没说的照通用交互模式一次问一件, 能给选项就给选项:
+
+- **是不是全部保留**: 旧 repo 的每一课都要迁吗, 有没有过时的, 太窄的, 或和新 repo 定位不符的要砍掉.
+- **顺序要不要调整**: 迁过来之后照旧编号, 还是重排.
+- **要不要增加新内容**: 有没有旧 repo 里没有, 这次想补上的课.
+- **截图怎么处理**: 默认复制到对应的 `examples/NN-title/` 下 (映射规则见 4.2), 创作者另有要求就照他的.
+- **除课程内容以外的内容怎么处理**: 把 3.2 探到的源代码, `mise.toml` 差集, AI 配置逐项确认搬还是不搬.
+
+### 4.2 映射规则
+
+- **目录名全部转小写**: 旧的 `05-Mastering-Artifacts` 变成新的 `examples/05-mastering-artifacts`. 新规范里 branch 名与目录名一律小写加连字符.
+- **一课一目录**: 旧的一个 tutorial 或 mini task 目录, 对应新的一个 `examples/NN-title/`, 里面是 `README.md`, `README-cn.md`, `TICKET.md`, `TICKET-cn.md`.
+- **语种补齐**: 旧 repo 常常只有单语 (例如只有 `TICKET.md` 没有 `TICKET-cn.md`), 新 repo 要按 `supported-languages.json` 补齐. 照创作铁律, 缺中文就先补中文, 再据此产出英文.
+- **截图跟着课走**: 旧的 `img/05-Mastering-Artifacts/05-Mastering-Artifacts-1.png` 变成新的 `examples/05-mastering-artifacts/img/05-mastering-artifacts-1.png`, 文件名一并转小写; 正文里的引用改成 `./img/...` 的相对路径.
+- **正文不是原样照抄**: 迁过来的内容要按基座的 `ref/readme-spec.md` 与 `ref/ticket-spec.md` 重整 (补 frontmatter 的 description, H2 从 1 连续编号并加分隔线, H1 的字符限制等), 还要按创作者在 4.1 里给的 "更新" 口径改内容.
+- **旧的索引类文件不搬**: 旧 repo 的 `docs/tutorials/Syllabus.md`, `about.md`, `about-cn.md`, 以及旧的 `README-ORIGINAL` 都不迁. 它们的角色在新规范里分别由 sync 生成的 SYLLABUS 和 finalize 重写的 README-ORIGINAL 接管, 现在搬过去也只会被覆盖.
+
+### 4.3 迁完交给创作者逐篇读
+
+迁徙不是一锤子买卖. 一遍过完之后, 创作者会一篇篇读你改出来的东西, 边读边改, 也可能顺手加新课. 你的活儿是配合他改, 直到他说主线可以了, 再进第 5 步.
+
+---
+
+## 5. 精修
+
+旧 repo 里通常没有, 且人类重度参与的那些环节, 在这一步补齐:
+
+| type | 精修要补的环节 |
+| :--- | :--- |
+| readup | 开头篇, 结尾的梳理与拔高篇, 各 mini task 之间的承上启下 |
+| upskill | 上面三项, 外加 quiz 题库 mini task (`examples/NN-prove-i-get-it`) |
+| showcase | 上面三项, 外加 quiz 题库, 以及 demo 讲故事底稿 mini task (`examples/ZZ-how-i-build-this`, examples 最后一个) |
+
+开头篇一般是 overview, 综述, 讲清这门课的意义, 背景与怎么学; 结尾篇梳理学了什么, 学完到什么水平, 并给出拔高方向 (几个搜索关键字加一句话话题, 方便创作者的学生直接喂给 AI 深挖). 承上启下是把各 mini task 之间的衔接补顺, 让它读起来是一条线而不是一堆独立文章.
+
+各环节照本类型的 spec 写, 全部到基座 lesson-smith 的 `ref/` 下读:
+
+- 开头篇与结尾篇是普通教学 mini task, 走 `ref/readme-spec.md` 与 `ref/ticket-spec.md`.
+- quiz 题库走 upskill 的 `ref/upskill/upskill-examples-quiz-readme-spec.md` 或 showcase 的 `ref/showcase/showcase-examples-quiz-readme-spec.md`, 它的 TICKET 走同目录下对应的 quiz-ticket-spec.
+- demo 底稿走 `ref/showcase/showcase-examples-demo-readme-spec.md`, 它的 TICKET 走 `ref/showcase/showcase-examples-demo-ticket-spec.md`.
+- `examples/README` 系列索引走本类型的 examples-readme-spec, 迁徙改完编号顺序之后要重写它.
+
+这一步 AI 提建议, 人类拍板. quiz 的题目清单尤其要先讨论几轮再动笔, 做法照本类型 authoring workflow 里 quiz 那一步 (规划写进 `examples/_lm-quiz-plan.md`).
+
+---
+
+## 6. 收尾: 交棒给 forge 与 finalize
+
+精修做完, retrofit 的活儿就结束了. **不要接着跑 forge 或 finalize**: 那两步决策密度高, 必须创作者亲自跑, 自动化只会产出对不上的东西.
+
+收尾时告诉创作者接下来跑什么:
+
+| type | 接下来 |
+| :--- | :--- |
+| readup | 没有 forge. 直接跑 `/lesson-smith-readup-finalize` |
+| upskill | 先 `/lesson-smith-upskill-forge`, 再 `/lesson-smith-upskill-finalize` |
+| showcase | 先 `/lesson-smith-showcase-forge`, 再 `/lesson-smith-showcase-finalize` |
+
+顺带提醒两件事: SYLLABUS 与 `docs/tasks/` 快照由 finalize 触发的 sync 生成, 现在不要手写; 根目录的 README, TICKET 与 README-ORIGINAL 也归 finalize, retrofit 全程不碰.
