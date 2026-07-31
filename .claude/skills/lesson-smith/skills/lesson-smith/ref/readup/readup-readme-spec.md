@@ -15,17 +15,30 @@
 
 H1 标题: 只用字母, 数字, 文字, 以及逗号, 冒号, 句号; 禁止 emoji, 引号, 双引号, 破折号等特殊符号 (理由同 readme-spec: H1 常被当字符串引用, 引号要转义).
 
-顶部 frontmatter 的 description 是这门课的 "承诺": 一行说清读完你能做到什么 (获得的能力, 或能回答的问题), 而不是罗列教了哪些点. 它会被 lesson-smith sync 汇进 SYLLABUS. description 的值必须用双引号包起来, 长度, 字符与该约束见 repo-layout.md 第 4 节.
+顶部 frontmatter 的 description 是 Task (这个 branch) 级的介绍. 它和 README-ORIGINAL 的 description 一样写给学生看, 区别在海拔, 以及各自回答的问题:
+
+- README-ORIGINAL 那段是 Lesson (整个 Repo) 级的, 回答 "为什么值得学, 读完有什么收获", 是一段可以原样发给学生的 pitch.
+- 这一份是 Task 级的, 回答 "你将学到什么", 说清这个 branch 教的具体是哪些东西, 读完手上多了哪些能力.
+
+readup (以及 upskill, showcase) 只有一个 branch, 所以这一行看起来像在讲整个 Repo, 其实讲的仍然是这个 branch 这个 Task, 只不过这个 Task 底下装了很多 mini task. 两段的覆盖范围因此几乎重叠, 但分工不同, 别把 README-ORIGINAL 那段抄过来: 那边重动机与收获, 这边重内容与能力. 反过来说, "为什么要学" 在这一份里不重要, 不用写.
+
+罗列在这里不是毛病, 但只限这一行 (和 README-ORIGINAL 那段的红线正好相反): 这一行要让学生知道自己将学到哪些东西, 所以挑几个有代表性的 examples 主题串出来, 再加一句这门课要学的到底是什么, 恰恰是对的写法. 不必把全部 mini task 列全, 挑得出这门课的分量即可.
+
+为什么这一行可以罗列, 正文却不可以: 这一行会被 lesson-smith sync 汇进 SYLLABUS, 将来也会进课程索引, 那时它是脱离 repo 单独出现的, 读者手边没有 examples/README 可点, 只能靠它自己把内容讲出来. 正文不一样, 读者已经站在 repo 里了, 内容地图一个链接就能到, 所以正文那条 "不重复罗列 mini task, 链到 examples/README 就好" 的规则原样不变.
+
+术语保留英文: 写 cn 版时中文只负责叙述, 术语, 产品名, 技术名词一律保留英文原文, 不要强行译成中文. 把 lazy evaluation 写成惰性求值, 读者反而认不出这门课在教什么, 这一行进了 SYLLABUS 也失去检索价值.
+
+description 的值必须用双引号包起来, 长度, 字符与该约束见 repo-layout.md 第 4 节.
 
 正文结构 (四个 H2, 按 markdown-style 从 1 连续编号, 相邻小节之间用分隔线隔开):
 - 第 1 节 这门课是什么: 极简 2 到 3 句说清教什么, 外加 2 到 3 行 "这是 readup 教学仓库, 该怎么用" 的元概念说明 (整个 repo 就是一门课, 内容拆成 examples 下按编号排列的 mini task, 顺着读即可; 学生可能连这个概念都不熟). 不写方法论长文.
 - 第 2 节 怎么读: 全文的篇幅重心. 讲读的顺序 (先看 examples/README 的系列索引, 再按编号顺序一篇篇读 examples 下的 mini task, 每篇先读 README 再照它的 TICKET 做), 以及读到什么算成 (每个 mini task 的 TICKET 都能逐项打勾, 能不看教程独立复现). 全程不提任何斜杠命令或辅助工具.
 - 第 3 节 课程内容: 一句话加一个指向 examples/README 的链接, 不重复罗列 mini task.
-- 第 4 节 读完你能做到什么: 收尾一句, 呼应顶部 description 的承诺.
+- 第 4 节 读完你能做到什么: 收尾一句, 呼应顶部 description 说的那些.
 -->
 
 ---
-description: "一行, 这门课的承诺 (读完你能做到什么). 中文叙述加英文术语, 最多 400 字符."
+description: "一行, 你将学到什么: 挑几个有代表性的 examples 主题串出来, 加一句这门课要学的是什么, 以及读完获得的能力. 中文叙述加英文术语, 最多 400 字符."
 ---
 
 # [课程名] 总览
@@ -57,4 +70,4 @@ description: "一行, 这门课的承诺 (读完你能做到什么). 中文叙�
 
 ## 4. 读完你能做到什么
 
-[收尾一句: 走完这门课你获得的能力, 呼应顶部 description 的承诺.]
+[收尾一句: 走完这门课你获得的能力, 呼应顶部 description 说的那些.]
