@@ -1,7 +1,6 @@
 ---
 name: lesson-smith-showcase-forge
 description: "为当前 showcase 教学仓库锻造学习与展示工具链: 产出 docs/showcase 五份文档 (learn, runbook, quiz, demo, publish) 与四个子 skill (showcase-learn, showcase-quiz, showcase-demo, showcase-publish). 课程内容写完后手动跑一次."
-disable-model-invocation: true
 argument-hint: "[init | refresh | learn | runbook | quiz | demo | publish] [自由说明...]"
 allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(git rev-parse *) Bash(uvx *)
 ---

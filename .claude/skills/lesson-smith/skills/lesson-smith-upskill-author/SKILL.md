@@ -1,7 +1,6 @@
 ---
 name: lesson-smith-upskill-author
 description: 带创作者从零把一门 upskill 课的 examples 内容一步步做出来 (规划, 试水锁风格, 迭代, 写 quiz, 批量翻译), 直到交给 forge. 手动创作或续写 upskill 课程时用.
-disable-model-invocation: true
 argument-hint: "[步骤号或阶段] [自由说明...]"
 allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 ---

@@ -1,7 +1,6 @@
 ---
 name: lesson-smith-retrofit
 description: "把一个内容够好但不合规的旧教学 repo 改造成合规的 lesson-smith repo (readup, upskill 或 showcase): 探索旧 repo 定位材料, 迁徙已有课程内容, 再精修补齐 quiz, demo, 开头结尾等环节. 只做 author 这一段, forge 与 finalize 由创作者自己跑."
-disable-model-invocation: true
 argument-hint: "<旧 repo 绝对路径> [自由说明...]"
 allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(cp *) Bash(mkdir *) Bash(git branch *) Bash(git switch *) Bash(git checkout *) Bash(git status *) Bash(git rev-parse *)
 ---
