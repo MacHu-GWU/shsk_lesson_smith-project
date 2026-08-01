@@ -14,6 +14,17 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
+0.2.3 (2026-07-31)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Minor Improvements**
+
+- All lesson-smith skills can now be self-invoked by Claude models; removed ``disable-model-invocation: true`` from all nine skill frontmatter.
+
+**Miscellaneous**
+
+- Skills-only release.
+
+
 0.2.2 (2026-07-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Features and Improvements**
