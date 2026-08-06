@@ -85,6 +85,7 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 - **目录名全部转小写**: 旧的 `05-Mastering-Artifacts` 变成新的 `examples/05-mastering-artifacts`. 新规范里 branch 名与目录名一律小写加连字符.
 - **一课一目录**: 旧的一个 tutorial 或 mini task 目录, 对应新的一个 `examples/NN-title/`, 里面是 `README.md`, `README-cn.md`, `TICKET.md`, `TICKET-cn.md`.
 - **语种补齐**: 旧 repo 常常只有单语 (例如只有 `TICKET.md` 没有 `TICKET-cn.md`), 新 repo 要按 `supported-languages.json` 补齐. 照创作铁律, 缺中文就先补中文, 再据此产出英文.
+- **链接跟着语种走**: 迁过来的正文里指向 repo 内其他文件的相对路径链接, `-cn.md` 里一律链 `-cn` 版, 英文文件里一律链英文版. 旧 repo 常常只有单语链接, 补语种时要顺手把后缀改对; 用 translate-to-en 产英文版时也要显式提这条, 它默认不改动 markdown 链接.
 - **截图跟着课走**: 旧的 `img/05-Mastering-Artifacts/05-Mastering-Artifacts-1.png` 变成新的 `examples/05-mastering-artifacts/img/05-mastering-artifacts-1.png`, 文件名一并转小写; 正文里的引用改成 `./img/...` 的相对路径.
 - **正文不是原样照抄**: 迁过来的内容要按基座的 `ref/readme-spec.md` 与 `ref/ticket-spec.md` 重整 (补 frontmatter 的 description, H2 从 1 连续编号并加分隔线, H1 的字符限制等), 还要按创作者在 4.1 里给的 "更新" 口径改内容.
 - **旧的索引类文件不搬**: 旧 repo 的 `docs/tutorials/Syllabus.md`, `about.md`, `about-cn.md`, 以及旧的 `README-ORIGINAL` 都不迁. 它们的角色在新规范里分别由 sync 生成的 SYLLABUS 和 finalize 重写的 README-ORIGINAL 接管, 现在搬过去也只会被覆盖.

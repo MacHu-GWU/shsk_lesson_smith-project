@@ -59,7 +59,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(c
 - 旧 repo 全程只读, 唯一的例外是第 2 步的 checkout. 绝不在旧 repo 里写文件, 提交, 或丢弃创作者的未提交改动.
 - 切 branch 在探索之前: 取序号 < 50 里最大的那个. 在错的 branch 上探索会漏掉后面几课.
 - README 与 TICKET 成对联动: 迁过来的每个 mini task, README (教什么) 和 TICKET (怎么验收) 是一对, 一起改. 旧 repo 常常只有单语, 或只有 README 没有 TICKET, 缺的要补齐并和另一半对齐.
-- 创作铁律: 先写 cn, 全部定稿后再用 translate-to-en 多 agent 并行批量翻译成 en.
+- 创作铁律: 先写 cn, 全部定稿后再用 translate-to-en 多 agent 并行批量翻译成 en. 链接的语种跟着文件走 (cn 链 cn, en 链 en), 而 translate-to-en 默认不改动 markdown 链接, 所以调它时必须把换链接后缀这条显式写进输入.
 - 包名会变: 迁源代码时, 旧 repo 的包名在新 repo 通常不一样, 目录名, import 语句, `pyproject.toml` 的 name, 测试里的引用都要一并改写.
 - 迁移清单落到文件: 第 3 步产出的清单写进新 repo 的 `examples/_lm-example-plan.md` (可进 git), quiz 规划写进 `examples/_lm-quiz-plan.md`, 复用 author 那套约定.
 - 到精修做完就停: 收尾只提示创作者去跑 forge (readup 没有) 与 finalize, 你不跑.

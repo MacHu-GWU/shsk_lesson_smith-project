@@ -7,6 +7,7 @@
 
 写作原则:
 - 以 README-cn.md 中文版为准: 先写中文, 定稿后用 translate-to-en 生成英文 README.md.
+- 链接的语种跟着本文件走: README-cn.md 里指向 repo 内其他文件的相对路径链接一律用 -cn 版, README.md 里一律用英文版. 交给 translate-to-en 时要把这条显式写进输入, 因为它默认不改动 markdown 链接, 会把 -cn.md 原样搬进英文文件.
 - 下面的小节结构和用词都只是参考, 不要死板. 根据教程内容本身的性质, 灵活增删和调整.
 - 与同目录 TICKET 联动: 这个 mini task 的 README (教什么) 和 TICKET (怎么验收) 是一对, 成对创作, 也一起改. README 的学习目标与练习是 TICKET 检查清单和 "要做的事情" 的来源; 动了 README 就顺手同步 TICKET, 别让两者对不上.
 - 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.

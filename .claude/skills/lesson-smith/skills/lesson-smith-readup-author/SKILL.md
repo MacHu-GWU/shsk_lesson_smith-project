@@ -33,7 +33,7 @@ readup 是 upskill 的精简子集: 纯阅读型, 不带任何 AI 学习工具�
 
 - README 与 TICKET 成对联动: 每个 mini task 的 README (教什么) 和 TICKET (怎么验收) 是一对, 一起写, 也一起改. TICKET 的 "要做的事情" 呼应 README 的练习与操作步骤, "检查清单" 呼应 README 的学习目标; 动了任一方就顺手同步另一方, 别写完 README 再单独补一个对不上的 TICKET.
 - 讨论产出落到文件: 课程规划写进 `examples/_lm-example-plan.md` (可进 git).
-- 创作铁律: 先写 cn, 全部定稿后再用 translate-to-en 多 agent 并行批量翻译成 en.
+- 创作铁律: 先写 cn, 全部定稿后再用 translate-to-en 多 agent 并行批量翻译成 en. 链接的语种跟着文件走 (cn 链 cn, en 链 en), 而 translate-to-en 默认不改动 markdown 链接, 所以调它时必须把换链接后缀这条显式写进输入.
 - readup 不带斜杠命令: examples 内容里 (尤其是每篇 mini task 的 README 与 TICKET) 不引导学生用任何 /command 或辅助 skill; 学生就是纯阅读加照 TICKET 做.
 - readup 没有出题的 mini task: 自查手段是每篇自己的 TICKET, 不单独做题库.
 - 最后一步 (第 10 步) 交给 `/lesson-smith-readup-finalize` 写根目录 README/TICKET, 重写 README-ORIGINAL, 并跑 sync 与 lint 收尾. readup 中间没有 forge 环节.

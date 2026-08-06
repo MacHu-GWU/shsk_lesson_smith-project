@@ -85,7 +85,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 1. 在 repo 根目录跑 `uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .` (命令细节同上, 见 `ref/repo-layout.md` 第 6 节) 看整仓结构是否合规; 有问题按报告修到通过.
 2. 列出创建或更新的文件 (README-ORIGINAL, 根 README 与 TICKET 各语种, SYLLABUS 与快照).
-3. sanity check: README-ORIGINAL 的 description 与 github_about 都在, 都经创作者确认过, description 是能发给学生的两段式而不是知识点罗列, 且 H1 等于 repo 名; 根 README 提及了四个子 skill 且没提 runbook; 根 TICKET 有第 4 节关键能力且无相对路径链接.
+3. sanity check: README-ORIGINAL 的 description 与 github_about 都在, 都经创作者确认过, description 是能发给学生的两段式而不是知识点罗列, 且 H1 等于 repo 名; 根 README 提及了四个子 skill 且没提 runbook; 根 TICKET 有第 4 节关键能力且无相对路径链接; 各语种根 README 的相对路径链接语种正确 (英文版链英文文件, 不含 -cn 链接).
 4. 告诉用户: 这门 showcase 课到此收尾完成, 可以从根目录 README 进入开始学; 学完可用 `/showcase-demo` 排练, `/showcase-publish` 发布.
 
 ## 约束

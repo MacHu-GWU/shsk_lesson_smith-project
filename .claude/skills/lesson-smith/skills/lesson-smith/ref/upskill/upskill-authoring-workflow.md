@@ -70,6 +70,8 @@
 
 到此为止所有正文都是 cn 版. 用 translate-to-en Agent Skill 启动多个 agent, 批量并行把各 mini task 的 README-cn.md, TICKET-cn.md 以及 examples/README-cn.md 翻译成对应的英文文件.
 
+链接必须显式交代 (容易踩的坑): translate-to-en 的硬约束里写明不改动 markdown 链接, 所以它会把 cn 版正文里的 -cn.md 链接原样搬进英文文件, 英文读者一点就掉进中文页. 每个 agent 的输入里都要额外写上这条要求: 正文中指向 repo 内其他文件的相对路径链接, 一律换成对应的英文版 (去掉 -cn 后缀), 例如 01-title/README-cn.md 换成 01-title/README.md. 翻完抽查几条链接确认换到位.
+
 ---
 
 ## 12. 交给 forge 产出学习工具链

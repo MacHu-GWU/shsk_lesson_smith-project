@@ -47,6 +47,7 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 ## 4. 创作铁律
 
 - 课程创作者以中文为母语. 所以创作课程时永远先写 `-cn.md` 中文版, 全部定稿后再统一用 `translate-to-en` Agent Skill 用英文重写出对应的英文文件.
+- 链接的语种跟着文件本身走: 一份文件里指向 repo 内其他文件的相对路径链接, 语种必须和这份文件一致. `README-cn.md` 里链 `examples/README-cn.md`, `README-ORIGINAL-cn.md`; 英文 `README.md` 里链 `examples/README.md`, `README-ORIGINAL.md`. 翻译时链接要跟着换后缀, 不能原样照搬 —— `translate-to-en` 的硬约束里明写了不改动 markdown 链接, 所以调用它翻译课程文件时, 必须把这一条作为额外要求显式写进输入.
 - 写任何 .md 文件都遵循 `markdown-style` 和 `chinese-english-punctuation` 两个 Agent Skill 的规范.
 - 中文文档一律中文叙述, 但术语, 以及在英文语境下更自然的核心表达与名词, 都保留英文原文.
 - 除非用户另有说明, 文中的例子, 场景, 公司, 产品, 技术, 人名默认用北美语境 (人名用 John Smith 而非张三, 公司, 产品与民生设施都取北美日常常见的; 加拿大, 澳大利亚或全球化的也行, 唯独不要带明显中国烙印的名词). 翻译成英文时同样保持这个语境, 不要退回国内视角.

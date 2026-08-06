@@ -17,6 +17,7 @@ README-ORIGINAL 的 description 是 **Lesson (整个 Repo) 的介绍**, 会进 o
 
 写作原则:
 - 早期种子稿遵循创作铁律 (先写 cn); finalize 阶段的重写结构已稳, 各语种一次产出, 思考以中文为准, 英文自然改写.
+- 链接的语种跟着本文件走: 正文里若出现指向 repo 内其他文件的相对路径链接, cn 版用 -cn 版, 英文版用英文版. 各语种一次产出时别把 -cn 后缀漏在英文版里.
 - 术语保留英文 (这两个字段最容易翻车的地方): 写 cn 版时, 中文只负责叙述, 术语, 产品名, 技术名词一律保留英文原文, 不要强行译成中文. 把 DataFrame 写成数据帧, 把 lazy evaluation 写成惰性求值, 读者反而认不出这门课在教什么, 这一行进了索引也失去检索价值.
 - 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
 
