@@ -10,7 +10,7 @@
 不带 frontmatter: 它是索引不是特殊文件, 不带 description frontmatter (那是 README, TICKET, README-ORIGINAL 才有的). lesson-smith lint 对它只查存在性和语种完整性, 不查内容; 内容质量靠人和本 spec 保证.
 
 写作原则:
-- 以 examples/README-cn.md 中文版为准: 先写中文, 定稿后用 translate-to-en 生成英文 examples/README.md.
+- 以 examples/README-cn.md 中文版为准: 先写中文, 全部定稿后随整门课一次性用 rewrite-en-tutorial 重写出英文 examples/README.md.
 - 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
 - group 的数量与主题都随课程本身而定, 灵活机动; 下面的分组和用词只是示例.
 

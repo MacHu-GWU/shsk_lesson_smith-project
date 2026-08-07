@@ -1,6 +1,6 @@
 ---
 name: lesson-smith-upskill-author
-description: 带创作者从零把一门 upskill 课的 examples 内容一步步做出来 (规划, 试水锁风格, 迭代, 写 quiz, 批量翻译), 直到交给 forge. 手动创作或续写 upskill 课程时用.
+description: 带创作者从零把一门 upskill 课的 examples 内容一步步做出来 (规划, 试水锁风格, 迭代, 写 quiz, 一次性重写英文版), 直到交给 forge. 手动创作或续写 upskill 课程时用.
 argument-hint: "[步骤号或阶段] [自由说明...]"
 allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 ---
@@ -32,7 +32,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 
 - README 与 TICKET 成对联动: 每个 mini task 的 README (教什么) 和 TICKET (怎么验收) 是一对, 一起写, 也一起改. TICKET 的 "要做的事情" 呼应 README 的练习与操作步骤, "检查清单" 呼应 README 的学习目标; 动了任一方就顺手同步另一方, 别写完 README 再单独补一个对不上的 TICKET.
 - 讨论产出落到文件: 课程规划写进 `examples/_lm-example-plan.md`, quiz 规划写进 `examples/_lm-quiz-plan.md` (都可进 git).
-- 创作铁律: 先写 cn, 全部定稿后再用 translate-to-en 多 agent 并行批量翻译成 en. 链接的语种跟着文件走 (cn 链 cn, en 链 en), 而 translate-to-en 默认不改动 markdown 链接, 所以调它时必须把换链接后缀这条显式写进输入.
+- 创作铁律: 先写 cn, 全部定稿后用 `/doc-writing-styles:rewrite-en-tutorial` 一次性重写成 en. 它自己就是完整管线 (跨篇简报, 每篇一个 writer 并行, 全集对账), 所以要一次把整门课的 cn 文件交给它, 别一个 mini task 跑一次, 也别自己起 agent 编排它. 输入用模板 `prompts/run-rewrite-en.md`, 那里已经带上了 frontmatter 保形, H1 字符集与链接怎么换这几条.
 - quiz 那个 mini task 目录固定命名 `NN-prove-i-get-it`.
 - 第 12 步交给 `/lesson-smith-upskill-forge` 产出 docs/upskill/ 与两个子 skill; 最后一步 (第 13 步) 交给 `/lesson-smith-upskill-finalize` 写根目录 README/TICKET 并跑 sync 与 lint 收尾.
 

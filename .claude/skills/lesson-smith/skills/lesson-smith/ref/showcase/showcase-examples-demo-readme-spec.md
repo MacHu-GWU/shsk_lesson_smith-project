@@ -3,7 +3,7 @@
 
 定性: 这是 demo 的底稿, 即 "这个 repo 可以怎么讲" 的故事真身. 它是 examples 里最后一个 mini task (how-i-build-this) 的 README-cn.md. 别人问你 "你怎么做 XX 这件事" 时, 你就用这个 repo 讲: 当时怎么学的, 遇到什么问题, 怎么解决的. 因为学生真的掌握了底层能力, 抹去教学痕迹后把它当自己的作品来讲是完全正当的. docs/showcase/04-showcase-demo.md 只是指过来的薄壳, /showcase-demo skill 拿它来陪学生排练.
 
-适用范围: showcase 类型 repo 里那个 demo mini task 的 README. 它的目录标题固定为 how-i-build-this, 是 examples 的最后一个 mini task. 视角是学生第一人称 (我是怎么做出这个的), 便于对外展示. 语言遵循创作铁律 (先写 cn, 定稿后 translate-to-en). 它虽然放在 examples 下, 但正文不走教学 README 的小节结构, 而走下面这套讲故事结构; frontmatter 的 description 仍要有 (和其它 mini task 一致, 供 lint 与索引用), 值一样必须用双引号包起来 (见 repo-layout.md 第 4 节). 这个 mini task 的 TICKET 另有规范, 见 showcase-examples-demo-ticket-spec.md.
+适用范围: showcase 类型 repo 里那个 demo mini task 的 README. 它的目录标题固定为 how-i-build-this, 是 examples 的最后一个 mini task. 视角是学生第一人称 (我是怎么做出这个的), 便于对外展示. 语言遵循创作铁律 (先写 cn, 全部定稿后一次性用 rewrite-en-tutorial 重写成 en). 它虽然放在 examples 下, 但正文不走教学 README 的小节结构, 而走下面这套讲故事结构; frontmatter 的 description 仍要有 (和其它 mini task 一致, 供 lint 与索引用), 值一样必须用双引号包起来 (见 repo-layout.md 第 4 节). 这个 mini task 的 TICKET 另有规范, 见 showcase-examples-demo-ticket-spec.md.
 
 和 publish 的关系: demo 是在 publish 之前读的. 学生先靠这份底稿把故事排练好, 之后跑 /showcase-publish 时, 这个 how-i-build-this mini task, docs/showcase/04-showcase-demo.md 以及 showcase-demo skill 都会作为教学痕迹被删掉. 也就是说底稿服务于 "排练", 排练完它的使命就结束了; 真正带走的是学生脑子里那套能讲的故事和背后的能力.
 

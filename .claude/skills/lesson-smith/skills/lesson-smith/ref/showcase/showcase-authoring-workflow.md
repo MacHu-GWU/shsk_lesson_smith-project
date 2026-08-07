@@ -2,7 +2,7 @@
 
 这份文档定义如何从零创作一个符合 showcase 规范的 repo, 主要是 examples 下那一整套课程内容怎么一步步做出来, 直到能对外展示发布. 它由 lesson-smith-showcase-author skill 加载, AI 按这份剧本带着创作者往前走.
 
-前置: 创作者以中文为母语, 遵循创作铁律 (先写 cn, 定稿后 translate-to-en) 和 markdown-style, chinese-english-punctuation 两个 Agent Skill. 整体布局见 [ref/showcase/showcase-repo-layout.md](showcase-repo-layout.md).
+前置: 创作者以中文为母语, 遵循创作铁律 (先写 cn, 全部定稿后一次性用 rewrite-en-tutorial 重写成 en) 和 markdown-style, chinese-english-punctuation 两个 Agent Skill. 整体布局见 [ref/showcase/showcase-repo-layout.md](showcase-repo-layout.md).
 
 showcase 与 upskill 的差别集中在收尾: showcase 多一个 demo 讲故事底稿 (examples 的最后一个 mini task), 并在整门课之后有对外 publish 环节. 下面的步骤据此安排.
 
@@ -76,11 +76,13 @@ showcase 与 upskill 的差别集中在收尾: showcase 多一个 demo 讲故事
 
 ---
 
-## 12. 批量翻译成英文
+## 12. 一次性重写成英文
 
-到此为止所有正文都是 cn 版. 用 translate-to-en Agent Skill 启动多个 agent, 批量并行把各 mini task 的 README-cn.md, TICKET-cn.md 以及 examples/README-cn.md 翻译成对应的英文文件.
+到此为止所有正文都是 cn 版. 用 `/doc-writing-styles:rewrite-en-tutorial` 把 examples 下的全部 cn 文件重写成英文, 范围是三组 glob: `examples/README-cn.md`, `examples/*/README-cn.md`, `examples/*/TICKET-cn.md`. 调用的输入用模板 [prompts/run-rewrite-en.md](../../prompts/run-rewrite-en.md), 把里面的 `<repo>` 换成仓库绝对路径即可.
 
-链接必须显式交代 (容易踩的坑): translate-to-en 的硬约束里写明不改动 markdown 链接, 所以它会把 cn 版正文里的 -cn.md 链接原样搬进英文文件, 英文读者一点就掉进中文页. 每个 agent 的输入里都要额外写上这条要求: 正文中指向 repo 内其他文件的相对路径链接, 一律换成对应的英文版 (去掉 -cn 后缀), 例如 01-title/README-cn.md 换成 01-title/README.md. 翻完抽查几条链接确认换到位.
+只跑一次, 别拆开 (这一步最容易踩的坑): 那条命令本身就是完整管线, 内部会先读全集产出一份跨篇简报, 再每篇起一个 writer 并行重写, 最后交给对账 agent 拉通全集. 所以不要一个 mini task 跑一次, 也不要自己去起 agent 编排它. 拆开跑, 跨篇的术语, 反复出现的小节标签, 以及互相引用的标题就统一不了, 而这恰恰是整条管线里唯一没有第二次机会的东西.
+
+链接和 frontmatter 不用在这里另外交代, 模板里已经写好了 (文件链接换后缀, 目录链接不动, frontmatter 保形, H1 字符集). 跑完抽查几条链接和一份 frontmatter 确认到位即可.
 
 ---
 

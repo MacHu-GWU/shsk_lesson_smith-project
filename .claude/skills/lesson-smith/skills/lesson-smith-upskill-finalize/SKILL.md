@@ -67,7 +67,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 ### Phase 4 — 写根目录 README (全部语种)
 
-按 `upskill-readme-spec.md` 写, 一次产出英文版加 `supported-languages.json` 里每个语种 (目前是 `README.md` 与 `README-cn.md`). 这份结构固定, 低歧义, 直接产全部语种, 不走 "先 cn 再 translate-to-en" 的分两步; 思考口径以中文为准, 英文版自然改写.
+按 `upskill-readme-spec.md` 写, 一次产出英文版加 `supported-languages.json` 里每个语种 (目前是 `README.md` 与 `README-cn.md`). 这份结构固定, 低歧义, 直接产全部语种, 不走 "先 cn 再重写成 en" 的分两步; 思考口径以中文为准, 英文版自然改写.
 
 要点: 操作总入口, 多链接少复述 (pitch 链到 README-ORIGINAL, 内容地图链到 examples/README); 固定提及 `/upskill-learn` 与 `/upskill-quiz`; 不提 runbook; 篇幅软上限约 60 到 80 行. 顶部 frontmatter 的 description 是 Task (这个 branch) 级的介绍, 回答 "你将学到什么" (这个 branch 教的具体内容与获得的能力, 可以罗列知识点), 和 README-ORIGINAL 那段的分工不同, 别把它抄过来; 它会流进 SYLLABUS.
 

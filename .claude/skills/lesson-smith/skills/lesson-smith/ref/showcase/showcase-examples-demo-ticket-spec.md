@@ -3,7 +3,7 @@
 
 定性: 这是 demo 那个 mini task (examples/ZZ-how-i-build-this) 的 TICKET. 它沿用 ref/ticket-spec.md 的三段式结构 (目标, 要做的事情, 检查清单), 但内容固定且极简: 把讲故事底稿通读一遍, 再用 /showcase-demo 排练到能流畅讲完并接住常见追问. 不同课程可微调措辞, 意思固定. 对应的底稿真身 README 另有规范, 见 showcase-examples-demo-readme-spec.md.
 
-适用范围: showcase 类型 repo 里那个 demo mini task 的 TICKET. 语言遵循创作铁律 (先写 cn, 定稿后 translate-to-en).
+适用范围: showcase 类型 repo 里那个 demo mini task 的 TICKET. 语言遵循创作铁律 (先写 cn, 全部定稿后一次性用 rewrite-en-tutorial 重写成 en).
 
 写作原则:
 - 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.

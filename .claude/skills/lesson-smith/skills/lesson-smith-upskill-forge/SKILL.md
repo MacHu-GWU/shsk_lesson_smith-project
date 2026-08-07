@@ -76,7 +76,7 @@ upskill 的内容是创作者手写的 mini task, 不用像扫陌生代码那样
 - `02-upskill-runbook.md` (依 docs-upskill-runbook-spec): 一次性 setup + 推进中操作, 把隐性步骤显式化.
 - `03-upskill-quiz.md` (依 docs-upskill-quiz-spec): 指向 Phase 2 定位到的题库真身, 加上考法自定义.
 
-溯源一律用 markdown 链接加 header 或关键字, 不用 line no. 先写 cn, 定稿后按创作铁律 translate-to-en. 猜不准的地方显式标注请创作者确认, 不许凭空编.
+溯源一律用 markdown 链接加 header 或关键字, 不用 line no. 先写 cn, 定稿后按创作铁律用 rewrite-en-tutorial 重写成 en. 猜不准的地方显式标注请创作者确认, 不许凭空编.
 
 ### Phase 5 — 落 2 个子 skill
 
