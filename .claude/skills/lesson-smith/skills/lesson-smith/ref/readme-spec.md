@@ -6,7 +6,7 @@
 适用范围: 教学用的 Task 或 mini task 级 README. 在 upskill, showcase 和 readup 类型的 Repo 里, 是 examples/XY-title-here/README-cn.md; Repo 根目录的 README-cn.md (仓库总览) 和 examples/README-cn.md (系列索引) 不遵循本规范. 在 evolve 类型的 Repo 里, 就在 Repo 根目录下.
 
 写作原则:
-- 以 README-cn.md 中文版为准: 先写中文, 全部定稿后随整门课一次性用 rewrite-en-tutorial 重写出英文 README.md.
+- 以 README-cn.md 中文版为准: 先写中文, 全部定稿后随整门课一次性重写出英文 README.md (见 [ref/rewrite-en-spec.md](rewrite-en-spec.md)).
 - 链接的语种跟着本文件走: README-cn.md 里指向 repo 内其他**文件**的相对路径链接一律用 -cn 版, README.md 里一律用英文版. 指向**目录**的链接两边一样, 不带语种后缀 (各语种的文件都在同一个目录下), 改了反而是死链.
 - 下面的小节结构和用词都只是参考, 不要死板. 根据教程内容本身的性质, 灵活增删和调整.
 - 与同目录 TICKET 联动: 这个 mini task 的 README (教什么) 和 TICKET (怎么验收) 是一对, 成对创作, 也一起改. README 的学习目标与练习是 TICKET 检查清单和 "要做的事情" 的来源; 动了 README 就顺手同步 TICKET, 别让两者对不上.

@@ -46,8 +46,8 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 
 ## 4. 创作铁律
 
-- 课程创作者以中文为母语. 所以创作课程时永远先写 `-cn.md` 中文版, 全部定稿后再统一用 `/doc-writing-styles:rewrite-en-tutorial` 用英文重写出对应的英文文件. 它是一条命令跑完整条管线 (解析, 跨篇简报, 每篇一个 writer 并行重写, 最后全集对账), 所以**必须一次性把整门课的 cn 文件全部交给它**, 不能一个 mini task 跑一次: 跨篇的术语统一只在一次调用里成立. 调用的输入用模板 [prompts/run-rewrite-en.md](prompts/run-rewrite-en.md), 里面已经带上了这个仓库特有的那几条硬约束 (frontmatter 保形, H1 字符集, 链接怎么换).
-- 链接的语种跟着文件本身走: 一份文件里指向 repo 内其他**文件**的相对路径链接, 语种必须和这份文件一致. `README-cn.md` 里链 `examples/README-cn.md`, `README-ORIGINAL-cn.md`; 英文 `README.md` 里链 `examples/README.md`, `README-ORIGINAL.md`. 指向**目录**的链接则没有语种之分 (各语种的文件都落在同一个目录下), 两边都是 `examples/01-title/`, 换后缀反而会变成死链.
+- 课程创作者以中文为母语. 所以创作课程时永远先写 `-cn.md` 中文版, examples 下全部定稿后再一次性重写出英文版. 那一步的全部细节 (用哪条命令, 处理哪些文件, 要额外交代什么, 什么已由上游兜住) 住在 [ref/rewrite-en-spec.md](ref/rewrite-en-spec.md), 不要在别处复述, 也不要反过来问创作者要文件清单.
+- 链接的语种跟着文件本身走: 一份文件里指向 repo 内其他**文件**的相对路径链接, 语种必须和这份文件一致. `README-cn.md` 里链 `examples/README-cn.md`, `README-ORIGINAL-cn.md`; 英文 `README.md` 里链 `examples/README.md`, `README-ORIGINAL.md`. 指向**目录**的链接则没有语种之分 (各语种的文件都落在同一个目录下), 两边都是 `examples/01-title/`, 换后缀反而会变成死链; 目录名里出现 `-cn` 一律是命名错误.
 - 写任何 .md 文件都遵循 `markdown-style` 和 `chinese-english-punctuation` 两个 Agent Skill 的规范.
 - 中文文档一律中文叙述, 但术语, 以及在英文语境下更自然的核心表达与名词, 都保留英文原文.
 - 除非用户另有说明, 文中的例子, 场景, 公司, 产品, 技术, 人名默认用北美语境 (人名用 John Smith 而非张三, 公司, 产品与民生设施都取北美日常常见的; 加拿大, 澳大利亚或全球化的也行, 唯独不要带明显中国烙印的名词). 翻译成英文时同样保持这个语境, 不要退回国内视角.
@@ -64,6 +64,7 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 - 写某个 Task 或 mini task 的教学 README 时 → [ref/readme-spec.md](ref/readme-spec.md): README 规范加模板.
 - 写 TICKET 时 → [ref/ticket-spec.md](ref/ticket-spec.md): 任务卡片规范加模板.
 - 写 repo 对外长介绍 README-ORIGINAL 时 → [ref/readme-original-spec.md](ref/readme-original-spec.md): 电梯陈述规范加模板.
+- 中文定稿后要产出英文版时 → [ref/rewrite-en-spec.md](ref/rewrite-en-spec.md): 英文版产出规范 (命令, 文件集, 额外约束, 链接规则).
 - 关心 SYLLABUS 的格式或内容 (它由 lesson-smith sync 生成, 也被 lint 校验) 时 → [ref/syllabus-spec.md](ref/syllabus-spec.md).
 
 **通用交互件 (不限教学仓库, 任何互动 skill 都可加载):**

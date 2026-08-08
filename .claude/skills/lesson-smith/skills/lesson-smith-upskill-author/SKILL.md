@@ -19,6 +19,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 - `ref/upskill/upskill-repo-layout.md` — upskill 的目录结构与命名 (含 examples 命名的用意).
 - `ref/readme-spec.md`, `ref/ticket-spec.md` — 各 mini task 的教学 README 与 TICKET.
 - `ref/upskill/upskill-examples-readme-spec.md` — 系列索引 examples/README.
+- `ref/rewrite-en-spec.md` — 英文版产出规范 (中文定稿后跑那一步时读: 命令, 文件集, 额外约束, 链接规则).
 - `ref/upskill/upskill-examples-quiz-readme-spec.md` 与 `ref/upskill/upskill-examples-quiz-ticket-spec.md` — quiz 那个 mini task 的题库 README 结构与固定 TICKET.
 - `ref/agent-skill-interaction-pattern-cn.md` — 你和创作者互动的方式 (读中文版, 因为创作者以中文为母语).
 
@@ -32,7 +33,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 
 - README 与 TICKET 成对联动: 每个 mini task 的 README (教什么) 和 TICKET (怎么验收) 是一对, 一起写, 也一起改. TICKET 的 "要做的事情" 呼应 README 的练习与操作步骤, "检查清单" 呼应 README 的学习目标; 动了任一方就顺手同步另一方, 别写完 README 再单独补一个对不上的 TICKET.
 - 讨论产出落到文件: 课程规划写进 `examples/_lm-example-plan.md`, quiz 规划写进 `examples/_lm-quiz-plan.md` (都可进 git).
-- 创作铁律: 先写 cn, 全部定稿后用 `/doc-writing-styles:rewrite-en-tutorial` 一次性重写成 en. 它自己就是完整管线 (跨篇简报, 每篇一个 writer 并行, 全集对账), 所以要一次把整门课的 cn 文件交给它, 别一个 mini task 跑一次, 也别自己起 agent 编排它. 输入用模板 `prompts/run-rewrite-en.md`, 那里已经带上了 frontmatter 保形, H1 字符集与链接怎么换这几条.
+- 创作铁律: 先写 cn, examples 下全部定稿后一次性重写成 en. 那一步照 `ref/rewrite-en-spec.md` 做, 它定死了命令 (`/doc-writing-styles:rewrite-in-en-tutorial`), 文件集 (examples 下那三组 glob), 以及要额外交代的 frontmatter 保形与 H1 字符集. **不要问创作者要文件清单**, 也别自己起 agent 编排它, 更别拆成一个 mini task 跑一次: 跨篇的术语与标题统一只在一次跑动里成立.
 - quiz 那个 mini task 目录固定命名 `NN-prove-i-get-it`.
 - 第 12 步交给 `/lesson-smith-upskill-forge` 产出 docs/upskill/ 与两个子 skill; 最后一步 (第 13 步) 交给 `/lesson-smith-upskill-finalize` 写根目录 README/TICKET 并跑 sync 与 lint 收尾.
 

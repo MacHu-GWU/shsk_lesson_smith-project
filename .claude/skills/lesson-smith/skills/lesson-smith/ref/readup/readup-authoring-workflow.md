@@ -4,7 +4,7 @@
 
 readup 是纯阅读型仓库: 不带任何 AI 学习工具链 (没有带学, 自测子 skill, 没有给 AI 看的元文档, 也没有出题的 mini task). 所以它的创作流比工具化仓库短: 写完 examples 内容, 直接交给 finalize 收尾即可, 中间没有 "锻造工具链" 这一步.
 
-前置: 创作者以中文为母语, 遵循创作铁律 (先写 cn, 全部定稿后一次性用 rewrite-en-tutorial 重写成 en) 和 markdown-style, chinese-english-punctuation 两个 Agent Skill. 整体布局见 [ref/readup/readup-repo-layout.md](readup-repo-layout.md).
+前置: 创作者以中文为母语, 遵循创作铁律 (先写 cn, 全部定稿后一次性重写成 en, 见 rewrite-en-spec.md) 和 markdown-style, chinese-english-punctuation 两个 Agent Skill. 整体布局见 [ref/readup/readup-repo-layout.md](readup-repo-layout.md).
 
 ## 1. 想清楚教什么, 写大背景
 
@@ -60,11 +60,15 @@ readup 没有单独的出题 mini task: 每篇 mini task 自己的 TICKET 就是
 
 ## 9. 一次性重写成英文
 
-到此为止所有正文都是 cn 版. 用 `/doc-writing-styles:rewrite-en-tutorial` 把 examples 下的全部 cn 文件重写成英文, 范围是三组 glob: `examples/README-cn.md`, `examples/*/README-cn.md`, `examples/*/TICKET-cn.md`. 调用的输入用模板 [prompts/run-rewrite-en.md](../../prompts/run-rewrite-en.md), 把里面的 `<repo>` 换成仓库绝对路径即可.
+到此为止 examples 下所有正文都是 cn 版. 这一步一次性把它们重写成英文.
 
-只跑一次, 别拆开 (这一步最容易踩的坑): 那条命令本身就是完整管线, 内部会先读全集产出一份跨篇简报, 再每篇起一个 writer 并行重写, 最后交给对账 agent 拉通全集. 所以不要一个 mini task 跑一次, 也不要自己去起 agent 编排它. 拆开跑, 跨篇的术语, 反复出现的小节标签, 以及互相引用的标题就统一不了, 而这恰恰是整条管线里唯一没有第二次机会的东西.
+完整规范见 [ref/rewrite-en-spec.md](../rewrite-en-spec.md), 照它做即可, 不要在这里重新推导. 那份规范定死了四件事: 用 `/doc-writing-styles:rewrite-in-en-tutorial` 这条命令, 处理 `examples/README-cn.md` 加 `examples/*/README-cn.md` 加 `examples/*/TICKET-cn.md` 这三组 glob, 要额外交代 frontmatter 保形与 H1 字符集这两条 lint 硬约束, 以及链接分文件和目录两种情形处理.
 
-链接和 frontmatter 不用在这里另外交代, 模板里已经写好了 (文件链接换后缀, 目录链接不动, frontmatter 保形, H1 字符集). 跑完抽查几条链接和一份 frontmatter 确认到位即可.
+**不要问创作者要文件清单**, 上面那三组 glob 就是全部. 创作者手工在新会话里发起时, 用自包含的模板 [prompts/run-rewrite-en.md](../../prompts/run-rewrite-en.md).
+
+只跑一次, 别拆开 (这一步唯一会造成不可逆损失的操作错误): 那条命令本身就是完整管线, 内部每篇一个 drafter, 每篇一个 rewriter, 已经并行过了. 拆成一个 mini task 一次跑, 跨篇的术语, 反复出现的小节标签和互相引用的标题就统一不了, 而事后没有任何一步会把它们补回来.
+
+跑完按规范第 7 节抽查: 几条链接, 一份 frontmatter, 各份 H1.
 
 ---
 
