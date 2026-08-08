@@ -12,7 +12,7 @@
 
 lesson-smith 产出的全部教学材料都是 tutorial 这一档: 读者边读边做, 手边开着终端或浏览器, 指令一有歧义就停下来. 所以永远用 tutorial 这个 style, 不用 report, 也不用 explainer.
 
-依赖 `doc-writing-styles` 插件 0.2.1 或更高. 更早的版本里这条管线叫 `rewrite-en-tutorial` 且只有两段, 已废弃.
+依赖 `doc-writing-styles` 插件 0.2.1 或更高.
 
 它自己就是完整管线, 五个阶段: 解析出源到目标的映射, 每篇一个 drafter 逐字转录成直白英文, 读全部草稿产出一页跨篇简报, 每篇一个 rewriter 拿着草稿和简报重写 (看不到中文原文, 这是结构性保证), 最后一个 reconciler 拿着全集对账并直接改文件.
 
