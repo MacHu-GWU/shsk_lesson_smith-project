@@ -1,0 +1,12 @@
+---
+description: "By the end of this course you can run GitHub's basic workflow on your own: create a repository, edit files and commit, branch off to experiment safely, and merge back into main with a Pull Request. You also take control of access (public vs private, collaborators, access tokens), move the whole workflow onto your own machine with GitHub Desktop, and learn to find shared repos inside an organization. The habit matters most: put all of your work on GitHub. For absolute beginners, no command line."
+github_about: "Learn GitHub's basic workflow from scratch: create a repo, edit and commit, branch and merge, public vs private, collaborators and access tokens, GitHub Desktop, and repo ownership. No command line."
+---
+
+# learn_github_basic_v1-project
+
+GitHub is the industry standard for managing and collaborating on text in today's software world. Code, documentation, notes, anything that exists as words: GitHub gives all of it version history, collaboration tools, and a permanent record. This course covers the basic workflow and nothing else, so someone who has never touched GitHub can pick it up one step at a time. You start entirely in the browser, expand into access control, then bring the whole thing down to your own machine with GitHub Desktop. You never touch the command line.
+
+By the end you can create and configure your own repository, edit files and commit changes right in the browser, open a branch to experiment safely in parallel, and merge that work back into main with a Pull Request. You can also tell public from private, invite a collaborator to work alongside you, use an access token to let a program act on your behalf, move the whole workflow onto your own machine with GitHub Desktop, and recognize that every repository belongs to some owner, which is what tells you to look inside an organization for the things other people have shared with you. This is the workflow real teams run every day. Get it down and you have the basics you need to take part in any modern collaborative project. The course stays at the basic level, and it goes deep enough to do one thing: get you through a full round of the workflow on your own.
+
+The mechanics matter less than the habit this course is built to create: put all of your work on GitHub. In the age of AI, a record that builds up day after day, that anyone can check, and that cannot be faked says more about you than anything you can say about yourself. GitHub is the one platform that makes keeping that kind of long term record effortless.
