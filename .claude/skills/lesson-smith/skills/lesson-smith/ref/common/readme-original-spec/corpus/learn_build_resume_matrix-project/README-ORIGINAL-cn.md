@@ -1,6 +1,6 @@
 ---
 description: "这门课教你把改简历当成一个工程项目来运营, 面向美国求职市场: 不再每次投递都从头重写一份静态文档, 而是维护一份长得离谱的 master resume 当素材库, 按不同岗位方向只做减法派生出投递版本. 简历是整条求职链路里唯一完全由你控制的环节, 它写不对, 后面的面试机会根本不会出现. 学完你能把一段听起来很薄的实习或课程经历拔高到扛得住面试官追问, 把它压成经得起深挖的 bullets 与 Summary, 往后每多一段新经历都能在一两天内并进素材库, 再投一家公司只花半小时."
-github_about: "教你面向美国求职市场搭一套 1+N resume matrix: 一份 master resume 素材库加 N 份派生投递版本, 配套 agent skill 把 gap 诊断, 项目设计, bullet 与 Summary 写作操作化."
+github_about: "教你面向美国求职市场搭一套 1+N resume matrix: 一份 master resume 素材库加 N 份派生投递版本, 配套十个 agent skill 把 gap 诊断, 项目设计, bullet 与 Summary 写作操作化."
 ---
 
 # learn_build_resume_matrix-project
