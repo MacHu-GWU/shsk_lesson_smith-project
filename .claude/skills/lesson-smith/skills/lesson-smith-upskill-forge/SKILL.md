@@ -76,7 +76,9 @@ upskill 的内容是创作者手写的 mini task, 不用像扫陌生代码那样
 - `02-upskill-runbook.md` (依 docs-upskill-runbook-spec): 一次性 setup + 推进中操作, 把隐性步骤显式化.
 - `03-upskill-quiz.md` (依 docs-upskill-quiz-spec): 指向 Phase 2 定位到的题库真身, 加上考法自定义.
 
-溯源一律用 markdown 链接加 header 或关键字, 不用 line no. 先写 cn, 定稿后按创作铁律重写成 en. 猜不准的地方显式标注请创作者确认, 不许凭空编.
+溯源一律用 markdown 链接加 header 或关键字, 不用 line no. 猜不准的地方显式标注请创作者确认, 不许凭空编.
+
+**这三份 doc 直接产英文, 不走 cn-first 铁律** (它们是给 AI 看的元文件, 人类读的是 examples 下的教程正文; 见各自 spec 的适用范围). 也正因如此, forge 跑在英文重写**之后**: 这三份 doc 的链接指向的是 `examples/README.md` 这类英文文件, 锚点用的是英文 header. 在重写之前跑, 那些文件还不存在, 而你顺手翻出来的 header 也和重写管线定的规范英文标题对不上, 于是链接和锚点全是死的, 且没有任何检查会报出来.
 
 ### Phase 5 — 落 2 个子 skill
 

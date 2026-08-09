@@ -51,11 +51,53 @@ REPO_FILE_BASES = (README_BASE, TICKET_BASE, README_ORIGINAL_BASE)
 # Frontmatter description constraints.
 # One line, capped length, no quote-like characters (the description is embedded
 # verbatim into other strings, so quotes and backticks would need escaping).
+#
+# The length cap is per language, because a character carries very different
+# amounts of information depending on the script. 400 characters of Chinese
+# rewritten into English lands somewhere around 700 to 900 characters, so a
+# single global cap would either fail every English variant or force the Chinese
+# ones to stay far under-used. The English text is a rewrite of the Chinese, not
+# a compression of it, and the budget has to say so.
 # --------------------------------------------------------------------------- #
-MAX_DESCRIPTION_CHARS = 400
+DEFAULT_MAX_DESCRIPTION_CHARS = 800
+MAX_DESCRIPTION_CHARS_BY_LANG = {LangEnum.cn: 400}
+
 # The README-ORIGINAL-only ``github_about`` field: a compressed tagline that also
-# fits GitHub's About box, so it is capped tighter than the full description.
-MAX_GITHUB_ABOUT_CHARS = 200
+# fits GitHub's About box. Its cap is not a style budget like the description's,
+# it is an external limit: GitHub truncates that box around 350 characters
+# whatever the script. So English gets modest headroom here rather than the
+# doubling the description gets.
+DEFAULT_MAX_GITHUB_ABOUT_CHARS = 300
+MAX_GITHUB_ABOUT_CHARS_BY_LANG = {LangEnum.cn: 200}
+
+
+def lang_from_filename(name: str) -> "LangEnum | None":
+    """The language a special file's name declares. ``None`` means English.
+
+    English variants carry no suffix (``README.md``, ``README-ORIGINAL.md``);
+    every other language appends ``-<lang>`` before ``.md``. Derived from the
+    name rather than passed in, so a check on a single file is correct on its
+    own without the caller having to know which variant it handed over.
+    """
+    stem = name[:-3] if name.endswith(".md") else name
+    for lang in LangEnum:
+        if stem.endswith(f"-{lang.value}"):
+            return lang
+    return None
+
+
+def max_description_chars(lang: "LangEnum | None") -> int:
+    """The ``description`` budget for one language. ``None`` means English."""
+    return MAX_DESCRIPTION_CHARS_BY_LANG.get(lang, DEFAULT_MAX_DESCRIPTION_CHARS)
+
+
+def max_github_about_chars(lang: "LangEnum | None") -> int:
+    """The ``github_about`` budget for one language. ``None`` means English."""
+    return MAX_GITHUB_ABOUT_CHARS_BY_LANG.get(
+        lang, DEFAULT_MAX_GITHUB_ABOUT_CHARS
+    )
+
+
 DESCRIPTION_FORBIDDEN_CHARS = (
     '"'  # straight double quote
     "'"  # straight single quote

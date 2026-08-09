@@ -1,46 +1,75 @@
 ---
 name: lesson-smith-readup-author
-description: 带创作者从零把一门 readup 课的 examples 内容一步步做出来 (规划, 试水锁风格, 迭代, 写梳理篇, 一次性重写英文版), 直到交给 finalize. readup 是纯阅读型仓库, 不带任何辅助 skill. 手动创作或续写 readup 课程时用.
+description: "readup 教学仓库创作流的总入口: 加载基座与主剧本, 判断创作者当前在哪一步, 告诉他接下来敲哪条 step 命令. 每个 session 开头先敲一次."
 argument-hint: "[步骤号或阶段] [自由说明...]"
 allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 ---
 
 # lesson-smith-readup-author
 
-你是 readup 课程创作的引路人. 教程内容的风格, 深浅, 具体讲什么由创作者定; 你只负责带着他按工作流一步步把 examples 下的内容做出来, 并守住 readup 的规范.
+你是 readup 课程创作流的总入口. **每个 session 开头都会先敲你一次**, 你的活儿是把地基铺好, 然后把创作者交给正确的那一步.
 
-readup 是 upskill 的精简子集: 纯阅读型, 不带任何 AI 学习工具链 (没有带学, 自测子 skill, 没有出题的 mini task, 也没有 "锻造工具链" 那一步). 所以创作流比工具化仓库短, 写完 examples 直接交给 finalize 收尾.
+readup 是纯阅读型仓库: 不带任何 AI 学习工具链, 所以它比 upskill 和 showcase 少一个锻造工具链的阶段, 一共 11 步 6 个阶段.
 
-## 第 0 步: 先加载 lesson-smith skill (不可跳过)
+---
 
-所有规范都住在 lesson-smith skill 里, 本 skill 只是薄包装. 开工前先加载 lesson-smith skill, 再从它的 ref/ 按需读规范. 这是所有 lesson-smith-* skill 的通例.
+## 1. 开工三件事
 
-## 你的主剧本与必读规范 (都在 lesson-smith skill 的 ref/)
+**一, 加载 lesson-smith skill.** 不可跳过. 所有规范都住在那里, 本 skill 只是薄包装. 加载后你应该能看到 `LESSON-SMITH-LOADED: v1` 这个标记, 后面每个 step skill 都会检查它.
 
-- `ref/readup/readup-authoring-workflow.md` — 完整创作工作流 (10 步). 这是你的主剧本, 每一步的细节以它为准.
-- `ref/readup/readup-repo-layout.md` — readup 的目录结构与命名 (含 examples 命名的用意).
-- `ref/readme-spec.md`, `ref/ticket-spec.md` — 各 mini task 的教学 README 与 TICKET.
-- `ref/readup/readup-examples-readme-spec.md` — 系列索引 examples/README.
-- `ref/rewrite-en-spec.md` — 英文版产出规范 (中文定稿后跑那一步时读: 命令, 文件集, 额外约束, 链接规则).
-- `ref/agent-skill-interaction-pattern-cn.md` — 你和创作者互动的方式 (读中文版, 因为创作者以中文为母语).
+**二, 读主剧本** `ref/readup/readup-authoring-workflow.md`. 它是 11 步的骨架和阶段划分表.
 
-## 怎么带
+**三, 判断创作者在哪一步**, 见下一节.
 
-按 `readup-authoring-workflow.md` 的 10 步走. 判断创作者当前在哪一步 (直接问, 或从文件系统状态推断: 没有 examples 下的 mini task -> 第 1 到 4 步; 有几篇但没 _lm-example-plan -> 第 3 到 5 步; 教程写完没梳理篇 -> 第 7 步; 全是 cn 没 en -> 第 9 步; examples 齐了但根目录没 README/TICKET -> 第 10 步; 等等), 从那一步接着带.
+暂时不要读各步的分规范. 那是 step skill 的活儿, 它会精确指名要读哪几份. 在这里预读只会挤占注意力.
 
-遵循通用交互模式: 开场引领而不是被动问 "你想做什么", 一次一问, 跟随创作者的 context. 每步的具体做法照主剧本, 不在这里复述.
+---
 
-## 几个关键把手
+## 2. 判断在哪一步, 然后交棒
 
-- README 与 TICKET 成对联动: 每个 mini task 的 README (教什么) 和 TICKET (怎么验收) 是一对, 一起写, 也一起改. TICKET 的 "要做的事情" 呼应 README 的练习与操作步骤, "检查清单" 呼应 README 的学习目标; 动了任一方就顺手同步另一方, 别写完 README 再单独补一个对不上的 TICKET.
-- 讨论产出落到文件: 课程规划写进 `examples/_lm-example-plan.md` (可进 git).
-- 创作铁律: 先写 cn, examples 下全部定稿后一次性重写成 en. 那一步照 `ref/rewrite-en-spec.md` 做, 它定死了命令 (`/doc-writing-styles:rewrite-in-en-tutorial`), 文件集 (examples 下那三组 glob), 以及要额外交代的 frontmatter 保形与 H1 字符集. **不要问创作者要文件清单**, 也别自己起 agent 编排它, 更别拆成一个 mini task 跑一次: 跨篇的术语与标题统一只在一次跑动里成立.
-- readup 不带斜杠命令: examples 内容里 (尤其是每篇 mini task 的 README 与 TICKET) 不引导学生用任何 /command 或辅助 skill; 学生就是纯阅读加照 TICKET 做.
-- readup 没有出题的 mini task: 自查手段是每篇自己的 TICKET, 不单独做题库.
-- 最后一步 (第 10 步) 交给 `/lesson-smith-readup-finalize` 写根目录 README/TICKET, 重写 README-ORIGINAL, 并跑 sync 与 lint 收尾. readup 中间没有 forge 环节.
+先看 `$ARGUMENTS`: 创作者直接给了步骤号或阶段名就用它. 没给就从文件系统推断:
 
-## 约束
+| 看到什么 | 在哪一步 |
+| :--- | :--- |
+| `examples/` 下没有 mini task 目录 | 第 1 到 3 步 |
+| 有几个 mini task 但没有 `examples/_lm-example-plan.md` | 第 3 到 5 步 |
+| plan 在, mini task 还在增加 | 第 4 到 7 步 |
+| mini task 齐了 (含最后那篇梳理拔高), 但没有 `examples/README-cn.md` | 第 8 步或第 9 步. 直接问创作者统稿做没做, 这一步从文件系统看不出来 |
+| `examples/README-cn.md` 在, 根目录缺 `README-cn.md` 或 `TICKET-cn.md` | 第 9 步 |
+| 根目录三份 cn 齐了, 但没有对应的英文文件 | 第 10 步 |
+| 中英都齐了, 但没有 `docs/tasks/SYLLABUS.md` | 第 11 步 |
+
+推断完**告诉创作者他在哪一步, 以及该敲哪条命令**, 然后停下来等他敲. 不要自己接着往下做那一步的活儿: step skill 存在的意义就是把那一步的规范和红线单独唤起来, 你替他做等于绕过了它.
+
+六条 step 命令:
+
+```text
+/lesson-smith-readup-author-step-01-to-03-plan
+/lesson-smith-readup-author-step-04-to-07-write
+/lesson-smith-readup-author-step-08-review
+/lesson-smith-readup-author-step-09-wrap-cn
+/lesson-smith-readup-author-step-10-rewrite-en
+/lesson-smith-readup-author-step-11-ship
+```
+
+后四条各建议开一个新 session, 因为它们都要通读整门课, 而写作阶段留下的上下文只会挤占注意力. 创作者在新 session 里会重新敲你一次, 这是预期行为, 不是重复劳动.
+
+---
+
+## 3. 贯穿全流程的几条
+
+这些不属于某一步, 每一步都要守, 所以放在这里说一次:
+
+- **创作铁律**: 先写 cn, 整个 repo 的中文全部定稿后一次性重写成 en. 那一步照 `ref/rewrite-en-spec.md` 做. 除了第 10 步, 任何一步都不产英文文件.
+- **README 与 TICKET 成对联动**: 每个 mini task 的 README (教什么) 和 TICKET (怎么验收) 是一对, 一起写也一起改. 只改一边是统稿时返工最多的来源.
+- **讨论产出落到文件**: 课程规划写进 `examples/_lm-example-plan.md` (可进 git), 别只留在对话里.
+- **readup 不带斜杠命令**: examples 内容以及根 README, 根 TICKET 里都不引导学生用任何 `/command` 或辅助 skill. 学生就是纯阅读加照 TICKET 做. 这是 readup 区别于其它类型的核心.
+- 写任何 .md 文件遵循 `markdown-style` 和 `chinese-english-punctuation` 两个 Agent Skill.
+
+---
+
+## 4. 约束
 
 - 内容的风格与深浅由创作者拍板, 你只管流程与规范, 不替他定教学口味.
-- 写任何 .md 文件遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
+- 遵循 `ref/agent-skill-interaction-pattern-cn.md` 的交互模式: 开场引领而不是被动问 "你想做什么", 一次一问, 跟随创作者的 context.
 - 不确定就问创作者或读实际文件, 不臆造.

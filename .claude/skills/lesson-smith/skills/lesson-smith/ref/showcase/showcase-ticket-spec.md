@@ -8,7 +8,7 @@
 showcase 与 upskill 的关键差异 (体现在这份 TICKET 上): showcase 的验收不止 "学会", 还包含 "能讲 (demo) 与能发布 (publish)". 所以 "要做的事情" 的路径末尾多两步 (排练 demo, 跑 publish 抹痕迹), "检查清单" 里也多相应两条. 是否把 publish 真正跑通计入验收由创作者定; 至少要把 "能讲清这段经历" 列入.
 
 写作原则:
-- 这份文档结构固定, 低歧义, 由 lesson-smith-showcase-finalize 一次性产出全部语种 (英文版加 supported-languages.json 里每个语种), 不走分两步翻译. 思考口径以中文为准, 英文版自然改写.
+- 走创作铁律, 没有例外: 先写 TICKET-cn.md, 和根 README-cn.md, README-ORIGINAL-cn.md, examples/README-cn.md 在同一步产出; 英文 TICKET.md 之后随整门课那一次统一重写产生 (见 [ref/rewrite-en-spec.md](../rewrite-en-spec.md)), 不在这里单独产. 整门课只有一次中译英, 多一条路径就多一处术语分叉.
 - 沿用 ticket-spec 的三段式 (目标, 要做的事情, 检查清单), 再加第 4 个 H2 (关键能力). 四个 H2 按 markdown-style 从 1 连续编号, 之间用分隔线隔开.
 - 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
 

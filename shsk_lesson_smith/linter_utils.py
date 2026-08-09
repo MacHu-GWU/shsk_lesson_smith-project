@@ -30,8 +30,9 @@ from functools import cached_property
 from .constants import (
     DESCRIPTION_FORBIDDEN_CHARS,
     H1_FORBIDDEN_CHARS,
-    MAX_DESCRIPTION_CHARS,
-    MAX_GITHUB_ABOUT_CHARS,
+    lang_from_filename,
+    max_description_chars,
+    max_github_about_chars,
 )
 from .exc import LintError
 
@@ -285,8 +286,10 @@ def check_frontmatter_description(md: MarkdownFile) -> None:
     """The markdown file's frontmatter ``description`` field must be valid.
 
     Valid means: frontmatter is present, has a ``description`` key whose value is
-    wrapped in double quotes, non-empty, within the character limit, and free of
-    quote / backtick characters inside the quotes.
+    wrapped in double quotes, non-empty, within the character limit for this
+    file's language, and free of quote / backtick characters inside the quotes.
+    The language comes from the file name, so an English variant gets the wider
+    budget its script needs.
     """
     if not md.has_frontmatter:
         raise LintError(
@@ -296,7 +299,8 @@ def check_frontmatter_description(md: MarkdownFile) -> None:
         )
     _validate_quoted_oneliner(
         md.description_raw, md.description,
-        field="description", max_chars=MAX_DESCRIPTION_CHARS,
+        field="description",
+        max_chars=max_description_chars(lang_from_filename(md.path.name)),
     )
 
 
@@ -304,7 +308,8 @@ def check_frontmatter_github_about(md: MarkdownFile) -> None:
     """The frontmatter ``github_about`` field must be valid (README-ORIGINAL only).
 
     A compressed tagline that also fits GitHub's About box: same wrapping and
-    charset rules as ``description``, but capped at ``MAX_GITHUB_ABOUT_CHARS``.
+    charset rules as ``description``, but on a tighter, externally imposed
+    budget. The cap is per language, derived from the file name.
     """
     if not md.has_frontmatter:
         raise LintError(
@@ -314,7 +319,8 @@ def check_frontmatter_github_about(md: MarkdownFile) -> None:
         )
     _validate_quoted_oneliner(
         md.github_about_raw, md.github_about,
-        field="github_about", max_chars=MAX_GITHUB_ABOUT_CHARS,
+        field="github_about",
+        max_chars=max_github_about_chars(lang_from_filename(md.path.name)),
     )
 
 

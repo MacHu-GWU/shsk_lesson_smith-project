@@ -127,7 +127,7 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 
 | type | 接下来 |
 | :--- | :--- |
-| readup | 没有 forge. 直接跑 `/lesson-smith-readup-finalize` |
+| readup | 没有 forge. 从 `/lesson-smith-readup-author-step-08-review` 往下走 |
 | upskill | 先 `/lesson-smith-upskill-forge`, 再 `/lesson-smith-upskill-finalize` |
 | showcase | 先 `/lesson-smith-showcase-forge`, 再 `/lesson-smith-showcase-finalize` |
 

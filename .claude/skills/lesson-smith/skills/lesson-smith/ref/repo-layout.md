@@ -52,9 +52,9 @@ docs/tasks/02-branch-name/
 
 ## 4. 一行摘要 frontmatter
 
-`README.md`, `TICKET.md`, `README-ORIGINAL.md` 顶部都带 YAML frontmatter, 其中 `description` 是一行 (不含换行), 最多 400 字符 (不含包裹的双引号), 供索引拼成一条 bullet. 句数按海拔分档: Task 级的 `README.md` 与 `TICKET.md` 的 description 要紧, 1 到 2 句; Lesson 级的 `README-ORIGINAL.md` 的 description 是整门课的门面, 会进 org 级课程索引, 鼓励写长, 用足预算到接近 400 字符, 详见 [readme-original-spec.md](readme-original-spec.md). 这些约束由校验脚本 lint (为什么必须一行: 它要被程序读取, 拼成 "一行一个" 的 bullet 或表格里的一个 cell; 多于一行就很难排版).
+`README.md`, `TICKET.md`, `README-ORIGINAL.md` 顶部都带 YAML frontmatter, 其中 `description` 是一行 (不含换行), 供索引拼成一条 bullet. 长度上限按语种分档: 中文 400 字符, 英文 800 字符 (都不含包裹的双引号). 分档是因为一个字符在不同书写系统里承载的信息量差得远: 400 字符的中文重写成英文大约要 700 到 900 字符, 一个全局上限要么卡死每一份英文, 要么让中文永远用不满. 英文版是中文版的重写, 不是压缩, 预算得说明这一点. 句数按海拔分档: Task 级的 `README.md` 与 `TICKET.md` 的 description 要紧, 1 到 2 句; Lesson 级的 `README-ORIGINAL.md` 的 description 是整门课的门面, 会进 org 级课程索引, 鼓励写长, 用足预算到接近 400 字符, 详见 [readme-original-spec.md](readme-original-spec.md). 这些约束由校验脚本 lint (为什么必须一行: 它要被程序读取, 拼成 "一行一个" 的 bullet 或表格里的一个 cell; 多于一行就很难排版).
 
-`README-ORIGINAL.md` 额外多带一个 `github_about` 字段: 压缩版 tagline, 一行, 最多 200 字符, 专门给 GitHub 仓库的 About box 用 (About 上限约 350, 收到 200 更稳; 长的 description 进不了 About, 所以单列这个). 只有 README-ORIGINAL 有这个字段, 由 lint 强制存在与校验. 它和同文件的 description 面向两种人: description 写给学生, github_about 写给老师 (作者本人与同行), 只说清这个 repo 教什么, 不写收获. 两句都短, 合起来就是这个 repo 在课程索引里的那一行.
+`README-ORIGINAL.md` 额外多带一个 `github_about` 字段: 压缩版 tagline, 一行, 专门给 GitHub 仓库的 About box 用 (长的 description 进不了 About, 所以单列这个). 上限中文 200 字符, 英文 300 字符. 注意它的上限性质和 description 不同: description 的上限是我们自己定的风格预算, 而这一条是外部限制 (GitHub 的 About box 约 350 字符就截断, 不分语种), 所以英文只给一点余量, 不像 description 那样翻倍. 只有 README-ORIGINAL 有这个字段, 由 lint 强制存在与校验. 它和同文件的 description 面向两种人: description 写给学生, github_about 写给老师 (作者本人与同行), 只说清这个 repo 教什么, 不写收获. 两句都短, 合起来就是这个 repo 在课程索引里的那一行.
 
 `description` 与 `github_about` 的值都必须用双引号包起来, 形如 `description: "..."`. 因为值里永远不含引号类字符 (单双引号, 反引号都被禁), 用双引号包裹绝不会有歧义, 却能让 YAML 编辑器不把值中的冒号误当成映射, 也让 "这是一整行字符串" 一目了然. 这一条同样由 lint 强制: 未加双引号或用单引号都会报错. 长度只算双引号内的内容. 三个文件的 description 目的各不相同: README 是 "承诺" (学完能做到什么), TICKET 是 "完成判据" (做出什么才算完), README-ORIGINAL 是 "发给学生的那段话" (这门课学什么, 为什么值得学, 学完有什么收获, 标准是能原样复制粘贴发给一个学生, 且绝不罗列知识点); 精确定义见各自的 spec.
 
@@ -77,4 +77,4 @@ uvx --from shsk-lesson-smith==<version> lesson-smith sync -p .   # 快照当前 
 uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .   # 只读校验: 目录结构, 语种完整性, frontmatter description, SYLLABUS 内容
 ```
 
-`<version>` 填创作时的最新发布版本 (当前是 0.2.1; 最新版见 https://pypi.org/pypi/shsk-lesson-smith). pin 死版本是为了让校验规范可复现, 不随新版悄悄漂移. 若创作者本地已经装好这个 package, 直接跑 `lesson-smith sync` / `lesson-smith lint` 效果相同.
+`<version>` 填创作时的最新发布版本 (当前是 0.3.0; 最新版见 https://pypi.org/pypi/shsk-lesson-smith). pin 死版本是为了让校验规范可复现, 不随新版悄悄漂移. 若创作者本地已经装好这个 package, 直接跑 `lesson-smith sync` / `lesson-smith lint` 效果相同.

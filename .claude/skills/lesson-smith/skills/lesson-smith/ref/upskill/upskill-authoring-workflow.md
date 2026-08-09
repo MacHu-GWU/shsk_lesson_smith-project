@@ -88,6 +88,6 @@
 
 ## 13. 交给 finalize 收尾定型
 
-到这一步 examples 内容和学习工具链都齐了, 最后给整门课收尾. 用 /lesson-smith-upskill-finalize 完成: 重写 README-ORIGINAL (整个 Repo 也就是这门 Lesson 的对外门面, 让 description 与 github_about 和最终内容对齐, 遵循 [ref/readme-original-spec.md](../readme-original-spec.md)); 写出根目录的 README (仓库总览加 "怎么学" 的操作入口, 遵循 [ref/upskill/upskill-readme-spec.md](upskill-readme-spec.md)) 与 TICKET (整门课的验收清单, 遵循 [ref/upskill/upskill-ticket-spec.md](upskill-ticket-spec.md)). 这几份结构固定, 由 finalize 一次性产出全部语种, 不再走 cn-first 分两步. 随后 finalize 会跑 lesson-smith sync 生成 SYLLABUS 与快照, 再跑 lesson-smith lint 把关. 为方便编辑那次调用的输入, 用模板 [prompts/run-lesson-smith-upskill-finalize.md](../../prompts/run-lesson-smith-upskill-finalize.md).
+到这一步 examples 内容和学习工具链都齐了, 最后给整门课收尾. 用 /lesson-smith-upskill-finalize 完成: 重写 README-ORIGINAL (整个 Repo 也就是这门 Lesson 的对外门面, 让 description 与 github_about 和最终内容对齐, 遵循 [ref/readme-original-spec.md](../readme-original-spec.md)); 写出根目录的 README (仓库总览加 "怎么学" 的操作入口, 遵循 [ref/upskill/upskill-readme-spec.md](upskill-readme-spec.md)) 与 TICKET (整门课的验收清单, 遵循 [ref/upskill/upskill-ticket-spec.md](upskill-ticket-spec.md)). 这几份先写 cn 版 (拿定稿的 examples 当素材), 英文版留给统一重写那一步产出, 不在这里单独产. 随后 finalize 会跑 lesson-smith sync 生成 SYLLABUS 与快照, 再跑 lesson-smith lint 把关. 为方便编辑那次调用的输入, 用模板 [prompts/run-lesson-smith-upskill-finalize.md](../../prompts/run-lesson-smith-upskill-finalize.md).
 
 到此整门 upskill 课创作完成.

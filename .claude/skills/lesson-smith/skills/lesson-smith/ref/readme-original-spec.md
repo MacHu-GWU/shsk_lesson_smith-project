@@ -11,13 +11,14 @@ README-ORIGINAL 的 description 是 **Lesson (整个 Repo) 的介绍**, 会进 o
 
 在 upskill, showcase, readup 里只有一个 Task, 两者 scope 几乎重叠, 但上面这个分工不变, 两边别互相抄; 在 evolve 里一个 Repo 多个 Task, 两者本来就明显分开. 根 README 那一份的精确定义见各类型的 readme spec.
 
-生命周期 (为什么这份要重写): README-ORIGINAL 在创作最早期先写一版粗稿, 作为后面所有内容生长的种子. 但那版往往和最终写出来的 examples 对不齐, description 也太粗, 撑不起一门 Lesson 的介绍. 所以内容全部完工后, 由对应类型的 finalize skill (readup 是 lesson-smith-readup-finalize, upskill 是 lesson-smith-upskill-finalize, showcase 是 lesson-smith-showcase-finalize) 重写整份 README-ORIGINAL (正文加 description 加 github_about, 全语种一起产出), 让它和成品对齐.
+生命周期 (为什么这份要重写): README-ORIGINAL 在创作最早期先写一版粗稿 (只有 `README-ORIGINAL-cn.md`), 作为后面所有内容生长的种子. 但那版往往和最终写出来的 examples 对不齐, description 也太粗, 撑不起一门 Lesson 的介绍. 所以 examples 全部完工并统稿之后, 在写全局中文那一步重写整份 `README-ORIGINAL-cn.md` (正文加 description 加 github_about), 让它和成品对齐. 英文版不在这里产, 它随整门课那一次统一重写产生.
 
-人类拍板 (finalize 阶段的硬性一步): description 与 github_about 是这门课的门面, 一句话决定别人点不点进来, 所以不许 AI 单方面定稿. finalize 写完初稿后必须停下来交给课程作者过目: 把 description 与 github_about 摆出来 (两句都拿不准时, 给两三个不同侧重的候选让他挑), 问他 ok 不 ok, 哪里要调, 按他的意见改完再进下一步. 正文那 3 段不需要这道 gate, 只有这两个字段需要.
+人类拍板 (写全局中文那一步的硬性一步): description 与 github_about 是这门课的门面, 一句话决定别人点不点进来, 所以不许 AI 单方面定稿. 写完初稿后必须停下来交给课程作者过目: 把 description 与 github_about 摆出来 (两句都拿不准时, 给两三个不同侧重的候选让他挑), 问他 ok 不 ok, 哪里要调, 按他的意见改完再往下走. 正文那 3 段不需要这道 gate, 只有这两个字段需要. 这道 gate 只在中文版上过一次: 英文版是已批准中文版的重写, 不需要第二次拍板.
 
 写作原则:
-- 早期种子稿遵循创作铁律 (先写 cn); finalize 阶段的重写结构已稳, 各语种一次产出, 思考以中文为准, 英文自然改写.
-- 链接的语种跟着本文件走: 正文里若出现指向 repo 内其他文件的相对路径链接, cn 版用 -cn 版, 英文版用英文版. 各语种一次产出时别把 -cn 后缀漏在英文版里.
+- 全程走创作铁律, 没有例外: 种子稿和后期重写都只写 cn 版, 英文版随整门课那一次统一重写产生 (见 [ref/rewrite-en-spec.md](rewrite-en-spec.md)), 不在这里单独产.
+- 链接的语种跟着本文件走: 正文里若出现指向 repo 内其他**文件**的相对路径链接, cn 版用 -cn 版, 英文版用英文版; 指向**目录**的链接两版一样, 不带语种后缀. 你只负责把 cn 版链对, 换后缀是重写管线的事.
+- H1 是 repo 名, 逐字节不变. 重写英文版时它也不许被改写, 这一条要在调用重写管线时显式交代 (见 rewrite-en-spec 第 4.3 节).
 - 术语保留英文 (这两个字段最容易翻车的地方): 写 cn 版时, 中文只负责叙述, 术语, 产品名, 技术名词一律保留英文原文, 不要强行译成中文. 把 DataFrame 写成数据帧, 把 lazy evaluation 写成惰性求值, 读者反而认不出这门课在教什么, 这一行进了索引也失去检索价值.
 - 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
 

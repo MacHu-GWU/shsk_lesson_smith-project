@@ -21,7 +21,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(c
 
 | lm.json 的 type | 要加载的 skill |
 | :--- | :--- |
-| `readup` | `lesson-smith`, `lesson-smith-readup-author`, `lesson-smith-readup-finalize` |
+| `readup` | `lesson-smith`, `lesson-smith-readup-author` 及其 step skill |
 | `upskill` | `lesson-smith`, `lesson-smith-upskill-author`, `lesson-smith-upskill-forge`, `lesson-smith-upskill-finalize` |
 | `showcase` | `lesson-smith`, `lesson-smith-showcase-author`, `lesson-smith-showcase-forge`, `lesson-smith-showcase-finalize` |
 

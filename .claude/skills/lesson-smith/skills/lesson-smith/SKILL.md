@@ -5,6 +5,10 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 
 # LessonSmith: 教学仓库规范基座
 
+: v1
+
+上面那行是加载标记. 每个 step skill 开工前都要确认自己能在上下文里看到它, 看不到就先加载本 skill. 这样约定 (每个 session 开头敲一次 author) 变成了一条会自检的规则: 忘了敲, 下一个 step skill 当场发现, 而不是一路写到出厂那步跑 lint 才炸.
+
 你是 **LessonSmith**, 教学仓库 (teaching repository) 的规范基座. 所有 `lesson-smith-*` skill 都依赖本 skill, 从这里获取统一的概念模型, 语言与格式规范, 文档模板. 那些 skill 只是薄包装, 真正的规范住在这里.
 
 ## 1. 什么是教学仓库
@@ -21,11 +25,11 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 
 ## 2. 一行摘要与索引
 
-每个特殊文件顶部都带一段 YAML frontmatter, 里面的 `description` 是一行压缩摘要 (最多 400 字符), 专门用来在索引里拼成一条 bullet.
+每个特殊文件顶部都带一段 YAML frontmatter, 里面的 `description` 是一行压缩摘要 (中文最多 400 字符, 英文最多 800), 专门用来在索引里拼成一条 bullet.
 
 - `README.md`: `description` 最多 2 句话, 概括这个 Task 教什么.
 - `TICKET.md`: `description` 一句话, 概括这个 Task 要交付什么.
-- `README-ORIGINAL.md`: `description` 是写给学生的一段话 (可多句, 用足 400 字符预算), 说清这门课学什么, 为什么值得学, 学完有什么收获, 标准是能原样复制粘贴发给一个学生. 它还额外带一个 `github_about`, 那句是写给老师的, 一句话说清这个 repo 教什么即可.
+- `README-ORIGINAL.md`: `description` 是写给学生的一段话 (可多句, cn 版用足 400 字符预算), 说清这门课学什么, 为什么值得学, 学完有什么收获, 标准是能原样复制粘贴发给一个学生. 它还额外带一个 `github_about`, 那句是写给老师的, 一句话说清这个 repo 教什么即可.
 
 `docs/tasks/SYLLABUS.md` 是整门课的 Task 清单, 由脚本把每个 Task 的 `README.md` 顶部 `description` 按 branch 顺序汇总而成, 不手写.
 
@@ -64,7 +68,9 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 - 写某个 Task 或 mini task 的教学 README 时 → [ref/readme-spec.md](ref/readme-spec.md): README 规范加模板.
 - 写 TICKET 时 → [ref/ticket-spec.md](ref/ticket-spec.md): 任务卡片规范加模板.
 - 写 repo 对外长介绍 README-ORIGINAL 时 → [ref/readme-original-spec.md](ref/readme-original-spec.md): 电梯陈述规范加模板.
+- examples 全部写完, 要通读统稿时 → [ref/review-spec.md](ref/review-spec.md): 找哪五类问题, 怎么改, 什么时候算过.
 - 中文定稿后要产出英文版时 → [ref/rewrite-en-spec.md](ref/rewrite-en-spec.md): 英文版产出规范 (命令, 文件集, 额外约束, 链接规则).
+- 创作流最后一步, 跑 sync 与 lint 出厂时 → [ref/ship-spec.md](ref/ship-spec.md): 前置检查, 两条命令, lint 报错回哪一步修.
 - 关心 SYLLABUS 的格式或内容 (它由 lesson-smith sync 生成, 也被 lint 校验) 时 → [ref/syllabus-spec.md](ref/syllabus-spec.md).
 
 **通用交互件 (不限教学仓库, 任何互动 skill 都可加载):**
@@ -91,6 +97,7 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 - 写 repo 根目录 README (readup 仓库总览加 "怎么读" 的入口, 不提任何斜杠命令) → [ref/readup/readup-readme-spec.md](ref/readup/readup-readme-spec.md).
 - 写 repo 根目录 TICKET (readup 整门课的验收清单) → [ref/readup/readup-ticket-spec.md](ref/readup/readup-ticket-spec.md).
 - 写 examples/README 系列索引 → [ref/readup/readup-examples-readme-spec.md](ref/readup/readup-examples-readme-spec.md).
+- 写全局中文那一步 (四份全局文档的 cn 版一起产出) → [ref/readup/readup-wrap-cn-spec.md](ref/readup/readup-wrap-cn-spec.md).
 
 **维护规范文件本身时:**
 

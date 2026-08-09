@@ -2,7 +2,9 @@
 
 课程用中文写, 英文版靠重写产出. 这份文件是那一步的唯一权威: 用哪条命令, 处理哪些文件, 要额外交代什么, 以及什么已经由上游兜住不必再说.
 
-适用范围: readup, upskill, showcase 三类 repo 的 author 阶段 (retrofit 迁完之后同理). 三类的 examples 布局一致, 所以这份规范三类通用.
+适用范围: readup, upskill, showcase 三类 repo (retrofit 迁完之后同理). 三类的布局一致, 所以这份规范三类通用.
+
+位置: 它排在写全局中文之后, forge 与出厂之前. 也就是说**跑它的时候整个 repo 的中文已经全部写完并统稿过了**, 而英文一份都还没有. 整门课只有这一次中译英, 没有第二条路径.
 
 ---
 
@@ -20,9 +22,12 @@ lesson-smith 产出的全部教学材料都是 tutorial 这一档: 读者边读�
 
 ## 2. 处理哪些文件
 
-这门课的全部教学正文, 一次性交出去:
+**这门课的全部中文正文, 一次性交出去. 没有任何一份走别的路径.**
 
 ```text
+README-cn.md
+TICKET-cn.md
+README-ORIGINAL-cn.md
 examples/README-cn.md
 examples/*/README-cn.md
 examples/*/TICKET-cn.md
@@ -30,7 +35,9 @@ examples/*/TICKET-cn.md
 
 产出规则是去掉 `-cn` 后缀的同名文件, 也就是 `01-title/README-cn.md` 产出 `01-title/README.md`. 这套命名符合上游 Phase 0 的 `bare` 约定, 它自己能推出来, 但在输入里写明一句不吃亏.
 
-根目录的 `README`, `TICKET`, `README-ORIGINAL` **不在这个集合里**. 它们结构固定, 低歧义, 由三个 finalize skill 在创作流最后一步直接一次产出全部语种, 从来不走中文先行再重写这条路. 而这一步跑在 finalize 之前, 那时根目录 README 与 TICKET 还不存在. `README-ORIGINAL-cn.md` 虽然第 1 步就写了, 但它最后会被 finalize 整份重写, 现在翻是白翻.
+跑这一步的前提是**根目录那三份中文已经写完**. 它们由写全局中文那一步产出, 排在统稿之后, 因为它们要拿 examples 的成品当素材. 如果跑的时候根目录还只有 examples, 说明步骤跳了, 停下来问创作者.
+
+不在集合里的只有 `docs/` 下的东西: `docs/tasks/` 是 sync 生成的快照, `docs/upskill/` 与 `docs/showcase/` 是给 AI 看的元文件, 本来就直接写英文.
 
 已有的英文版直接覆盖, 不必留档. 版本控制是兜底, 而替换掉质量差的旧英文通常就是这次跑动的全部目的.
 
@@ -50,7 +57,7 @@ examples/*/TICKET-cn.md
 
 ## 4. 要额外写进输入的 (上游不可能知道)
 
-上游是一条通用管线, 它不知道教学仓库有校验脚本. 下面两条不满足, 后面 finalize 那步跑 `lesson-smith lint` 会直接报错, 而那时创作者已经走出去几十个文件了.
+上游是一条通用管线, 它不知道教学仓库有校验脚本. 下面两条不满足, 出厂那步跑 `lesson-smith lint` 会直接报错, 而那时创作者已经走出去几十个文件了.
 
 ### 4.1 YAML frontmatter 保形
 
@@ -62,7 +69,9 @@ examples/*/TICKET-cn.md
 - 值保持一行, 不含换行.
 - 值必须用双引号包起来.
 - 值里不许出现任何引号类字符 (单引号, 双引号, 反引号).
-- 英文后不超过 400 字符. 中译英大约膨胀一倍半, 而 mini task 级的原文本来就是 1 到 2 句, 通常翻完仍在预算内; 但英文版要保持同样的紧度, 不要展开成一段.
+- 长度上限按语种分档, 英文那一档是 800 字符 (中文 400). 分档就是为了让英文版能自然重写而不必压缩, 所以**不要**为了凑短而砍内容; 但也别把 1 到 2 句的 mini task 摘要展开成一段, 紧度要跟中文版一致.
+
+`README-ORIGINAL-cn.md` 额外多一个 `github_about` 字段, 一行, 英文 300 字符上限 (中文 200). 这一条的余量比 description 小得多, 因为它的上限是外部的: GitHub 的 About box 约 350 字符就截断, 不分语种.
 
 细节见 [ref/repo-layout.md](repo-layout.md) 第 4 节.
 
@@ -71,6 +80,14 @@ examples/*/TICKET-cn.md
 每份文件的 H1 里, 除了字母, 数字, 逗号, 冒号, 句号以外不许有别的标点. 具体说, 不许有连字符, 破折号, 引号, 双引号, 方括号, emoji.
 
 这一条来自 `markdown-style`, 但上游引擎转述 `markdown-style` 时只带了正文那几条 (禁破折号, 禁 ASCII 装饰, 代码块打语言标签, bullet 嵌套两层封顶, 禁内联 HTML), 没带 H1 的字符限制. 而 H1 的文字恰恰是被重写的, 英文标题很容易写成带连字符的形式, lint 的 `h1` 检查会当场报错.
+
+### 4.3 README-ORIGINAL 的 H1 不进输入, 跑完再修
+
+`README-ORIGINAL` 的 H1 必须与 repo 名一模一样, 形如 `learn_xyz-project`. 它是全套规范里唯一一个 H1 不许重写的文件, 而且它同时违反 4.2 (repo 名里就带连字符和下划线).
+
+**这一条不写进调用输入.** 上游把 heading 的文字当散文是它的核心契约, 为了一个文件的一行去和它较劲不划算; 而且说服失败是静默的, 没有任何检查会当场报出来.
+
+改成事后修: 管线跑完之后, 直接把 `README-ORIGINAL.md` 的 H1 改回 repo 名. 一行, 确定性, 不依赖上游听不听话. 见第 7 节.
 
 ---
 
@@ -83,6 +100,8 @@ examples/*/TICKET-cn.md
 **指向目录的链接原样不动.** 各语种的文件都落在同一个目录下, 目录名本身没有语种之分, `examples/01-title/` 在中英两版里是同一个路径. 给它加后缀或改名都会变成死链.
 
 **撞见带 `-cn` 的目录名, 那是存量错误.** lesson-smith 的命名规范里目录名永远不带语种后缀 (见 [ref/repo-layout.md](repo-layout.md) 第 1 节), 所以正常的 repo 里不该出现. 真撞见了, 报给创作者去修目录名, 不要在英文版里把链接悄悄改成一个不存在的路径.
+
+**两份 TICKET 里本来就没有相对路径链接.** 根 TICKET 与各 mini task 的 TICKET 都禁止指向 repo 内文件或目录的相对路径 (它们会进 GitHub Issue, 相对路径点不动), 提到 mini task 一律用文字. 所以这一节对它们是空转, 但反过来有一条要守: **重写时不许给 TICKET 添加相对路径链接**, 哪怕正文里提到了某个 mini task 看起来该链一下.
 
 ---
 
@@ -101,8 +120,11 @@ examples/*/TICKET-cn.md
 抽查, 不必逐份读:
 
 - 抽几条跨文档链接, 确认指向英文版, 且目录链接没被动过.
-- 抽一份 README 与一份 TICKET 的 frontmatter, 确认 `description` 是一行, 带双引号, 值里没有引号类字符, 长度在 400 以内.
-- 扫一眼各份 H1, 确认没有连字符或破折号.
+- 抽一份 mini task 的 README 与 TICKET 的 frontmatter, 确认 `description` 是一行, 带双引号, 值里没有引号类字符, 长度在英文那一档的 800 以内.
+- **把 `README-ORIGINAL.md` 的 H1 改回 repo 名** (见 4.3). 这不是抽查, 是必做的一步: 管线大概率把它重写成了一个更像标题的东西, 而 lint 的 `h1_expected` 要求它逐字节等于 repo 名.
+- 同一份的 `description` 与 `github_about` 也逐字读一遍. 它们是这门课的门面, 中文版经过创作者拍板, 英文版跑偏了当场改.
+- 扫一眼其余各份 H1, 确认没有连字符或破折号.
+- 两份 TICKET 里没有新长出来的相对路径链接.
 - 读 reconciler 报告里 "restored points" 那一节. 同一类东西反复被补回来, 说明这门课的中文原文有某种写法在系统性地丢失, 值得回头看中文版.
 
 `tmp/` 下会留下草稿, 简报和 glossary. 它们是中间产物, 不进 git.

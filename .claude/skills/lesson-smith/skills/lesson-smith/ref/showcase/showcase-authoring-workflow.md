@@ -98,6 +98,6 @@ showcase 与 upskill 的差别集中在收尾: showcase 多一个 demo 讲故事
 
 ## 14. 交给 finalize 收尾定型
 
-到这一步 examples 内容和学习工具链都齐了, 最后给整门课收尾. 用 /lesson-smith-showcase-finalize 完成: 重写 README-ORIGINAL (整个 Repo 也就是这门 Lesson 的对外门面, 让 description 与 github_about 和最终内容对齐, 遵循 [ref/readme-original-spec.md](../readme-original-spec.md)); 写出根目录的 README (仓库总览加操作入口, 覆盖怎么学与学完怎么展示发布, 遵循 [ref/showcase/showcase-readme-spec.md](showcase-readme-spec.md)) 与 TICKET (整门课的验收清单, 遵循 [ref/showcase/showcase-ticket-spec.md](showcase-ticket-spec.md)). 这几份结构固定, 由 finalize 一次性产出全部语种, 不再走 cn-first 分两步. 随后 finalize 会跑 lesson-smith sync 生成 SYLLABUS 与快照, 再跑 lesson-smith lint 把关. 为方便编辑那次调用的输入, 用模板 [prompts/run-lesson-smith-showcase-finalize.md](../../prompts/run-lesson-smith-showcase-finalize.md).
+到这一步 examples 内容和学习工具链都齐了, 最后给整门课收尾. 用 /lesson-smith-showcase-finalize 完成: 重写 README-ORIGINAL (整个 Repo 也就是这门 Lesson 的对外门面, 让 description 与 github_about 和最终内容对齐, 遵循 [ref/readme-original-spec.md](../readme-original-spec.md)); 写出根目录的 README (仓库总览加操作入口, 覆盖怎么学与学完怎么展示发布, 遵循 [ref/showcase/showcase-readme-spec.md](showcase-readme-spec.md)) 与 TICKET (整门课的验收清单, 遵循 [ref/showcase/showcase-ticket-spec.md](showcase-ticket-spec.md)). 这几份先写 cn 版 (拿定稿的 examples 当素材), 英文版留给统一重写那一步产出, 不在这里单独产. 随后 finalize 会跑 lesson-smith sync 生成 SYLLABUS 与快照, 再跑 lesson-smith lint 把关. 为方便编辑那次调用的输入, 用模板 [prompts/run-lesson-smith-showcase-finalize.md](../../prompts/run-lesson-smith-showcase-finalize.md).
 
 到此整门 showcase 课创作完成. 学生学完后, 可以用 /showcase-demo 排练怎么讲这段经历, 再用 /showcase-publish 把 repo 抹去教学痕迹, 发布成自己 GitHub 上的 portfolio repo.

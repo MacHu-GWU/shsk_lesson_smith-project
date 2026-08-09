@@ -6,7 +6,7 @@
 适用范围: 仅 readup 类型 repo 根目录的 TICKET(-lang).md. 它在通用 [ref/ticket-spec.md](../ticket-spec.md) 的三段式之上, 多加一个 H2 (关键能力); 通用规范其余部分仍以它为准.
 
 写作原则:
-- 这份文档结构固定, 低歧义, 由 lesson-smith-readup-finalize 一次性产出全部语种 (英文版加 supported-languages.json 里每个语种), 不走分两步翻译. 思考口径以中文为准, 英文版自然改写.
+- 走创作铁律, 没有例外: 先写 TICKET-cn.md, 和根 README-cn.md, README-ORIGINAL-cn.md, examples/README-cn.md 在同一步产出; 英文 TICKET.md 之后随整门课那一次统一重写产生 (见 [ref/rewrite-en-spec.md](../rewrite-en-spec.md)), 不在这里单独产. 整门课只有一次中译英, 多一条路径就多一处术语分叉.
 - 沿用 ticket-spec 的三段式 (目标, 要做的事情, 检查清单), 再加第 4 个 H2 (关键能力). 四个 H2 按 markdown-style 从 1 连续编号, 之间用分隔线隔开.
 - 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
 

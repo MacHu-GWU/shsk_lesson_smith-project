@@ -164,10 +164,31 @@ class TestCheckFrontmatterDescription:
                 self._md(tmp_path, '---\ndescription: ""\n---\n')
             )
 
-    def test_too_long(self, tmp_path):
-        text = '---\ndescription: "' + "x" * 401 + '"\n---\n'
-        with pytest.raises(LintError, match="401 characters"):
+    def test_too_long_english(self, tmp_path):
+        text = '---\ndescription: "' + "x" * 801 + '"\n---\n'
+        with pytest.raises(LintError, match="801 characters"):
             check_frontmatter_description(self._md(tmp_path, text))
+
+    def test_at_the_english_limit_is_fine(self, tmp_path):
+        text = '---\ndescription: "' + "x" * 800 + '"\n---\n'
+        check_frontmatter_description(self._md(tmp_path, text))
+
+    def test_too_long_chinese(self, tmp_path):
+        """The Chinese budget is half the English one, since a character in a
+        dense script carries roughly twice the information."""
+        text = '---\ndescription: "' + "x" * 401 + '"\n---\n'
+        md = MarkdownFile.from_path(write(tmp_path / "README-cn.md", text))
+        with pytest.raises(LintError, match="401 characters"):
+            check_frontmatter_description(md)
+
+    def test_english_budget_does_not_apply_to_chinese(self, tmp_path):
+        """A length legal in English must still fail in Chinese, otherwise the
+        wider English budget would silently relax the Chinese one."""
+        text = '---\ndescription: "' + "x" * 500 + '"\n---\n'
+        check_frontmatter_description(self._md(tmp_path, text))
+        md = MarkdownFile.from_path(write(tmp_path / "README-cn.md", text))
+        with pytest.raises(LintError, match="400-character limit"):
+            check_frontmatter_description(md)
 
     def test_forbidden_char(self, tmp_path):
         text = '---\ndescription: "He said hi to `you`"\n---\n'
@@ -227,10 +248,20 @@ class TestCheckFrontmatterGithubAbout:
                 self._md(tmp_path, "---\ngithub_about: Learn X.\n---\n")
             )
 
-    def test_too_long(self, tmp_path):
-        text = '---\ngithub_about: "' + "x" * 201 + '"\n---\n'
-        with pytest.raises(LintError, match="201 characters"):
+    def test_too_long_english(self, tmp_path):
+        """English gets only modest headroom here. The cap is GitHub's About
+        box, not a style budget, so it does not double the way description does."""
+        text = '---\ngithub_about: "' + "x" * 301 + '"\n---\n'
+        with pytest.raises(LintError, match="301 characters"):
             check_frontmatter_github_about(self._md(tmp_path, text))
+
+    def test_too_long_chinese(self, tmp_path):
+        text = '---\ngithub_about: "' + "x" * 201 + '"\n---\n'
+        md = MarkdownFile.from_path(
+            write(tmp_path / "README-ORIGINAL-cn.md", text)
+        )
+        with pytest.raises(LintError, match="200-character limit"):
+            check_frontmatter_github_about(md)
 
     def test_forbidden_char(self, tmp_path):
         text = '---\ngithub_about: "Has a `code` char."\n---\n'

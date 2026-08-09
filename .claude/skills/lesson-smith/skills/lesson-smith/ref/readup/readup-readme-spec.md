@@ -6,9 +6,9 @@
 适用范围: 仅 readup 类型 repo 根目录的 README(-lang).md. 它不遵循 [ref/readme-spec.md](../readme-spec.md) (那是给单个 mini task 的教学 README 用的).
 
 写作原则:
-- 这份文档结构固定, 低歧义, 由 lesson-smith-readup-finalize 一次性产出全部语种 (英文版加 supported-languages.json 里每个语种), 不走 "先写 cn 再重写成 en" 的分两步. 但思考口径仍以中文为准, 英文版自然改写而非逐字直译.
+- 走创作铁律, 没有例外: 先写 README-cn.md, 和 examples/README-cn.md, 根 TICKET-cn.md, README-ORIGINAL-cn.md 在同一步产出; 英文 README.md 之后随整门课那一次统一重写产生 (见 [ref/rewrite-en-spec.md](../rewrite-en-spec.md)), 不在这里单独产. 这份结构固定, 低歧义, 一度是免走两步的; 现在不免了, 因为它链向 README-ORIGINAL 与 examples/README, 而那两份的规范英文标题是重写管线在跨篇简报里统一定的. 另起一条产英文的路径, 标题和术语就会和它们对不上.
 - 多链接, 少复述: pitch 一句话带过并链到 README-ORIGINAL, 内容一句话带过并链到 examples/README, 绝不重复它们已经讲清的东西.
-- 链接的语种跟着本文件走: cn 版链 README-ORIGINAL-cn.md 与 examples/README-cn.md, 英文版链 README-ORIGINAL.md 与 examples/README.md. 下面模板正文写的是 cn 版的链接, 产英文版时把 -cn 后缀去掉, 别照抄.
+- 链接的语种跟着本文件走: cn 版链 README-ORIGINAL-cn.md 与 examples/README-cn.md, 英文版链 README-ORIGINAL.md 与 examples/README.md. 你只负责把 cn 版链对; 英文版的后缀由重写管线自己换 (见 [ref/rewrite-en-spec.md](../rewrite-en-spec.md) 第 5 节). 指向目录的链接两版一样, 不带语种后缀.
 - 篇幅是入口不是教程, 软上限约 50 到 70 行. 超了通常是把 pitch 或内容地图又抄了一遍.
 - 遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
 
