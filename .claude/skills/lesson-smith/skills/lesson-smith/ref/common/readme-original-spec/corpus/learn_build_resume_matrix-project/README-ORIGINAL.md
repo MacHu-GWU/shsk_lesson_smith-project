@@ -1,0 +1,12 @@
+---
+description: "Treat your resume as an engineering project instead of a document. You take a thin-sounding internship or class project and build it up until it holds under an interviewer's follow-up questions, compress it into bullets and a Summary that reward digging, then keep all of it in one bloated master resume you cut each application down from, one version per job. It's the only part of a US job search you fully control, and when it's wrong, the interviews never come."
+github_about: "Build a 1+N resume matrix: one master resume, N versions cut from it, plus agent skills for gap analysis, project design, and writing bullets."
+---
+
+# learn_build_resume_matrix
+
+Most people keep one resume and send it everywhere, or start from a blank page for every application. A resume matrix replaces both habits with a system. You keep one master resume, bloated on purpose and never sent to anyone, holding every project, number, and line of experience you have. Applying means cutting it down to a version aimed at a single job. This has become the practical approach because titles no longer draw clean lines around anything. One candidate is often a credible Software Engineer, Data Analyst, and AI Engineer all at once, and a resume built to cover all three reads as generic in every one of them.
+
+By the end you can run the whole loop yourself. You read a job description and see exactly where you fall short of it. You take an internship or a class project that sounds like nothing and develop it until it holds up when an interviewer keeps asking. You compress that into bullets that reward the digging instead of collapsing under it. You work backward from the bullets to a Summary for each direction you're targeting. Then you cut the version you send. This is the advanced tier, so the bar is not a filled-in template. It's being able to say why every line is on the page and why every line that isn't got dropped.
+
+Ten agent skills handle the hardest parts of that loop: finding the gap, designing a project to close it, planning what to study, running mock interviews. None of them depend on the course. Point them at any background and any job description and they still work. So what's left at the end isn't a resume. It's a process you can run again the next time you switch jobs.
