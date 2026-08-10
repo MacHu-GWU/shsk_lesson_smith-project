@@ -1,46 +1,46 @@
 # Vercel Basics Series Index
 
-This course teaches you how to ship a website on Vercel, change it safely, and track down what went wrong when something breaks. It's deliberately narrow: it covers the platform itself, not how to write the frontend or backend code that runs on it. Reading it end to end and doing the exercises takes about three to four hours.
+This course gets a website of yours onto the internet, teaches you to change it without breaking it, and shows you how to find out what happened when it breaks anyway. It is about the platform and nothing else. Writing the frontend or backend code that runs on Vercel is somebody else's tutorial. Budget three to four hours to read it through and work the exercises.
 
-The seven lessons below are grouped into four blocks. The first lays the groundwork: what problem this platform actually solves, plus what to do when this tutorial eventually goes stale. The second is the main line — three hands-on lessons that take you through shipping, changing, and troubleshooting, one at a time. The third is a self-check that tests whether any of it actually stuck. The fourth wraps up: it helps you place where you stand and pick your next move.
+Seven lessons in four blocks. The first block is background, including what to do on the day this tutorial goes out of date. Then comes the main line, four hands-on lessons that put a site online, change it, and debug it. After that, thirty questions to find out what actually stuck. The last block tells you where you stand and what to reach for next.
 
-Read them in order. Later lessons build directly on what earlier ones produced, so skipping ahead will leave gaps.
+Do them in order. Later lessons use what earlier ones produced, so jumping around costs more time than it saves.
 
-## 1. First, Understand the Problem You're Solving
+## 1. What Problem Is This Actually Solving
 
-There's no hands-on work in this block, but it decides whether everything after it is real understanding or rote memorization.
+You will not touch a keyboard in this block. Skip it anyway and everything after it turns into steps you follow without knowing why you are following them.
 
-- [01-why-vercel](01-why-vercel/README.md): shipping a website used to mean clearing a dozen hurdles, and Vercel spent ten years eating through them one layer at a time. By the end you'll know exactly where this course draws its boundaries, and you'll have a ready-made prompt for the day the screenshots stop matching what you see.
-
----
-
-## 2. The Main Line: Ship, Change, Troubleshoot
-
-Do these three lessons back to back — each one's output is the next one's starting point. By the end you'll have an actual website live on the internet.
-
-- [02-sign-up-vercel](02-sign-up-vercel/README.md): create an account. Along the way, work out two things — where the free tier's limits actually sit, and why account independence matters — both are the kind of mistake you don't notice until much later.
-- [03-deploy-your-first-app](03-deploy-your-first-app/README.md): push a website live from a ready-made template and get a public URL. The real point is understanding the one-way pipeline that carries code from GitHub to Vercel — the next two lessons both build on it.
-- [04-deployment-environment-and-git-branch](04-deployment-environment-and-git-branch/README.md): the densest lesson in the whole course. You branch, change code, verify it in Preview, confirm Production hasn't budged, then merge and release. This is the exact workflow professional teams run every single day.
-- [05-view-logs](05-view-logs/README.md): where to go looking for clues when something breaks. One question — can the site even load? — tells the two kinds of logs apart, and from there you turn raw logs into a question an AI can actually act on.
+- [01-why-vercel](01-why-vercel/README.md): Getting a website online used to take a dozen separate steps, and most of them had nothing to do with the website. Vercel spent ten years absorbing them one layer at a time. You come out of this lesson knowing where the course stops and you are on your own, and holding a prompt to use on the day the screenshots here stop matching your screen.
 
 ---
 
-## 3. Check Whether It Actually Landed
+## 2. The Main Line: Ship It, Change It, Fix It
 
-- [06-prove-i-get-it](06-prove-i-get-it/README.md): thirty scenario questions, all drawn from situations you'll genuinely run into. None of them test where a button lives — they test judgment and good practice. Each one comes with a reference answer and a deeper explanation, and if you can't answer it, the source link sends you back to fill the gap.
+These four run as one sequence. Each lesson leaves behind something the next one needs, so do not shuffle them. At the end there is a real site, live, that anyone with the link can open.
+
+- [02-sign-up-vercel](02-sign-up-vercel/README.md): Signing up takes two minutes. The two decisions buried inside it deserve longer than that: how much the free tier actually gives you before it stops, and whose account this should live under. Neither one costs you anything today, which is exactly why people get them wrong.
+- [03-deploy-your-first-app](03-deploy-your-first-app/README.md): Deploy a working site from a template and get a public URL for it. The URL is the fun part. The pipeline underneath is the part that matters: code moves from GitHub to Vercel, and only in that direction. Lessons 04 and 05 both assume you have that picture in your head.
+- [04-deployment-environment-and-git-branch](04-deployment-environment-and-git-branch/README.md): The heaviest lesson here, and the one worth slowing down for. Open a branch, change something, watch it show up in Preview while Production sits there untouched, then merge and ship it. This is not a teaching exercise. It is what professional teams do every day of the week.
+- [05-view-logs](05-view-logs/README.md): Something broke and you need evidence. One question decides where to look: does the page load at all? The answer tells you which of the two kinds of logs holds your clue. The lesson finishes by turning a wall of log output into a question an AI can actually work with.
 
 ---
 
-## 4. Wrapping Up and Where to Go Next
+## 3. Find Out What Stuck
 
-- [07-where-to-go-next](07-where-to-go-next/README.md): spells out what you're actually leaving with — a way of working that has nothing to do with how big the project is. It draws an honest line around what you still can't do, sorts out which parts of debugging you can hand to AI and which one you can't, then hands you eight directions to grow in, each one with search terms and a prompt ready to copy.
+- [06-prove-i-get-it](06-prove-i-get-it/README.md): Thirty scenarios, all of them things that will genuinely happen to you. None of them ask where a button lives. They ask what you would do. Every one comes with a reference answer and a longer explanation, and when a question stumps you, the link under it points straight back at the lesson you need.
+
+---
+
+## 4. Where This Leaves You
+
+- [07-where-to-go-next](07-where-to-go-next/README.md): Names the thing you are actually taking with you, which is a way of working that does not care whether the project is a weekend toy or a company. It is just as honest about the gaps, including which parts of debugging you can hand to an AI and the one part you cannot. Then eight directions to go from here, each with search terms and a prompt you can paste.
 
 ---
 
 ## 5. In Closing
 
-Finish the whole line and you move from being able to build something nobody else can see, to being able to ship it, change it safely, and stay calm when it breaks. That wall stopped countless people ten years ago. Now you get to walk right past it.
+There is a gap between something that runs on your laptop and something other people can actually use, and ten years ago that gap stopped most people cold. You just crossed it. You can put a site on the internet, change it without holding your breath, and open the logs instead of guessing when it misbehaves.
 
-What outlasts the tutorial is a handful of mental models. Complexity never disappears, it only moves. An immutable instance plus a single pointer gives you version switching that's both safe and reversible. An isolated space that gets merged back into the main line is the general pattern for iterating safely. And in the age of AI, knowing where to find the evidence is worth more than knowing how to analyze it.
+The clicking you will forget within a month. A few of the ideas will stay with you. Complexity does not disappear when a platform hides it, it just relocates to somewhere you are not looking. Releases can be both safe and reversible because the thing you built never changes and only the pointer to it moves. Risky work belongs somewhere isolated until it has proven itself, and then it comes back to the main line, a pattern that is older than Git and much bigger than Vercel. And now that AI can do most of the analysis for you, the scarce skill is knowing which log to open in the first place.
 
-One last thing to remember: the screenshots in this tutorial will eventually stop matching what you see on screen, but the underlying logic won't change. The [official Vercel documentation](https://vercel.com/docs) is the final word — and if you can't find the answer there, screenshot it and ask an AI.
+The screenshots in here will drift out of date and the interface will move around, and none of that touches the logic underneath. When this tutorial and [Vercel's own docs](https://vercel.com/docs) disagree, the docs win. When the docs do not cover it at all, screenshot the problem and ask an AI.
