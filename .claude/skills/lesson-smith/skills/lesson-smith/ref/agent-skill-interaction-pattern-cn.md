@@ -4,7 +4,9 @@
 
 任何需要 "带着用户互动" 的 skill (教学, 出题, 面试, 排查, 引导操作等) 都可以把它当交互底座加载, 再在其上叠加自己特有的模式. 换句话说: 各 skill 专属的模式各写各的, 这份文档只沉淀大家共通的部分.
 
-> 维护提示: 这是给人类维护者读的中文版. 权威版是同目录的英文 [agent-skill-interaction-pattern.md](agent-skill-interaction-pattern.md), forge 会把它拷进生成的每个 skill 的 ref/ 下. 两版内容一致, 改了一版记得同步另一版.
+> 维护提示: 这是给人类维护者读的中文版, 权威版是 lesson-smith `ref/` 下同目录的英文 `agent-skill-interaction-pattern.md`. 两版内容一致, 改了一版记得同步另一版.
+>
+> 这里**故意不写成 markdown 链接**: forge 会把本文件整份拷进它生成的每个子 skill 的 `ref/` 下, 而那边只有这一份中文版, 英文那份不在旁边. 写成链接的话, 每个生成出来的 skill 里都会多一条死链.
 
 ---
 

@@ -1,26 +1,26 @@
-# GitHub Collaboration Basics Runbook
+# GitHub 基础协作 跑起来
 
-> How to run this course: how to set up before you start, and which environment / command / operational steps come up as you go. When something will not run, look here first.
+> 这门课怎么跑起来: 开始之前要做什么 setup, 推进过程中会遇到哪些环境, 命令与操作步骤. 跑不起来先看这里.
 
-## 1. Environment Setup
+## 1. 环境准备
 
-A one-time setup before the examples begin. This course installs nothing and touches no command line — everything happens on github.com in the browser.
+开始 examples 之前的一次性 setup. 这门课不装任何东西, 也不碰命令行, 一切都在浏览器里的 github.com 上完成.
 
-- Prerequisites: a GitHub account (free to create at github.com) and a modern web browser. No software to install, no git, no command line. Note that [mise.toml](../../mise.toml) is only a project-root marker for tests, so there are no `mise` tasks to run here.
-- First-time setup:
-1. Create or sign in to a GitHub account at github.com.
-2. That is all — everything else is done in the browser as each mini task walks you through it.
+- 前置要求: 一个 GitHub 账号 (在 github.com 免费注册) 和一个现代浏览器. 不用装软件, 不用装 git, 不用命令行. 注意根目录的 [mise.toml](../../mise.toml) 只是给测试用的项目根标记, 这里没有 `mise` task 要跑.
+- 首次 setup:
+1. 在 github.com 注册或登录一个 GitHub 账号.
+2. 就这些, 剩下的每个 Task 会带着你在浏览器里做.
 
-## 2. Operations Along the Way
+## 2. 推进中的操作
 
-Overall rhythm: every mini task is read-the-README-and-do-it directly on github.com in the browser. There is no `cd`, no environment variable, no local command, and no service to start; the only spots below step slightly off the beaten path.
+整体节奏: 每个 Task 都是读 README 然后直接在浏览器的 github.com 上照着做. 没有 `cd`, 没有环境变量, 没有本地命令, 也没有服务要起; 只有下面两处要跳出常规.
 
-Steps worth singling out:
+值得单独说的几步:
 
-- Before examples/01: you must have a GitHub account you can sign in to — that account is the single prerequisite the whole course assumes. Create it at github.com first, then do everything on your own account.
-- At [examples/04-merge-branch](../../examples/04-merge-branch/README.md): the `Compare & pull request` banner does not always appear on the repo home. If it is missing, open the PR manually via the `Pull requests` tab then `New pull request`, and confirm the direction reads `base: main <- compare: your-branch`.
+- 开始 examples/02 之前: 你得有一个能登录的 GitHub 账号, 这是整门课唯一的前置条件. 先去 github.com 注册, 之后所有操作都在你自己的账号上做.
+- 到 [examples/05-merge-branch](../../examples/05-merge-branch/README-cn.md) 时: repo 主页上那个 `Compare & pull request` 横幅不是每次都出现. 没有的话, 从 `Pull requests` 标签页点 `New pull request` 手动开, 并确认方向读起来是 `base: main <- compare: your-branch`.
 
-## 3. Common Snags
+## 3. 常见卡点
 
-- Typing in the web editor saves nothing until you click `Commit changes`; a change only lands in the repo after the commit. See the [Commit changes note in 02-edit-files](../../examples/02-edit-files/README.md).
-- A merge conflict is not an error: it just means two branches changed the same spot in the same file and GitHub wants a human to choose. See the [merge conflict aside in 04-merge-branch](../../examples/04-merge-branch/README.md).
+- 在 web editor 里打字不会自动保存, 要点了 `Commit changes` 才算数; 改动只有在 commit 之后才真正进 repo. 见 [03-edit-files 里讲 Commit changes 的那段](../../examples/03-edit-files/README-cn.md).
+- merge conflict 不是报错: 它只是说两条 branch 改了同一个文件的同一处, GitHub 要人来选. 见 [05-merge-branch 里讲 merge conflict 的旁注](../../examples/05-merge-branch/README-cn.md).

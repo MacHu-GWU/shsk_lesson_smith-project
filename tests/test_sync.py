@@ -42,6 +42,23 @@ class TestSync:
             assert (snapshot / name).exists()
 
     def test_generates_syllabus_from_task_readme(self, writable_good_repo):
+        (writable_good_repo / "docs" / "tasks" / "SYLLABUS-cn.md").unlink()
+        sync(Repo(dir_project_root=writable_good_repo))
+        syllabus = (
+            writable_good_repo / "docs" / "tasks" / "SYLLABUS-cn.md"
+        ).read_text(encoding="utf-8")
+        # The H1 is the literal "Syllabus" in every language.
+        assert syllabus.startswith("# Syllabus\n")
+        assert "## 01-upskill" in syllabus
+        # Description is taken verbatim from the task README.
+        assert "GitHub 基础协作 upskill 课程总览" in syllabus
+
+    def test_english_syllabus_is_the_documented_empty_shell(self, writable_good_repo):
+        # The English variants are deliberate empty placeholders, so there is no
+        # description to lift. sync does not consult the per-language lint
+        # switch, so it still emits an English SYLLABUS: headings present, every
+        # description blank. That is expected output, not a bug, and it self-heals
+        # the day the English READMEs get written. See 07-syllabus-spec section 5.
         (writable_good_repo / "docs" / "tasks" / "SYLLABUS.md").unlink()
         sync(Repo(dir_project_root=writable_good_repo))
         syllabus = (
@@ -49,8 +66,7 @@ class TestSync:
         ).read_text(encoding="utf-8")
         assert syllabus.startswith("# Syllabus\n")
         assert "## 01-upskill" in syllabus
-        # Description is taken verbatim from the task README.
-        assert "Overview of this GitHub basics upskill course" in syllabus
+        assert syllabus.strip().endswith("## 01-upskill")
 
     def test_sync_output_is_lint_clean(self, writable_good_repo):
         # Sync from a mangled state, then the repo must lint clean.
@@ -101,15 +117,15 @@ class TestSyncReadup:
             assert (snapshot / name).exists()
 
     def test_generates_syllabus_from_task_readme(self, writable_good_readup_repo):
-        (writable_good_readup_repo / "docs" / "tasks" / "SYLLABUS.md").unlink()
+        (writable_good_readup_repo / "docs" / "tasks" / "SYLLABUS-cn.md").unlink()
         sync(Repo(dir_project_root=writable_good_readup_repo))
         syllabus = (
-            writable_good_readup_repo / "docs" / "tasks" / "SYLLABUS.md"
+            writable_good_readup_repo / "docs" / "tasks" / "SYLLABUS-cn.md"
         ).read_text(encoding="utf-8")
         assert syllabus.startswith("# Syllabus\n")
         assert "## 01-readup" in syllabus
         # Description is taken verbatim from the task README.
-        assert "Overview of this GitHub basics readup course" in syllabus
+        assert "GitHub 基础协作 readup 课程总览" in syllabus
 
     def test_sync_output_is_lint_clean(self, writable_good_readup_repo):
         shutil.rmtree(writable_good_readup_repo / "docs" / "tasks" / "01-readup")

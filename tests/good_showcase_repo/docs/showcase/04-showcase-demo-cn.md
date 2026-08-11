@@ -1,25 +1,25 @@
-# GitHub Collaboration Basics Demo
+# GitHub 基础协作 讲故事
 
-> The `/showcase-demo-cn` skill uses this doc to find the story script and learn how to rehearse it. The full script (the seven beats, the follow-up questions, the audience tailoring) is not here; it lives in the example this points to.
+> showcase-demo-cn skill 靠这份文档找到讲故事底稿, 并知道你想怎么排练. 底稿本身 (七幕, 常见追问, 按听众裁剪) 不在这里, 在它指向的那个 Task 里.
 
-## 1. Story Script Location
+## 1. 底稿位置
 
-The script is the README of the demo mini task: [examples/06-how-i-build-this](../../examples/06-how-i-build-this/README.md). It is the first-person story of how this repo was learned and built.
+底稿就是 demo 那个 Task 的 README: [examples/07-how-i-build-this](../../examples/07-how-i-build-this/README-cn.md). 它用第一人称讲这个 repo 是怎么学出来又做出来的.
 
-## 2. Default Story Arc
+## 2. 默认主线
 
-The story defaults to the seven beat arc (how I used AI to learn a skill fast and put it to work):
+故事走默认的七幕, 讲的是我如何用 AI 快速把一个技能学会并投入实战:
 
-1. Found a skill worth investing a week to learn.
-2. Had AI research the authoritative material for it.
-3. Distilled that into a super expert AI agent skill.
-4. Had the expert design a one week syllabus (became examples/README).
-5. Turned each syllabus point into a readable, hands-on example (became the examples).
-6. Learned the whole course with AI alongside.
-7. Put the skill to work on a real problem.
+1. 发现某个技能值得投一周时间学会.
+2. 让 AI 去把这个技能的权威资料翻出来.
+3. 把这些资料蒸馏成一个专家 agent skill.
+4. 让这个专家设计一份我一周能做完的大纲 (落成索引 Task).
+5. 大纲每一个点都变成一个我能读又能上手练的例子 (落成各个教学 Task).
+6. 在 AI 陪着的情况下把整门课刷完.
+7. 把学会的技能用到一个真实问题上.
 
-Uses the default seven beat arc.
+走默认七幕, 没有偏离.
 
-## 3. Demo Customization
+## 3. 排练自定义
 
-No special requirements, use the `/showcase-demo-cn` skill default.
+没有特殊要求, 按 showcase-demo-cn skill 默认来.

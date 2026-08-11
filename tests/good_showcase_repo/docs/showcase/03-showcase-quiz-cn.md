@@ -1,11 +1,11 @@
-# GitHub Collaboration Basics Quiz
+# GitHub 基础协作 自测
 
-> The `/showcase-quiz-cn` skill uses this doc to find the question bank and learn how to run the quiz. The questions themselves are not here; they live in the example this points to.
+> showcase-quiz-cn skill 靠这份文档找到题库, 并知道该怎么考. 题目本身不在这里, 在它指向的那个 Task 里.
 
-## 1. Question Bank Location
+## 1. 题库位置
 
-The bank is the README of the quiz mini task: [examples/05-prove-i-get-it](../../examples/05-prove-i-get-it/README.md). It holds 20 questions covering the key points of the whole course — repository and commit, creating and editing files with history, branches and the default branch main, Pull Requests, code review, merge, deleting a merged branch, and merge conflicts.
+题库就是 quiz 那个 Task 的 README: [examples/06-prove-i-get-it](../../examples/06-prove-i-get-it/README-cn.md). 里面有 20 道题, 覆盖整门课的要点: repository 与 commit, 建文件改文件与历史, branch 与默认分支 main, Pull Request, code review, merge, 删掉合并完的 branch, 以及 merge conflict.
 
-## 2. Quiz Customization
+## 2. 考法自定义
 
-No special requirements, use the `/showcase-quiz-cn` skill default.
+没有特殊要求, 按 showcase-quiz-cn skill 默认来.

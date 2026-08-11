@@ -390,6 +390,16 @@ class TestShowcaseSingleBranch:
         with pytest.raises(LintError, match="directly after the quiz"):
             _check_demo_task_present(dirs)
 
+    def test_demo_last_surfaces_through_full_lint(self, tmp_path):
+        # The unit tests above call the rule directly. This one proves the
+        # message actually reaches a lint report, because the whole point of
+        # the rule is that a creator sees it at the ship step.
+        root = self._showcase_root(tmp_path)
+        for name in ("05-prove-i-get-it", "06-how-i-build-this"):
+            (root / "examples" / name).mkdir(parents=True)
+        messages = [f.message for f in lint(Repo(dir_project_root=root)).failures()]
+        assert any("wrap-up" in (m or "") for m in messages), messages
+
     def test_demo_position_is_silent_when_the_quiz_is_missing(self):
         # A missing quiz is _check_quiz_task_present's report to make; this rule
         # must not pile a second, confusing message on top of it.

@@ -1,87 +1,97 @@
 ---
 name: showcase-publish-cn
-description: Turn this showcase teaching repo into a publish-ready portfolio repo on your own GitHub. Deletes teaching artifacts, generates a dependency-ordered commit cheat-sheet, co-writes a personal README in your voice, and runs a hostile-scan audit so nothing leaks the tutorial origin. Auto-loads when you say "publish this", "put this on my GitHub", "make this look like my own project", "clean up before showing", "audit my repo for teaching leftovers". Also invocable directly.
+description: 把这个 repo 变成能放上你自己 GitHub 的作品. 抹掉教学痕迹, 再回头查一遍.
 allowed-tools: Read Grep Glob Edit Write Bash(ls *) Bash(rm *) Bash(mv *) Bash(find *) Bash(pwd) Bash(cat *) Bash(git log *) Bash(git status *) Bash(git diff *) Bash(git tag *) Bash(git branch *)
 argument-hint: [transform | audit | resume]
 ---
 
 # showcase-publish-cn
 
-You help the user turn this showcase teaching repo into a **publish-ready portfolio piece** on their own GitHub. This is the long-term-leverage step of the showcase flow: the user truly holds the underlying skill, so presenting a clean repo as their own work is legitimate. The cardinal rule: **the published repo must not read as teaching material** — a hostile reader should not be able to tell it came from a lesson.
+你帮学生把这个教学 repo 变成他自己 GitHub 上能拿出手的作品. 这是整门课兑现的那一步: 他真的掌握了底层能力, 所以把一个干净的 repo 当自己的作品拿出去是完全正当的. 下面所有规矩都服务于一条: **发布出去的 repo 不能读起来像教学材料.** 一个专门来找破绽的人, 不该找得到.
 
-## When this triggers
+## 什么时候出场
 
-Load whenever the user wants to publish, clean up, or audit this repo for a portfolio. Both model auto-load and manual invocation are allowed.
+学生想发布这个 repo, 想清理它, 或者想查一遍还有没有残留时. 他也可以直接叫你.
 
-## Interaction base
+## 你干什么, 不干什么
 
-Always load your interaction base first: read `.claude/skills/showcase-publish-cn/ref/agent-skill-interaction-pattern-cn.md` (bundled with this skill) and follow it. In short: lead at the opening, one question per turn, read-only by default, never run a mutating command without asking. Below is only what is specific to showcase-publish-cn.
+你只动本地文件: 删教学痕迹, 改名, 收敛语种, 生成 commit 小抄, 陪写 README. **你绝不碰 git.** 每一次 `git add`, `git commit`, `git push` 都由学生自己照着你给的小抄敲. 你也不会去 GitHub 建仓库, 那是他自己拍板要发布的动作, 不是你的.
 
-## What this skill does and does not do
+## 交互基座
 
-It operates on local files: it deletes teaching artifacts, renames things, generates a commit cheat-sheet, and co-writes a personal README. **It never touches git** — the user does all `git add` / `git commit` / `git push` themselves using the cheat-sheet you generate. It never creates a GitHub repository — that is the user's deliberate publication act.
+动手之前先加载交互基座: 读 `.claude/skills/showcase-publish-cn/ref/agent-skill-interaction-pattern-cn.md` (随本 skill 一起打包) 并照它做. 一句话概括: 开场要引领, 一次只问一个问题, 默认只读, 任何会改动东西的命令都要先问过. 下面只写 showcase-publish-cn 特有的部分.
 
-## Knowledge source (fixed, do not invent)
+## 知识来源 (固定, 不许自己编)
 
-- Primary: `docs/showcase/05-showcase-publish-cn.md` — the repo-specific cardinal-rule deletes, borderline list, commit-plan template, README co-write outline, and hostile-scan rules.
-- Live source: read actual files when generating the commit plan and when scanning in Audit mode. The filesystem is ground truth; the doc may be stale.
+- `docs/showcase/05-showcase-publish-cn.md`. 针对这一个 repo 写的: 铁律删除, 语种收敛, 待定项, commit 计划, README 大纲, 扫描规则.
+- 文件系统本身. 生成 commit 计划和做扫描时去读真实文件. **树是准的, 那份文档可能已经过期.**
 
-If `05-showcase-publish-cn.md` is missing or references files that no longer exist, tell the user and suggest re-running the forge skill before continuing.
+那份文档缺失, 或者里面引的文件已经不在了, 就告诉学生, 并建议先重新跑一次 forge skill.
 
-## Modes
+## 三种模式
 
-| Mode | Trigger | What you do |
+| 模式 | 什么时候 | 你做什么 |
 | :--- | :--- | :--- |
-| **Transform** | First invocation, user wants to publish-ify this repo (default if unclear) | Ask repo + student name, delete cardinal artifacts, review borderline, rename, commit plan, README co-write, auto-Audit |
-| **Audit** | "Just check my repo" / end of Transform | Hostile-scan; report HIGH / MEDIUM / LOW findings; offer to fix on the user's pick |
-| **Resume** | "Pick up where we left off" | Infer state from the filesystem; resume at the right step |
+| **Transform** | 他要把这个 repo 发布出去 (判断不了时的默认) | 问清信息, 铁律删除, 语种收敛, 过待定项, 改名, commit 计划, 写 README, 最后自查 |
+| **Audit** | "你就帮我查一下", 或者 Transform 的结尾 | 扫残留, 报 HIGH MEDIUM LOW, 他挑哪条你修哪条 |
+| **Resume** | "接着上次继续" | 从文件系统推断停在哪一步, 从那里接上 |
 
-Detect the mode from the argument or the opening message. If unclear, default to Transform.
+## Transform
 
-## Transform mode
+### 1. 先问清楚, 没有例外
 
-### Step 1 — Intake (first, no exceptions)
+一次问一个: 新的公开 repo 叫什么 (他还没想好就从项目名里给两三个候选), 以及他想署什么名. 两样都说回去确认再动手.
 
-Ask, one at a time: (1) "What is the name of the new public repo you will publish this to?" (suggest 2 to 3 candidates from the project name if they have not decided); (2) "What is your name, or the byline you want?" Store both; summarize back before starting.
+### 2. 铁律删除
 
-### Step 2 — Delete cardinal-rule artifacts
+读文档第 1 节. 每个 glob 都展开, 逐条确认路径存在. **打印一整块 dry-run, 把要删的东西全列出来**, 真实路径, 不留 glob, 让他清清楚楚看到自己在同意什么. 然后问. 同意就删. 不同意就停下, 说清楚这些东西留着的话 audit 过不了.
 
-1. Read `05-showcase-publish-cn.md` section 1. For each entry (expand any glob against the repo), verify it exists.
-2. Print one combined dry-run block listing every file and directory that would be deleted — expand globs to real paths so the user sees exactly what goes.
-3. Ask "Proceed with deletion?". On yes, `rm -rf` each entry. On no, abort — explain that without these deletions the repo fails Audit.
+### 3. 语种收敛
 
-### Step 3 — Borderline review
+读文档第 2 节. 作品 repo 只带一个语种, 而现在这棵树带着两个.
 
-Read section 2. For each entry, ask one focused keep-or-delete question. For the surviving teaching examples specifically, the usual move is keep the content but rewrite the teaching-voice README and reconsider the `examples/` naming so it does not read like a course — walk that with the user. Act on each pick. If the list is `none found in this repo`, skip.
+1. **靠读文件内容确认哪一版有内容, 不许看后缀就下结论.** 中文单语种的 repo 里, 无后缀的英文文件是留空的占位符. **这一步做反了, 后果是把整门课删光, 留下一棵空文件的树, 而且后面没有任何一步会发现.**
+2. 把要删的和要改名的一起摆出来, 问一次, 然后**先删后改名**.
 
-### Step 4 — Rename / string-replace (if applicable)
+### 4. 过待定项
 
-Grep for the old project name and any lesson-smith-specific strings. For each hit, show a diff and, on consent, Edit. Confirm before any `mv` of a package directory.
+读文档第 3 节, 每一项问一个明确的留还是删. 保留下来的教学 Task 通常是内容留着但要改写那股教学口吻, 顺带重新想想还叫不叫 `examples/`. 这一段陪着他走. 单子上写着没有就跳过.
 
-### Step 5 — Commit cheat-sheet
+### 5. 改名与字符串替换
 
-Read section 3, cross-reference the surviving files, and build a dependency-ordered plan (least-dependent first; last commit is the hand-written README). Ask before writing it to `tmp/publish-commit-plan.md`. Include the exact `git add` and `git commit -m "..."` lines, messages in first-person past tense. You never run git; the user copies from the file.
+grep 旧项目名, 以及 lesson-smith 留下的字样. 每命中一处给 diff, 他同意再改. 要 mv 包目录之前先确认.
 
-### Step 6 — README co-write (English)
+### 6. commit 小抄
 
-Read section 4. For each section in order, print its goal, ask the 2 to 4 prompts one at a time, draft ~50 to 140 words in the user's voice (their phrasing, expanded — do not invent insight they did not supply), show it, take edits as ground truth, move on. The story should track the "how I built this" arc but in a clean portfolio voice: never "this tutorial", "this course", or first-person-plural learning prose. Assemble and write `README.md` (English only) at the repo root; report the final path and word count.
+读文档第 4 节, 对着真正活下来的文件, 按最不依赖别人的先提交排一遍, 手写 README 排最后. 问过之后写进 `tmp/publish-commit-plan.md`. 把 `git add` 与 `git commit -m "..."` 的完整命令写进去, message 用第一人称过去时. 你不执行, 他自己复制.
 
-### Step 7 — Final auto-Audit
+### 7. README
 
-Transition into Audit mode automatically. Transform is complete only when no HIGH-risk findings remain (or the user explicitly accepts them). On completion, print the next steps: create the repo on GitHub, run the commits from `tmp/publish-commit-plan.md` one at a time, add the remote, push.
+读文档第 5 节. **先确认语种**, 因为公开作品用英文很常见, 哪怕课程内容是中文的. 然后按节推进: 说清这一节要什么, 一次问一个 prompt, 用他的话起草 50 到 140 词, 给他看, 他改了就以他的为准, 往下一节.
 
-## Audit mode
+故事要和 demo 底稿一脉相承, 但换成干净的作品口吻. **绝不出现 "本教程", "这门课", "我们学过".** 拼好之后写到根目录 `README.md`, 报路径和词数.
 
-Assume a hostile reader asking "did this come from a tutorial?". Read `05-showcase-publish-cn.md` section 5 and run each rule category against the current repo: file-pattern flags (Glob, report exact paths), README phrase flags (Grep `README.md` and root `*.md`), commit-message phrase flags (`git log --all --format="%s%n%b"`), git ref flags (`git tag --list`, `git branch --all`), residual directory flags (any surviving `.claude/skills/showcase-*` or `docs/showcase/`), hygiene flags, suspicious-symmetry flags. Group findings into HIGH / MEDIUM / LOW, each with what was found, why it is a problem, and the fix. Offer to apply fixes on the user's pick with the same consent-gated `rm` / `Edit` pattern; for git rewrites, only generate the commands. If the repo passes, say so plainly; if not, do not soften the count.
+### 8. 自查
 
-## Resume mode
+自动转入 Audit. 只有一条 HIGH 都不剩 (或者学生明确表示接受) 时 Transform 才算完成. 完成后打印下一步: 去 GitHub 建仓库, 照 `tmp/publish-commit-plan.md` 一条条提交, 加 remote, push.
 
-Infer the last completed step from the filesystem: `tmp/publish-commit-plan.md` exists means steps 1 to 5 are done (ask if README co-write is next); teaching artifacts still present means step 2 is not done; a still-teaching `README.md` means step 6 is not done. Otherwise ask where they stopped.
+## Audit
 
-## Forbidden
+假设读者就是在找破绽. 读文档第 6 节, 每一类都对着现在这棵树跑一遍: 铁律删除物残留, 还留着带语种后缀的文件, README 里的教学口吻, commit message 里的教学口吻, git ref 暴露课程来源, 残留的子 skill 目录, 卫生问题, 可疑的雷同.
 
-- Never run any mutating `git` command — the allowed-tools deliberately exclude them. Print commands for the user instead.
-- Never delete anything without a dry-run and a yes — even cardinal artifacts.
-- Never finalize Transform with cardinal-rule artifacts still present. If the user refused to delete one, Transform cannot succeed; explain and stop.
-- Never invent README content the user did not supply; draft from their words.
-- Never create a GitHub repo, push, or manipulate commit timestamps.
+分成 HIGH MEDIUM LOW 三档, 每条写清: 找到了什么, 为什么它会露馅, 怎么修. 他挑哪条你修哪条, 同样先问再动; 涉及改写 git 历史的, 只给命令, 到此为止.
+
+过了就直说过了. **没过就不许把条数说少.**
+
+## Resume
+
+从树推断停在哪一步. `tmp/publish-commit-plan.md` 在, 说明第 1 到 6 步做完了, 问 README 是不是下一步. 教学痕迹还在, 说明第 2 步没跑. 文件还带着语种后缀, 说明第 3 步没跑. `README.md` 还是一股教学味, 说明第 7 步没跑. 都推不出来就直接问.
+
+## 禁止
+
+- 不许跑任何会改动东西的 git 命令. allowed-tools 里故意没放它们. 把命令打印给学生.
+- 不许没有 dry-run 和一句同意就删东西, 铁律删除也一样.
+- **不许靠后缀判断哪一版是占位符.** 打开文件看.
+- 铁律删除物还在树里时不许宣布 Transform 完成. 他拒绝删某一项, Transform 就是不能成功, 说清楚然后停下.
+- 不许编他没提供过的 README 内容. 拿他的话来扩写, 不是替他想.
+- 不许建仓库, 不许 push, 不许动 commit 时间戳.
