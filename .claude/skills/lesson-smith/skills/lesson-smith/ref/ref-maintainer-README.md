@@ -20,11 +20,16 @@
 ```text
 ref/
   ref-maintainer-README.md      本文件, 给人看, 不给 skill 读
-  00-common/                    通用层, 四类共享
-    01-repo-layout.md
-    02-task-readme-spec/
-    03-task-ticket-spec/
-    04-readme-original-spec/
+  00-common/                    通用层
+    01-repo-layout.md               标准
+    02-readme-original-spec/        文档 spec, 人写
+    03-task-readme-spec/
+    04-task-ticket-spec/
+    05-overview-readme-spec/
+    06-overview-ticket-spec/
+    07-syllabus-spec.md             文档 spec, 脚本生成
+    08 预留                          流程步骤
+    09-ship-spec.md
   01-readup/                    特化层
   02-upskill/
   03-showcase/
@@ -32,6 +37,8 @@ ref/
 ```
 
 - **目录与文件的序号就是维护顺序, 也是阅读顺序.** `00-common` 排在最前不是因为它最重要, 而是因为后面三个都建立在它之上.
+- `00-common` 里的号还分三段: **01 是标准, 02 到 07 是文档 spec, 08 往后是流程步骤.** 数字连着排是为了有个确定的阅读顺序, 不代表它们是同一种东西.
+- **`00-common` 的判据是 "被多个 repo type 共享", 不是 "四类都有".** 比如 `05` 与 `06` 那个索引 Task 只有 examples 系的三类有, evolve 没有, 但三类共享就够格放这儿. 各文件自己的适用范围写在各自开头.
 - `evolve` 还没排号, 因为这一类的规范还没正式立起来.
 
 ---
@@ -94,7 +101,9 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 
 - **`03-task-readme-spec/` 的风格层最薄.** 它是从旧 `readme-spec.md` 忠实迁过来的, 而那一份关于 "怎么写才算写好" 只有零星几句, 骨架也已经和实际写法漂开了. 三份里就数它最需要回去读真实的教学 README 再补一层.
 - `ref/01-readup/` 下还留着三个 `corpus/` 目录 (`readme-spec/`, `ticket-spec/`, `examples-readme-spec/`), 语料废弃之后它们该一起删, 但那是特化层的事, 等收敛到那里再动.
-- `ref/` 根目录还剩一批 flat 文件: `syllabus-spec.md` 待迁进 `00-common`; `review-spec.md` 与 `ship-spec.md` 待定位; `rewrite-en-spec.md` 属于翻译, 待 archive.
+- **`08` 是留给统稿那一步的**, 原 `ref/review-spec.md`. 名字还没定 (review 这个词不对, 它实际干的是纠错加改稿建议), 定了再搬进来重写. 它只适用 examples 系的三类.
+- **砍掉 `examples/README` 的连带改动还没做完.** 规范这边已经改了 (`05` 与 `06` 就位), 但还欠: `linter_for_*.py` 的 `rule_examples` 目前**强制要求 `examples/README` 存在**, 得改成不要求; 三个特化层的 `<type>-examples-readme-spec.md` 待删; 三个 authoring workflow 里写 examples/README 的地方待改.
+- `ref/rewrite-en-spec.md` 属于翻译, 待 archive.
 - `01-readup` 等目录里, flat 文件与新式 spec 目录并存, 待收敛.
 - 大量入链仍指向旧路径 (`ref/repo-layout.md`, `ref/readup/`, `ref/upskill/`, `ref/showcase/`). 等 ref 重写收敛之后统一扫一遍, 现在改是白改.
 
