@@ -4,7 +4,7 @@
 
 它随 lesson-smith-retrofit skill 自包含 (住在这个 skill 自己的 `ref/` 下), 不放进基座 lesson-smith. 因为 retrofit 是过渡性的: 旧 repo 全部改造完之后, 整个 lesson-smith-retrofit 目录直接删掉即可, 基座不留痕迹. 但下面提到的各类 spec 仍以基座 lesson-smith 的 `ref/` 为准, 本文档不复制它们.
 
-retrofit 与从零创作的关系: **retrofit 就是 author, 不是别的东西**. 区别在于从零创作时 author 那一段是创作者一篇篇构思写出来的, 而这里 90% 的内容早就写在旧 repo 里了, 所以 AI 的主要活儿变成 "知道去哪找到旧材料, 再把它映射进新布局", 剩下的判断交给创作者拍板. 也因此 retrofit 只覆盖 author 这一段, 精修做完就结束: forge 与 finalize 决策密度高, 必须创作者亲自跑.
+retrofit 与从零创作的关系: **retrofit 就是 author, 不是别的东西**. 区别在于从零创作时那一段是创作者一篇篇构思写出来的, 而这里 90% 的内容早就写在旧 repo 里了, 所以 AI 的主要活儿变成 "知道去哪找到旧材料, 再把它映射进新布局", 剩下的判断交给创作者拍板. 也因此 retrofit 只覆盖内容那一段, 精修做完就结束: 统稿往后决策密度高, 必须创作者亲自跑.
 
 三种类型 (readup, upskill, showcase) 共用这一份剧本. 差异只有两处, 分别收在第 5 步和第 6 步的表里.
 
@@ -87,8 +87,8 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 - **语种补齐**: 旧 repo 常常只有单语 (例如只有 `TICKET.md` 没有 `TICKET-cn.md`), 新 repo 要按 `supported-languages.json` 补齐. 照创作铁律, 缺中文就先补中文, 再据此产出英文.
 - **链接跟着语种走**: 迁过来的正文里指向 repo 内其他**文件**的相对路径链接, `-cn.md` 里一律链 `-cn` 版, 英文文件里一律链英文版; 指向**目录**的链接不带语种后缀, 两边一样. 旧 repo 常常只有单语链接, 补语种时要顺手把后缀改对. 后面产英文版时这条由重写管线自己兜底 (见基座的 `ref/rewrite-en-spec.md` 第 5 节), 不用再显式交代. 顺带: 旧 repo 里若有目录名带 `-cn`, 那是命名错误, 迁过来时改掉.
 - **截图跟着课走**: 旧的 `img/05-Mastering-Artifacts/05-Mastering-Artifacts-1.png` 变成新的 `examples/05-mastering-artifacts/img/05-mastering-artifacts-1.png`, 文件名一并转小写; 正文里的引用改成 `./img/...` 的相对路径.
-- **正文不是原样照抄**: 迁过来的内容要按基座的 `ref/readme-spec.md` 与 `ref/ticket-spec.md` 重整 (补 frontmatter 的 description, H2 从 1 连续编号并加分隔线, H1 的字符限制等), 还要按创作者在 4.1 里给的 "更新" 口径改内容.
-- **旧的索引类文件不搬**: 旧 repo 的 `docs/tutorials/Syllabus.md`, `about.md`, `about-cn.md`, 以及旧的 `README-ORIGINAL` 都不迁. 它们的角色在新规范里分别由 sync 生成的 SYLLABUS 和 finalize 重写的 README-ORIGINAL 接管, 现在搬过去也只会被覆盖.
+- **正文不是原样照抄**: 迁过来的内容要按基座的 `ref/00-common/03-task-readme-spec/` 与 `ref/00-common/04-task-ticket-spec/` 重整 (补 frontmatter 的 description, H2 从 1 连续编号并加分隔线, H1 的字符限制等), 还要按创作者在 4.1 里给的 "更新" 口径改内容.
+- **旧的索引类文件不搬**: 旧 repo 的 `docs/tutorials/Syllabus.md`, `about.md`, `about-cn.md`, 以及旧的 `README-ORIGINAL` 都不迁. 它们的角色在新规范里分别由 sync 生成的 SYLLABUS 和后面那一步重写的 README-ORIGINAL 接管, 现在搬过去也只会被覆盖.
 
 ### 4.3 迁完交给创作者逐篇读
 
@@ -110,7 +110,7 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 
 各环节照本类型的 spec 写, 全部到基座 lesson-smith 的 `ref/` 下读:
 
-- 开头篇与结尾篇是普通教学 mini task, 走 `ref/readme-spec.md` 与 `ref/ticket-spec.md`.
+- 开头篇与结尾篇是普通教学 mini task, 走 `ref/00-common/03-task-readme-spec/` 与 `ref/00-common/04-task-ticket-spec/`.
 - quiz 题库走 upskill 的 `ref/02-upskill/upskill-quiz-readme-spec/` 或 showcase 的 `ref/03-showcase/showcase-quiz-readme-spec/`, 它的 TICKET 走同目录下对应的 quiz-ticket-spec.
 - demo 底稿走 `ref/03-showcase/showcase-demo-readme-spec/`, 它的 TICKET 走 `ref/03-showcase/showcase-demo-ticket-spec/`.
 - `examples/README` 系列索引走本类型的 examples-readme-spec, 迁徙改完编号顺序之后要重写它.
@@ -119,16 +119,18 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 
 ---
 
-## 6. 收尾: 交棒给 forge 与 finalize
+## 6. 收尾: 交回创作流的后半段
 
-精修做完, retrofit 的活儿就结束了. **不要接着跑 forge 或 finalize**: 那两步决策密度高, 必须创作者亲自跑, 自动化只会产出对不上的东西.
+精修做完, retrofit 的活儿就结束了. **后面那几步一律不要替创作者跑**: 统稿, 锻造, 写根目录文档决策密度高, 必须他亲自过, 自动化只会产出对不上的东西.
 
-收尾时告诉创作者接下来跑什么:
+收尾时告诉创作者接下来敲哪条 step 命令:
 
 | type | 接下来 |
 | :--- | :--- |
-| readup | 没有 forge. 从 `/lesson-smith-readup-author-step-08-review` 往下走 |
-| upskill | 先 `/lesson-smith-upskill-forge`, 再 `/lesson-smith-upskill-finalize` |
-| showcase | 先 `/lesson-smith-showcase-forge`, 再 `/lesson-smith-showcase-finalize` |
+| readup | `/lesson-smith-readup-author-step-07-to-08-bookends-and-converge` |
+| upskill | `/lesson-smith-upskill-author-step-09-to-10-bookends-and-converge` |
+| showcase | `/lesson-smith-showcase-author-step-10-to-11-bookends-and-converge` |
 
-顺带提醒两件事: SYLLABUS 与 `docs/tasks/` 快照由 finalize 触发的 sync 生成, 现在不要手写; 根目录的 README, TICKET 与 README-ORIGINAL 也归 finalize, retrofit 全程不碰.
+往后各自还有锻造 (upskill 与 showcase 才有), 写根目录文档, 出厂三步, 由那条线自己的 author skill 带.
+
+顺带提醒两件事: SYLLABUS 与 `docs/tasks/` 快照由出厂那一步的 sync 生成, 现在不要手写; 根目录的 README, TICKET 与 README-ORIGINAL 归写根目录文档那一步, retrofit 全程不碰.

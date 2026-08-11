@@ -2,7 +2,7 @@
 
 > 用法: 把下面每个 "无" 换成你的内容 (还没想清楚的就留 "无"), 然后把整份连同 /lesson-smith-retrofit 一起发出去. retrofit 会据此探索旧 repo, 把已有课程内容迁进新 repo, 再精修补齐 quiz, demo, 开头结尾等环节. 你留 "无" 的地方它会在对应步骤问你.
 
-> 前置: 在**新 repo** 的根目录下跑. 新 repo 已经 clone 好, 脚手架与 lm.json 就绪 (目标类型 retrofit 自己从 lm.json 读, 不用你说). 旧 repo 也已经 clone 到本地. retrofit 只做到 author 结束, forge 与 finalize 由你自己跑.
+> 前置: 在**新 repo** 的根目录下跑. 新 repo 已经 clone 好, 脚手架与 lm.json 就绪 (目标类型 retrofit 自己从 lm.json 读, 不用你说). 旧 repo 也已经 clone 到本地. retrofit 只做到内容精修完为止, 统稿往后由你自己跑.
 
 请按 /lesson-smith-retrofit 中的规范, 把下面这个旧 repo 的内容改造进当前这个新 repo.
 
