@@ -2,7 +2,6 @@
 name: lesson-smith-showcase-author-step-03-to-05-plan-and-trial
 description: "第 3 到 5 步: 和 AI 讨论出课程规划, 写 02 综述与前两篇主线试水, 再回头精修并更新规划"
 argument-hint: "[自由说明...]"
-disable-model-invocation: true
 ---
 
 # showcase 创作流 第 3 到 5 步

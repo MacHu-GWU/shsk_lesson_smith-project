@@ -18,8 +18,8 @@ This is an upskill-style teaching repo: the whole repo is one course, and the co
 
 1. Start with the series index in [examples/README.md](examples/README.md) to get a map of the whole course.
 2. Work through the mini tasks under examples in order (01, 02, ...). For each one, actually do it on your own GitHub account against its TICKET before moving on.
-3. Two helpers are on call as you learn: `/upskill-learn` is your learning coach (reach for it when you want the map, want a spot unpacked, need to decide what is next, or get stuck; it also walks you through account and environment setup); `/upskill-quiz` is an interview-style self-test that checks whether you truly understand (know-what and know-why).
-4. What counts as done: you can answer 70% of the `/upskill-quiz` questions clearly.
+3. Two helpers are on call as you learn: `/upskill-learn-cn` is your learning coach (reach for it when you want the map, want a spot unpacked, need to decide what is next, or get stuck; it also walks you through account and environment setup); `/upskill-quiz-cn` is an interview-style self-test that checks whether you truly understand (know-what and know-why).
+4. What counts as done: you can answer 70% of the `/upskill-quiz-cn` questions clearly.
 
 ---
 

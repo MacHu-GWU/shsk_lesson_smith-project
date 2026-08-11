@@ -15,7 +15,7 @@ description: "走完整门课全部 mini task, 并能独立演示从建 reposito
 1. 先读根目录的 README, 明白这门课怎么学.
 2. 读 examples 的系列索引, 对整门课有张地图.
 3. 按编号顺序刷完 examples 下全部 mini task, 每个都真在自己的 GitHub 账号上操作一遍, 并照它自己的 TICKET 逐项确认.
-4. 全部刷完后, 用 upskill-quiz 自测, 测到 70% 的题都能思路清晰地答出来.
+4. 全部刷完后, 用 upskill-quiz-cn 自测, 测到 70% 的题都能思路清晰地答出来.
 
 **预计用时:** 2 到 3 小时
 
@@ -24,7 +24,7 @@ description: "走完整门课全部 mini task, 并能独立演示从建 reposito
 ## 3. 检查清单
 
 - [ ] **全部 mini task 完成**: examples 下每个 task 的 TICKET 检查清单都已逐项打勾.
-- [ ] **自测达标**: 用 upskill-quiz 测到 70% 的题都能思路清晰地答出来.
+- [ ] **自测达标**: 用 upskill-quiz-cn 测到 70% 的题都能思路清晰地答出来.
 - [ ] **能独立复现**: 不看教程, 能从建 repository 一路做到用 Pull Request 合并.
 - [ ] **能讲清概念**: 能用自己的话解释 repository, commit, branch, Pull Request, merge 各自解决什么问题.
 

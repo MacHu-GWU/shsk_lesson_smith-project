@@ -1,11 +1,11 @@
 ---
-name: showcase-publish
+name: showcase-publish-cn
 description: Turn this showcase teaching repo into a publish-ready portfolio repo on your own GitHub. Deletes teaching artifacts, generates a dependency-ordered commit cheat-sheet, co-writes a personal README in your voice, and runs a hostile-scan audit so nothing leaks the tutorial origin. Auto-loads when you say "publish this", "put this on my GitHub", "make this look like my own project", "clean up before showing", "audit my repo for teaching leftovers". Also invocable directly.
 allowed-tools: Read Grep Glob Edit Write Bash(ls *) Bash(rm *) Bash(mv *) Bash(find *) Bash(pwd) Bash(cat *) Bash(git log *) Bash(git status *) Bash(git diff *) Bash(git tag *) Bash(git branch *)
 argument-hint: [transform | audit | resume]
 ---
 
-# showcase-publish
+# showcase-publish-cn
 
 You help the user turn this showcase teaching repo into a **publish-ready portfolio piece** on their own GitHub. This is the long-term-leverage step of the showcase flow: the user truly holds the underlying skill, so presenting a clean repo as their own work is legitimate. The cardinal rule: **the published repo must not read as teaching material** — a hostile reader should not be able to tell it came from a lesson.
 
@@ -15,7 +15,7 @@ Load whenever the user wants to publish, clean up, or audit this repo for a port
 
 ## Interaction base
 
-Always load your interaction base first: read `.claude/skills/showcase-publish/ref/agent-skill-interaction-pattern.md` (bundled with this skill) and follow it. In short: lead at the opening, one question per turn, read-only by default, never run a mutating command without asking. Below is only what is specific to showcase-publish.
+Always load your interaction base first: read `.claude/skills/showcase-publish-cn/ref/agent-skill-interaction-pattern-cn.md` (bundled with this skill) and follow it. In short: lead at the opening, one question per turn, read-only by default, never run a mutating command without asking. Below is only what is specific to showcase-publish-cn.
 
 ## What this skill does and does not do
 
@@ -23,10 +23,10 @@ It operates on local files: it deletes teaching artifacts, renames things, gener
 
 ## Knowledge source (fixed, do not invent)
 
-- Primary: `docs/showcase/05-showcase-publish.md` — the repo-specific cardinal-rule deletes, borderline list, commit-plan template, README co-write outline, and hostile-scan rules.
+- Primary: `docs/showcase/05-showcase-publish-cn.md` — the repo-specific cardinal-rule deletes, borderline list, commit-plan template, README co-write outline, and hostile-scan rules.
 - Live source: read actual files when generating the commit plan and when scanning in Audit mode. The filesystem is ground truth; the doc may be stale.
 
-If `05-showcase-publish.md` is missing or references files that no longer exist, tell the user and suggest re-running the forge skill before continuing.
+If `05-showcase-publish-cn.md` is missing or references files that no longer exist, tell the user and suggest re-running the forge skill before continuing.
 
 ## Modes
 
@@ -46,7 +46,7 @@ Ask, one at a time: (1) "What is the name of the new public repo you will publis
 
 ### Step 2 — Delete cardinal-rule artifacts
 
-1. Read `05-showcase-publish.md` section 1. For each entry (expand any glob against the repo), verify it exists.
+1. Read `05-showcase-publish-cn.md` section 1. For each entry (expand any glob against the repo), verify it exists.
 2. Print one combined dry-run block listing every file and directory that would be deleted — expand globs to real paths so the user sees exactly what goes.
 3. Ask "Proceed with deletion?". On yes, `rm -rf` each entry. On no, abort — explain that without these deletions the repo fails Audit.
 
@@ -72,7 +72,7 @@ Transition into Audit mode automatically. Transform is complete only when no HIG
 
 ## Audit mode
 
-Assume a hostile reader asking "did this come from a tutorial?". Read `05-showcase-publish.md` section 5 and run each rule category against the current repo: file-pattern flags (Glob, report exact paths), README phrase flags (Grep `README.md` and root `*.md`), commit-message phrase flags (`git log --all --format="%s%n%b"`), git ref flags (`git tag --list`, `git branch --all`), residual directory flags (any surviving `.claude/skills/showcase-*` or `docs/showcase/`), hygiene flags, suspicious-symmetry flags. Group findings into HIGH / MEDIUM / LOW, each with what was found, why it is a problem, and the fix. Offer to apply fixes on the user's pick with the same consent-gated `rm` / `Edit` pattern; for git rewrites, only generate the commands. If the repo passes, say so plainly; if not, do not soften the count.
+Assume a hostile reader asking "did this come from a tutorial?". Read `05-showcase-publish-cn.md` section 5 and run each rule category against the current repo: file-pattern flags (Glob, report exact paths), README phrase flags (Grep `README.md` and root `*.md`), commit-message phrase flags (`git log --all --format="%s%n%b"`), git ref flags (`git tag --list`, `git branch --all`), residual directory flags (any surviving `.claude/skills/showcase-*` or `docs/showcase/`), hygiene flags, suspicious-symmetry flags. Group findings into HIGH / MEDIUM / LOW, each with what was found, why it is a problem, and the fix. Offer to apply fixes on the user's pick with the same consent-gated `rm` / `Edit` pattern; for git rewrites, only generate the commands. If the repo passes, say so plainly; if not, do not soften the count.
 
 ## Resume mode
 

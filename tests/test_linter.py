@@ -115,7 +115,8 @@ class TestBadUpskillRepoReproducesErrors:
         assert self.has("prove-i-get-it")
 
     def test_missing_forge_outputs(self):
-        assert self.has("01-upskill-learn.md")
+        assert self.has("01-upskill-learn-cn.md")
+        assert self.has("upskill-quiz-cn/SKILL.md")
 
     def test_missing_github_about(self):
         assert self.has("github_about")
@@ -203,7 +204,8 @@ class TestBadShowcaseRepoReproducesErrors:
         assert self.has("how-i-build-this")
 
     def test_missing_forge_outputs(self):
-        assert self.has("01-showcase-learn.md")
+        assert self.has("01-showcase-learn-cn.md")
+        assert self.has("showcase-publish-cn/SKILL.md")
 
     def test_missing_github_about(self):
         assert self.has("github_about")
@@ -579,6 +581,36 @@ class TestPerLanguageLintSwitch:
             if not r.passed
         )
         assert "description" in blob
+
+    def test_forge_outputs_follow_the_language_switch(self, monkeypatch):
+        # The regression this pins: rule_forge_outputs used to hard-code the
+        # unsuffixed English names, outside the per-language switch. Forge emits
+        # the -cn set only, so every spec-conformant upskill repo failed all
+        # five forge checks at ship time.
+        from shsk_lesson_smith.linter_for_upskill import rule_forge_outputs
+
+        repo = Repo(dir_project_root=dir_good_upskill_repo)
+        results = rule_forge_outputs(repo)
+        assert [r for r in results if not r.passed] == []
+        # English is off, so only the -cn variants were even looked at.
+        assert all("-cn" in r.location for r in results)
+
+        # Flip English on and the same repo must now be told what it is missing.
+        monkeypatch.setattr(
+            constants, "LINT_ENABLED_BY_LANG", {None: True, LangEnum.cn: True}
+        )
+        blob = " | ".join(r.location for r in rule_forge_outputs(repo) if not r.passed)
+        assert "01-upskill-learn.md" in blob
+        assert "upskill-learn/SKILL.md" in blob
+
+    def test_showcase_forge_outputs_are_the_cn_set(self):
+        from shsk_lesson_smith.linter_for_showcase import rule_forge_outputs
+
+        results = rule_forge_outputs(Repo(dir_project_root=dir_good_showcase_repo))
+        assert [r for r in results if not r.passed] == []
+        # Five docs plus four child skills, one variant each while English is off.
+        assert len(results) == 9
+        assert all("-cn" in r.location for r in results)
 
 
 class TestRender:

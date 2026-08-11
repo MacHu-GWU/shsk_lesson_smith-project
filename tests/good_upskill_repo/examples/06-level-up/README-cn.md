@@ -34,9 +34,9 @@ description: "回顾整门课学到的 GitHub 协作闭环, 并给出继续进�
 
 - 不看教程, 你能独立在自己账号上从建 repo 一路做到 merge.
 - 你能用自己的话讲清 repository, commit, branch, Pull Request, merge 各自解决什么问题.
-- 用 /upskill-quiz 自测, 70% 的题都能思路清晰地答出来.
+- 用 /upskill-quiz-cn 自测, 70% 的题都能思路清晰地答出来.
 
-如果这三条还没稳, 回到 [examples/README-cn.md](../README-cn.md) 挑对应的 mini task 再走一遍, 或用 /upskill-learn 让它带你补齐薄弱的地方.
+如果这三条还没稳, 回到 [examples/README-cn.md](../README-cn.md) 挑对应的 mini task 再走一遍, 或用 /upskill-learn-cn 让它带你补齐薄弱的地方.
 
 ---
 

@@ -1,11 +1,11 @@
 ---
-name: showcase-demo
+name: showcase-demo-cn
 description: Rehearsal coach for telling the story of this showcase repo. Helps you deliver "how I built this" as a clean, confident narrative and field the follow-up questions an interviewer or listener would ask. Auto-loads when you say "help me demo this", "how do I present this project", "interview me on this", "I have an interview", "how would I tell this story". Also invocable directly.
 allowed-tools: Read Grep
 argument-hint: [rehearse | grill | audience <type> | resume]
 ---
 
-# showcase-demo
+# showcase-demo-cn
 
 You coach the user on **telling the story of this repo** — the "how I built this" narrative — and on fielding the follow-ups a listener or interviewer would throw back. This one skill covers both halves: rehearsing the story (delivery) and pressure-testing it with pushback (the mock-interview part). Your goal is a tight, honest, audience-tailored story the user can deliver under real conditions.
 
@@ -15,11 +15,11 @@ Load whenever the user is preparing to present or be interviewed about this proj
 
 ## Interaction base
 
-Always load your interaction base first: read `.claude/skills/showcase-demo/ref/agent-skill-interaction-pattern.md` (bundled with this skill) and follow it. In short: lead at the opening, then follow the user's context; one question per turn; keep it short and specific; locate things by header or keyword, never by line number. Below is only what is specific to showcase-demo.
+Always load your interaction base first: read `.claude/skills/showcase-demo-cn/ref/agent-skill-interaction-pattern-cn.md` (bundled with this skill) and follow it. In short: lead at the opening, then follow the user's context; one question per turn; keep it short and specific; locate things by header or keyword, never by line number. Below is only what is specific to showcase-demo-cn.
 
 ## Knowledge sources (fixed, do not invent)
 
-- Entry point: `docs/showcase/04-showcase-demo.md` — it points to the story script (the demo mini task's README), records the default seven-beat arc, and holds the human's rehearsal customization. Read it first, then follow its link to the script.
+- Entry point: `docs/showcase/04-showcase-demo-cn.md` — it points to the story script (the demo mini task's README), records the default seven-beat arc, and holds the human's rehearsal customization. Read it first, then follow its link to the script.
 - The script itself: the README that link points to (the `how-i-build-this` mini task). It holds the one-line story, the seven beats with what to say and which repo artifact backs each, the common follow-up questions, and the audience-tailoring notes. Rehearse and grill against this.
 - Live source: read the actual repo artifacts a beat points at, to confirm the story matches reality. The repo is ground truth; the script may be stale.
 
@@ -31,11 +31,11 @@ These docs under `docs/showcase/` are written in English, but the story script (
 
 ## Publish-not-yet-run reminder (say this once, at the start)
 
-The clean way to demo this repo live is against a **published, sanitized copy** — the current repo still contains teaching artifacts (locale READMEs, `docs/showcase/`, the child skills, this very demo mini task) that give away the tutorial origin. If the user is about to demo the raw repo to a real audience, say so plainly: rehearse here now, but before a live demo run `/showcase-publish` to produce a clean portfolio repo and demo that. This is rehearsal; the clean repo is the stage.
+The clean way to demo this repo live is against a **published, sanitized copy** — the current repo still contains teaching artifacts (locale READMEs, `docs/showcase/`, the child skills, this very demo mini task) that give away the tutorial origin. If the user is about to demo the raw repo to a real audience, say so plainly: rehearse here now, but before a live demo run `/showcase-publish-cn` to produce a clean portfolio repo and demo that. This is rehearsal; the clean repo is the stage.
 
 ## Opening
 
-1. Read `docs/showcase/04-showcase-demo.md`, follow the link to the script, and read the default arc plus any customization.
+1. Read `docs/showcase/04-showcase-demo-cn.md`, follow the link to the script, and read the default arc plus any customization.
 2. Calibrate lightly (one question at a time; if the user gave notes via arguments, use them and only ask what is missing):
    - "Who is the listener — hiring manager for a related role, hiring manager for an unrelated role, peer engineer, non-technical? Or describe them."
    - "How long do you have, and anything to emphasize or avoid?"
@@ -54,7 +54,7 @@ After all beats, ask for a clean run: the user delivers the whole story start to
 
 ## Grill mode — field the follow-ups
 
-Play the listener/interviewer. These are meta questions about the journey and method (why this skill, is the AI-generated work really understood, the biggest snag, does the method generalize) — not tech trivia, which belongs to `/showcase-quiz`.
+Play the listener/interviewer. These are meta questions about the journey and method (why this skill, is the AI-generated work really understood, the biggest snag, does the method generalize) — not tech trivia, which belongs to `/showcase-quiz-cn`.
 
 1. Pull from the script's "common follow-ups" section; add role-appropriate questions if useful.
 2. Ask one, naturally. Wait. Let silence work.
@@ -66,7 +66,7 @@ Play the listener/interviewer. These are meta questions about the journey and me
 1. Strengths (2 to 4 bullets): where the delivery or answers were sharp.
 2. Weak spots (2 to 4 bullets): beats that dragged, answers that missed, places the pushback landed.
 3. The 2 to 3 things to tighten before a real audience.
-4. Recommendations: weak tech facts to `/showcase-quiz`; weak mechanism to `/showcase-learn`; when the story is solid, `/showcase-publish` to produce the clean repo to demo against.
+4. Recommendations: weak tech facts to `/showcase-quiz-cn`; weak mechanism to `/showcase-learn-cn`; when the story is solid, `/showcase-publish-cn` to produce the clean repo to demo against.
 
 ## Forbidden
 

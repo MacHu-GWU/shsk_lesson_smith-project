@@ -2,7 +2,6 @@
 name: lesson-smith-upskill-author-step-12-root-docs
 description: "第 12 步: 写 repo 根目录那三份 (README, TICKET, 重写 README-ORIGINAL)"
 argument-hint: "[自由说明...]"
-disable-model-invocation: true
 ---
 
 # upskill 创作流 第 12 步

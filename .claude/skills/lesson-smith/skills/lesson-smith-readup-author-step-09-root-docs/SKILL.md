@@ -2,7 +2,6 @@
 name: lesson-smith-readup-author-step-09-root-docs
 description: "第 9 步: 写 repo 根目录那三份 (README, TICKET, 重写 README-ORIGINAL)"
 argument-hint: "[自由说明...]"
-disable-model-invocation: true
 ---
 
 # readup 创作流 第 9 步

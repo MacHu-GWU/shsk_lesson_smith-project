@@ -2,7 +2,6 @@
 name: lesson-smith-readup-author-step-07-to-08-bookends-and-converge
 description: "第 7 到 8 步: 补 examples 的两头 (索引 Task 与收尾 Task), 然后通读全系列统稿"
 argument-hint: "[自由说明...]"
-disable-model-invocation: true
 ---
 
 # readup 创作流 第 7 到 8 步
@@ -41,8 +40,9 @@ disable-model-invocation: true
 
 - **索引 Task 位置固定在 01**, 目录名随课程而定 (`01-overview` 只是推荐, 不强制). lint 认不出它, 整个忘了写也不报错.
 - **索引里的链接要写 `../`.** 它住在 `examples/01-title/` 里, 指向兄弟 Task 得写 `../02-title/README-cn.md`. 少写一层就是整片死链, 这是这份文件唯一一个高频错误.
+- **收尾 Task 在索引里单独成一组.** readup 一个特殊 Task 都没有, 但收尾仍然要自己占一个 group, 不许混进教学 Task 那条 bullet 列表里.
 - **索引 TICKET 是轻的**: 检查清单 3 到 4 条封顶, 明确推翻通用规范的 "常见 5 到 9 条".
-- **收尾 Task 放在最后一个位置 它除了梳理学了什么, 还要给拔高方向: 能搜哪些关键字, 以及一句话的话题, 方便学生直接复制去喂给 AI.** 它干两件事: 回望与拔高. 规范见 `ref/00-common/14-wrap-up-readme-spec/`, 那里有一条红线: **拔高只提, 决不能教** (出现代码块, 步骤列表或概念讲解就是越界).
+- **收尾 Task 放在最后一个位置.** 它干两件事: 回望与拔高. 规范见 `ref/00-common/14-wrap-up-readme-spec/`, 那里有一条红线: **拔高只提, 决不能教** (出现代码块, 步骤列表或概念讲解就是越界).
 - **地图只能在路修完之后画.** 如果发现主线还在动, 说明第 6 步没完, 回去写完再来.
 
 ---

@@ -2,7 +2,6 @@
 name: lesson-smith-upskill-author-step-06-mainline
 description: "第 6 步: 风格锁死之后一路把主线教学 Task 写完"
 argument-hint: "[自由说明...]"
-disable-model-invocation: true
 ---
 
 # upskill 创作流 第 6 步

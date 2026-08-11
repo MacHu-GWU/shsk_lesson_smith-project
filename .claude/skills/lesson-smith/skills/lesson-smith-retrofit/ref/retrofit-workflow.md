@@ -8,7 +8,9 @@ retrofit 与从零创作的关系: **retrofit 就是 author, 不是别的东西*
 
 三种类型 (readup, upskill, showcase) 共用这一份剧本. 差异只有两处, 分别收在第 5 步和第 6 步的表里.
 
-前置: 创作者以中文为母语, 遵循创作铁律 (先写 cn, 全部定稿后一次性重写成 en, 见 rewrite-en-spec.md) 和 markdown-style, chinese-english-punctuation 两个 Agent Skill.
+前置: 创作者以中文为母语, 遵循创作铁律 (**全程只写 `-cn`**, 无后缀的英文文件留空占位) 和 markdown-style, chinese-english-punctuation 两个 Agent Skill.
+
+**retrofit 完全不管英文版.** 中译英那一步已经从创作流里整步移除, 以后作为独立的多语种模块单独做. 所以 retrofit 一个英文字都不产: 旧 repo 里如果有英文正文, 不要顺手把它迁成英文版, 那会造出一批没人维护, lint 也不检查的内容; 拿不准就停下来问创作者怎么处置.
 
 ## 1. 认清类型与两个 repo
 
@@ -84,8 +86,8 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 
 - **目录名全部转小写**: 旧的 `05-Mastering-Artifacts` 变成新的 `examples/05-mastering-artifacts`. 新规范里 branch 名与目录名一律小写加连字符.
 - **一课一目录**: 旧的一个 tutorial 或课时目录, 对应新的一个 `examples/NN-title/`, 里面是 `README.md`, `README-cn.md`, `TICKET.md`, `TICKET-cn.md`.
-- **语种补齐**: 旧 repo 常常只有单语 (例如只有 `TICKET.md` 没有 `TICKET-cn.md`), 新 repo 要按 `supported-languages.json` 补齐. 照创作铁律, 缺中文就先补中文, 再据此产出英文.
-- **链接跟着语种走**: 迁过来的正文里指向 repo 内其他**文件**的相对路径链接, `-cn.md` 里一律链 `-cn` 版, 英文文件里一律链英文版; 指向**目录**的链接不带语种后缀, 两边一样. 旧 repo 常常只有单语链接, 补语种时要顺手把后缀改对. 后面产英文版时这条由重写管线自己兜底 (见基座的 `ref/rewrite-en-spec.md` 第 5 节), 不用再显式交代. 顺带: 旧 repo 里若有目录名带 `-cn`, 那是命名错误, 迁过来时改掉.
+- **只补 `-cn`, 英文那一版留空**: 旧 repo 常常只有单语 (例如只有 `TICKET.md` 没有 `TICKET-cn.md`). 新 repo 每份特殊文件两版都要在, 但**内容一律只落在 `-cn` 上**, 无后缀那一版建成空文件占位. 旧 repo 的英文正文不迁.
+- **链接跟着语种走**: 迁过来的正文里指向 repo 内其他**文件**的相对路径链接一律写 `-cn` 版; 指向**目录**的链接不带语种后缀 (各语种的文件都在同一个目录下, 加后缀反而是死链). 旧 repo 常常只有单语链接, 迁的时候要顺手把后缀改对. 顺带: 旧 repo 里若有目录名带 `-cn`, 那是命名错误, 迁过来时改掉.
 - **截图跟着课走**: 旧的 `img/05-Mastering-Artifacts/05-Mastering-Artifacts-1.png` 变成新的 `examples/05-mastering-artifacts/img/05-mastering-artifacts-1.png`, 文件名一并转小写; 正文里的引用改成 `./img/...` 的相对路径.
 - **正文不是原样照抄**: 迁过来的内容要按基座的 `ref/00-common/03-task-readme-spec/` 与 `ref/00-common/04-task-ticket-spec/` 重整 (补 frontmatter 的 description, H2 从 1 连续编号并加分隔线, H1 的字符限制等), 还要按创作者在 4.1 里给的 "更新" 口径改内容.
 - **旧的索引类文件不搬**: 旧 repo 的 `docs/tutorials/Syllabus.md`, `about.md`, `about-cn.md`, 以及旧的 `README-ORIGINAL` 都不迁. 它们的角色在新规范里分别由 sync 生成的 SYLLABUS 和后面那一步重写的 README-ORIGINAL 接管, 现在搬过去也只会被覆盖.

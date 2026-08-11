@@ -6,12 +6,13 @@ Reuses the shared rules from ``linter.py`` and adds the two upskill-only ones:
 the repo-root overview files, and the ``examples/`` tasks. ``RULES`` is the
 composed rule list that :func:`linter.lint` runs for an upskill repo.
 
-Spec source of truth: the upskill-only rules here enforce the specs in
-``.claude/skills/lesson-smith/skills/lesson-smith/ref/upskill/*.md`` (upskill-repo-layout,
-upskill-readme-spec, upskill-ticket-spec, upskill-examples-readme-spec, upskill-examples-quiz-*-spec,
-docs-upskill-*-spec). The shared, type-agnostic checks come from ``linter.py`` and
-its top-level ``ref/*.md`` specs. Those specs are authoritative; keep these rules in
-sync with them.
+Spec source of truth: the upskill-only rules here enforce the specs under
+``.claude/skills/lesson-smith/skills/lesson-smith/ref/02-upskill/``
+(upskill-repo-layout, upskill-readme-spec, upskill-ticket-spec) plus the shared
+ones under ``ref/00-common/`` that upskill takes part in (11-quiz-readme-spec,
+12-quiz-ticket-spec, 13-forge-shared). The shared, type-agnostic checks come
+from ``linter.py`` and the rest of ``ref/00-common/``. Those specs are
+authoritative; keep these rules in sync with them.
 """
 
 import re
@@ -29,19 +30,22 @@ from .linter import (
 )
 from .linter import (  # re-exported: shared helpers now live in linter.py
     _check_examples_numbering,
+    linted_langs,
     rule_root_overview,
 )
 from .linter_utils import check_file_exists
-from .repo import Repo
+from .repo import Repo, get_variant_filename, get_variant_name
 
-# Files the forge step produces for a finished upskill repo (checked for
-# existence only; their content is AI-facing and not linted).
-DOCS_UPSKILL_FILES = (
-    "01-upskill-learn.md",
-    "02-upskill-runbook.md",
-    "03-upskill-quiz.md",
+# What the forge step produces for a finished upskill repo, as language-free
+# bases. Forge emits one variant per language, so the ``-<lang>`` suffix is
+# appended at check time: ``01-upskill-learn-cn.md`` and the child skill dir
+# ``upskill-learn-cn/``. English carries no suffix.
+DOCS_UPSKILL_FILE_BASES = (
+    "01-upskill-learn",
+    "02-upskill-runbook",
+    "03-upskill-quiz",
 )
-FORGE_SKILLS = ("upskill-learn", "upskill-quiz")
+FORGE_SKILL_BASES = ("upskill-learn", "upskill-quiz")
 QUIZ_TASK_SUFFIX = "prove-i-get-it"
 
 
@@ -111,18 +115,26 @@ def rule_examples(repo: Repo) -> "list[CheckResult]":
 def rule_forge_outputs(repo: Repo) -> "list[CheckResult]":
     """The forge step's outputs must exist: the docs/upskill/ docs and the skills.
 
-    Existence only; these files are AI-facing (English meta files and skill
-    definitions), so their content is not linted here. A finished upskill repo
-    has run ``/lesson-smith-upskill-forge``, so these are expected to be present.
+    Existence only; these files are AI-facing (meta docs and skill definitions),
+    so their content is not linted here. A finished upskill repo has run
+    ``/lesson-smith-upskill-forge``, so these are expected to be present.
+
+    Forge produces one variant per language, so this walks
+    :func:`linted_langs` the same way every other rule does: a language that is
+    switched off is skipped whole, and its variants are not required to exist.
+    That matters right now, because forge emits the ``-cn`` set only while the
+    English variants wait for the multi-language module.
     """
     root = repo.dir_project_root
     out: "list[CheckResult]" = []
-    for name in DOCS_UPSKILL_FILES:
-        path = root / "docs" / "upskill" / name
-        out.append(run_check(path, check_file_exists, path))
-    for skill in FORGE_SKILLS:
-        path = root / ".claude" / "skills" / skill / "SKILL.md"
-        out.append(run_check(path, check_file_exists, path))
+    for lang in linted_langs():
+        for base in DOCS_UPSKILL_FILE_BASES:
+            path = root / "docs" / "upskill" / get_variant_filename(base, lang)
+            out.append(run_check(path, check_file_exists, path))
+        for base in FORGE_SKILL_BASES:
+            skill = get_variant_name(base, lang)
+            path = root / ".claude" / "skills" / skill / "SKILL.md"
+            out.append(run_check(path, check_file_exists, path))
     return out
 
 

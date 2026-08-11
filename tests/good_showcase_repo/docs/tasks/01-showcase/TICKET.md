@@ -15,9 +15,9 @@ Work through every mini task in this course and build a complete feel for GitHub
 1. Read the root README first so you know how to learn this course.
 2. Read the examples series index to get a map of the whole course.
 3. Work through every mini task under examples in order, actually doing each one on your own GitHub account and confirming it against that task's own TICKET.
-4. Once all tasks are done, self-test with showcase-quiz until you can answer 70% of the questions clearly.
-5. Rehearse the build story with showcase-demo until you can tell it smoothly and field the common follow-ups.
-6. Optionally, run showcase-publish to strip the teaching traces and publish the repo as a portfolio piece on your own GitHub.
+4. Once all tasks are done, self-test with showcase-quiz-cn until you can answer 70% of the questions clearly.
+5. Rehearse the build story with showcase-demo-cn until you can tell it smoothly and field the common follow-ups.
+6. Optionally, run showcase-publish-cn to strip the teaching traces and publish the repo as a portfolio piece on your own GitHub.
 
 **Estimated time:** 2 to 3 hours
 
@@ -26,10 +26,10 @@ Work through every mini task in this course and build a complete feel for GitHub
 ## 3. Checklist
 
 - [ ] **All mini tasks done**: every task under examples has its TICKET checklist fully ticked off.
-- [ ] **Self-test passed**: showcase-quiz reaches 70% of questions answered clearly.
+- [ ] **Self-test passed**: showcase-quiz-cn reaches 70% of questions answered clearly.
 - [ ] **Can reproduce solo**: without the tutorials, you can go from creating a repository all the way to merging via a Pull Request.
 - [ ] **Can explain the concepts**: you can say in your own words what repository, commit, branch, Pull Request, and merge each solve.
-- [ ] **Can tell the story**: you have rehearsed with showcase-demo and can walk someone through how you learned this and field follow-ups.
+- [ ] **Can tell the story**: you have rehearsed with showcase-demo-cn and can walk someone through how you learned this and field follow-ups.
 
 ---
 

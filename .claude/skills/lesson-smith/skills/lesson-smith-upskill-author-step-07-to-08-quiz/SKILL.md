@@ -2,7 +2,6 @@
 name: lesson-smith-upskill-author-step-07-to-08-quiz
 description: "第 7 到 8 步: 扫全部教学内容规划题库, 再写 quiz 那个固定 Task 的题库 README 与 TICKET"
 argument-hint: "[自由说明...]"
-disable-model-invocation: true
 ---
 
 # upskill 创作流 第 7 到 8 步

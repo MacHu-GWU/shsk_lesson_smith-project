@@ -11,13 +11,14 @@ Reuses the shared rules and the examples-based helpers from ``linter.py`` and
 adds the showcase-only ones. ``RULES`` is the composed rule list that
 :func:`linter.lint` runs for a showcase repo.
 
-Spec source of truth: the showcase-only rules here enforce the specs in
-``.claude/skills/lesson-smith/skills/lesson-smith/ref/showcase/*.md``
+Spec source of truth: the showcase-only rules here enforce the specs under
+``.claude/skills/lesson-smith/skills/lesson-smith/ref/03-showcase/``
 (showcase-repo-layout, showcase-readme-spec, showcase-ticket-spec,
-showcase-examples-readme-spec, showcase-examples-quiz-*-spec,
-showcase-examples-demo-*-spec, docs-showcase-*-spec). The shared, type-agnostic
-checks come from ``linter.py`` and its top-level ``ref/*.md`` specs. Those specs
-are authoritative; keep these rules in sync with them.
+showcase-demo-readme-spec, showcase-demo-ticket-spec, forge/) plus the shared
+ones under ``ref/00-common/`` that showcase takes part in (11-quiz-readme-spec,
+12-quiz-ticket-spec, 13-forge-shared). The shared, type-agnostic checks come
+from ``linter.py`` and the rest of ``ref/00-common/``. Those specs are
+authoritative; keep these rules in sync with them.
 """
 
 import re
@@ -28,6 +29,7 @@ from .linter import (
     _check_examples_numbering,
     lint_file_group,
     lint_task_dir,
+    linted_langs,
     rule_manifest,
     rule_readme_original,
     rule_root_overview,
@@ -36,18 +38,26 @@ from .linter import (
     run_check,
 )
 from .linter_utils import check_file_exists
-from .repo import Repo
+from .repo import Repo, get_variant_filename, get_variant_name
 
-# Files the forge step produces for a finished showcase repo (existence only;
-# their content is AI-facing and not linted). Five docs, four child skills.
-DOCS_SHOWCASE_FILES = (
-    "01-showcase-learn.md",
-    "02-showcase-runbook.md",
-    "03-showcase-quiz.md",
-    "04-showcase-demo.md",
-    "05-showcase-publish.md",
+# What the forge step produces for a finished showcase repo, as language-free
+# bases: five docs and four child skills (upskill has three and two). Forge
+# emits one variant per language, so the ``-<lang>`` suffix is appended at check
+# time: ``01-showcase-learn-cn.md`` and the child skill dir
+# ``showcase-learn-cn/``. English carries no suffix.
+DOCS_SHOWCASE_FILE_BASES = (
+    "01-showcase-learn",
+    "02-showcase-runbook",
+    "03-showcase-quiz",
+    "04-showcase-demo",
+    "05-showcase-publish",
 )
-FORGE_SKILLS = ("showcase-learn", "showcase-quiz", "showcase-demo", "showcase-publish")
+FORGE_SKILL_BASES = (
+    "showcase-learn",
+    "showcase-quiz",
+    "showcase-demo",
+    "showcase-publish",
+)
 QUIZ_TASK_SUFFIX = "prove-i-get-it"
 DEMO_TASK_SUFFIX = "how-i-build-this"
 
@@ -147,18 +157,26 @@ def rule_examples(repo: Repo) -> "list[CheckResult]":
 def rule_forge_outputs(repo: Repo) -> "list[CheckResult]":
     """The forge step's outputs must exist: the docs/showcase/ docs and the skills.
 
-    Existence only; these files are AI-facing (English meta files and skill
-    definitions), so their content is not linted here. A finished showcase repo
-    has run ``/lesson-smith-showcase-forge``, so these are expected to be present.
+    Existence only; these files are AI-facing (meta docs and skill definitions),
+    so their content is not linted here. A finished showcase repo has run
+    ``/lesson-smith-showcase-forge``, so these are expected to be present.
+
+    Forge produces one variant per language, so this walks
+    :func:`linted_langs` the same way every other rule does: a language that is
+    switched off is skipped whole, and its variants are not required to exist.
+    That matters right now, because forge emits the ``-cn`` set only while the
+    English variants wait for the multi-language module.
     """
     root = repo.dir_project_root
     out: "list[CheckResult]" = []
-    for name in DOCS_SHOWCASE_FILES:
-        path = root / "docs" / "showcase" / name
-        out.append(run_check(path, check_file_exists, path))
-    for skill in FORGE_SKILLS:
-        path = root / ".claude" / "skills" / skill / "SKILL.md"
-        out.append(run_check(path, check_file_exists, path))
+    for lang in linted_langs():
+        for base in DOCS_SHOWCASE_FILE_BASES:
+            path = root / "docs" / "showcase" / get_variant_filename(base, lang)
+            out.append(run_check(path, check_file_exists, path))
+        for base in FORGE_SKILL_BASES:
+            skill = get_variant_name(base, lang)
+            path = root / ".claude" / "skills" / skill / "SKILL.md"
+            out.append(run_check(path, check_file_exists, path))
     return out
 
 

@@ -2,7 +2,6 @@
 name: lesson-smith-upskill-author-step-13-ship
 description: "第 13 步: 出厂, 跑 sync 生成 SYLLABUS 与快照, 再跑 lint 把整仓过一遍修到通过"
 argument-hint: "[自由说明...]"
-disable-model-invocation: true
 ---
 
 # upskill 创作流 第 13 步

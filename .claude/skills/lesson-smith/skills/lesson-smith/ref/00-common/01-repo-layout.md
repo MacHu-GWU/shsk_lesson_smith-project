@@ -223,7 +223,7 @@ uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 ```
 
 - `sync`: 快照当前 branch 的 README 与 TICKET 到 `docs/tasks/<branch>/`, 并重建 SYLLABUS.
-- `lint`: 只读校验. 目录结构, 语种完整性, frontmatter 的 description 与 github_about, H1 字符集, SYLLABUS 内容是否与各 README 的 description 一致.
+- `lint`: 只读校验. 目录结构, 语种完整性, frontmatter 的 description 与 github_about, H1 字符集, TICKET 里有没有相对路径链接, SYLLABUS 内容是否与各 README 的 description 一致.
 - **lint 按语种开关.** 只有开着的语种才被检查, 关掉的整个跳过 (既不要求存在, 内容也不检查). 英文当前是关的, 所以留空的英文占位文件不会报错. 开关在 package 的 `constants.py` 里.
 - `<version>` 填创作时的最新发布版本 (当前是 0.3.0; 最新版见 https://pypi.org/pypi/shsk-lesson-smith).
 - **pin 死版本**是为了让校验规范可复现, 不随新版悄悄漂移.

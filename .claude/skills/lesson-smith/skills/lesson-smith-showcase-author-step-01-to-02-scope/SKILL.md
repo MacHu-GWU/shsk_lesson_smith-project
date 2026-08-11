@@ -2,7 +2,6 @@
 name: lesson-smith-showcase-author-step-01-to-02-scope
 description: "第 1 到 2 步: 想清楚这门课教什么, 写 README-ORIGINAL 粗稿, 并把 examples 之外要学的东西先做完"
 argument-hint: "[自由说明...]"
-disable-model-invocation: true
 ---
 
 # showcase 创作流 第 1 到 2 步

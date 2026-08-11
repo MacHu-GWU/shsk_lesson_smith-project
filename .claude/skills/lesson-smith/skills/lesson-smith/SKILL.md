@@ -80,7 +80,7 @@ LESSON-SMITH-LOADED: v1
 - 写 `examples/` 最后那个收尾 Task 时 → [14-wrap-up-readme-spec](ref/00-common/14-wrap-up-readme-spec/wrap-up-readme-cn-spec.md) (它的 TICKET 走通用的 `04`).
 - 关心 SYLLABUS 的格式或内容 (它由 sync 生成, 也被 lint 校验) 时 → [07-syllabus-spec.md](ref/00-common/07-syllabus-spec.md).
 
-每个 spec 目录里都是**一份 spec 加一份 template**: spec 是规范, template 是可以整份复制过去填空的骨架, 里面没有任何注释.
+每个 spec 目录里都是**一份 spec 加一份 template**: spec 是规范, template 是可以整份复制过去填空的骨架, 里面没有任何注释. 唯一的例外是 `14`, 它只有 spec, 骨架直接用 `03` 那一份.
 
 **通用层, 流程步骤 (在 ref/00-common/ 下):**
 

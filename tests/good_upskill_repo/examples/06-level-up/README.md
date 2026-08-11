@@ -34,9 +34,9 @@ Check yourself against these markers of being ready:
 
 - Without the tutorials, you can go from creating a repo all the way to merging, solo, on your own account.
 - You can explain in your own words what repository, commit, branch, Pull Request, and merge each solve.
-- With /upskill-quiz, you can answer 70% of the questions clearly.
+- With /upskill-quiz-cn, you can answer 70% of the questions clearly.
 
-If any of these is still shaky, go back to [examples/README.md](../README.md), pick the relevant mini task, and walk it again, or use /upskill-learn to have it fill your weak spots.
+If any of these is still shaky, go back to [examples/README.md](../README.md), pick the relevant mini task, and walk it again, or use /upskill-learn-cn to have it fill your weak spots.
 
 ---
 

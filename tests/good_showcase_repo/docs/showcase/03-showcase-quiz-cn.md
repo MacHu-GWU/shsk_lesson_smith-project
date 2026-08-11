@@ -1,6 +1,6 @@
 # GitHub Collaboration Basics Quiz
 
-> The showcase-quiz skill uses this doc to find the question bank and learn how to run the quiz. The questions themselves are not here; they live in the example this points to.
+> The showcase-quiz-cn skill uses this doc to find the question bank and learn how to run the quiz. The questions themselves are not here; they live in the example this points to.
 
 ## 1. Question Bank Location
 
@@ -8,4 +8,4 @@ The bank is the README of the quiz mini task: [examples/05-prove-i-get-it](../..
 
 ## 2. Quiz Customization
 
-No special requirements, use the showcase-quiz skill default.
+No special requirements, use the showcase-quiz-cn skill default.

@@ -20,9 +20,9 @@ This file answers, for this repo and no other: what counts as a teaching artifac
 
 ---
 
-## 2. The five sections
+## 2. The six sections
 
-The skill reads these by number, so **keep all five and keep them in order**. A section with nothing in it keeps its heading and says so.
+The skill reads these by number, so **keep all six and keep them in order**. A section with nothing in it keeps its heading and says so.
 
 ### 2.1 Cardinal deletes
 
@@ -96,5 +96,5 @@ Assume a reader who is looking for the seam. Give each category a detection meth
 ## 3. House rules
 
 - **Machine-facing.** Tables, lists, real paths. The skill reads this file; nobody recites it aloud. Skip prose the skill template already covers.
-- **Keep empty sections.** If this repo has no `tmp/` and no borderline items, keep the heading and write "none found in this repo". The skill expects all sections to be present.
+- **Keep empty sections.** If this repo has no `tmp/` and no borderline items, keep the heading and write "none found in this repo". The skill expects all six sections to be present.
 - Expand every glob at generation time. The point of this file is that it is specific to one repo.

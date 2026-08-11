@@ -36,15 +36,28 @@ def to_lang(lang: "LangEnum | str | None") -> "LangEnum | None":
     return LangEnum(lang)
 
 
+def get_variant_name(
+    base: str,
+    lang: "LangEnum | str | None" = None,
+) -> str:
+    """Name of a language variant, without any extension.
+
+    ``README`` / ``README-cn``, ``upskill-learn`` / ``upskill-learn-cn``. Used
+    for things whose language suffix sits on a bare name rather than a file
+    name, such as the forge-generated child skill directories.
+    """
+    lang = to_lang(lang)
+    if lang is None:
+        return base
+    return f"{base}-{lang.value}"
+
+
 def get_variant_filename(
     base: str,
     lang: "LangEnum | str | None" = None,
 ) -> str:
     """File name of a special file variant: ``README.md`` / ``README-cn.md``."""
-    lang = to_lang(lang)
-    if lang is None:
-        return f"{base}.md"
-    return f"{base}-{lang.value}.md"
+    return f"{get_variant_name(base, lang)}.md"
 
 
 def resolve_repo(dir_cwd: "Path | str | None" = None) -> Path:

@@ -142,7 +142,7 @@ ref/03-showcase/forge/showcase-publish-cn.SKILL.md  ->  .claude/skills/showcase-
 ref/agent-skill-interaction-pattern-cn.md           ->  上面四个 skill 各自的 ref/agent-skill-interaction-pattern-cn.md
 ```
 
-模板近乎全静态, 落地时只需核对三件事: frontmatter 的 `name` 等于目录名, 每个 SKILL.md 都固定加载它自己 `ref/` 下那份交互模式, 且对 `docs/showcase/` 的引用路径带 `-cn`.
+模板近乎全静态, 落地时只有四件事要做: 把 learn 与 quiz 那两份里的 `{{TYPE}}` 全部换成 `showcase` (demo 与 publish 那两份写死 `showcase`, 不带占位符), 让 frontmatter 的 `name` 等于目录名, 让每个 SKILL.md 都固定加载它自己 `ref/` 下那份交互模式, 且对 `docs/showcase/` 的引用路径带 `-cn`.
 
 ### Phase 6: Verify 与汇报
 
@@ -161,7 +161,7 @@ ref/agent-skill-interaction-pattern-cn.md           ->  上面四个 skill 各�
 
 forge 产出的是**索引和指针**, 它们指向 `examples/` 里的文件与标题.
 
-统稿会改标题, 会拆篇并篇, 甚至会调整编号. 统稿之前跑, 产出的链接和锚点全都指在会变的东西上, 而且**没有任何检查会报出来**: lint 不查 `docs/showcase/`, 学生要等到 `/showcase-learn-cn` 带着他点进一个不存在的文件才发现.
+统稿会改标题, 会拆篇并篇, 甚至会调整编号. 统稿之前跑, 产出的链接和锚点全都指在会变的东西上, 而且**没有任何检查会报出来**: lint 只查 `docs/showcase/` 那几份**在不在**, 不查里面的链接和锚点指向哪. 学生要等到 `/showcase-learn-cn` 带着他点进一个不存在的文件才发现.
 
 publish 那一份更糟: 它记的是**要删哪些真实路径**. 对着一棵还会变的树生成的删除清单, 将来照着跑就是删错东西.
 

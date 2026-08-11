@@ -28,7 +28,7 @@
 
 **写死两个 skill.** `/upskill-learn-cn` 与 `/upskill-quiz-cn` 由 `lesson-smith-upskill-forge` 必然产出, 所以 "怎么学" 一节固定提及它们, 措辞近乎静态.
 
-**不提 runbook.** 正文不引导环境 setup, 也不提 `docs/upskill/02-upskill-runbook.md` (那是给 AI 看的元文件). setup 只在开始那一下和中途偶发, 交给 `/upskill-learn-cn` 在学生真遇到麻烦时智能介入, 根 README 不必唠叨.
+**不提 runbook.** 正文不引导环境 setup, 也不提 `docs/upskill/02-upskill-runbook-cn.md` (那是给 AI 看的元文件). setup 只在开始那一下和中途偶发, 交给 `/upskill-learn-cn` 在学生真遇到麻烦时智能介入, 根 README 不必唠叨.
 
 ---
 

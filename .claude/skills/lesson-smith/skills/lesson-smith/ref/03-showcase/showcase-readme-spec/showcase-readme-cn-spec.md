@@ -30,7 +30,7 @@
 
 **写死四个 skill.** `/showcase-learn-cn`, `/showcase-quiz-cn`, `/showcase-demo-cn`, `/showcase-publish-cn` 由 `lesson-smith-showcase-forge` 必然产出, 所以对应小节固定提及它们, 措辞近乎静态. learn 与 quiz 属 "怎么学", demo 与 publish 属 "学完怎么展示发布".
 
-**不提 runbook.** 正文不引导环境 setup, 也不提 `docs/showcase/02-showcase-runbook.md` (那是给 AI 看的元文件). setup 交给 `/showcase-learn-cn` 在学生真遇到麻烦时智能介入.
+**不提 runbook.** 正文不引导环境 setup, 也不提 `docs/showcase/02-showcase-runbook-cn.md` (那是给 AI 看的元文件). setup 交给 `/showcase-learn-cn` 在学生真遇到麻烦时智能介入.
 
 ---
 

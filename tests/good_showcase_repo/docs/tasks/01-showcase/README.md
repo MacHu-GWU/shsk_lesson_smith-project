@@ -18,8 +18,8 @@ This is a showcase-style teaching repo: the whole repo is one course, and the co
 
 1. Start with the series index in [examples/README.md](examples/README.md) to get a map of the whole course.
 2. Work through the mini tasks under examples in order (01, 02, ...). For each one, actually do it on your own GitHub account against its TICKET before moving on.
-3. Two helpers are on call as you learn: `/showcase-learn` is your learning coach (reach for it when you want the map, want a spot unpacked, need to decide what is next, or get stuck; it also walks you through account and environment setup); `/showcase-quiz` is an interview-style self-test that checks whether you truly understand (know-what and know-why).
-4. What counts as done: you can answer 70% of the `/showcase-quiz` questions clearly.
+3. Two helpers are on call as you learn: `/showcase-learn-cn` is your learning coach (reach for it when you want the map, want a spot unpacked, need to decide what is next, or get stuck; it also walks you through account and environment setup); `/showcase-quiz-cn` is an interview-style self-test that checks whether you truly understand (know-what and know-why).
+4. What counts as done: you can answer 70% of the `/showcase-quiz-cn` questions clearly.
 
 ---
 
@@ -33,10 +33,10 @@ All the mini tasks are organized by theme in [examples/README.md](examples/READM
 
 The point of a showcase project is to turn this into your own work and be able to talk about it. After you finish all the mini tasks, two more helpers close the loop:
 
-1. `/showcase-demo` rehearses the story of how you built this: when someone asks whether you can collaborate on GitHub, you can open the repo and walk them through how you learned it, what tripped you up, and how you worked past it, and field their follow-ups.
-2. `/showcase-publish` strips every teaching trace and turns the repo into a portfolio repo you can push to your own GitHub, then runs a hostile scan for anything that still reads as a tutorial.
+1. `/showcase-demo-cn` rehearses the story of how you built this: when someone asks whether you can collaborate on GitHub, you can open the repo and walk them through how you learned it, what tripped you up, and how you worked past it, and field their follow-ups.
+2. `/showcase-publish-cn` strips every teaching trace and turns the repo into a portfolio repo you can push to your own GitHub, then runs a hostile scan for anything that still reads as a tutorial.
 
-The order is rehearse with `/showcase-demo` first, then run `/showcase-publish` (publishing also removes the rehearsal script itself).
+The order is rehearse with `/showcase-demo-cn` first, then run `/showcase-publish-cn` (publishing also removes the rehearsal script itself).
 
 ---
 

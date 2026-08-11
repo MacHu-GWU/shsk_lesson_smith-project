@@ -1,6 +1,6 @@
 # GitHub Collaboration Basics Publish Checklist
 
-> The showcase-publish skill uses this doc to turn this teaching repo into a publish-ready portfolio repo. Machine-facing: paths and tables, not prose. Generated for this specific repo; globs below are expanded against the actual tree.
+> The showcase-publish-cn skill uses this doc to turn this teaching repo into a publish-ready portfolio repo. Machine-facing: paths and tables, not prose. Generated for this specific repo; globs below are expanded against the actual tree.
 
 ## 1. Cardinal Deletes — Never Publishable
 
@@ -16,7 +16,7 @@
 - path: `lm.json`, `docs/tasks/`, `docs/showcase/`
   reason: lesson-smith manifest and generated teaching views
   detected_by: dir / file presence
-- path: `.claude/skills/showcase-learn/`, `.claude/skills/showcase-quiz/`, `.claude/skills/showcase-demo/`, `.claude/skills/showcase-publish/`
+- path: `.claude/skills/showcase-learn-cn/`, `.claude/skills/showcase-quiz-cn/`, `.claude/skills/showcase-demo-cn/`, `.claude/skills/showcase-publish-cn/`
   reason: the four generated child skills
   detected_by: dir presence
 - path: the quiz and demo mini tasks — `examples/05-prove-i-get-it/`, `examples/06-how-i-build-this/` (whole dirs)

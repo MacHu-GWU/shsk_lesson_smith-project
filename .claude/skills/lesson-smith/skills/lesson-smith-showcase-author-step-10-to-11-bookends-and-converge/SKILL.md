@@ -2,7 +2,6 @@
 name: lesson-smith-showcase-author-step-10-to-11-bookends-and-converge
 description: "第 10 到 11 步: 补 examples 的两头 (索引 Task 与收尾 Task), 然后通读全系列统稿"
 argument-hint: "[自由说明...]"
-disable-model-invocation: true
 ---
 
 # showcase 创作流 第 10 到 11 步
@@ -43,8 +42,8 @@ disable-model-invocation: true
 - **索引里的链接要写 `../`.** 它住在 `examples/01-title/` 里, 指向兄弟 Task 得写 `../02-title/README-cn.md`. 少写一层就是整片死链, 这是这份文件唯一一个高频错误.
 - **三个特殊 Task 各自单独成组.** quiz 一组, demo 一组, 收尾一组, 一个占一个 group. showcase 是三类里特殊 Task 最多的, 挤一组的诱惑也最大, 但那样索引就看不出它们各自是干什么的了.
 - **索引 TICKET 是轻的**: 检查清单 3 到 4 条封顶, 明确推翻通用规范的 "常见 5 到 9 条".
-- **收尾 Task 放在最后一个位置.** 它干两件事: 回望与拔高. 规范见 `ref/00-common/14-wrap-up-readme-spec/`, 那里有一条红线: **拔高只提, 决不能教** (出现代码块, 步骤列表或概念讲解就是越界).
-- **拔高只提, 决不能教.** 一旦为某个拔高方向单独展开写教程, 就和主线冲突, 而且没完没了. 真想教就把它变成一个正式的主线 Task, 不走拔高这个口子.
+- **收尾 Task 放在最后一个位置.** 它干两件事: 回望与拔高. 规范见 `ref/00-common/14-wrap-up-readme-spec/`.
+- **拔高只提, 决不能教.** 一旦为某个拔高方向单独展开写教程, 就和主线冲突, 而且没完没了. 真想教就把它变成一个正式的主线 Task, 不走拔高这个口子. 判据: 拔高那一节里出现代码块, 步骤列表或概念讲解就是越界.
 - **地图只能在路修完之后画.** 如果发现主线还在动, 说明第 6 步没完, 回去写完再来.
 
 ---

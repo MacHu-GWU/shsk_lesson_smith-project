@@ -1,5 +1,5 @@
 ---
-description: "Self-test whether you truly learned this course, reaching 70% or more with /showcase-quiz."
+description: "Self-test whether you truly learned this course, reaching 70% or more with /showcase-quiz-cn."
 ---
 
 # Pass the Self Test
@@ -13,7 +13,7 @@ Check whether you truly learned this course, not just the know-what but the know
 ## 2. What to do
 
 1. Read this mini task's question bank (the README) from start to finish: answer each question yourself first, then compare against the reference answer and the deep dive.
-2. Quiz yourself with /showcase-quiz, retaking until your score stays at 70% or above.
+2. Quiz yourself with /showcase-quiz-cn, retaking until your score stays at 70% or above.
 
 **Estimated time:** 30 to 60 minutes
 
@@ -22,4 +22,4 @@ Check whether you truly learned this course, not just the know-what but the know
 ## 3. Checklist
 
 - [ ] **Bank read**: you went through the whole question bank top to bottom, self-answering each before checking.
-- [ ] **Test passed**: /showcase-quiz reaches 70% or above.
+- [ ] **Test passed**: /showcase-quiz-cn reaches 70% or above.

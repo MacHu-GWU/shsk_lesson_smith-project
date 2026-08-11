@@ -18,8 +18,8 @@ description: "GitHub 基础协作 upskill 课程总览: 教什么, 怎么按 exa
 
 1. 先读 [examples/README-cn.md](examples/README-cn.md) 的系列索引, 对整门课有张地图.
 2. 按编号顺序刷 examples 下的 mini task (01, 02, ...), 每个都照它自己的 TICKET 做完, 真在自己的 GitHub 账号上操作一遍, 再往下.
-3. 学的过程中有两个帮手随叫随到: `/upskill-learn` 是带学教练 (要地图, 要某一处讲透, 要决定下一步, 或卡住了都找它, 环境和账号 setup 也由它带); `/upskill-quiz` 是面试式自测, 检验你是不是真的学懂了 (know-what 和 know-why).
-4. 学到什么算成: 用 `/upskill-quiz` 测到 70% 的题都能思路清晰地答出来.
+3. 学的过程中有两个帮手随叫随到: `/upskill-learn-cn` 是带学教练 (要地图, 要某一处讲透, 要决定下一步, 或卡住了都找它, 环境和账号 setup 也由它带); `/upskill-quiz-cn` 是面试式自测, 检验你是不是真的学懂了 (know-what 和 know-why).
+4. 学到什么算成: 用 `/upskill-quiz-cn` 测到 70% 的题都能思路清晰地答出来.
 
 ---
 

@@ -2,7 +2,6 @@
 name: lesson-smith-showcase-author-step-09-demo
 description: "第 9 步: 写 demo 讲故事底稿那个特殊 Task, 把默认七幕主线用这个 repo 的真实经历填实"
 argument-hint: "[自由说明...]"
-disable-model-invocation: true
 ---
 
 # showcase 创作流 第 9 步

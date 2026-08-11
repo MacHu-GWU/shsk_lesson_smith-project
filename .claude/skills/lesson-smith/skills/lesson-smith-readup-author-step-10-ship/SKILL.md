@@ -2,7 +2,6 @@
 name: lesson-smith-readup-author-step-10-ship
 description: "第 10 步: 跑 sync 生成 SYLLABUS 与快照, 跑 lint 把关, 修到通过"
 argument-hint: "[自由说明...]"
-disable-model-invocation: true
 ---
 
 # readup 创作流 第 10 步
