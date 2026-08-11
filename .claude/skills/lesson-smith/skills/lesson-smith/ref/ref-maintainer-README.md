@@ -29,7 +29,8 @@ ref/
     06-overview-ticket-spec/
     07-syllabus-spec.md             文档 spec, 脚本生成
     08-series-converge-spec.md      流程步骤
-    09-ship-spec.md
+    09-root-docs-spec.md
+    10-ship-spec.md
   01-readup/                    特化层
   02-upskill/
   03-showcase/
@@ -37,7 +38,7 @@ ref/
 ```
 
 - **目录与文件的序号就是维护顺序, 也是阅读顺序.** `00-common` 排在最前不是因为它最重要, 而是因为后面三个都建立在它之上.
-- `00-common` 里的号还分三段: **01 是标准, 02 到 07 是文档 spec, 08 往后是流程步骤.** 数字连着排是为了有个确定的阅读顺序, 不代表它们是同一种东西.
+- `00-common` 里的号还分三段: **01 是标准, 02 到 07 是文档 spec, 08 到 10 是流程步骤.** 数字连着排是为了有个确定的阅读顺序, 不代表它们是同一种东西.
 - **`00-common` 的判据是 "被多个 repo type 共享", 不是 "四类都有".** 比如 `05` 与 `06` 那个索引 Task 只有 examples 系的三类有, evolve 没有, 但三类共享就够格放这儿. 各文件自己的适用范围写在各自开头.
 - `evolve` 还没排号, 因为这一类的规范还没正式立起来.
 
@@ -52,7 +53,7 @@ ref/
 
 spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻译. **目录下不放语料库.**
 
-**分不分语种的判据只有一条: 带 template 的分, 不带的不分.** 所以 `01`, `07`, `08`, `09` 那几份单文件都不带语种后缀. 完整理由 (以及为什么不再把规范塞进顶部注释) 见 skill 根目录的 `spec-file-format.md`.
+**分不分语种的判据只有一条: 带 template 的分, 不带的不分.** 所以 `01`, `07`, `08`, `09`, `10` 那几份单文件都不带语种后缀. 完整理由 (以及为什么不再把规范塞进顶部注释) 见 skill 根目录的 `spec-file-format.md`.
 
 **单文件**, 形如 `NN-<name>.md`. 用在没有固定产物的东西上, 比如目录布局标准, 工作流规范. 就是一份普通的 markdown, 没有配套 template.
 
@@ -94,19 +95,20 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 **已经落位的**:
 
 - `00-common/01-repo-layout.md`: 已按中文单语种重写, 大段话改成 bullet, frontmatter 那一节从两屏压到一节.
-- **spec 目录改成两文件制**: `spec-file-format.md` 已重写, `00-common` 下 `02`, `03`, `04` 三份都已按新格式落地 (spec 加 template), 顶部注释与 `corpus/` 那两套都作废.
-- `ref/` 根目录的 flat spec 已清空: `readme-spec.md` 与 `ticket-spec.md` 由 `03` `04` 取代已删, `syllabus-spec.md` 与 `ship-spec.md` 迁成 `07` `09`, `review-spec.md` 重写成 `08-series-converge-spec.md` 已删.
+- **spec 目录改成两文件制**: `spec-file-format.md` 已重写, 顶部注释与 `corpus/` 那两套都作废. `00-common` 下 `02` 到 `06` 五份, 加三个特化层各自的 readme 与 ticket spec 六份, 全部已按新格式落地 (spec 加 template).
+- `ref/` 根目录的 flat spec 已清空: `readme-spec.md` 与 `ticket-spec.md` 由 `03` `04` 取代已删, `syllabus-spec.md` 与 `ship-spec.md` 迁成 `07` `10`, `review-spec.md` 重写成 `08-series-converge-spec.md` 已删.
+- **`00-common` 的流程三件套齐了**: `08` 统稿, `09` 写根目录文档 (原 `readup-wrap-cn-spec.md`, 上升到通用层并去掉 `-cn`), `10` 出厂. `09` 上升之后, upskill 与 showcase 那边 "写全局文档没有 ref spec" 的缺口一并补上了.
+- **三个特化层的 layout 与 readme, ticket spec 都已重写**: 目录树中英并列并标注留空, `examples/README` 拿掉换成索引 Task, 第 4 节按 `01` / `02 往后` / 固定 Task 三段分开指 spec. 三份 layout 的死链清零.
 - **lint 的按语种开关**: `constants.py` 的 `LINT_ENABLED_BY_LANG` 决定每个语种参不参与 lint, 英文当前是关的. 关掉的语种被整个跳过, 既不要求存在, 内容也不检查, 所以留空的英文占位文件不再拖垮整仓. 改回来是改一个词.
 - `linter.py` 与 `linter_utils.py` 里指向规范位置的 docstring 已改到 `ref/00-common/`.
 
 **还欠的**:
 
 - **`03-task-readme-spec/` 的风格层最薄.** 它是从旧 `readme-spec.md` 忠实迁过来的, 而那一份关于 "怎么写才算写好" 只有零星几句, 骨架也已经和实际写法漂开了. 三份里就数它最需要回去读真实的教学 README 再补一层.
-- `ref/01-readup/` 下还留着三个 `corpus/` 目录 (`readme-spec/`, `ticket-spec/`, `examples-readme-spec/`), 语料废弃之后它们该一起删, 但那是特化层的事, 等收敛到那里再动.
-- **砍掉 `examples/README` 的连带改动还剩两项.** 规范 (`05` `06`) 与 lint 都已就位, 还欠: 三个特化层的 `<type>-examples-readme-spec.md` 待删 (实测三份只差一段, 那段已吸收进 `05`), 以及三个 authoring workflow 里写 `examples/README` 的地方待改.
-- `ref/rewrite-en-spec.md` 属于翻译, 待 archive.
-- `01-readup` 等目录里, flat 文件与新式 spec 目录并存, 待收敛.
-- 大量入链仍指向旧路径 (`ref/repo-layout.md`, `ref/readup/`, `ref/upskill/`, `ref/showcase/`). 等 ref 重写收敛之后统一扫一遍, 现在改是白改.
+- **三个 `<type>-authoring-workflow.md` 还没动.** 它们是特化层最后一块, 改动量最大: 翻译那一步整步消失 (readup 从 11 步 6 阶段降到 10 步 5 阶段), 写 `examples/README` 那一步要改成写索引 Task, `08` `09` `10` 三份的引用要重指. readup 那份还连带要删一个 step skill 目录 (`step-10-rewrite-en`) 并把 `step-11-ship` 改名.
+- **`SKILL.md` 还没动, 它是运行时入口.** 里面有两类内容: ref 索引 (路径, 和 workflow 无关, 现在就能改对) 与工作流步骤 (依赖 workflow, 得等). 分两遍做.
+- `ref/rewrite-en-spec.md` 属于翻译, 待 archive. `ref/` 根目录现在只剩它和两份 `agent-skill-interaction-pattern`.
+- `evolve/` 一直没排号, 那一类的规范还没正式立起来.
 
 **规范与 lint 还对不上的一处**:
 

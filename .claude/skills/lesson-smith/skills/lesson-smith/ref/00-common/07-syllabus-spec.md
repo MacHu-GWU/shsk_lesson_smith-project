@@ -39,7 +39,7 @@
 
 ## 4. 生成
 
-由 `shsk_lesson_smith` package 的 `lesson-smith sync` 直接字符串拼接生成, 不引第三方模板引擎. 怎么跑见 [09-ship-spec.md](09-ship-spec.md).
+由 `shsk_lesson_smith` package 的 `lesson-smith sync` 直接字符串拼接生成, 不引第三方模板引擎. 怎么跑见 [10-ship-spec.md](10-ship-spec.md).
 
 ---
 

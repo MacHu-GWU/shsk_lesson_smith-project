@@ -49,7 +49,7 @@ spec 开头点名它配套的 template; template 不反向引用 spec (它要能
 **判据只有一条: 带 template 的分, 不带的不分.**
 
 - **带 template 的分** (`02` 到 `06` 那几个 spec 目录). template 本身就是那个语种的文本, 复制过去就变成中文文档, 它必须分; spec 跟着分, 理由见下一节. 受控词汇表这类东西也就自然落在分开的这一侧.
-- **不带 template 的不分** (`01-repo-layout`, `07-syllabus-spec`, `08-series-converge-spec`, `09-ship-spec`). 它们描述的是 "长什么形状" 与 "做什么", 换个语种照样成立.
+- **不带 template 的不分** (`01-repo-layout`, `07-syllabus-spec`, `08-series-converge-spec`, `09-root-docs-spec`, `10-ship-spec`). 它们描述的是 "长什么形状" 与 "做什么", 换个语种照样成立.
 
 流程类规范值得单独说一句. 统稿是中文统中文, 英文统英文, 但**那是跑的时候的参数, 不是分文件的理由**: 一份写着 "一次只统一个语种" 的文件, 严格优于两份只差后缀名的文件.
 
