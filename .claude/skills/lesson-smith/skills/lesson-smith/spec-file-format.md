@@ -18,6 +18,18 @@
 - **文件名带语种**, 形如 `<特殊文件名>-<lang>-spec.md` 与 `<特殊文件名>-<lang>-template.md`.
 - **不放语料库.** 早先每个 spec 目录下挂一个 `corpus/`, 收几份已发布 repo 的同类文件当参照. 那套东西大半是为了校准英文重写的语感, 翻译砍掉之后它的主要用途没了, 剩下的那点参照价值抵不上每次都要判断 "该读哪一份, 读几份" 的开销. 规范和 template 说清楚就够, 要看真实写法直接去看已发布的 repo.
 
+**一个 spec 目录里可以放不止一个语种**, 例如:
+
+```text
+02-upskill/forge/docs-upskill-learn/
+  docs-upskill-learn-spec.md            英文规范
+  docs-upskill-learn-template.md        英文骨架
+  docs-upskill-learn-cn-spec.md         中文规范
+  docs-upskill-learn-cn-template.md     中文骨架
+```
+
+上面那层 `forge/` 是**分组目录**, 把同一个消费者 (这里是 `lesson-smith-upskill-forge`) 要读的东西收在一处, 不是 spec 目录. 它不改变 "一个 spec 一个目录" 这条规矩, 只是在它外面加了一层. 特化层文件多起来之后会有这种分组, 不要把它压平.
+
 ---
 
 ## 2. 两份文件的分工

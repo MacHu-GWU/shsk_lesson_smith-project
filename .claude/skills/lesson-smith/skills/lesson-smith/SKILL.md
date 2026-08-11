@@ -104,9 +104,9 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 - 从零创作一个 upskill repo → [upskill-authoring-workflow.md](ref/02-upskill/upskill-authoring-workflow.md).
 - 写 repo 根目录 README (仓库总览加怎么学的操作入口) → [upskill-readme-spec](ref/02-upskill/upskill-readme-spec/upskill-readme-cn-spec.md).
 - 写 repo 根目录 TICKET (整门课的验收清单) → [upskill-ticket-spec](ref/02-upskill/upskill-ticket-spec/upskill-ticket-cn-spec.md).
-- 写 quiz 那个 Task 的 README (题库真身) → [upskill-examples-quiz-readme-spec.md](ref/02-upskill/upskill-examples-quiz-readme-spec.md); 它的 TICKET → [upskill-examples-quiz-ticket-spec.md](ref/02-upskill/upskill-examples-quiz-ticket-spec.md).
-- 写 `docs/upskill/` 下三份 doc → [docs-upskill-learn-spec.md](ref/02-upskill/docs-upskill-learn-spec.md) (学习索引), [docs-upskill-runbook-spec.md](ref/02-upskill/docs-upskill-runbook-spec.md) (跑起来的操作), [docs-upskill-quiz-spec.md](ref/02-upskill/docs-upskill-quiz-spec.md) (quiz 薄壳).
-- 产出 `upskill-learn` / `upskill-quiz` 两个子 skill 时 → [upskill-learn.SKILL.md](ref/02-upskill/upskill-learn.SKILL.md), [upskill-quiz.SKILL.md](ref/02-upskill/upskill-quiz.SKILL.md): 近乎静态的 SKILL 模板.
+- 写 quiz 那个 Task 的 README (题库真身) → [upskill-quiz-readme-spec](ref/02-upskill/upskill-quiz-readme-spec/upskill-quiz-readme-cn-spec.md); 它的 TICKET → [upskill-quiz-ticket-spec](ref/02-upskill/upskill-quiz-ticket-spec/upskill-quiz-ticket-cn-spec.md).
+- forge 要读的东西全在 `ref/02-upskill/forge/` 下. 写 `docs/upskill/` 那三份 doc → [docs-upskill-learn](ref/02-upskill/forge/docs-upskill-learn/docs-upskill-learn-cn-spec.md) (学习索引), [docs-upskill-runbook](ref/02-upskill/forge/docs-upskill-runbook/docs-upskill-runbook-cn-spec.md) (跑起来的操作), [docs-upskill-quiz](ref/02-upskill/forge/docs-upskill-quiz/docs-upskill-quiz-cn-spec.md) (quiz 薄壳). 每个目录里中英各一套 spec 加 template, **当前只产 `-cn`**.
+- 产出 `upskill-learn-cn` / `upskill-quiz-cn` 两个子 skill 时 → [upskill-learn-cn.SKILL.md](ref/02-upskill/forge/upskill-learn-cn.SKILL.md), [upskill-quiz-cn.SKILL.md](ref/02-upskill/forge/upskill-quiz-cn.SKILL.md): 近乎静态的 SKILL 模板, 直接拷. 英文版同目录下, 当前不产出.
 
 **showcase 类型专属 (在 ref/03-showcase/ 下):**
 
@@ -114,8 +114,8 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 - 从零创作一个 showcase repo → [showcase-authoring-workflow.md](ref/03-showcase/showcase-authoring-workflow.md).
 - 写 repo 根目录 README (覆盖怎么学与学完怎么展示发布) → [showcase-readme-spec](ref/03-showcase/showcase-readme-spec/showcase-readme-cn-spec.md).
 - 写 repo 根目录 TICKET (整门课的验收清单) → [showcase-ticket-spec](ref/03-showcase/showcase-ticket-spec/showcase-ticket-cn-spec.md).
-- 写 quiz 那个 Task → [showcase-examples-quiz-readme-spec.md](ref/03-showcase/showcase-examples-quiz-readme-spec.md), [showcase-examples-quiz-ticket-spec.md](ref/03-showcase/showcase-examples-quiz-ticket-spec.md).
-- 写 demo 那个 Task → [showcase-examples-demo-readme-spec.md](ref/03-showcase/showcase-examples-demo-readme-spec.md), [showcase-examples-demo-ticket-spec.md](ref/03-showcase/showcase-examples-demo-ticket-spec.md).
+- 写 quiz 那个 Task → [showcase-quiz-readme-spec](ref/03-showcase/showcase-quiz-readme-spec/showcase-quiz-readme-cn-spec.md), [showcase-quiz-ticket-spec](ref/03-showcase/showcase-quiz-ticket-spec/showcase-quiz-ticket-cn-spec.md).
+- 写 demo 那个 Task → [showcase-demo-readme-spec](ref/03-showcase/showcase-demo-readme-spec/showcase-demo-readme-cn-spec.md), [showcase-demo-ticket-spec](ref/03-showcase/showcase-demo-ticket-spec/showcase-demo-ticket-cn-spec.md).
 - 写 `docs/showcase/` 下五份 doc → [docs-showcase-learn-spec.md](ref/03-showcase/docs-showcase-learn-spec.md), [docs-showcase-runbook-spec.md](ref/03-showcase/docs-showcase-runbook-spec.md), [docs-showcase-quiz-spec.md](ref/03-showcase/docs-showcase-quiz-spec.md), [docs-showcase-demo-spec.md](ref/03-showcase/docs-showcase-demo-spec.md), [docs-showcase-publish-spec.md](ref/03-showcase/docs-showcase-publish-spec.md).
 - 产出四个子 skill 时 → [showcase-learn.SKILL.md](ref/03-showcase/showcase-learn.SKILL.md), [showcase-quiz.SKILL.md](ref/03-showcase/showcase-quiz.SKILL.md), [showcase-demo.SKILL.md](ref/03-showcase/showcase-demo.SKILL.md), [showcase-publish.SKILL.md](ref/03-showcase/showcase-publish.SKILL.md).
 

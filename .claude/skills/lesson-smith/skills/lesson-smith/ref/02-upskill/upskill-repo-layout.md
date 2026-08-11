@@ -50,12 +50,12 @@ docs/tasks/
 docs/tasks/SYLLABUS.md               生成
 docs/tasks/SYLLABUS-cn.md            生成
 docs/tasks/01-upskill/               唯一 branch 的快照
-docs/upskill/                        forge 产出: 学习工具文档
-docs/upskill/01-upskill-learn.md     学习索引
-docs/upskill/02-upskill-runbook.md   跑起来的操作
-docs/upskill/03-upskill-quiz.md      quiz 薄壳, 指向题库真身
-.claude/skills/upskill-learn/SKILL.md    forge 产出: 带学 skill
-.claude/skills/upskill-quiz/SKILL.md     forge 产出: 自测 skill
+docs/upskill/                          forge 产出: 学习工具文档
+docs/upskill/01-upskill-learn-cn.md    学习索引
+docs/upskill/02-upskill-runbook-cn.md  跑起来的操作
+docs/upskill/03-upskill-quiz-cn.md     quiz 薄壳, 指向题库真身
+.claude/skills/upskill-learn-cn/SKILL.md   forge 产出: 带学 skill
+.claude/skills/upskill-quiz-cn/SKILL.md    forge 产出: 自测 skill
 ```
 
 无后缀的英文文件仍然存在, 当前留空, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 2 节. 上面的树为了少占篇幅, 只在根目录逐一列了两版, 下面各层同理.
@@ -84,7 +84,9 @@ docs/upskill/03-upskill-quiz.md      quiz 薄壳, 指向题库真身
 
 **`docs/tasks/`** 下的东西全部由 `lesson-smith sync` 生成, 不手写. SYLLABUS 对 upskill 来说只有 `01-upskill` 一段.
 
-**`docs/upskill/`** 下三份 doc 由 `lesson-smith-upskill-forge` 产出, 规范见 [docs-upskill-learn-spec.md](docs-upskill-learn-spec.md), [docs-upskill-runbook-spec.md](docs-upskill-runbook-spec.md), [docs-upskill-quiz-spec.md](docs-upskill-quiz-spec.md).
+**`docs/upskill/`** 下三份 doc 与两个子 skill 都由 `lesson-smith-upskill-forge` 产出, 它要读的规范与模板集中在 [forge/](forge/) 下: [docs-upskill-learn](forge/docs-upskill-learn/docs-upskill-learn-cn-spec.md), [docs-upskill-runbook](forge/docs-upskill-runbook/docs-upskill-runbook-cn-spec.md), [docs-upskill-quiz](forge/docs-upskill-quiz/docs-upskill-quiz-cn-spec.md), 加上两份 SKILL 模板.
+
+这一层**分语种**: 每份 doc 中英各一套 spec 加 template, 子 skill 也是 `upskill-learn` 与 `upskill-learn-cn` 两份. **但 forge 当前只产 `-cn` 那一套**, 因为无后缀的英文课程正文留空, 英文索引只会指向一堆空文件. 英文那一套规范留着, 等多语种模块回来接手.
 
 ---
 
