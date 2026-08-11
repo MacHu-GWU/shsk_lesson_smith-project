@@ -103,7 +103,7 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 
 - **`03-task-readme-spec/` 的风格层最薄.** 它是从旧 `readme-spec.md` 忠实迁过来的, 而那一份关于 "怎么写才算写好" 只有零星几句, 骨架也已经和实际写法漂开了. 三份里就数它最需要回去读真实的教学 README 再补一层.
 - `ref/01-readup/` 下还留着三个 `corpus/` 目录 (`readme-spec/`, `ticket-spec/`, `examples-readme-spec/`), 语料废弃之后它们该一起删, 但那是特化层的事, 等收敛到那里再动.
-- **砍掉 `examples/README` 的连带改动还没做完.** 规范这边已经改了 (`05` 与 `06` 就位), 但还欠: `linter_for_*.py` 的 `rule_examples` 目前**强制要求 `examples/README` 存在**, 得改成不要求; 三个特化层的 `<type>-examples-readme-spec.md` 待删; 三个 authoring workflow 里写 examples/README 的地方待改.
+- **砍掉 `examples/README` 的连带改动还剩两项.** 规范 (`05` `06`) 与 lint 都已就位, 还欠: 三个特化层的 `<type>-examples-readme-spec.md` 待删 (实测三份只差一段, 那段已吸收进 `05`), 以及三个 authoring workflow 里写 `examples/README` 的地方待改.
 - `ref/rewrite-en-spec.md` 属于翻译, 待 archive.
 - `01-readup` 等目录里, flat 文件与新式 spec 目录并存, 待收敛.
 - 大量入链仍指向旧路径 (`ref/repo-layout.md`, `ref/readup/`, `ref/upskill/`, `ref/showcase/`). 等 ref 重写收敛之后统一扫一遍, 现在改是白改.
