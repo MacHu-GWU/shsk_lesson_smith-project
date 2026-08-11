@@ -195,6 +195,12 @@ class TestCheckFrontmatterDescription:
         with pytest.raises(LintError, match="forbidden character"):
             check_frontmatter_description(self._md(tmp_path, text))
 
+    def test_apostrophe_is_allowed(self, tmp_path):
+        """The value is already wrapped in double quotes, so an apostrophe
+        cannot close it, and English prose needs it constantly."""
+        text = '---\ndescription: "It\'s GitHub\'s own About box."\n---\n'
+        check_frontmatter_description(self._md(tmp_path, text))
+
 
 class TestCheckH1Charset:
     def _md(self, tmp_path, text):

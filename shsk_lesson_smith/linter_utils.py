@@ -276,8 +276,9 @@ def _validate_quoted_oneliner(
     if forbidden:
         raise LintError(
             f"The {field} contains forbidden character(s): {forbidden}. "
-            f"Quotes and backticks are not allowed, because the {field} is "
-            "embedded verbatim into other strings."
+            f"Quote characters and backticks are not allowed, because the "
+            f"{field} is embedded verbatim into other strings. A plain "
+            "apostrophe is fine."
         )
 
 
@@ -286,7 +287,8 @@ def check_frontmatter_description(md: MarkdownFile) -> None:
 
     Valid means: frontmatter is present, has a ``description`` key whose value is
     wrapped in double quotes, non-empty, within the character limit for this
-    file's language, and free of quote / backtick characters inside the quotes.
+    file's language, and free of quote / backtick characters inside the quotes
+    (a plain apostrophe is allowed).
     The language comes from the file name, so an English variant gets the wider
     budget its script needs.
     """

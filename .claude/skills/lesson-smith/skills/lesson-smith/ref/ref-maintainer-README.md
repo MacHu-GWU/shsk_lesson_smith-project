@@ -133,6 +133,8 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 
 一条经验判据: 一份 spec 里如果风格类的话不到十行, 那它基本上只是在描述骨架, 还没有到能约束人的程度.
 
+**但薄不一定是没写完.** 用这条判据之前先问一句: 这类文件的写法本来就该收敛吗? [03-task-readme-spec](00-common/03-task-readme-spec/task-readme-cn-spec.md) 就是**有意留薄**的. 教学 Task 的 README 是全套里题材跨度最大的一种文件, 一门课讲架构, 一门课讲调参, 一门课讲怎么改简历, 硬加风格约束只会把不该管的管死. 那一份只钉骨架和红线, 剩下的交给课程自己. 不该收敛的东西, 薄就是对的.
+
 ---
 
 ## 6. 术语
@@ -164,6 +166,7 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 - 三个特化层的 layout, workflow, 根 README 与 TICKET spec, 特殊 Task spec 全部落位; 两个 `forge/` 分组目录中英各一套.
 - 运行时那一侧同步跟上: `SKILL.md` 的 ref 索引与工作流步骤都已重指, 三条 author 命令加对应的 step skill 全部到位, `finalize` 那一套已删.
 - lint 加了按语种开关 (`constants.py` 的 `LINT_ENABLED_BY_LANG`), 英文当前关着, 所以留空的英文占位文件不拖垮整仓.
+- lint 的字符集和规范对齐了: `DESCRIPTION_FORBIDDEN_CHARS` 已放行 ASCII 撇号, 与 [00-common/01-repo-layout.md](00-common/01-repo-layout.md) 第 6.2 节一致 (值本身被双引号包着, 撇号不产生歧义). `H1_FORBIDDEN_CHARS` 里那一个**保留**: H1 会以裸字符串的形态到处流转, 没有包裹的引号护着, 理由不通用.
 
 **唯一的大欠账是多语种.** 它是被主动推迟的, 不是漏掉的:
 
@@ -171,9 +174,4 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 - 中译英那一步已经从三份 workflow 里整步移除, `rewrite-en-spec.md` 与 `run-rewrite-en.md` 都进了 skill 根目录的 `archive/`. 三份 workflow 末尾各留一节 `附: 中译英 (当前跳过)` 记着这件事.
 - 接手时要做的是三件: 打开 `LINT_ENABLED_BY_LANG` 里的英文, 把英文正文填进去, 让 forge 中英两套都产 (`forge/` 下的英文 spec 已经备好).
 
-**两处还没对上, 都不大**:
-
-- **撇号**: `constants.py` 的 `DESCRIPTION_FORBIDDEN_CHARS` 里还含 ASCII 单引号 (U+0027), 而 [00-common/01-repo-layout.md](00-common/01-repo-layout.md) 第 6.2 节已经改成允许 (值本身被双引号包着, 撇号不产生歧义). 要把它从这个集合里去掉. 注意 `H1_FORBIDDEN_CHARS` 里也有一个, 但 H1 不带包裹的引号, 理由不通用, 那一个要单独决定动不动.
-- **`03-task-readme-spec/` 的风格层最薄**. 它是从旧 `readme-spec.md` 忠实迁过来的, 而那一份关于 "怎么写才算写好" 只有零星几句. 三份里就数它最需要照第 5 节回去读真实的教学 README 再补一层.
-
-**明确推迟, 不算欠账**: `evolve/` 这一类的规范一直没立. 它不带 `examples/`, 和三类同构关系不一样, 要立就是从 layout 开始重新推一遍, 不是补几份 spec 的事.
+**明确推迟, 不算欠账**: `evolve/` 这一类的规范一直没立. 它不带 `examples/`, 和第 1 节那个三类同构关系不一样, 要立就是从 layout 开始重新推一遍, 不是补几份 spec 的事. 而且它会连带动到 `shsk_lesson_smith` 那个 package (lint 要按 `type` 分支处理一套新布局), 所以立 evolve 的那一次同时是一次版本升级, 该排在一起做.

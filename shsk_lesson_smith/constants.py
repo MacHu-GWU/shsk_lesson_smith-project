@@ -131,9 +131,20 @@ def max_github_about_chars(lang: "LangEnum | None") -> int:
     )
 
 
+# --------------------------------------------------------------------------- #
+# description / github_about charset.
+#
+# The value is always wrapped in double quotes and gets embedded verbatim into
+# other strings (a SYLLABUS bullet, a table cell, GitHub's About box), so any
+# character that could close the wrapper or start a code span is out.
+#
+# The ASCII apostrophe is deliberately NOT here. It cannot be confused with the
+# wrapping quote, and English prose needs it constantly ("it's", "GitHub's").
+# Note that H1_FORBIDDEN_CHARS below still bans it: an H1 travels around as a
+# bare unwrapped string, so the reasoning there is a different one.
+# --------------------------------------------------------------------------- #
 DESCRIPTION_FORBIDDEN_CHARS = (
     '"'  # straight double quote
-    "'"  # straight single quote
     "`"  # backtick
     "“"  # left double quotation mark
     "”"  # right double quotation mark
