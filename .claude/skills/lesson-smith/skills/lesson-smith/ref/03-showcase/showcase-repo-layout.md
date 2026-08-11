@@ -87,8 +87,8 @@ docs/showcase/05-showcase-publish.md publish 清单, 自包含, 无 examples 撑
 
 | 目录 | README 走 | TICKET 走 |
 | :--- | :--- | :--- |
-| `NN-prove-i-get-it` | [showcase-examples-quiz-readme-spec.md](showcase-examples-quiz-readme-spec.md) 的问答结构 | [showcase-examples-quiz-ticket-spec.md](showcase-examples-quiz-ticket-spec.md) |
-| `ZZ-how-i-build-this` | [showcase-examples-demo-readme-spec.md](showcase-examples-demo-readme-spec.md) 的讲故事结构 | [showcase-examples-demo-ticket-spec.md](showcase-examples-demo-ticket-spec.md) |
+| `NN-prove-i-get-it` | [showcase-quiz-readme-spec](showcase-quiz-readme-spec/showcase-quiz-readme-cn-spec.md) 的问答结构 | [showcase-quiz-ticket-spec](showcase-quiz-ticket-spec/showcase-quiz-ticket-cn-spec.md) |
+| `ZZ-how-i-build-this` | [showcase-demo-readme-spec](showcase-demo-readme-spec/showcase-demo-readme-cn-spec.md) 的讲故事结构 | [showcase-demo-ticket-spec](showcase-demo-ticket-spec/showcase-demo-ticket-cn-spec.md) |
 
 两份 TICKET 的结构仍沿用通用的 task ticket spec, 只是内容固定极简.
 

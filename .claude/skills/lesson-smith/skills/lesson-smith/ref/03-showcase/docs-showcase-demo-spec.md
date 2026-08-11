@@ -3,7 +3,7 @@
 
 本文件独立成篇, 不引用 ref/upskill/ 下任何文件; 需要引用时只引 ref/ 根目录的通用 spec.
 
-定性: 这是 demo 的薄壳, 由 lesson-smith-showcase-forge 生成, 给 showcase-demo skill 消费. 它本身不写故事: 完整的讲故事底稿 (七幕主线, 常见追问, 按听众裁剪) 全在那个 demo mini task 的 README 里 (规范见 showcase-examples-demo-readme-spec.md). 这份 doc 只做三件事: 指出底稿在哪, 记下默认故事主线 (七幕) 好让 skill 不必每次重推, 以及记录人类对排练方式的自定义要求.
+定性: 这是 demo 的薄壳, 由 lesson-smith-showcase-forge 生成, 给 showcase-demo skill 消费. 它本身不写故事: 完整的讲故事底稿 (七幕主线, 常见追问, 按听众裁剪) 全在那个 demo mini task 的 README 里 (规范见 showcase-demo-readme-spec/showcase-demo-readme-cn-spec.md). 这份 doc 只做三件事: 指出底稿在哪, 记下默认故事主线 (七幕) 好让 skill 不必每次重推, 以及记录人类对排练方式的自定义要求.
 
 适用范围: showcase 类型 repo 的 docs/showcase/04-showcase-demo.md. 这是给 AI/skill 看的元文件, 人类读的是真正的底稿 (examples 下那个 how-i-build-this mini task, 是给人读的双语正文), 不读这份薄壳; 所以它产出内容全英文, 不走 cn-first 铁律. 因此下面的正文模板本身就是英文的. 注意区分: 底稿真身 (examples 下那个 mini task) 是人类看的, 走 cn-first 双语; 这份指针薄壳是 skill 看的, 全英文.
 

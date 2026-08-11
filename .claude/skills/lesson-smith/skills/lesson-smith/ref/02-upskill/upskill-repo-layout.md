@@ -79,8 +79,8 @@ docs/upskill/03-upskill-quiz.md      quiz 薄壳, 指向题库真身
 
 **quiz 那个 Task 是个例外**: 目录固定命名 `NN-prove-i-get-it`.
 
-- README 不走教学 README 的正文结构, 而走 [upskill-examples-quiz-readme-spec.md](upskill-examples-quiz-readme-spec.md) 的问答结构.
-- TICKET 另有规范 [upskill-examples-quiz-ticket-spec.md](upskill-examples-quiz-ticket-spec.md), 内容固定极简 (读一遍题库加 `/upskill-quiz` 测到 70%), 结构仍沿用通用的 task ticket spec.
+- README 不走教学 README 的正文结构, 而走 [upskill-quiz-readme-spec](upskill-quiz-readme-spec/upskill-quiz-readme-cn-spec.md) 的问答结构.
+- TICKET 另有规范 [upskill-quiz-ticket-spec](upskill-quiz-ticket-spec/upskill-quiz-ticket-cn-spec.md), 内容固定极简 (读一遍题库加 `/upskill-quiz` 测到 70%), 结构仍沿用通用的 task ticket spec.
 
 **`docs/tasks/`** 下的东西全部由 `lesson-smith sync` 生成, 不手写. SYLLABUS 对 upskill 来说只有 `01-upskill` 一段.
 

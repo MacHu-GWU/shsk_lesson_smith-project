@@ -3,7 +3,7 @@
 
 本文件独立成篇, 不引用 ref/upskill/ 下任何文件; 需要引用时只引 ref/ 根目录的通用 spec.
 
-定性: 这是 quiz 的薄壳, 由 lesson-smith-showcase-forge 生成, 给 showcase-quiz skill 消费. 它本身不出题: 题目, 参考回答, 深入解读全在那个 quiz mini task 的 README 里 (规范见 showcase-examples-quiz-readme-spec.md). 这份 doc 只做两件事: 指出题库在哪, 以及记录人类对考法的自定义要求.
+定性: 这是 quiz 的薄壳, 由 lesson-smith-showcase-forge 生成, 给 showcase-quiz skill 消费. 它本身不出题: 题目, 参考回答, 深入解读全在那个 quiz mini task 的 README 里 (规范见 showcase-quiz-readme-spec/showcase-quiz-readme-cn-spec.md). 这份 doc 只做两件事: 指出题库在哪, 以及记录人类对考法的自定义要求.
 
 适用范围: showcase 类型 repo 的 docs/showcase/03-showcase-quiz.md. 这是给 AI/skill 看的元文件, 人类读的是真正的教程正文 (examples 下的 quiz 题库真身也是给人读的), 不读这份薄壳; 所以它产出内容全英文, 不走 cn-first 铁律. 因此下面的正文模板本身就是英文的. 注意区分: 题库真身 (examples 下那个 mini task) 是人类看的, 走 cn-first 双语; 这份指针薄壳是 skill 看的, 全英文.
 
