@@ -32,7 +32,7 @@ disable-model-invocation: true
 
 ## 3. 这一步的红线
 
-- **不碰 `examples/`.** 索引 Task, quiz, 梳理 Task 都属于 examples, 在统稿之前就该写完了.
+- **不碰 `examples/`.** 索引, 主线, quiz, 收尾都属于 examples, 在统稿那一步就该写完了.
 - **README-ORIGINAL 的 `description` 与 `github_about` 必须停下来让创作者拍板.** 不许单方面定稿.
 - **根 README 要提到 `upskill-learn-cn` 与 `upskill-quiz-cn`**, 这两个子 skill 第 11 步刚产出来, 就在手边, **写之前先确认它们真的在**. 不提 runbook, 那是给 skill 读的.
 - 根 TICKET 里不写相对路径链接, 它要进 GitHub Issue. 提到 Task 或子 skill 一律用文字.

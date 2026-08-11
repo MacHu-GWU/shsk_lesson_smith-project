@@ -30,7 +30,7 @@ disable-model-invocation: true
 
 ## 3. 这一步的红线
 
-- **不碰 `examples/`.** 索引 Task 和收尾 Task 都属于 examples, 在统稿那一步就该写完了.
+- **不碰 `examples/`.** 索引, 主线, 收尾都属于 examples, 在统稿那一步就该写完了.
 - **README-ORIGINAL 的 `description` 与 `github_about` 必须停下来让创作者拍板.** 不许单方面定稿.
 - readup 红线: 根 README 与根 TICKET 里不出现任何斜杠命令.
 - 根 TICKET 里不写相对路径链接, 它要进 GitHub Issue.

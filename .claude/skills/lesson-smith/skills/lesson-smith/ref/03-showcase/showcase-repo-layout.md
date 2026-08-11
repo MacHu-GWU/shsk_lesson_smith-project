@@ -66,6 +66,8 @@ docs/showcase/05-showcase-publish-cn.md publish 清单, 自包含, 无 examples 
 .claude/skills/showcase-publish-cn/SKILL.md  forge 产出: 抹痕迹发布 skill
 ```
 
+树里的 `NN-` 与 `ZZ-` 都是占位符, **不是字面值**: `NN-` 表示编号接着往下排, `ZZ-` 表示编号最大的那个, 也就是最后一个. 落地时全都是两位数字, 从 01 连续不跳号, 这一条 lint 查.
+
 无后缀的英文文件仍然存在, 当前留空, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 2 节. 上面的树为了少占篇幅, 只在根目录逐一列了两版, 下面各层同理.
 
 ---
@@ -107,7 +109,7 @@ docs/showcase/05-showcase-publish-cn.md publish 清单, 自包含, 无 examples 
 showcase 在通用标准之上做了三处特化:
 
 - 把带序号的 branch 收敛成唯一的 `01-showcase`.
-- 新增 `examples/` 这一层放 Task 及其索引, 其中末尾两个 Task 的目录名固定.
+- 新增 `examples/` 这一层放 Task 及其索引, 其中 quiz 与 demo 两个 Task 的目录名固定.
 - 新增 `docs/showcase/` 与四个子 skill 这一整套学习与展示工具链.
 
 其余 (特殊文件命名, 多语言后缀, description 的长度与字符约束, `docs/tasks/` 汇总视图, SYLLABUS 生成与校验) 都沿用通用标准, 不在这里重复.

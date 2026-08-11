@@ -39,7 +39,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(c
 
 - 本类型的目录结构: readup 读 `ref/01-readup/readup-repo-layout.md`, upskill 读 `ref/02-upskill/upskill-repo-layout.md`, showcase 读 `ref/03-showcase/showcase-repo-layout.md`.
 - `ref/00-common/03-task-readme-spec/`, `ref/00-common/04-task-ticket-spec/`: 每个教学 Task 的 README 与 TICKET. 迁徙时按它们重整旧正文, 精修写开头篇与结尾篇时也用它们.
-- 本类型的 examples 系列索引 spec, 以及精修要用的 quiz 与 demo spec. 清单见主剧本第 5 步, 用到哪份读哪份.
+- 索引 Task 的 spec, 以及精修要用的 quiz 与 demo spec. 清单见主剧本第 5 步, 用到哪份读哪份.
 - `ref/agent-skill-interaction-pattern-cn.md`: 你和创作者互动的方式 (读中文版, 因为创作者以中文为母语).
 - 英文版当前不产出: 无后缀的英文文件全程留空, retrofit 也只写 `-cn`.
 
@@ -59,8 +59,8 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(c
 
 - 旧 repo 全程只读, 唯一的例外是第 2 步的 checkout. 绝不在旧 repo 里写文件, 提交, 或丢弃创作者的未提交改动.
 - 切 branch 在探索之前: 取序号 < 50 里最大的那个. 在错的 branch 上探索会漏掉后面几课.
-- README 与 TICKET 成对联动: 迁过来的每个 mini task, README (教什么) 和 TICKET (怎么验收) 是一对, 一起改. 旧 repo 常常只有单语, 或只有 README 没有 TICKET, 缺的要补齐并和另一半对齐.
-- 创作铁律: 先写 cn, examples 下全部定稿后一次性重写成 en. 那一步照 `ref/rewrite-en-spec.md` 做, 它定死了命令 (`/doc-writing-styles:rewrite-in-en-tutorial`), 文件集 (examples 下那三组 glob), 以及要额外交代的 frontmatter 保形与 H1 字符集. **不要问创作者要文件清单**, 也别自己起 agent 编排它, 更别拆成一个 mini task 跑一次: 跨篇的术语与标题统一只在一次跑动里成立.
+- README 与 TICKET 成对联动: 迁过来的每个 Task, README (教什么) 和 TICKET (怎么验收) 是一对, 一起改. 旧 repo 常常只有单语, 或只有 README 没有 TICKET, 缺的要补齐并和另一半对齐.
+- 只写 `-cn`: 中译英那一步已经从创作流里整步移除, 无后缀的英文文件全程留空占位. **旧 repo 里如果有英文正文, 不要顺手把它迁成英文版**, 那会造出一批没人维护, lint 也不检查的内容; 拿不准就停下来问创作者怎么处置.
 - 包名会变: 迁源代码时, 旧 repo 的包名在新 repo 通常不一样, 目录名, import 语句, `pyproject.toml` 的 name, 测试里的引用都要一并改写.
 - 迁移清单落到文件: 第 3 步产出的清单写进新 repo 的 `examples/_lm-example-plan.md` (可进 git), quiz 规划写进 `examples/_lm-quiz-plan.md`, 复用 author 那套约定.
 - 到精修做完就停: 收尾只提示创作者接着敲统稿那一步的 step 命令, 你不跑.

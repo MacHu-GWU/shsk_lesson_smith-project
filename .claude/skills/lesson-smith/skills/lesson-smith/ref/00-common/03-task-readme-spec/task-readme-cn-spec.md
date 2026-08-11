@@ -5,7 +5,7 @@
 **不在适用范围内的**两份, 各有专属 spec, 别拿本规范去套:
 
 - Repo 根目录的 `README-cn.md` (仓库总览), 见各类型自己的 readme spec.
-- `examples/README-cn.md` (系列索引), 见各类型自己的 examples readme spec.
+- `examples/01-title/README-cn.md` (索引 Task), 见 [05-overview-readme-spec](../05-overview-readme-spec/overview-readme-cn-spec.md).
 
 **配套骨架**: [task-readme-cn-template.md](task-readme-cn-template.md). 起草时把它整份复制过去填空, 里面没有任何注释, 复制完不用删任何东西.
 

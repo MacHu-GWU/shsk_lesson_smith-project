@@ -68,7 +68,7 @@ MAX_DESCRIPTION_CHARS_BY_LANG = {LangEnum.cn: 400}
 # whatever the script. So English gets modest headroom here rather than the
 # doubling the description gets.
 DEFAULT_MAX_GITHUB_ABOUT_CHARS = 300
-MAX_GITHUB_ABOUT_CHARS_BY_LANG = {LangEnum.cn: 200}
+MAX_GITHUB_ABOUT_CHARS_BY_LANG = {LangEnum.cn: 150}
 
 
 def lang_from_filename(name: str) -> "LangEnum | None":

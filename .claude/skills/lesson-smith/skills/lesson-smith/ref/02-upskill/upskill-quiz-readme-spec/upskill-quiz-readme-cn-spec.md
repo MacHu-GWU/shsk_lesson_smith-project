@@ -24,7 +24,7 @@
 
 ## 2. 位置
 
-`examples/` 里靠后, **通常倒数第 2**: 教学 Task 全部写完之后, 最后那个梳理拔高 Task 之前.
+主线教学 Task 全部写完之后, **收尾 Task 之前** (位置约定见 [00-common/01-repo-layout.md](../../00-common/01-repo-layout.md) 第 4.2 节).
 
 理由是它要考的东西必须先教过. 位置不像索引 Task 那样硬性固定在某个编号, 但目录名 `NN-prove-i-get-it` 是固定的, forge 靠这个名字定位它.
 

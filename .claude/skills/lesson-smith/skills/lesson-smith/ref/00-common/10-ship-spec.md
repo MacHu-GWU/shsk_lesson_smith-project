@@ -51,7 +51,7 @@ uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 | lint 报什么 | 通常是哪一步欠的账 |
 | :--- | :--- |
 | `File is missing` 指向某个 `-cn.md` | 那一份根本没写, 回对应的创作步骤 |
-| description 超长 | 写全局中文那步, README-ORIGINAL 最常见 |
+| description 超长 | 写根目录文档那步, README-ORIGINAL 最常见 |
 | description 没加双引号, 或值里有禁用字符 | 起草时 frontmatter 走形, 直接在那份文件上改 |
 | H1 字符集 | 标题里带了连字符, 破折号, 引号或 emoji, 换个写法 |
 | README-ORIGINAL 的 H1 不等于 repo 名 | 标题被当成散文重写了, 改回目录名 |

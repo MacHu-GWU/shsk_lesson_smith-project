@@ -59,6 +59,8 @@ docs/upskill/03-upskill-quiz-cn.md     quiz 薄壳, 指向题库真身
 .claude/skills/upskill-quiz-cn/SKILL.md    forge 产出: 自测 skill
 ```
 
+树里的 `NN-` 与 `ZZ-` 都是占位符, **不是字面值**: `NN-` 表示编号接着往下排, `ZZ-` 表示编号最大的那个, 也就是最后一个. 落地时全都是两位数字, 从 01 连续不跳号, 这一条 lint 查.
+
 无后缀的英文文件仍然存在, 当前留空, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 2 节. 上面的树为了少占篇幅, 只在根目录逐一列了两版, 下面各层同理.
 
 ---

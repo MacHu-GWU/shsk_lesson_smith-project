@@ -19,4 +19,4 @@
 - [第一段的主题]: examples/02 到 examples/0X, [这一段教什么] (覆盖学习素材: [第 1 节的哪几条])
 - [第二段的主题]: examples/0X 往后, [这一段教什么] (覆盖学习素材: [第 1 节的哪几条])
 
-另见 [系列索引 Task](../../examples/01-title/README-cn.md) 与 [SYLLABUS](../tasks/SYLLABUS-cn.md).
+另见 [索引 Task](../../examples/01-title/README-cn.md) 与 [SYLLABUS](../tasks/SYLLABUS-cn.md).

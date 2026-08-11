@@ -18,7 +18,7 @@
 | `TICKET-cn.md` | 整门课的验收清单 | readup [readup-ticket-spec](../01-readup/readup-ticket-spec/readup-ticket-cn-spec.md) / upskill [upskill-ticket-spec](../02-upskill/upskill-ticket-spec/upskill-ticket-cn-spec.md) / showcase [showcase-ticket-spec](../03-showcase/showcase-ticket-spec/showcase-ticket-cn-spec.md) |
 | `README-ORIGINAL-cn.md` | 对外门面, 重写最早那版粗稿 | [02-readme-original-spec](02-readme-original-spec/readme-original-cn-spec.md), 三类通用 |
 
-**这一步不碰 `examples/`.** 索引 Task 和梳理 Task 都属于 examples, 在统稿之前就该写完了.
+**这一步不碰 `examples/`.** 索引 Task 和收尾 Task 都属于 examples, 在统稿之前就该写完了.
 
 ---
 

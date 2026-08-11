@@ -262,12 +262,19 @@ class TestCheckFrontmatterGithubAbout:
             check_frontmatter_github_about(self._md(tmp_path, text))
 
     def test_too_long_chinese(self, tmp_path):
-        text = '---\ngithub_about: "' + "x" * 201 + '"\n---\n'
+        text = '---\ngithub_about: "' + "x" * 151 + '"\n---\n'
         md = MarkdownFile.from_path(
             write(tmp_path / "README-ORIGINAL-cn.md", text)
         )
-        with pytest.raises(LintError, match="200-character limit"):
+        with pytest.raises(LintError, match="150-character limit"):
             check_frontmatter_github_about(md)
+
+    def test_at_the_chinese_limit_is_fine(self, tmp_path):
+        text = '---\ngithub_about: "' + "x" * 150 + '"\n---\n'
+        md = MarkdownFile.from_path(
+            write(tmp_path / "README-ORIGINAL-cn.md", text)
+        )
+        check_frontmatter_github_about(md)
 
     def test_forbidden_char(self, tmp_path):
         text = '---\ngithub_about: "Has a `code` char."\n---\n'

@@ -62,6 +62,8 @@ docs/tasks/01-readup/README-cn.md
 docs/tasks/01-readup/TICKET-cn.md
 ```
 
+树里的 `ZZ-` 是占位符, **不是字面值**, 表示编号最大的那个, 也就是最后一个. 落地时是两位数字, 从 01 连续不跳号, 这一条 lint 查.
+
 无后缀的英文文件仍然存在, 当前留空, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 2 节.
 
 `examples/` 下各个位置分别是什么, 哪些硬哪些软, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 4.2 节. **readup 是三类里唯一没有特殊 Task 的**: 综述之后一路主线到收尾, 中间不插任何固定名字的 Task.
