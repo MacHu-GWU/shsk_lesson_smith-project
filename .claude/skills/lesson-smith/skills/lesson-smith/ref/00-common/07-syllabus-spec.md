@@ -1,6 +1,6 @@
 # SYLLABUS 格式规范
 
-`docs/tasks/SYLLABUS-cn.md` 是整门课的 Task 清单索引.
+`docs/tasks/SYLLABUS-cn.md` 是整门课的 Task 清单索引. 每个语种一份, 英文那份是 `SYLLABUS.md` (当前是个空壳, 见第 5 节).
 
 **它不手写.** 由 `lesson-smith sync` 自动生成, 所以这一份没有配套 template: 没人需要复制一个骨架去填. 这里写清它长什么样, 只是为了让人和 lint 都能判断生成出来的东西对不对.
 
@@ -43,7 +43,21 @@
 
 ---
 
-## 5. 生成出来长这样
+## 5. 英文版
+
+**sync 不认那个按语种开关**, 那是 lint 的东西. sync 对每个支持的语种都生成一份, 所以 `SYLLABUS.md` (英文) 现在也会被生成出来.
+
+但英文 Task README 目前是留空的占位文件, 取不到 `description`, 所以生成出来的英文 SYLLABUS 是**一个只有骨架没有内容的壳**: `# Syllabus` 在, 各个 `## branch-name` 也在, 每段描述是空的.
+
+三件事要知道:
+
+- **这不是 bug, 也不用手动清理.** 它是 "英文文件存在但留空" 这条约定的自然结果.
+- **lint 不检查它.** 英文那一档是关的, 所以空描述不会报错; 换成开着就会当场报 "has no description line".
+- **它会自愈.** 哪天英文 README 被填上, 重跑一次 sync 那份 SYLLABUS 就自动有内容了, 不需要另外做什么, 也不需要改这份规范.
+
+---
+
+## 6. 生成出来长这样
 
 ```markdown
 # Syllabus
