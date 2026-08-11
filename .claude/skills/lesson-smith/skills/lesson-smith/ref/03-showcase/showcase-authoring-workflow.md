@@ -129,9 +129,9 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 
 > 步骤 8, 属于写 quiz 阶段.
 
-按 [showcase-quiz-readme-spec](showcase-quiz-readme-spec/showcase-quiz-readme-cn-spec.md) 写这个 Task 的 README, 也就是题库真身 (每题四段: 问题, 考察点, 参考回答, 深入解读).
+按 [00-common/11-quiz-readme-spec](../00-common/11-quiz-readme-spec/quiz-readme-cn-spec.md) 写这个 Task 的 README, 也就是题库真身 (每题四段: 问题, 考察点, 参考回答, 深入解读).
 
-按 [showcase-quiz-ticket-spec](showcase-quiz-ticket-spec/showcase-quiz-ticket-cn-spec.md) 写它的 TICKET, 内容固定极简: 读一遍题库, 再用 quiz 那个子 skill 测到 70% 通过.
+按 [00-common/12-quiz-ticket-spec](../00-common/12-quiz-ticket-spec/quiz-ticket-cn-spec.md) 写它的 TICKET, 内容固定极简: 读一遍题库, 再用 quiz 那个子 skill 测到 70% 通过.
 
 写完精修一遍. **每道题都要能在 repo 里找到出处**, 编不出出处的题就是超纲题.
 
@@ -196,7 +196,7 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 - `docs/showcase/` 下五份 doc: 学习索引, 跑起来的操作, quiz 薄壳, demo 薄壳, publish 清单.
 - `.claude/skills/` 下四个子 skill: `showcase-learn-cn`, `showcase-quiz-cn`, `showcase-demo-cn`, `showcase-publish-cn`.
 
-规范与模板都在 [forge/](forge/) 目录下, 每份中英各一套, **当前只产 `-cn` 那一套**.
+规范与模板分两处: 和 upskill 共用的三份在 [00-common/13-forge-shared/](../00-common/13-forge-shared/) (里面的 `<type>` 落地时换成 `showcase`), showcase 独有的 demo 与 publish 在 [forge/](forge/). 每份中英各一套, **当前只产 `-cn` 那一套**.
 
 这一步 AI 猜不出的部分要创作者兜底拍板: 哪些算学习素材, runbook 里有哪些隐性步骤, quiz 想怎么考, demo 想怎么排练, publish 清单里哪些算待定项. 为方便编辑那次调用的输入, 用模板 [prompts/run-lesson-smith-showcase-forge.md](../../prompts/run-lesson-smith-showcase-forge.md).
 

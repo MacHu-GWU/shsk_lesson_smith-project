@@ -22,21 +22,27 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 ## 必读规范 (都在 lesson-smith skill 的 ref/ 下)
 
-按用途读, 不要一次全读. **forge 要的东西集中在 `ref/02-upskill/forge/` 下**, 每份 doc 一个目录, 里面中英各一套 spec 加 template.
+按用途读, 不要一次全读. **forge 要的东西全在 `ref/00-common/13-forge-shared/` 下**, 不在 `ref/02-upskill/` 里: upskill 的 forge 产物和 showcase 完全重合, 所以那套素材归了通用层. 每份 doc 一个目录, 里面中英各一套 spec 加 template.
 
 - `ref/02-upskill/upskill-repo-layout.md`: upskill 的目录结构特化, 先读它对齐整体布局.
-- `ref/02-upskill/forge/docs-upskill-learn/docs-upskill-learn-cn-spec.md`: 写 `01-upskill-learn-cn.md` 的规范, 配套 template 在同目录.
-- `ref/02-upskill/forge/docs-upskill-runbook/docs-upskill-runbook-cn-spec.md`: 写 `02-upskill-runbook-cn.md` 的规范.
-- `ref/02-upskill/forge/docs-upskill-quiz/docs-upskill-quiz-cn-spec.md`: 写 `03-upskill-quiz-cn.md` 的规范.
-- `ref/02-upskill/forge/upskill-learn-cn.SKILL.md`, `ref/02-upskill/forge/upskill-quiz-cn.SKILL.md`: 两个子 skill 的近乎静态模板, 直接拷.
+- `ref/00-common/13-forge-shared/docs-learn/docs-learn-cn-spec.md`: 写 `01-upskill-learn-cn.md` 的规范, 配套 template 在同目录.
+- `ref/00-common/13-forge-shared/docs-runbook/docs-runbook-cn-spec.md`: 写 `02-upskill-runbook-cn.md` 的规范.
+- `ref/00-common/13-forge-shared/docs-quiz/docs-quiz-cn-spec.md`: 写 `03-upskill-quiz-cn.md` 的规范.
+- `ref/00-common/13-forge-shared/learn-cn.SKILL.md`, `ref/00-common/13-forge-shared/quiz-cn.SKILL.md`: 两个子 skill 的近乎静态模板, 直接拷.
 - `ref/agent-skill-interaction-pattern-cn.md`: 通用交互模式中文版, 生成子 skill 时拷一份进各自的 `ref/` 下.
-- `ref/02-upskill/upskill-quiz-readme-spec/`: 题库真身的格式, 用来核对定位到的那个 Task 对不对.
+- `ref/00-common/11-quiz-readme-spec/`: 题库真身的格式, 用来核对定位到的那个 Task 对不对.
+
+### 素材里的 `<type>` 是占位符
+
+`13-forge-shared/` 那一层被 upskill 与 showcase 共用, 所以里面的类型名一律写成 `<type>`. **拷过去之后必须全部替换成 `upskill`**, 路径, skill 名, frontmatter 里的 `name` 与 `description` 全算.
+
+漏掉一个的后果是产出一条指向不存在的路径的链接, 而且不报错. 所以 Phase 6 有一条硬检查: **生成的文件里 grep `<type>`, 必须 0 命中.**
 
 ## 语种: 只产 `-cn` 那一套
 
-`forge/` 下每份 doc 都有中英两套 spec 与 template, 两个子 skill 也有中英两版. **当前只产 `-cn` 那一套.**
+上面每份 doc 都有中英两套 spec 与 template, 两个子 skill 也有中英两版. **当前只产 `-cn` 那一套.**
 
-理由是 `examples/` 下无后缀的英文课程正文是**留空的占位符**, 英文索引只会指向一堆空文件. 英文那一套规范留在 `forge/` 里, 等多语种模块回来接手. **这是预期状态, 不是欠账.**
+理由是 `examples/` 下无后缀的英文课程正文是**留空的占位符**, 英文索引只会指向一堆空文件. 英文那一套规范原地留着, 等多语种模块回来接手. **这是预期状态, 不是欠账.**
 
 由此推出一条贯穿全流程的硬规则:
 
@@ -109,12 +115,12 @@ upskill 的内容是创作者手写的 Task, 不用像扫陌生代码那样重. 
 具体拷贝:
 
 ```text
-ref/02-upskill/forge/upskill-learn-cn.SKILL.md  ->  .claude/skills/upskill-learn-cn/SKILL.md
-ref/02-upskill/forge/upskill-quiz-cn.SKILL.md   ->  .claude/skills/upskill-quiz-cn/SKILL.md
-ref/agent-skill-interaction-pattern-cn.md       ->  上面两个 skill 各自的 ref/agent-skill-interaction-pattern-cn.md
+ref/00-common/13-forge-shared/learn-cn.SKILL.md  ->  .claude/skills/upskill-learn-cn/SKILL.md
+ref/00-common/13-forge-shared/quiz-cn.SKILL.md   ->  .claude/skills/upskill-quiz-cn/SKILL.md
+ref/agent-skill-interaction-pattern-cn.md        ->  上面两个 skill 各自的 ref/agent-skill-interaction-pattern-cn.md
 ```
 
-模板近乎全静态, 落地时只需核对三件事: frontmatter 的 `name` 等于目录名, 每个 SKILL.md 都固定加载它自己 `ref/` 下那份交互模式, 且对 `docs/upskill/` 的引用路径带 `-cn`.
+模板近乎全静态, 落地时只有四件事要做: 把 `<type>` 全部换成 `upskill`, 让 frontmatter 的 `name` 等于目录名, 让每个 SKILL.md 都固定加载它自己 `ref/` 下那份交互模式, 且对 `docs/upskill/` 的引用路径带 `-cn`.
 
 ### Phase 6: Verify 与汇报
 
@@ -124,6 +130,7 @@ ref/agent-skill-interaction-pattern-cn.md       ->  上面两个 skill 各自的
    - 每个 SKILL.md 都引到 `docs/upskill/` 下对应的 `-cn` 文件.
    - 每个生成的 skill 的 `ref/` 下都有交互模式, 且 SKILL.md 加载了它.
    - 3 份 doc 都非空, 且里面指向 `examples/` 的链接都是 `-cn` 的.
+   - **产出的文件里 grep `<type>`, 必须 0 命中.** 有命中就是共享模板的占位符没换干净.
 3. 用 uvx 跑 `lesson-smith lint` 看仓库结构是否仍合规 (`uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .`; `<version>` 与 pin 版本的说明见 `ref/00-common/01-repo-layout.md` 第 8 节, 本地已装 package 则直接 `lesson-smith lint`).
 4. 告诉用户: 用 `/upskill-learn-cn` 开始学, `/upskill-quiz-cn` 自测; `docs/upskill/` 里哪里不对直接改, 或 `refresh <name>` 重生成一份. **接着做第 12 步, 不要另开 session.**
 

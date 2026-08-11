@@ -28,7 +28,7 @@ disable-model-invocation: true
 - `docs/upskill/` 下三份 doc: 学习索引, 跑起来的操作, quiz 薄壳.
 - `.claude/skills/` 下两个子 skill: `upskill-learn-cn` 与 `upskill-quiz-cn`.
 
-规范与模板都在 `ref/02-upskill/forge/` 下, 由那个 skill 自己去读, 你不用预读.
+规范与模板都在 `ref/00-common/13-forge-shared/` 下, 由那个 skill 自己去读, 你不用预读.
 
 为方便编辑那次调用的输入, 用模板 `prompts/run-lesson-smith-upskill-forge.md`.
 

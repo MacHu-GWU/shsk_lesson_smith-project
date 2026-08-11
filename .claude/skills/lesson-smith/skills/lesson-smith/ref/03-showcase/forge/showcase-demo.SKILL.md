@@ -2,7 +2,7 @@
 name: showcase-demo
 description: Rehearsal coach for this project's story. Practice telling how you built it, then get grilled on it.
 allowed-tools: Read Grep
-argument-hint: [rehearse | grill | audience <type> | resume]
+argument-hint: [rehearse | grill | audience <role> | resume]
 ---
 
 # showcase-demo

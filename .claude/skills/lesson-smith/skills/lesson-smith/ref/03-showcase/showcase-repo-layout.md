@@ -10,8 +10,6 @@ showcase 教 "如何做某一类事情", 但**学会不是终点**: 学完之后
 
 和 upskill 的差别集中在收尾: showcase 多两个环节 (讲故事排练与抹痕迹发布), 因此多两个固定 Task, 多两份 doc, 多两个子 skill.
 
-**为什么这一层叫 examples 而不是 tutorials**: 如果这个 repo 最终要拿去给外面看, tutorials 给人的感觉是 "别人在教这个学生", 而 examples 给人的感觉是 "这个学生在教别人, 在展示自己怎么学会的". 后者视角更主动, 更适合展示, 所以统一用 examples.
-
 ---
 
 ## 2. 唯一的 branch: 01-showcase
@@ -89,16 +87,19 @@ docs/showcase/05-showcase-publish-cn.md publish 清单, 自包含, 无 examples 
 
 | 目录 | README 走 | TICKET 走 |
 | :--- | :--- | :--- |
-| `NN-prove-i-get-it` | [showcase-quiz-readme-spec](showcase-quiz-readme-spec/showcase-quiz-readme-cn-spec.md) 的问答结构 | [showcase-quiz-ticket-spec](showcase-quiz-ticket-spec/showcase-quiz-ticket-cn-spec.md) |
+| `NN-prove-i-get-it` | [00-common/11-quiz-readme-spec](../00-common/11-quiz-readme-spec/quiz-readme-cn-spec.md) 的问答结构 | [00-common/12-quiz-ticket-spec](../00-common/12-quiz-ticket-spec/quiz-ticket-cn-spec.md) |
 | `NN-how-i-build-this` | [showcase-demo-readme-spec](showcase-demo-readme-spec/showcase-demo-readme-cn-spec.md) 的讲故事结构 | [showcase-demo-ticket-spec](showcase-demo-ticket-spec/showcase-demo-ticket-cn-spec.md) |
 
-两份 TICKET 的结构仍沿用通用的 task ticket spec, 只是内容固定极简.
+两份 TICKET 的结构仍沿用通用的 task ticket spec, 只是内容固定极简. **quiz 那两份规范和 upskill 共用**, 所以住在通用层, 落地时把里面的 `<type>` 换成 `showcase`; demo 那两份是 showcase 独有的, 留在本层.
 
 **`docs/tasks/`** 下的东西全部由 `lesson-smith sync` 生成, 不手写. SYLLABUS 对 showcase 来说只有 `01-showcase` 一段.
 
-**`docs/showcase/`** 下五份 doc 与四个子 skill 都由 `lesson-smith-showcase-forge` 产出, 它要读的规范与模板集中在 [forge/](forge/) 下: [docs-showcase-learn](forge/docs-showcase-learn/docs-showcase-learn-cn-spec.md), [docs-showcase-runbook](forge/docs-showcase-runbook/docs-showcase-runbook-cn-spec.md), [docs-showcase-quiz](forge/docs-showcase-quiz/docs-showcase-quiz-cn-spec.md), [docs-showcase-demo](forge/docs-showcase-demo/docs-showcase-demo-cn-spec.md), [docs-showcase-publish](forge/docs-showcase-publish/docs-showcase-publish-cn-spec.md), 加上四份 SKILL 模板.
+**`docs/showcase/`** 下五份 doc 与四个子 skill 都由 `lesson-smith-showcase-forge` 产出, 它要读的规范与模板**分两处**:
 
-这一层**分语种**: 每份 doc 中英各一套 spec 加 template, 子 skill 也是无后缀的英文版与 `-cn` 版各一份. **但 forge 当前只产 `-cn` 那一套**, 因为无后缀的英文课程正文留空, 英文索引只会指向一堆空文件. 英文那一套规范留着, 等多语种模块回来接手.
+- **和 upskill 共用的三份**在 [00-common/13-forge-shared/](../00-common/13-forge-shared/): [docs-learn](../00-common/13-forge-shared/docs-learn/docs-learn-cn-spec.md), [docs-runbook](../00-common/13-forge-shared/docs-runbook/docs-runbook-cn-spec.md), [docs-quiz](../00-common/13-forge-shared/docs-quiz/docs-quiz-cn-spec.md), 加 learn 与 quiz 两份 SKILL 模板. 里面的 `<type>` 落地时换成 `showcase`.
+- **showcase 独有的两份**在本层 [forge/](forge/): [docs-showcase-demo](forge/docs-showcase-demo/docs-showcase-demo-cn-spec.md), [docs-showcase-publish](forge/docs-showcase-publish/docs-showcase-publish-cn-spec.md), 加 demo 与 publish 两份 SKILL 模板. 这两份写死 `showcase`, 不带占位符.
+
+两处都**分语种**: 每份 doc 中英各一套 spec 加 template, 子 skill 也是无后缀的英文版与 `-cn` 版各一份. **但 forge 当前只产 `-cn` 那一套**, 因为无后缀的英文课程正文留空, 英文索引只会指向一堆空文件. 英文那一套规范留着, 等多语种模块回来接手.
 
 **publish 那份要特别注意语种**: 作品 repo 只带一个语种, 所以发布时要**留下有内容的那一版 (`-cn`), 删掉留空的占位符, 再把后缀去掉**. 判断哪一版是占位符必须去读文件, 不许看后缀. 做反了就是把整门课删光.
 

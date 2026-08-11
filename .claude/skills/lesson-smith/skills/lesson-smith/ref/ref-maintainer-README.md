@@ -23,7 +23,7 @@ readup, upskill, showcase 三类底层是**同一个东西**: 一个 branch, 加
 
 **readup 是 upskill 的子集, upskill 是 showcase 的子集.** 每往右一格是加东西, 不是换一套.
 
-所以 `ref/` 就照这个分: **一层通用, 三层特化.** 通用层承担那个共同骨架, 特化层只写各自多出来的那几格. 三个特化层内部的文件构成也刻意保持一致 (一份 layout, 一份 workflow, 一对根 README 与 TICKET spec, 加各自的特殊 Task 与 forge), 这样从一类跳到另一类, 找东西的路径不用重学.
+所以 `ref/` 就照这个分: **一层通用, 三层特化.** 通用层承担那个共同骨架, 特化层只写各自多出来的那几格. 三个特化层内部的文件构成也刻意保持一致 (一份 layout, 一份 workflow, 一对根 README 与 TICKET spec), 这样从一类跳到另一类, 找东西的路径不用重学. 除此之外每层只留**自己独有**的那几份: readup 一份没有, upskill 一份没有 (它多出来的东西 showcase 也全有, 所以都归了通用层), showcase 有 demo 与 publish.
 
 evolve 是第四类, 它没有 `examples/` 那一层, 不在这个同构关系里, 规范也还没立起来.
 
@@ -58,6 +58,9 @@ ref/
     08-series-converge-spec.md              流程步骤: 统稿
     09-root-docs-spec.md                    流程步骤: 写根目录文档
     10-ship-spec.md                         流程步骤: 出厂
+    11-quiz-readme-spec/                    多类共享: quiz Task
+    12-quiz-ticket-spec/
+    13-forge-shared/                        多类共享: 分组目录, 见第 4 节
   01-readup/                            特化层
     readup-repo-layout.md
     readup-authoring-workflow.md
@@ -68,25 +71,22 @@ ref/
     upskill-authoring-workflow.md
     upskill-readme-spec/
     upskill-ticket-spec/
-    upskill-quiz-readme-spec/               特殊 Task: quiz
-    upskill-quiz-ticket-spec/
-    forge/                                  分组目录, 见第 4 节
+                                            quiz 与 forge 素材全在通用层
   03-showcase/
     showcase-repo-layout.md
     showcase-authoring-workflow.md
     showcase-readme-spec/
     showcase-ticket-spec/
-    showcase-quiz-readme-spec/              特殊 Task: quiz
-    showcase-quiz-ticket-spec/
-    showcase-demo-readme-spec/              特殊 Task: demo
+    showcase-demo-readme-spec/              特殊 Task: demo, showcase 独有
     showcase-demo-ticket-spec/
-    forge/
+    forge/                                  只放 demo 与 publish 两组
   evolve/                               还没立
 ```
 
 - **`00-common` 里的序号就是维护顺序, 也是阅读顺序.** 它排在最前不是因为最重要, 而是因为后面三层都建立在它之上.
-- **`00-common` 的号分三段: `01` 是标准, `02` 到 `07` 是文档 spec, `08` 到 `10` 是流程步骤.** 数字连着排是为了有个确定的阅读顺序, 不代表它们是同一种东西.
-- **`00-common` 的判据是 "被多个 repo type 共享", 不是 "四类都有".** 比如 `05` 与 `06` 那个索引 Task 只有 examples 系的三类有, evolve 没有, 但三类共享就够格放这儿. 各文件自己的适用范围写在各自开头.
+- **`00-common` 的号分四段: `01` 是标准, `02` 到 `07` 是通用文档 spec, `08` 到 `10` 是流程步骤, `11` 往后是多类共享但不是四类都有的东西.** 数字连着排是为了有个确定的阅读顺序, 不代表它们是同一种东西. 新东西**往后接**, 不往中间插: `06` 和 `08` 之间塞一个, 就要动 40 多处 "第 N 节" 之外的路径引用.
+- **`00-common` 的判据是 "被多个 repo type 共享", 不是 "四类都有".** 比如 `05` 与 `06` 那个索引 Task 只有三类有, `11` 到 `13` 更只有 upskill 与 showcase 两类有, 但共享就够格放这儿. 各文件自己的适用范围写在各自开头.
+- **共享的代价是占位符.** `11` 往后那几份里的类型名写成 `<type>`, 落地时替换. 换来的是一份规范只有一个副本; 漏换可以机械查出来 (产出里 grep `<type>` 必须 0 命中), 而漂移查不出来.
 - **特化层内部不排号.** 那里不是一条阅读顺序, 是按 "谁要读" 摆的: 写根 README 的去找 `<type>-readme-spec/`, 跑 forge 的只进 `forge/`. 排号反而会暗示一个并不存在的先后.
 - **两份 `agent-skill-interaction-pattern` 放在 `ref/` 根**, 因为它不限教学仓库, 任何互动 skill 都能加载. 它也是唯一一份中英都活着且内容对等的文件, **改一版必须同步另一版**.
 - `evolve/` 还没排号, 因为这一类的规范还没正式立起来.
@@ -106,20 +106,28 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 
 **单文件**, 形如 `<name>.md`. 用在没有固定产物的东西上, 比如目录布局标准, 工作流规范. 就是一份普通的 markdown, 没有配套 template.
 
-**分组目录**, 目前只有两个 `forge/`. 它把**同一个消费者**要读的东西收在一处: `lesson-smith-upskill-forge` 与 `lesson-smith-showcase-forge` 跑一次要读七八份规范, 摊在特化层根下会把那一层淹掉. 分组目录不是 spec 目录, 它只是在 spec 目录外面加了一层, "一个 spec 一个目录" 那条规矩不变:
+**分组目录**, 目前有两个, 都服务 forge. 它把**同一个消费者**要读的东西收在一处: 两个 `lesson-smith-*-forge` 跑一次要读七八份规范, 摊在层根下会把那一层淹掉. 分组目录不是 spec 目录, 它只是在 spec 目录外面加了一层, "一个 spec 一个目录" 那条规矩不变:
 
 ```text
-02-upskill/forge/
-  docs-upskill-learn/                   spec 目录, 中英各一套
-  docs-upskill-runbook/
-  docs-upskill-quiz/
-  upskill-learn.SKILL.md                子 skill 模板, 近乎全静态, 直接拷
-  upskill-learn-cn.SKILL.md
-  upskill-quiz.SKILL.md
-  upskill-quiz-cn.SKILL.md
+00-common/13-forge-shared/            两类共用的那部分
+  docs-learn/                             spec 目录, 中英各一套
+  docs-runbook/
+  docs-quiz/
+  learn.SKILL.md                          子 skill 模板, 近乎全静态
+  learn-cn.SKILL.md
+  quiz.SKILL.md
+  quiz-cn.SKILL.md
+
+03-showcase/forge/                    showcase 多出来的那部分
+  docs-showcase-demo/
+  docs-showcase-publish/
+  showcase-demo{,-cn}.SKILL.md
+  showcase-publish{,-cn}.SKILL.md
 ```
 
-那四份 `*.SKILL.md` 是本层唯一的**第三种东西**: 既不是 spec 也不是 template, 是可以整份拷成一个真 skill 的成品. 它们不进 spec 目录, 因为它们没有配套规范, 拷过去改个路径就能用.
+**upskill 没有自己的 `forge/`**: 它的 forge 产物和 showcase 完全重合, 所以那套素材整个归了通用层. showcase 只是在同一套之上多两份. 这正好是第 1 节那个子集关系在文件上的样子.
+
+那些 `*.SKILL.md` 是全套里唯一的**第三种东西**: 既不是 spec 也不是 template, 是可以整份拷成一个真 skill 的成品. 它们不进 spec 目录, 因为它们没有配套规范, 拷过去换掉 `<type>` 就能用.
 
 ---
 
@@ -153,7 +161,7 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 
 - **砍的是工作流, 不是规范.** "英文版专属" 那种教你怎么重写的小节可以走, 因为现在没有重写这一步.
 - **但按语种分档的预算, 字符集这类硬约束要留着.** 一份英文文件该长什么样, 规范里还得说得清. 删掉的代价是多语种模块接手时要重新推导一遍.
-- **`forge/` 下的英文 spec 与 template 是例外, 它们已经写好了.** 那几份不是翻译, 是照着中文版的意思用英文重新写的, 属于多语种模块提前落位的一块. 当前 forge 只产 `-cn` 那一套, 英文那套躺着等接手.
+- **forge 要读的那些英文 spec 与 template 是例外, 它们已经写好了.** 那几份不是翻译, 是照着中文版的意思用英文重新写的, 属于多语种模块提前落位的一块. 当前 forge 只产 `-cn` 那一套, 英文那套躺着等接手.
 
 ---
 
@@ -161,9 +169,9 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 
 **结构上已经完工.** 从通用层到三个特化层, 从 spec 到 workflow 到 SKILL 到 step skill, 一路都按上面几节的规矩落地了:
 
-- `00-common/` 十份齐了: `01` 标准, `02` 到 `07` 文档 spec, `08` 到 `10` 流程三件套 (统稿, 根目录文档, 出厂).
+- `00-common/` 十三份齐了: `01` 标准, `02` 到 `07` 通用文档 spec, `08` 到 `10` 流程三件套 (统稿, 根目录文档, 出厂), `11` 到 `13` upskill 与 showcase 共享的那部分 (quiz 那个 Task 的两份, 加 forge 素材).
 - spec 目录全面改成两文件制 (一份 spec 加一份 template), 顶部注释与 `corpus/` 那两套已作废.
-- 三个特化层的 layout, workflow, 根 README 与 TICKET spec, 特殊 Task spec 全部落位; 两个 `forge/` 分组目录中英各一套.
+- 三个特化层的 layout, workflow, 根 README 与 TICKET spec 全部落位; 各层只留自己独有的东西, 重复的那约 850 行 (quiz 两份 spec 加整套 forge 素材) 已经收进通用层.
 - 运行时那一侧同步跟上: `SKILL.md` 的 ref 索引与工作流步骤都已重指, 三条 author 命令加对应的 step skill 全部到位, `finalize` 那一套已删.
 - lint 加了按语种开关 (`constants.py` 的 `LINT_ENABLED_BY_LANG`), 英文当前关着, 所以留空的英文占位文件不拖垮整仓.
 - lint 的字符集和规范对齐了: `DESCRIPTION_FORBIDDEN_CHARS` 已放行 ASCII 撇号, 与 [00-common/01-repo-layout.md](00-common/01-repo-layout.md) 第 6.2 节一致 (值本身被双引号包着, 撇号不产生歧义). `H1_FORBIDDEN_CHARS` 里那一个**保留**: H1 会以裸字符串的形态到处流转, 没有包裹的引号护着, 理由不通用.
@@ -172,6 +180,6 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 
 - 英文正文全部留空, lint 对英文整个跳过.
 - 中译英那一步已经从三份 workflow 里整步移除, `rewrite-en-spec.md` 与 `run-rewrite-en.md` 都进了 skill 根目录的 `archive/`. 三份 workflow 末尾各留一节 `附: 中译英 (当前跳过)` 记着这件事.
-- 接手时要做的是三件: 打开 `LINT_ENABLED_BY_LANG` 里的英文, 把英文正文填进去, 让 forge 中英两套都产 (`forge/` 下的英文 spec 已经备好).
+- 接手时要做的是三件: 打开 `LINT_ENABLED_BY_LANG` 里的英文, 把英文正文填进去, 让 forge 中英两套都产 (`13-forge-shared/` 与 `03-showcase/forge/` 下的英文 spec 都已备好).
 
 **明确推迟, 不算欠账**: `evolve/` 这一类的规范一直没立. 它不带 `examples/`, 和第 1 节那个三类同构关系不一样, 要立就是从 layout 开始重新推一遍, 不是补几份 spec 的事. 而且它会连带动到 `shsk_lesson_smith` 那个 package (lint 要按 `type` 分支处理一套新布局), 所以立 evolve 的那一次同时是一次版本升级, 该排在一起做.

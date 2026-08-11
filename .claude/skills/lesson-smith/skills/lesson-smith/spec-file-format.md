@@ -21,14 +21,14 @@
 **一个 spec 目录里可以放不止一个语种**, 例如:
 
 ```text
-02-upskill/forge/docs-upskill-learn/
-  docs-upskill-learn-spec.md            英文规范
-  docs-upskill-learn-template.md        英文骨架
-  docs-upskill-learn-cn-spec.md         中文规范
-  docs-upskill-learn-cn-template.md     中文骨架
+00-common/13-forge-shared/docs-learn/
+  docs-learn-spec.md            英文规范
+  docs-learn-template.md        英文骨架
+  docs-learn-cn-spec.md         中文规范
+  docs-learn-cn-template.md     中文骨架
 ```
 
-上面那层 `forge/` 是**分组目录**, 把同一个消费者 (这里是 `lesson-smith-upskill-forge`) 要读的东西收在一处, 不是 spec 目录. 它不改变 "一个 spec 一个目录" 这条规矩, 只是在它外面加了一层. 特化层文件多起来之后会有这种分组, 不要把它压平.
+上面那层 `13-forge-shared/` 是**分组目录**, 把同一个消费者 (这里是两个 `lesson-smith-*-forge`) 要读的东西收在一处, 不是 spec 目录. 它不改变 "一个 spec 一个目录" 这条规矩, 只是在它外面加了一层. 文件多起来之后会有这种分组, 不要把它压平.
 
 ---
 
@@ -37,6 +37,8 @@
 **spec**: 普通 markdown, 不是注释. H2 从 1 连续编号, 之间用分隔线隔开, 该用表格就用表格. 所有规范性文字 (定性, 适用范围, 结构, 字段约束, 写作原则, 语料怎么用, 交付前自检) 都在这里.
 
 **template**: 纯骨架. frontmatter 加 `[方括号]` 占位内容, 结构就是真实的 markdown 结构. **一个注释都没有.** 起草时整份复制过去填空, **复制完不用删任何东西**.
+
+**一个例外: 多类共享的 spec 目录带 `<type>` 占位符.** `11`, `12`, `13-forge-shared/` 那几份被 upskill 与 showcase 共用, 里面的类型名一律写成 `<type>`, 拷过去之后要全部替换. 这是为共享付的唯一代价, 而它可以机械验证: 产出的文件里 grep `<type>` 必须 0 命中, 两个 forge SKILL 的 Verify 阶段都钉了这一条.
 
 spec 开头点名它配套的 template; template 不反向引用 spec (它要能被原样复制).
 
@@ -60,7 +62,7 @@ spec 开头点名它配套的 template; template 不反向引用 spec (它要能
 
 **判据只有一条: 带 template 的分, 不带的不分.**
 
-- **带 template 的分** (`02` 到 `06` 那几个 spec 目录). template 本身就是那个语种的文本, 复制过去就变成中文文档, 它必须分; spec 跟着分, 理由见下一节. 受控词汇表这类东西也就自然落在分开的这一侧.
+- **带 template 的分** (`02` 到 `06`, `11`, `12`, 以及 `13-forge-shared/` 下那几个 spec 目录). template 本身就是那个语种的文本, 复制过去就变成中文文档, 它必须分; spec 跟着分, 理由见下一节. 受控词汇表这类东西也就自然落在分开的这一侧.
 - **不带 template 的不分** (`01-repo-layout`, `07-syllabus-spec`, `08-series-converge-spec`, `09-root-docs-spec`, `10-ship-spec`). 它们描述的是 "长什么形状" 与 "做什么", 换个语种照样成立.
 
 流程类规范值得单独说一句. 统稿是中文统中文, 英文统英文, 但**那是跑的时候的参数, 不是分文件的理由**: 一份写着 "一次只统一个语种" 的文件, 严格优于两份只差后缀名的文件.
@@ -76,7 +78,7 @@ spec 开头点名它配套的 template; template 不反向引用 spec (它要能
 
 **绝大部分目前只有中文版.** 英文版属于多语种模块, 还没做, 所以中文 spec 里不写任何 "英文版专属" 的规则.
 
-**例外是两个 `forge/` 下的那几个 spec 目录**, 它们中英两套都已经写好了 (英文那套是照着中文版的意思用英文重写的, 不是翻译). 当前 forge 只产 `-cn`, 英文那套躺着等多语种模块接手.
+**例外是 forge 要读的那些 spec 目录** (`00-common/13-forge-shared/` 三组加 `03-showcase/forge/` 两组), 它们中英两套都已经写好了 (英文那套是照着中文版的意思用英文重写的, 不是翻译). 当前 forge 只产 `-cn`, 英文那套躺着等多语种模块接手.
 
 ---
 

@@ -111,7 +111,7 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 各环节照本类型的 spec 写, 全部到基座 lesson-smith 的 `ref/` 下读:
 
 - 开头篇与结尾篇是普通教学 mini task, 走 `ref/00-common/03-task-readme-spec/` 与 `ref/00-common/04-task-ticket-spec/`.
-- quiz 题库走 upskill 的 `ref/02-upskill/upskill-quiz-readme-spec/` 或 showcase 的 `ref/03-showcase/showcase-quiz-readme-spec/`, 它的 TICKET 走同目录下对应的 quiz-ticket-spec.
+- quiz 题库走 `ref/00-common/11-quiz-readme-spec/`, 它的 TICKET 走 `ref/00-common/12-quiz-ticket-spec/`. 两份 upskill 与 showcase 共用, 里面的 `<type>` 换成本 repo 的类型名.
 - demo 底稿走 `ref/03-showcase/showcase-demo-readme-spec/`, 它的 TICKET 走 `ref/03-showcase/showcase-demo-ticket-spec/`.
 - `examples/README` 系列索引走本类型的 examples-readme-spec, 迁徙改完编号顺序之后要重写它.
 

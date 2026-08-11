@@ -74,6 +74,7 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见下一小�
 
 带 `examples/` 的三类 repo (readup, upskill, showcase) **共用同一套位置约定**. evolve 没有这一层.
 
+**为什么这一层叫 examples 而不是 tutorials**: 如果这个 repo 最终要拿去给外面看, tutorials 给人的感觉是 "别人在教这个学生", 而 examples 给人的感觉是 "这个学生在教别人, 在展示自己怎么学会的". 后者视角更主动, 更适合展示, 所以统一用 examples.
 编号两位数打头, **从 01 连续, 不许跳号** (lint 查这条). 每个位置的角色是固定的:
 
 | 位置 | 是什么 | 谁有 |
@@ -220,3 +221,25 @@ uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 - `<version>` 填创作时的最新发布版本 (当前是 0.3.0; 最新版见 https://pypi.org/pypi/shsk-lesson-smith).
 - **pin 死版本**是为了让校验规范可复现, 不随新版悄悄漂移.
 - 本地已经装好这个 package 时, 直接跑 `lesson-smith sync` 与 `lesson-smith lint` 效果相同.
+
+---
+
+## 9. H1
+
+四类 repo 的每份特殊文件都只有一个 H1, 字符集由 lint 卡死.
+
+### 9.1 通用规则
+
+- 只用字母, 数字, 文字, 以及逗号, 冒号, 句号.
+- 禁 emoji, 引号, 双引号, 方括号, 以及三种破折号 (em dash, en dash, ASCII hyphen).
+- **不许拿 repo 名字当通用前缀.** 凡是能用程序批量生成的一律不手写.
+
+**为什么禁引号类**: H1 常被当成裸字符串出现在别处 (看板标题, Issue 标题, 索引里的一行), 带引号就要转义. 逗号和冒号在字符串里是安全的, 予以保留.
+
+**最容易翻车的是带连字符的术语.** `from-scratch mode` 这类词在正文里合法, 写进 H1 就报错. 改成不带连字符的写法或者换个词, **不要把连字符换成任何一种破折号**, 那三种全在禁用集里.
+
+### 9.2 README-ORIGINAL 是例外
+
+`README-ORIGINAL` 的 H1 **逐字节等于 repo 目录名**, 通常形如 `learn_xyz-project`, 所以它不受 9.1 的字符集约束 (repo 名里就带连字符和下划线). lint 对它改为直接比对目录名.
+
+最常见的走样是觉得 `-project` 后缀多余顺手砍掉, 而这种错是静默的, 事后抽查很容易看漏.

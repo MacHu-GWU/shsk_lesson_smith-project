@@ -85,7 +85,7 @@ showcase 只有一个 branch, 所以这一行看起来像在讲整个 Repo, 其�
 
 - **术语保留英文.** 中文只负责叙述, 术语, 产品名, 技术名词一律保留英文原文. 把 lazy evaluation 写成惰性求值, 读者反而认不出这门课在教什么, 这一行进了 SYLLABUS 也失去检索价值.
 - **链接**: 指向 repo 内**文件**的相对路径链接用 `-cn` 版; 指向**目录**的链接不带语种后缀.
-- H1 只用字母, 数字, 文字, 以及逗号, 冒号, 句号. 禁 emoji, 引号, 双引号, 方括号, 三种破折号.
+- **H1** 照通用规则, 见 [00-common/01-repo-layout.md](../../00-common/01-repo-layout.md) 第 9 节.
 - 遵循 `markdown-style` 与 `chinese-english-punctuation` 两个 Agent Skill.
 
 ---

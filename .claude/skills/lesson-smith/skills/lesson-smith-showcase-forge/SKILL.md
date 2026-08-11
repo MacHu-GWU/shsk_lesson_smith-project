@@ -22,23 +22,31 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 ## 必读规范 (都在 lesson-smith skill 的 ref/ 下)
 
-按用途读, 不要一次全读. **forge 要的东西集中在 `ref/03-showcase/forge/` 下**, 每份 doc 一个目录, 里面中英各一套 spec 加 template.
+按用途读, 不要一次全读. **forge 要的东西分两处**: 和 upskill 共用的三份在 `ref/00-common/13-forge-shared/`, showcase 独有的两份在 `ref/03-showcase/forge/`. 每份 doc 一个目录, 里面中英各一套 spec 加 template.
 
 - `ref/03-showcase/showcase-repo-layout.md`: showcase 的目录结构特化, 先读它对齐整体布局.
-- `ref/03-showcase/forge/docs-showcase-learn/docs-showcase-learn-cn-spec.md`: 写 `01-showcase-learn-cn.md` 的规范, 配套 template 在同目录.
-- `ref/03-showcase/forge/docs-showcase-runbook/docs-showcase-runbook-cn-spec.md`: 写 `02-showcase-runbook-cn.md` 的规范.
-- `ref/03-showcase/forge/docs-showcase-quiz/docs-showcase-quiz-cn-spec.md`: 写 `03-showcase-quiz-cn.md` 的规范.
-- `ref/03-showcase/forge/docs-showcase-demo/docs-showcase-demo-cn-spec.md`: 写 `04-showcase-demo-cn.md` 的规范.
-- `ref/03-showcase/forge/docs-showcase-publish/docs-showcase-publish-cn-spec.md`: 写 `05-showcase-publish-cn.md` 的规范, 自包含的 publish 清单.
-- `ref/03-showcase/forge/showcase-{learn,quiz,demo,publish}-cn.SKILL.md`: 四个子 skill 的近乎静态模板, 直接拷.
+- `ref/00-common/13-forge-shared/docs-learn/docs-learn-cn-spec.md`: 写 `01-showcase-learn-cn.md` 的规范, 配套 template 在同目录.
+- `ref/00-common/13-forge-shared/docs-runbook/docs-runbook-cn-spec.md`: 写 `02-showcase-runbook-cn.md` 的规范.
+- `ref/00-common/13-forge-shared/docs-quiz/docs-quiz-cn-spec.md`: 写 `03-showcase-quiz-cn.md` 的规范.
+- `ref/03-showcase/forge/docs-showcase-demo/docs-showcase-demo-cn-spec.md`: 写 `04-showcase-demo-cn.md` 的规范, showcase 独有.
+- `ref/03-showcase/forge/docs-showcase-publish/docs-showcase-publish-cn-spec.md`: 写 `05-showcase-publish-cn.md` 的规范, showcase 独有, 自包含的 publish 清单.
+- `ref/00-common/13-forge-shared/{learn,quiz}-cn.SKILL.md` 与 `ref/03-showcase/forge/showcase-{demo,publish}-cn.SKILL.md`: 四个子 skill 的近乎静态模板, 直接拷.
 - `ref/agent-skill-interaction-pattern-cn.md`: 通用交互模式中文版, 生成子 skill 时拷一份进各自的 `ref/` 下.
-- `ref/03-showcase/showcase-quiz-readme-spec/` 与 `ref/03-showcase/showcase-demo-readme-spec/`: 题库真身与讲故事底稿的格式, 用来核对定位到的那两个 Task 对不对.
+- `ref/00-common/11-quiz-readme-spec/` 与 `ref/03-showcase/showcase-demo-readme-spec/`: 题库真身与讲故事底稿的格式, 用来核对定位到的那两个 Task 对不对.
+
+### 素材里的 `<type>` 是占位符
+
+`13-forge-shared/` 那一层被 upskill 与 showcase 共用, 所以里面的类型名一律写成 `<type>`. **拷过去之后必须全部替换成 `showcase`**, 路径, skill 名, frontmatter 里的 `name` 与 `description` 全算.
+
+漏掉一个的后果是产出一条指向不存在的路径的链接, 而且不报错. 所以 Phase 6 有一条硬检查: **生成的文件里 grep `<type>`, 必须 0 命中.**
+
+`13-forge-shared/` 之外的两份 (demo 与 publish) 写死 `showcase`, 不带占位符, 照常直接拷.
 
 ## 语种: 只产 `-cn` 那一套
 
-`forge/` 下每份 doc 都有中英两套 spec 与 template, 四个子 skill 也有中英两版. **当前只产 `-cn` 那一套.**
+上面每份 doc 都有中英两套 spec 与 template, 四个子 skill 也有中英两版. **当前只产 `-cn` 那一套.**
 
-理由是 `examples/` 下无后缀的英文课程正文是**留空的占位符**, 英文索引只会指向一堆空文件. 英文那一套规范留在 `forge/` 里, 等多语种模块回来接手. **这是预期状态, 不是欠账.**
+理由是 `examples/` 下无后缀的英文课程正文是**留空的占位符**, 英文索引只会指向一堆空文件. 英文那一套规范原地留着, 等多语种模块回来接手. **这是预期状态, 不是欠账.**
 
 由此推出一条贯穿全流程的硬规则:
 
@@ -125,8 +133,8 @@ showcase 的内容是创作者手写的 Task, 不用像扫陌生代码那样重.
 具体拷贝:
 
 ```text
-ref/03-showcase/forge/showcase-learn-cn.SKILL.md    ->  .claude/skills/showcase-learn-cn/SKILL.md
-ref/03-showcase/forge/showcase-quiz-cn.SKILL.md     ->  .claude/skills/showcase-quiz-cn/SKILL.md
+ref/00-common/13-forge-shared/learn-cn.SKILL.md     ->  .claude/skills/showcase-learn-cn/SKILL.md
+ref/00-common/13-forge-shared/quiz-cn.SKILL.md      ->  .claude/skills/showcase-quiz-cn/SKILL.md
 ref/03-showcase/forge/showcase-demo-cn.SKILL.md     ->  .claude/skills/showcase-demo-cn/SKILL.md
 ref/03-showcase/forge/showcase-publish-cn.SKILL.md  ->  .claude/skills/showcase-publish-cn/SKILL.md
 ref/agent-skill-interaction-pattern-cn.md           ->  上面四个 skill 各自的 ref/agent-skill-interaction-pattern-cn.md
@@ -141,6 +149,7 @@ ref/agent-skill-interaction-pattern-cn.md           ->  上面四个 skill 各�
    - 每个 SKILL.md 的 `name` 等于它的目录名.
    - 每个 SKILL.md 都引到 `docs/showcase/` 下对应的 `-cn` 文件.
    - 每个生成的 skill 的 `ref/` 下都有交互模式, 且 SKILL.md 加载了它.
+   - **产出的文件里 grep `<type>`, 必须 0 命中.** 有命中就是共享模板的占位符没换干净.
    - 5 份 doc 都非空, 且里面指向 `examples/` 的链接都是 `-cn` 的.
    - **publish 清单里的铁律删除已经展开成真实路径, 不是停在 glob**, 且语种收敛那一节写明了哪一版留哪一版删.
 3. 用 uvx 跑 `lesson-smith lint` 看仓库结构是否仍合规 (`uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .`; `<version>` 与 pin 版本的说明见 `ref/00-common/01-repo-layout.md` 第 8 节, 本地已装 package 则直接 `lesson-smith lint`).

@@ -18,8 +18,6 @@ readup 面向一类特殊读者: **他们还不知道 AI Agent Skill 是什么**
 
 学生要做什么, 怎么自查, 全部写在每个 Task 自己的 README 与 TICKET 里.
 
-**为什么这一层叫 examples 而不是 tutorials**: 如果这个 repo 最终要拿去给外面看, tutorials 给人的感觉是 "别人在教这个学生", 而 examples 给人的感觉是 "这个学生在教别人, 在展示自己怎么学会的". 后者视角更主动, 更适合展示, 所以统一用 examples.
-
 ---
 
 ## 2. 唯一的 branch: 01-readup
