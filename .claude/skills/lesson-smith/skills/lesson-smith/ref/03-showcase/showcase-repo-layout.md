@@ -52,16 +52,16 @@ docs/tasks/
 docs/tasks/SYLLABUS.md               生成
 docs/tasks/SYLLABUS-cn.md            生成
 docs/tasks/01-showcase/              唯一 branch 的快照
-docs/showcase/                       forge 产出: 学习与展示工具文档
-docs/showcase/01-showcase-learn.md   学习索引
-docs/showcase/02-showcase-runbook.md 跑起来的操作
-docs/showcase/03-showcase-quiz.md    quiz 薄壳, 指向题库真身
-docs/showcase/04-showcase-demo.md    demo 薄壳, 指向讲故事底稿加默认主线
-docs/showcase/05-showcase-publish.md publish 清单, 自包含, 无 examples 撑
-.claude/skills/showcase-learn/SKILL.md    forge 产出: 带学 skill
-.claude/skills/showcase-quiz/SKILL.md     forge 产出: 自测 skill
-.claude/skills/showcase-demo/SKILL.md     forge 产出: 讲故事排练 skill
-.claude/skills/showcase-publish/SKILL.md  forge 产出: 抹痕迹发布 skill
+docs/showcase/                          forge 产出: 学习与展示工具文档
+docs/showcase/01-showcase-learn-cn.md   学习索引
+docs/showcase/02-showcase-runbook-cn.md 跑起来的操作
+docs/showcase/03-showcase-quiz-cn.md    quiz 薄壳, 指向题库真身
+docs/showcase/04-showcase-demo-cn.md    demo 薄壳, 指向讲故事底稿加默认主线
+docs/showcase/05-showcase-publish-cn.md publish 清单, 自包含, 无 examples 撑
+.claude/skills/showcase-learn-cn/SKILL.md    forge 产出: 带学 skill
+.claude/skills/showcase-quiz-cn/SKILL.md     forge 产出: 自测 skill
+.claude/skills/showcase-demo-cn/SKILL.md     forge 产出: 讲故事排练 skill
+.claude/skills/showcase-publish-cn/SKILL.md  forge 产出: 抹痕迹发布 skill
 ```
 
 无后缀的英文文件仍然存在, 当前留空, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 2 节. 上面的树为了少占篇幅, 只在根目录逐一列了两版, 下面各层同理.
@@ -94,7 +94,11 @@ docs/showcase/05-showcase-publish.md publish 清单, 自包含, 无 examples 撑
 
 **`docs/tasks/`** 下的东西全部由 `lesson-smith sync` 生成, 不手写. SYLLABUS 对 showcase 来说只有 `01-showcase` 一段.
 
-**`docs/showcase/`** 下五份 doc 由 `lesson-smith-showcase-forge` 产出, 规范见 [docs-showcase-learn-spec.md](docs-showcase-learn-spec.md), [docs-showcase-runbook-spec.md](docs-showcase-runbook-spec.md), [docs-showcase-quiz-spec.md](docs-showcase-quiz-spec.md), [docs-showcase-demo-spec.md](docs-showcase-demo-spec.md), [docs-showcase-publish-spec.md](docs-showcase-publish-spec.md).
+**`docs/showcase/`** 下五份 doc 与四个子 skill 都由 `lesson-smith-showcase-forge` 产出, 它要读的规范与模板集中在 [forge/](forge/) 下: [docs-showcase-learn](forge/docs-showcase-learn/docs-showcase-learn-cn-spec.md), [docs-showcase-runbook](forge/docs-showcase-runbook/docs-showcase-runbook-cn-spec.md), [docs-showcase-quiz](forge/docs-showcase-quiz/docs-showcase-quiz-cn-spec.md), [docs-showcase-demo](forge/docs-showcase-demo/docs-showcase-demo-cn-spec.md), [docs-showcase-publish](forge/docs-showcase-publish/docs-showcase-publish-cn-spec.md), 加上四份 SKILL 模板.
+
+这一层**分语种**: 每份 doc 中英各一套 spec 加 template, 子 skill 也是 `showcase-learn` 与 `showcase-learn-cn` 两份. **但 forge 当前只产 `-cn` 那一套**, 因为无后缀的英文课程正文留空, 英文索引只会指向一堆空文件. 英文那一套规范留着, 等多语种模块回来接手.
+
+**publish 那份要特别注意语种**: 作品 repo 只带一个语种, 所以发布时要**留下有内容的那一版 (`-cn`), 删掉留空的占位符, 再把后缀去掉**. 判断哪一版是占位符必须去读文件, 不许看后缀. 做反了就是把整门课删光.
 
 ---
 
