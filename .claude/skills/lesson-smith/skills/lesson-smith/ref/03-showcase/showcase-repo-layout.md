@@ -35,19 +35,21 @@ README-ORIGINAL-cn.md
 TICKET.md                            留空
 TICKET-cn.md
 examples/
-examples/01-title/                   索引 Task, 位置固定在 01
+examples/01-title/                   索引 Task
 examples/01-title/README-cn.md
 examples/01-title/TICKET-cn.md
-examples/02-title/                   教学 Task 从 02 开始
+examples/02-title/                   综述 Task
 examples/02-title/README-cn.md
 examples/02-title/TICKET-cn.md
+examples/03-title/                   主线教学 Task 从 03 开始
 examples/...
-examples/NN-prove-i-get-it/          quiz 环节, 靠后, 目录名固定
+examples/NN-prove-i-get-it/          quiz 环节, 目录名固定
 examples/NN-prove-i-get-it/README-cn.md      题库真身
 examples/NN-prove-i-get-it/TICKET-cn.md
-examples/ZZ-how-i-build-this/        demo 环节, examples 最后一个, 目录名固定
-examples/ZZ-how-i-build-this/README-cn.md    讲故事底稿
-examples/ZZ-how-i-build-this/TICKET-cn.md
+examples/NN-how-i-build-this/        demo 环节, 紧跟 quiz, 目录名固定
+examples/NN-how-i-build-this/README-cn.md    讲故事底稿
+examples/NN-how-i-build-this/TICKET-cn.md
+examples/ZZ-title/                   收尾 Task, 排在 demo 之后
 docs/tasks/
 docs/tasks/SYLLABUS.md               生成
 docs/tasks/SYLLABUS-cn.md            生成
@@ -79,16 +81,14 @@ docs/showcase/05-showcase-publish-cn.md publish 清单, 自包含, 无 examples 
 
 **`README-ORIGINAL-cn.md`** 是对外 README, 遵循 [00-common/02-readme-original-spec](../00-common/02-readme-original-spec/readme-original-cn-spec.md).
 
-**`examples/01-title/`** 是索引 Task, 位置固定在 01 但名字随课程而定. README 遵循 [00-common/05-overview-readme-spec](../00-common/05-overview-readme-spec/overview-readme-cn-spec.md), TICKET 遵循 [00-common/06-overview-ticket-spec](../00-common/06-overview-ticket-spec/overview-ticket-cn-spec.md).
+**`examples/` 下的 Task** 走哪份 spec, 已经在 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 4.2 节末尾说全了, 这里只补 showcase 独有的那两个.
 
-**`examples/02-title/` 往后**才是教学 Task, 它们直接遵循通用的 [00-common/03-task-readme-spec](../00-common/03-task-readme-spec/task-readme-cn-spec.md) 与 [00-common/04-task-ticket-spec](../00-common/04-task-ticket-spec/task-ticket-cn-spec.md), 不另立 spec.
-
-**两个固定 Task 是例外**, 它们的 README 都不走教学 README 的正文结构:
+**showcase 有两个特殊 Task, 挨着排在主线之后, 收尾之前**, 它们的 README 都不走教学 README 的正文结构:
 
 | 目录 | README 走 | TICKET 走 |
 | :--- | :--- | :--- |
 | `NN-prove-i-get-it` | [showcase-quiz-readme-spec](showcase-quiz-readme-spec/showcase-quiz-readme-cn-spec.md) 的问答结构 | [showcase-quiz-ticket-spec](showcase-quiz-ticket-spec/showcase-quiz-ticket-cn-spec.md) |
-| `ZZ-how-i-build-this` | [showcase-demo-readme-spec](showcase-demo-readme-spec/showcase-demo-readme-cn-spec.md) 的讲故事结构 | [showcase-demo-ticket-spec](showcase-demo-ticket-spec/showcase-demo-ticket-cn-spec.md) |
+| `NN-how-i-build-this` | [showcase-demo-readme-spec](showcase-demo-readme-spec/showcase-demo-readme-cn-spec.md) 的讲故事结构 | [showcase-demo-ticket-spec](showcase-demo-ticket-spec/showcase-demo-ticket-cn-spec.md) |
 
 两份 TICKET 的结构仍沿用通用的 task ticket spec, 只是内容固定极简.
 

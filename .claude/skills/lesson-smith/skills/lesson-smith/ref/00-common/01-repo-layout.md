@@ -90,7 +90,7 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见下一小�
 | :--- | :--- |
 | readup | 无 |
 | upskill | `NN-prove-i-get-it` (quiz) |
-| showcase | `NN-prove-i-get-it` (quiz), `ZZ-how-i-build-this` (demo) |
+| showcase | `NN-prove-i-get-it` (quiz), `NN-how-i-build-this` (demo) |
 
 **`01` 索引和 `02` 综述不是一回事**, 别合并:
 

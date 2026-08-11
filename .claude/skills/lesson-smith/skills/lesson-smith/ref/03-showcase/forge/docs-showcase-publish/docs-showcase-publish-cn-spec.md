@@ -36,7 +36,7 @@ showcase 通常包括:
 | `lm.json`, `docs/tasks/`, `docs/showcase/` | lesson-smith 的清单与它生成的汇总视图 |
 | `.claude/skills/` 下四个生成的子 skill | learn, quiz, demo, publish |
 | `examples/01-*/` 索引 Task | 教学阶段的地图, 不是作品内容 |
-| quiz Task 及其之后的全部 Task | `NN-prove-i-get-it`, `ZZ-how-i-build-this`, 以及夹在中间的收尾梳理 Task. 这些是自查与回顾, 不是作品本身 |
+| quiz Task 及其之后的全部 Task | `NN-prove-i-get-it`, `NN-how-i-build-this`, 收尾 Task. 三个连着排在最末, 是自查, 讲故事和回顾, 都不是作品本身 |
 | 各级 `TICKET` 及各语种 | 教学任务卡, 根目录和每个 Task 下都有 |
 | `examples/_lm-*.md` | 创作底稿 |
 

@@ -43,16 +43,17 @@ README-ORIGINAL-cn.md
 TICKET.md                            留空
 TICKET-cn.md
 examples/
-examples/01-title/                   索引 Task, 位置固定在 01
+examples/01-title/                   索引 Task
 examples/01-title/README.md          留空
 examples/01-title/README-cn.md
 examples/01-title/TICKET.md          留空
 examples/01-title/TICKET-cn.md
-examples/02-title/                   教学 Task 从 02 开始
+examples/02-title/                   综述 Task
 examples/02-title/README-cn.md
 examples/02-title/TICKET-cn.md
+examples/03-title/                   主线教学 Task 从 03 开始
 examples/...
-examples/ZZ-title/                   最后一个 Task: 梳理已学加拔高方向
+examples/ZZ-title/                   收尾 Task
 docs/tasks/
 docs/tasks/SYLLABUS.md               生成
 docs/tasks/SYLLABUS-cn.md            生成
@@ -62,6 +63,8 @@ docs/tasks/01-readup/TICKET-cn.md
 ```
 
 无后缀的英文文件仍然存在, 当前留空, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 2 节.
+
+`examples/` 下各个位置分别是什么, 哪些硬哪些软, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 4.2 节. **readup 是三类里唯一没有特殊 Task 的**: 综述之后一路主线到收尾, 中间不插任何固定名字的 Task.
 
 readup 到此为止: 没有任何给 AI 看的学习工具文档, 也没有 `.claude/skills/` 下的任何子 skill. 一个 readup repo 就是 "根目录几份门面文件 + examples 一串 Task + docs/tasks 汇总视图", 打开就能读.
 
@@ -78,12 +81,7 @@ readup 到此为止: 没有任何给 AI 看的学习工具文档, 也没有 `.cl
 
 **`README-ORIGINAL-cn.md`** 是对外 README, 遵循 [00-common/02-readme-original-spec](../00-common/02-readme-original-spec/readme-original-cn-spec.md).
 
-**`examples/01-title/`** 是索引 Task, 位置固定在 01 但名字随课程而定. 它的两份各有专属 spec:
-
-- README 遵循 [00-common/05-overview-readme-spec](../00-common/05-overview-readme-spec/overview-readme-cn-spec.md).
-- TICKET 遵循 [00-common/06-overview-ticket-spec](../00-common/06-overview-ticket-spec/overview-ticket-cn-spec.md).
-
-**`examples/02-title/` 往后**才是教学 Task, 它们直接遵循通用的 [00-common/03-task-readme-spec](../00-common/03-task-readme-spec/task-readme-cn-spec.md) 与 [00-common/04-task-ticket-spec](../00-common/04-task-ticket-spec/task-ticket-cn-spec.md), 不另立 spec: 内容规范和 evolve 那种放在 repo 根的情形完全一样, 唯一区别是所在位置.
+**`examples/` 下的 Task** 走哪份 spec, 已经在 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 4.2 节末尾说全了, 这里不重复. readup 没有特殊 Task, 所以那套映射对它来说是完整的: 索引走 overview 那两份, 其余 (综述, 主线, 收尾) 全部直接走通用的 task readme 与 task ticket, 不另立 spec.
 
 **`docs/tasks/`** 下的东西全部由 `lesson-smith sync` 生成, 不手写. SYLLABUS 对 readup 来说只有 `01-readup` 一段.
 

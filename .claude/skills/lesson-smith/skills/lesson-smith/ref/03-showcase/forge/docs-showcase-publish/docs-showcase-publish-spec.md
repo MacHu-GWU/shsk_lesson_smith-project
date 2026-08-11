@@ -36,7 +36,7 @@ For a showcase repo that normally means:
 | `lm.json`, `docs/tasks/`, `docs/showcase/` | the lesson-smith manifest and its generated views |
 | the four generated child skills under `.claude/skills/` | learn, quiz, demo, publish |
 | the index task at `examples/01-*/` | a teaching-stage map, not portfolio content |
-| the quiz task and everything after it | `NN-prove-i-get-it`, `ZZ-how-i-build-this`, and any recap task in between: self-check and retrospective, not the work itself |
+| the quiz task and everything after it | `NN-prove-i-get-it`, `NN-how-i-build-this`, and the wrap-up task. These three sit together at the end: self-check, story rehearsal, retrospective. None of them is the work itself |
 | every `TICKET` and its variants | teaching task cards, at the root and in each task |
 | `examples/_lm-*.md` | authoring drafts |
 

@@ -18,8 +18,8 @@
 - path: `examples/01-title/` (整个目录)
   reason: 索引 Task, 是教学阶段的地图而不是作品内容
   detected_by: 固定在 01 这个位置
-- path: `examples/NN-prove-i-get-it/`, `examples/ZZ-how-i-build-this/`, 以及夹在两者之间的收尾梳理 Task (整个目录)
-  reason: 自查与回顾, 不是作品本身. 只有排在 quiz 之前的技术 Task 保留, 那些归第 3 节处理
+- path: `examples/NN-prove-i-get-it/`, `examples/NN-how-i-build-this/`, 以及最后那个收尾 Task (整个目录)
+  reason: 自查, 讲故事, 回顾, 都不是作品本身. 这三个连着排在最末. 只有排在 quiz 之前的技术 Task 保留, 那些归第 3 节处理
   detected_by: 从 quiz Task 的位置往后
 - path: `**/TICKET*.md`
   reason: 教学任务卡, 根目录和每个 Task 下都有

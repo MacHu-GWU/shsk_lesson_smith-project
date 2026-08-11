@@ -1,6 +1,6 @@
 # Showcase demo Task 的 TICKET 规范, 中文版
 
-**适用范围**: 仅 showcase 类型 repo 里 demo 那个 Task 的 `TICKET-cn.md`, 目录固定命名 `examples/ZZ-how-i-build-this`.
+**适用范围**: 仅 showcase 类型 repo 里 demo 那个 Task 的 `TICKET-cn.md`, 目录固定命名 `examples/NN-how-i-build-this`.
 
 它**沿用**通用 [04-task-ticket-spec](../../00-common/04-task-ticket-spec/task-ticket-cn-spec.md) 的三段式结构, 只是内容固定且极简. **通用规范其余部分仍以那一份为准**, 尤其是受控词汇, H1, frontmatter 与链接四条, 不要在这里另立一套.
 

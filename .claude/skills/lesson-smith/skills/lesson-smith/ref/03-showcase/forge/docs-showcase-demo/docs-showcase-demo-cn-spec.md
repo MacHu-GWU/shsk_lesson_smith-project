@@ -20,7 +20,7 @@
 
 ## 2. 三个部分
 
-**底稿位置.** 一个 markdown 链接指向 demo 那个 Task 的 `README-cn.md`. forge 按固定目录名 `ZZ-how-i-build-this` 定位, 它是 `examples/` 的最后一个 Task.
+**底稿位置.** 一个 markdown 链接指向 demo 那个 Task 的 `README-cn.md`. forge 按固定目录名 `NN-how-i-build-this` 定位, **按名字找, 不要按位置找**: 它排在 quiz 之后, 但后面还有一个收尾 Task, 不是 `examples/` 的最后一个.
 
 **默认主线.** 七幕, 每幕一句. 默认故事讲的是方法论本身: 我如何用 AI 快速把一个技能学会并投入实战. 它既是作品叙事, 又顺带证明了 AI 协作能力.
 

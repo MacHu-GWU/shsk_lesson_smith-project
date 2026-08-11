@@ -18,8 +18,8 @@
 - path: `examples/01-title/` (whole directory)
   reason: the index task, a teaching-stage map rather than portfolio content
   detected_by: fixed position at 01
-- path: `examples/NN-prove-i-get-it/`, `examples/ZZ-how-i-build-this/`, and any recap task between them (whole directories)
-  reason: self-check and retrospective, not the work itself; only the technical tasks before the quiz survive, and those are handled in section 3
+- path: `examples/NN-prove-i-get-it/`, `examples/NN-how-i-build-this/`, and the wrap-up task that follows them (whole directories)
+  reason: self-check, story rehearsal, retrospective. These three sit together at the end; only the technical tasks before the quiz survive, and those are handled in section 3
   detected_by: directory presence from the quiz task onward
 - path: `**/TICKET*.md`
   reason: teaching task cards, at the root and in every task

@@ -1,6 +1,6 @@
 # Showcase demo Task 的 README 规范, 中文版
 
-**适用范围**: 仅 showcase 类型 repo 里 demo 那个 Task 的 `README-cn.md`, 目录固定命名 `examples/ZZ-how-i-build-this`.
+**适用范围**: 仅 showcase 类型 repo 里 demo 那个 Task 的 `README-cn.md`, 目录固定命名 `examples/NN-how-i-build-this`.
 
 它住在 `examples/` 下, 但**不走** [00-common/03-task-readme-spec](../../00-common/03-task-readme-spec/task-readme-cn-spec.md) 的教学正文结构, 而走下面这套讲故事结构. **frontmatter, H1 与链接三条仍以通用规范为准**, 不要在这里另立一套.
 
@@ -12,7 +12,7 @@
 
 ## 1. 它是什么
 
-**讲故事底稿**, 即 "这个 repo 可以怎么讲" 的真身. 它是 `examples/` 的**最后一个 Task**.
+**讲故事底稿**, 即 "这个 repo 可以怎么讲" 的真身. 它排在 quiz 之后, 收尾之前, 是**两个特殊 Task 里靠后的那一个** (位置约定见 [00-common/01-repo-layout.md](../../00-common/01-repo-layout.md) 第 4.2 节).
 
 别人问你 "你怎么做 XX 这件事" 时, 你就用这个 repo 讲: 当时怎么学的, 遇到什么问题, 怎么解决的. 因为学生真的掌握了底层能力, **抹去教学痕迹后把它当自己的作品来讲是完全正当的**.
 
@@ -24,7 +24,7 @@
 
 ## 2. 它和 publish 的关系
 
-**demo 是在 publish 之前读的.** 学生先靠这份底稿把故事排练好; 之后跑 `/showcase-publish` 时, `ZZ-how-i-build-this` 这个 Task, `docs/showcase/04-showcase-demo.md` 以及 `showcase-demo` skill 都会作为教学痕迹被删掉.
+**demo 是在 publish 之前读的.** 学生先靠这份底稿把故事排练好; 之后跑 `/showcase-publish` 时, `NN-how-i-build-this` 这个 Task, `docs/showcase/04-showcase-demo.md` 以及 `showcase-demo` skill 都会作为教学痕迹被删掉.
 
 也就是说**底稿服务于排练, 排练完它的使命就结束了**. 真正带走的是学生脑子里那套能讲的故事和背后的能力.
 

@@ -4,7 +4,7 @@
 
 ## 1. Where the Script Lives
 
-The script is the README of the demo task: [examples/ZZ-how-i-build-this](../../examples/ZZ-how-i-build-this/README.md). It tells, in the first person, how this repo was learned and built.
+The script is the README of the demo task: [examples/NN-how-i-build-this](../../examples/NN-how-i-build-this/README.md). It tells, in the first person, how this repo was learned and built.
 
 ## 2. The Default Arc
 

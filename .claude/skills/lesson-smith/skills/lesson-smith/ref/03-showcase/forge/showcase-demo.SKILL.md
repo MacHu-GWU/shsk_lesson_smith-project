@@ -20,7 +20,7 @@ Read `.claude/skills/showcase-demo/ref/agent-skill-interaction-pattern.md` first
 ## Where your knowledge comes from (fixed, do not invent)
 
 - `docs/showcase/04-showcase-demo.md`. The entry point: it names the script, keeps a copy of the default arc, and records how the author wants rehearsals run. **Read it first**, then follow its link.
-- The script itself, the README of the `ZZ-how-i-build-this` task. It holds the one-line version, the seven beats with what to say and which artifact backs each one, the follow-up questions, and the audience notes. Rehearse and grill against this.
+- The script itself, the README of the `NN-how-i-build-this` task. It holds the one-line version, the seven beats with what to say and which artifact backs each one, the follow-up questions, and the audience notes. Rehearse and grill against this.
 - The repo itself. Open the artifacts a beat points at and check the story still matches. **The repo is the truth; the script can go stale.**
 
 If the entry doc or the script is missing or plainly out of date, say so and suggest running the forge skill again before going further.

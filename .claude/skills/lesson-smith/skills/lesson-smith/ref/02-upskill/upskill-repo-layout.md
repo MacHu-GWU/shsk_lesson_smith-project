@@ -35,17 +35,18 @@ README-ORIGINAL-cn.md
 TICKET.md                            留空
 TICKET-cn.md
 examples/
-examples/01-title/                   索引 Task, 位置固定在 01
+examples/01-title/                   索引 Task
 examples/01-title/README-cn.md
 examples/01-title/TICKET-cn.md
-examples/02-title/                   教学 Task 从 02 开始
+examples/02-title/                   综述 Task
 examples/02-title/README-cn.md
 examples/02-title/TICKET-cn.md
+examples/03-title/                   主线教学 Task 从 03 开始
 examples/...
-examples/NN-prove-i-get-it/          quiz 环节, 靠后, 通常倒数第 2, 目录名固定
+examples/NN-prove-i-get-it/          quiz 环节, 目录名固定
 examples/NN-prove-i-get-it/README-cn.md      题库真身, 不走教学 README 结构
 examples/NN-prove-i-get-it/TICKET-cn.md
-examples/ZZ-title/                   最后一个 Task: 梳理已学加拔高方向
+examples/ZZ-title/                   收尾 Task, 排在 quiz 之后
 docs/tasks/
 docs/tasks/SYLLABUS.md               生成
 docs/tasks/SYLLABUS-cn.md            生成
@@ -73,11 +74,9 @@ docs/upskill/03-upskill-quiz-cn.md     quiz 薄壳, 指向题库真身
 
 **`README-ORIGINAL-cn.md`** 是对外 README, 遵循 [00-common/02-readme-original-spec](../00-common/02-readme-original-spec/readme-original-cn-spec.md).
 
-**`examples/01-title/`** 是索引 Task, 位置固定在 01 但名字随课程而定. README 遵循 [00-common/05-overview-readme-spec](../00-common/05-overview-readme-spec/overview-readme-cn-spec.md), TICKET 遵循 [00-common/06-overview-ticket-spec](../00-common/06-overview-ticket-spec/overview-ticket-cn-spec.md).
+**`examples/` 下的 Task** 走哪份 spec, 已经在 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 4.2 节末尾说全了, 这里只补 upskill 独有的那一个.
 
-**`examples/02-title/` 往后**才是教学 Task, 它们直接遵循通用的 [00-common/03-task-readme-spec](../00-common/03-task-readme-spec/task-readme-cn-spec.md) 与 [00-common/04-task-ticket-spec](../00-common/04-task-ticket-spec/task-ticket-cn-spec.md), 不另立 spec.
-
-**quiz 那个 Task 是个例外**: 目录固定命名 `NN-prove-i-get-it`.
+**upskill 只有一个特殊 Task: quiz**, 目录固定命名 `NN-prove-i-get-it`, 排在主线之后, 收尾之前.
 
 - README 不走教学 README 的正文结构, 而走 [upskill-quiz-readme-spec](upskill-quiz-readme-spec/upskill-quiz-readme-cn-spec.md) 的问答结构.
 - TICKET 另有规范 [upskill-quiz-ticket-spec](upskill-quiz-ticket-spec/upskill-quiz-ticket-cn-spec.md), 内容固定极简 (读一遍题库加 `/upskill-quiz` 测到 70%), 结构仍沿用通用的 task ticket spec.

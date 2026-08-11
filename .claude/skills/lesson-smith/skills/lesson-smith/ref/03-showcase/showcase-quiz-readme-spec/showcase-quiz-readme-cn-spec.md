@@ -24,9 +24,9 @@
 
 ## 2. 位置
 
-`examples/` 里靠后: 教学 Task 与梳理拔高 Task 之后, **最后那个 `ZZ-how-i-build-this` 之前**.
+主线教学 Task 全部写完之后, **`NN-how-i-build-this` 那个 demo Task 之前** (位置约定见 [00-common/01-repo-layout.md](../../00-common/01-repo-layout.md) 第 4.2 节).
 
-理由是它要考的东西必须先教过, 而讲故事那个 Task 又必须压在整个 `examples/` 的最末. 位置不像索引 Task 那样硬性固定在某个编号, 但目录名 `NN-prove-i-get-it` 是固定的, forge 靠这个名字定位它.
+理由是它要考的东西必须先教过, 而 demo 要讲的故事里包含 "我用自测验收了自己", 所以 quiz 排在 demo 前面. 位置不像索引 Task 那样硬性固定在某个编号, 但目录名 `NN-prove-i-get-it` 是固定的, forge 靠这个名字定位它.
 
 **它和 demo 那个 Task 分工不同, 别越界**: 这里考的是具体技术知识, demo 那边接的是关于这段经历和方法的元问题.
 

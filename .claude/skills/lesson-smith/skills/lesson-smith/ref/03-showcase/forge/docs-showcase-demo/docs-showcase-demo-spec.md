@@ -18,7 +18,7 @@ This file does three things: it says **where the script is**, it keeps **a one-l
 
 ## 2. The three sections
 
-**Where the script lives.** A markdown link to the README of the demo task. forge finds it by the fixed directory name `ZZ-how-i-build-this`, the last task under `examples/`.
+**Where the script lives.** A markdown link to the README of the demo task. forge finds it **by name, not by position**: `NN-how-i-build-this` sits after the quiz, but a wrap-up task follows it, so it is not the last thing under `examples/`.
 
 **The default arc.** The seven beats, one line each. The default story is the method itself, how the author used AI to learn a skill quickly and put it to work, which doubles as the narrative and as evidence they can work with AI.
 

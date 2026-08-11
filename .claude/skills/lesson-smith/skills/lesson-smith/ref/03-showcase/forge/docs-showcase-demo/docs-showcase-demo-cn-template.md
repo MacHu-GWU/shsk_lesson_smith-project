@@ -4,7 +4,7 @@
 
 ## 1. 底稿位置
 
-底稿就是 demo 那个 Task 的 README: [examples/ZZ-how-i-build-this](../../examples/ZZ-how-i-build-this/README-cn.md). 它用第一人称讲这个 repo 是怎么学出来又做出来的.
+底稿就是 demo 那个 Task 的 README: [examples/NN-how-i-build-this](../../examples/NN-how-i-build-this/README-cn.md). 它用第一人称讲这个 repo 是怎么学出来又做出来的.
 
 ## 2. 默认主线
 
