@@ -104,15 +104,15 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 | :--- | :--- |
 | readup | 开头篇, 结尾的梳理与拔高篇, 各 mini task 之间的承上启下 |
 | upskill | 上面三项, 外加 quiz 题库 mini task (`examples/NN-prove-i-get-it`) |
-| showcase | 上面三项, 外加 quiz 题库, 以及 demo 讲故事底稿 mini task (`examples/ZZ-how-i-build-this`, examples 最后一个) |
+| showcase | 上面三项, 外加 quiz 题库, 以及 demo 讲故事底稿 mini task (`examples/NN-how-i-build-this`, 排在 quiz 之后, 收尾之前) |
 
 开头篇一般是 overview, 综述, 讲清这门课的意义, 背景与怎么学; 结尾篇梳理学了什么, 学完到什么水平, 并给出拔高方向 (几个搜索关键字加一句话话题, 方便创作者的学生直接喂给 AI 深挖). 承上启下是把各 mini task 之间的衔接补顺, 让它读起来是一条线而不是一堆独立文章.
 
 各环节照本类型的 spec 写, 全部到基座 lesson-smith 的 `ref/` 下读:
 
 - 开头篇与结尾篇是普通教学 mini task, 走 `ref/readme-spec.md` 与 `ref/ticket-spec.md`.
-- quiz 题库走 upskill 的 `ref/upskill/upskill-examples-quiz-readme-spec.md` 或 showcase 的 `ref/showcase/showcase-examples-quiz-readme-spec.md`, 它的 TICKET 走同目录下对应的 quiz-ticket-spec.
-- demo 底稿走 `ref/showcase/showcase-examples-demo-readme-spec.md`, 它的 TICKET 走 `ref/showcase/showcase-examples-demo-ticket-spec.md`.
+- quiz 题库走 upskill 的 `ref/02-upskill/upskill-quiz-readme-spec/` 或 showcase 的 `ref/03-showcase/showcase-quiz-readme-spec/`, 它的 TICKET 走同目录下对应的 quiz-ticket-spec.
+- demo 底稿走 `ref/03-showcase/showcase-demo-readme-spec/`, 它的 TICKET 走 `ref/03-showcase/showcase-demo-ticket-spec/`.
 - `examples/README` 系列索引走本类型的 examples-readme-spec, 迁徙改完编号顺序之后要重写它.
 
 这一步 AI 提建议, 人类拍板. quiz 的题目清单尤其要先讨论几轮再动笔, 做法照本类型 authoring workflow 里 quiz 那一步 (规划写进 `examples/_lm-quiz-plan.md`).
