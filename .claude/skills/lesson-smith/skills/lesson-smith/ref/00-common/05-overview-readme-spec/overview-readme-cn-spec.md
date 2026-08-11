@@ -44,7 +44,7 @@
 
 **group 的数量与主题都随课程而定**, template 里的分组和用词只是示例.
 
-**固定位置的特殊 Task 单独处理.** 有的 repo type 在 examples 末尾有位置固定, 性质和教学 Task 不同的 Task (例如 showcase 的自测环节与讲故事环节). 这类 Task 在索引里**各自单独成组, 或者并进结尾那个 "收尾与展示" 组**, 并用一句话点明它的性质, 不要和前面的教学 Task 混在一条 bullet 列表里. 哪个类型有哪些固定 Task, 见该类型自己的 repo layout.
+**固定位置的特殊 Task 各自单独成组.** 有的 repo type 在 examples 末尾有位置固定, 性质和教学 Task 不同的 Task (例如 showcase 的自测环节与讲故事环节). 这类 Task **一个占一个 group**, 组里就它一条, 用一句话点明它的性质. 不要和教学 Task 混在同一条 bullet 列表里, 也不要几个特殊 Task 挤进同一个组. 哪个类型有哪些固定 Task, 见该类型自己的 repo layout.
 
 ---
 
