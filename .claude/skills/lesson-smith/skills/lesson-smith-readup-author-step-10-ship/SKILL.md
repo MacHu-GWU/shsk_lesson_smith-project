@@ -1,15 +1,15 @@
 ---
-name: lesson-smith-readup-author-step-11-ship
-description: "第 11 步: 跑 sync 生成 SYLLABUS 与快照, 跑 lint 把关, 修到通过"
+name: lesson-smith-readup-author-step-10-ship
+description: "第 10 步: 跑 sync 生成 SYLLABUS 与快照, 跑 lint 把关, 修到通过"
 argument-hint: "[自由说明...]"
 disable-model-invocation: true
 ---
 
-# readup 创作流 第 11 步
+# readup 创作流 第 10 步
 
-你在 **readup 创作工作流的第 11 步**: 跑 sync 生成 SYLLABUS 与快照, 跑 lint 把关, 修到通过.
+你在 **readup 创作工作流的第 10 步**: 跑 sync 生成 SYLLABUS 与快照, 跑 lint 把关, 修到通过.
 
-主剧本是 `lesson-smith` skill 的 `ref/readup/readup-authoring-workflow.md`, 本步对应它的第 12 节. 先读那一节接上上下文, 再按下面动手.
+主剧本是 `lesson-smith` skill 的 `ref/01-readup/readup-authoring-workflow.md`, 本步对应它的第 11 节. 先读那一节接上上下文, 再按下面动手.
 
 ---
 
@@ -23,7 +23,9 @@ disable-model-invocation: true
 
 ## 2. 要读的规范
 
-- `ref/ship-spec.md` — 前置检查, 两条命令, lint 报错该回哪一步修.
+- `ref/00-common/10-ship-spec.md`: 前置检查, 两条命令, lint 报错该回哪一步修.
+
+**英文文件留空是预期状态.** lint 只检查开着的语种, 英文当前是关的, 所以报出来的路径应该全是 `-cn` 的.
 
 ---
 

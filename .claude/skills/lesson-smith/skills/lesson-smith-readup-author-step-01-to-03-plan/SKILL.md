@@ -9,7 +9,7 @@ disable-model-invocation: true
 
 你在 **readup 创作工作流的第 1 到 3 步**: 想清楚教什么, 写 README-ORIGINAL 粗稿, 定下内容边界.
 
-主剧本是 `lesson-smith` skill 的 `ref/readup/readup-authoring-workflow.md`, 本步对应它的第 2 节. 先读那一节接上上下文, 再按下面动手.
+主剧本是 `lesson-smith` skill 的 `ref/01-readup/readup-authoring-workflow.md`, 本步对应它的第 2 节. 先读那一节接上上下文, 再按下面动手.
 
 ---
 
@@ -23,8 +23,8 @@ disable-model-invocation: true
 
 ## 2. 要读的规范
 
-- `ref/readme-original-spec.md` — 写第 1 步那版 `README-ORIGINAL-cn.md` 粗稿.
-- `ref/readup/readup-repo-layout.md` — 目录结构与命名.
+- `ref/00-common/02-readme-original-spec/`: 写第 1 步那版 `README-ORIGINAL-cn.md` 粗稿. 目录里一份 spec 一份 template.
+- `ref/01-readup/readup-repo-layout.md`: 目录结构与命名.
 
 ---
 
