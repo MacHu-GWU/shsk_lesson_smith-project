@@ -47,6 +47,8 @@
 
 ## 4. 目录结构
 
+### 4.1 根目录与 branch 快照
+
 ```text
 lm.json
 README.md                              留空
@@ -66,7 +68,56 @@ docs/tasks/01-branch-name/TICKET-cn.md
 docs/tasks/02-branch-name/
 ```
 
-readup, upskill, showcase 还会在这之上多一层 `examples/`, 见各自的特化文档.
+readup, upskill, showcase 还会在这之上多一层 `examples/`, 见下一小节.
+
+### 4.2 `examples/` 下的位置约定
+
+带 `examples/` 的三类 repo (readup, upskill, showcase) **共用同一套位置约定**. evolve 没有这一层.
+
+编号两位数打头, **从 01 连续, 不许跳号** (lint 查这条). 每个位置的角色是固定的:
+
+| 位置 | 是什么 | 谁有 |
+| :--- | :--- | :--- |
+| `01` | **索引 Task**, 整门课的地图 | 三类 |
+| `02` | **综述 Task**, 话题本身的背景 | 三类, 一般都有 |
+| `03` 到 `N` | **主线教学 Task** | 三类 |
+| `N+1` 往后 | **特殊 Task**, 目录名固定 | 类型专属, 见下表 |
+| 最后一个 | **收尾 Task**, 梳理与拔高 | 三类 |
+
+各类型有哪些特殊 Task:
+
+| 类型 | 特殊 Task (按顺序) |
+| :--- | :--- |
+| readup | 无 |
+| upskill | `NN-prove-i-get-it` (quiz) |
+| showcase | `NN-prove-i-get-it` (quiz), `ZZ-how-i-build-this` (demo) |
+
+**`01` 索引和 `02` 综述不是一回事**, 别合并:
+
+- **索引**梳理这门课有哪些 Task, 怎么分组, 该按什么顺序读. 它短, 是一张地图.
+- **综述**交代话题本身: 这个领域是怎么来的, 现在什么局面, 学生进来之前该知道哪些背景. 它可以很长, 取决于话题需要多少铺垫.
+
+**收尾排在所有特殊 Task 之后**, 这是硬的. 两条理由:
+
+- 收尾要说 "你现在应该能做到什么", 而 quiz 和 demo 正是证明这件事的两个动作, **它得在两者之后才说得出口**, 而且要在正文里提到它们.
+- 收了尾又冒出两个 Task, 读起来很怪.
+
+**写的顺序不等于摆的顺序.** `01` 索引摆在最前, 但它是**最后写的** (路修完才能画地图); `02` 综述摆在第二, 但和最早的几篇主线一起写. 各类型的创作工作流会说清各自的写作顺序.
+
+### 4.3 哪些硬, 哪些软
+
+| 约定 | 硬度 | lint 查不查 |
+| :--- | :--- | :--- |
+| 编号从 01 连续 | 硬 | **查** |
+| 每个 `NN-title/` 下有 README 与 TICKET | 硬 | **查** |
+| `01` 是索引, 最后一个是收尾 | 硬 | 不查 |
+| 特殊 Task 的目录名 (`NN-prove-i-get-it` 等) | 硬, forge 与 publish 按名字找它们 | 不查 |
+| `02` 是综述 | 惯例, 几乎总有 | 不查 |
+| 索引与收尾的目录名 | 软, 随课程而定 | 不查 |
+
+**lint 认不出角色**, 在它眼里所有 `NN-title/` 长得一样. 所以索引或收尾整个漏掉, lint 不报. 这是明确接受的代价: 缺席很响 (谁打开 `examples/` 都立刻发现没有入口), 而且统稿那一步的 "规定动作齐不齐" 本来就是拿这张表对着人工核的.
+
+`02` 综述和特殊 Task 都走通用的 [03-task-readme-spec](03-task-readme-spec/task-readme-cn-spec.md) 与 [04-task-ticket-spec](04-task-ticket-spec/task-ticket-cn-spec.md); 索引 Task 另有 [05-overview-readme-spec](05-overview-readme-spec/overview-readme-cn-spec.md) 与 [06-overview-ticket-spec](06-overview-ticket-spec/overview-ticket-cn-spec.md); 特殊 Task 的正文结构由各类型的特化 spec 覆盖.
 
 ---
 

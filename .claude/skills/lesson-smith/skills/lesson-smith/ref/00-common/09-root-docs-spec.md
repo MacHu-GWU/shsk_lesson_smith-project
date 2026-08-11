@@ -4,7 +4,7 @@
 
 **适用范围**: readup, upskill, showcase 三类. evolve 一个 branch 一个 Task, 根目录那几份各归各的 branch, 没有 "回头汇总一次" 这一步, 不适用.
 
-**位置**: 统稿之后 (见 [08-series-converge-spec.md](08-series-converge-spec.md)), 出厂之前. upskill 与 showcase 的 forge 在这之后跑.
+**位置**: 统稿之后 (见 [08-series-converge-spec.md](08-series-converge-spec.md)), 出厂之前. **upskill 与 showcase 还要等 forge 跑完**, 因为这两类的根 README 与根 TICKET 要指名道姓提到 forge 产出的那几个子 skill; 子 skill 还不存在就写, 等于写一句没法验证的话.
 
 **为什么单独一步**: 这三份全都拿 `examples/` 当素材 (根 TICKET 要从各 Task 萃取关键能力, 根 README 要讲清怎么读, README-ORIGINAL 要和成品对齐). 素材还在漂的时候写, 全是白写.
 
