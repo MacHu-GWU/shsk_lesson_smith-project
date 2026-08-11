@@ -28,7 +28,7 @@ ref/
     05-overview-readme-spec/
     06-overview-ticket-spec/
     07-syllabus-spec.md             文档 spec, 脚本生成
-    08 预留                          流程步骤
+    08-series-converge-spec.md      流程步骤
     09-ship-spec.md
   01-readup/                    特化层
   02-upskill/
@@ -50,7 +50,9 @@ ref/
 - `<name>-<lang>-spec.md`: 规范. 普通 markdown, 有编号 H2, 有表格, 有分隔线, 能渲染, 能被别的文档用锚点链过来. 权威在这.
 - `<name>-<lang>-template.md`: 骨架. frontmatter 加 `[方括号]` 占位, **一个注释都没有**, 起草时整份复制过去填空.
 
-spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻译. **目录下不放语料库.** 完整理由 (以及为什么不再把规范塞进顶部注释) 见 skill 根目录的 `spec-file-format.md`.
+spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻译. **目录下不放语料库.**
+
+**分不分语种的判据只有一条: 带 template 的分, 不带的不分.** 所以 `01`, `07`, `08`, `09` 那几份单文件都不带语种后缀. 完整理由 (以及为什么不再把规范塞进顶部注释) 见 skill 根目录的 `spec-file-format.md`.
 
 **单文件**, 形如 `NN-<name>.md`. 用在没有固定产物的东西上, 比如目录布局标准, 工作流规范. 就是一份普通的 markdown, 没有配套 template.
 
@@ -93,7 +95,7 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 
 - `00-common/01-repo-layout.md`: 已按中文单语种重写, 大段话改成 bullet, frontmatter 那一节从两屏压到一节.
 - **spec 目录改成两文件制**: `spec-file-format.md` 已重写, `00-common` 下 `02`, `03`, `04` 三份都已按新格式落地 (spec 加 template), 顶部注释与 `corpus/` 那两套都作废.
-- `ref/readme-spec.md` 与 `ref/ticket-spec.md` 已删, 由 `03` 与 `04` 取代.
+- `ref/` 根目录的 flat spec 已清空: `readme-spec.md` 与 `ticket-spec.md` 由 `03` `04` 取代已删, `syllabus-spec.md` 与 `ship-spec.md` 迁成 `07` `09`, `review-spec.md` 重写成 `08-series-converge-spec.md` 已删.
 - **lint 的按语种开关**: `constants.py` 的 `LINT_ENABLED_BY_LANG` 决定每个语种参不参与 lint, 英文当前是关的. 关掉的语种被整个跳过, 既不要求存在, 内容也不检查, 所以留空的英文占位文件不再拖垮整仓. 改回来是改一个词.
 - `linter.py` 与 `linter_utils.py` 里指向规范位置的 docstring 已改到 `ref/00-common/`.
 
@@ -101,7 +103,6 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 
 - **`03-task-readme-spec/` 的风格层最薄.** 它是从旧 `readme-spec.md` 忠实迁过来的, 而那一份关于 "怎么写才算写好" 只有零星几句, 骨架也已经和实际写法漂开了. 三份里就数它最需要回去读真实的教学 README 再补一层.
 - `ref/01-readup/` 下还留着三个 `corpus/` 目录 (`readme-spec/`, `ticket-spec/`, `examples-readme-spec/`), 语料废弃之后它们该一起删, 但那是特化层的事, 等收敛到那里再动.
-- **`08` 是留给统稿那一步的**, 原 `ref/review-spec.md`. 名字还没定 (review 这个词不对, 它实际干的是纠错加改稿建议), 定了再搬进来重写. 它只适用 examples 系的三类.
 - **砍掉 `examples/README` 的连带改动还没做完.** 规范这边已经改了 (`05` 与 `06` 就位), 但还欠: `linter_for_*.py` 的 `rule_examples` 目前**强制要求 `examples/README` 存在**, 得改成不要求; 三个特化层的 `<type>-examples-readme-spec.md` 待删; 三个 authoring workflow 里写 examples/README 的地方待改.
 - `ref/rewrite-en-spec.md` 属于翻译, 待 archive.
 - `01-readup` 等目录里, flat 文件与新式 spec 目录并存, 待收敛.
