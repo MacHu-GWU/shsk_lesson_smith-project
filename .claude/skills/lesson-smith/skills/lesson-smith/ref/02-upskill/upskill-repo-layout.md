@@ -1,89 +1,99 @@
 # Upskill 类型仓库目录结构
 
-upskill 是 examples 系列型仓库: 整个 repo 就是一门课, 内容拆成 examples 下的一个个 mini task, 学会即止, 不对外 publish. 本文档在 [ref/repo-layout.md](../repo-layout.md) 的通用标准之上, 只说清 upskill 的特化之处; 通用命名与 frontmatter 约束仍以它为准.
-
-## 1. 定位
-
-upskill 教 "如何做某一类事情", 学会即止, 不需要外部背书. 整个 repo 就是一门课, 只有一个 Task. 课程内容拆成若干个 mini task, 每个 mini task 放在 examples 下的一个目录里.
-
-为什么这一层叫 examples 而不是 tutorials: 如果这个 repo 最终要拿去给外面看, tutorials 给人的感觉是 "别人在教这个学生", 而 examples 给人的感觉是 "这个学生在教别人, 在展示自己怎么学会的". 后者视角更主动, 更适合展示, 所以统一用 examples.
+本文档在 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 的通用标准之上, **只说 upskill 的特化之处**. 通用的命名与 frontmatter 约束仍以它为准.
 
 ---
 
-## 2. 唯一的 Task branch: 01-upskill
+## 1. 定位
 
-upskill 只有一个带序号的 Task branch, 名字固定为 01-upskill. 因为整门课就是这一个 Task, 序号必然是 01, 名字直接由类型决定, 创作者不用另取. examples 下的那些 mini task 是这一个 branch 内部的内容, 不是各自独立的 branch.
+upskill 教 "如何做某一类事情", **学会即止**, 不需要外部背书, 也不对外 publish. 整个 repo 就是一门课, 只有一个 branch. 课程内容拆成 `examples/` 下一个个 Task.
 
-这一条由 lesson-smith lint 强制: docs/tasks 下必须恰好只有一个目录, 且名为 01-upskill.
+和 readup 的区别是它**带一套 AI 学习工具链**: `docs/upskill/` 下三份给 AI 看的元文档, 加 `/upskill-learn` 与 `/upskill-quiz` 两个子 skill, 都由 forge 产出.
+
+**为什么这一层叫 examples 而不是 tutorials**: 如果这个 repo 最终要拿去给外面看, tutorials 给人的感觉是 "别人在教这个学生", 而 examples 给人的感觉是 "这个学生在教别人, 在展示自己怎么学会的". 后者视角更主动, 更适合展示, 所以统一用 examples.
+
+---
+
+## 2. 唯一的 branch: 01-upskill
+
+upskill 只有一个带序号的 branch, **名字固定为 `01-upskill`**. 因为整门课就是这一个 branch, 序号必然是 01, 名字直接由类型决定, 创作者不用另取.
+
+`examples/` 下那些 Task 是这一个 branch 内部的内容, 不是各自独立的 branch.
+
+这一条由 `lesson-smith lint` 强制: `docs/tasks/` 下必须恰好只有一个目录, 且名为 `01-upskill`.
 
 ---
 
 ## 3. 目录结构
 
-```
+```text
 lm.json                              type = upskill
-README.md                            仓库总览 (是这一个 branch 的 Task README)
-README-<lang>.md
-README-ORIGINAL.md                   对外 README (电梯陈述)
-README-ORIGINAL-<lang>.md
-TICKET.md                            这一个 branch 的 Task TICKET
-TICKET-<lang>.md
+README.md                            仓库总览, 留空
+README-cn.md
+README-ORIGINAL.md                   对外 README, 留空
+README-ORIGINAL-cn.md
+TICKET.md                            留空
+TICKET-cn.md
 examples/
-examples/README.md                   系列索引 (把 mini task 按主题梳理)
-examples/README-<lang>.md
-examples/01-title/
-examples/01-title/README.md          mini task 教程
-examples/01-title/README-<lang>.md
-examples/01-title/TICKET.md          mini task 任务卡片
-examples/01-title/TICKET-<lang>.md
-examples/02-title/
+examples/01-title/                   索引 Task, 位置固定在 01
+examples/01-title/README-cn.md
+examples/01-title/TICKET-cn.md
+examples/02-title/                   教学 Task 从 02 开始
+examples/02-title/README-cn.md
+examples/02-title/TICKET-cn.md
 examples/...
-examples/NN-prove-i-get-it/     quiz 环节 (靠后, 通常倒数第 2), 标题固定 prove-i-get-it
-examples/NN-prove-i-get-it/README.md        题库真身, 走 upskill-examples-quiz-readme-spec (不走教学 README 结构)
-examples/NN-prove-i-get-it/README-<lang>.md
-examples/NN-prove-i-get-it/TICKET.md
-examples/NN-prove-i-get-it/TICKET-<lang>.md
-examples/ZZ-title/                   最后一个 mini task: 梳理已学 + 拔高方向
-examples/ZZ-title/README.md
-examples/ZZ-title/README-<lang>.md
-examples/ZZ-title/TICKET.md
-examples/ZZ-title/TICKET-<lang>.md
+examples/NN-prove-i-get-it/          quiz 环节, 靠后, 通常倒数第 2, 目录名固定
+examples/NN-prove-i-get-it/README-cn.md      题库真身, 不走教学 README 结构
+examples/NN-prove-i-get-it/TICKET-cn.md
+examples/ZZ-title/                   最后一个 Task: 梳理已学加拔高方向
 docs/tasks/
 docs/tasks/SYLLABUS.md               生成
-docs/tasks/SYLLABUS-<lang>.md
+docs/tasks/SYLLABUS-cn.md            生成
 docs/tasks/01-upskill/               唯一 branch 的快照
-docs/tasks/01-upskill/README.md
-docs/tasks/01-upskill/README-<lang>.md
-docs/tasks/01-upskill/TICKET.md
-docs/tasks/01-upskill/TICKET-<lang>.md
 docs/upskill/                        forge 产出: 学习工具文档
 docs/upskill/01-upskill-learn.md     学习索引
 docs/upskill/02-upskill-runbook.md   跑起来的操作
-docs/upskill/03-upskill-quiz.md      quiz 薄壳 (指向题库真身)
+docs/upskill/03-upskill-quiz.md      quiz 薄壳, 指向题库真身
 .claude/skills/upskill-learn/SKILL.md    forge 产出: 带学 skill
 .claude/skills/upskill-quiz/SKILL.md     forge 产出: 自测 skill
 ```
+
+无后缀的英文文件仍然存在, 当前留空, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 2 节. 上面的树为了少占篇幅, 只在根目录逐一列了两版, 下面各层同理.
 
 ---
 
 ## 4. 各文件遵循哪个 spec
 
-根目录 README 与 TICKET 是这一个 branch 的 Task 文件, 也是整门课的操作入口与验收清单. 它们不遵循教学用的 [ref/readme-spec.md](../readme-spec.md) 与 [ref/ticket-spec.md](../ticket-spec.md) (那是给单个 mini task 的教程正文用的), 而各有专属 spec: root README 遵循 [ref/upskill/upskill-readme-spec.md](upskill-readme-spec.md) (仓库总览加 "怎么学" 的操作入口, 带一行会流进 SYLLABUS 的 description 承诺), root TICKET 遵循 [ref/upskill/upskill-ticket-spec.md](upskill-ticket-spec.md) (整门课的验收清单, 三段式加一个 "关键能力" H2). 这两份走创作铁律: 先写 cn 版 (在 examples 全部定稿并统稿之后, 拿成品当素材), 英文版随整门课那一次统一重写产生, 见 [ref/rewrite-en-spec.md](../rewrite-en-spec.md); description 的长度与字符约束仍照 [ref/repo-layout.md](../repo-layout.md) 第 4 节.
+**根目录 README 与 TICKET** 是这一个 branch 的 Task 文件, 也是整门课的操作入口与验收清单. 它们**不遵循**教学用的通用 spec (那是给 `examples/` 下单个 Task 用的), 而各有专属 spec:
 
-README-ORIGINAL 是对外 README, 遵循 [ref/common/readme-original-spec/readme-original-spec.md](../common/readme-original-spec/readme-original-spec.md).
+- `README-cn.md` 遵循 [upskill-readme-spec](upskill-readme-spec/upskill-readme-cn-spec.md). 仓库总览加 "怎么学" 的操作入口, 带一行会流进 SYLLABUS 的 description.
+- `TICKET-cn.md` 遵循 [upskill-ticket-spec](upskill-ticket-spec/upskill-ticket-cn-spec.md). 整门课的验收清单, 三段式加一个 "关键能力" H2.
 
-examples/NN-title 下的 README 与 TICKET 才是真正的教学文档, 它们直接遵循标准的 [ref/readme-spec.md](../readme-spec.md) 与 [ref/ticket-spec.md](../ticket-spec.md), 不另立 spec: 内容规范和根目录情形完全一样, 唯一区别是所在位置 (examples/NN-title 而非 repo 根). 这也是为什么这两个 spec 的适用范围里已经点名了 examples/XY-title-here.
+这两份在 `examples/` 全部定稿并统稿之后才写, 拿成品当素材.
 
-examples/README 是系列索引, 它不是教程, 也不同于 SYLLABUS 的无脑罗列, 而是把 mini task 按主题分组梳理. 它遵循单独的 [ref/upskill/upskill-examples-readme-spec.md](upskill-examples-readme-spec.md).
+**`README-ORIGINAL-cn.md`** 是对外 README, 遵循 [00-common/02-readme-original-spec](../00-common/02-readme-original-spec/readme-original-cn-spec.md).
 
-quiz 那个 mini task 是个例外: 目录固定命名 NN-prove-i-get-it, 它的 README 不走教学 readme-spec 的正文结构, 而走 [ref/upskill/upskill-examples-quiz-readme-spec.md](upskill-examples-quiz-readme-spec.md) 的问答结构. 它的 TICKET 另有规范 [ref/upskill/upskill-examples-quiz-ticket-spec.md](upskill-examples-quiz-ticket-spec.md) (内容固定极简: 读一遍题库 + /upskill-quiz 测到 70% 通过, 结构沿用 [ref/ticket-spec.md](../ticket-spec.md)).
+**`examples/01-title/`** 是索引 Task, 位置固定在 01 但名字随课程而定. README 遵循 [00-common/05-overview-readme-spec](../00-common/05-overview-readme-spec/overview-readme-cn-spec.md), TICKET 遵循 [00-common/06-overview-ticket-spec](../00-common/06-overview-ticket-spec/overview-ticket-cn-spec.md).
 
-docs/tasks/01-upskill 下的四个文件是根目录 README 与 TICKET 的快照, 由 lesson-smith sync 生成, 不手写. SYLLABUS 同样由 sync 生成, 对 upskill 来说只有 01-upskill 一段.
+**`examples/02-title/` 往后**才是教学 Task, 它们直接遵循通用的 [00-common/03-task-readme-spec](../00-common/03-task-readme-spec/task-readme-cn-spec.md) 与 [00-common/04-task-ticket-spec](../00-common/04-task-ticket-spec/task-ticket-cn-spec.md), 不另立 spec.
 
-docs/upskill 下的三份 doc 由 lesson-smith-upskill-forge 产出, 各自的规范见 [docs-upskill-learn-spec.md](docs-upskill-learn-spec.md), [docs-upskill-runbook-spec.md](docs-upskill-runbook-spec.md), [docs-upskill-quiz-spec.md](docs-upskill-quiz-spec.md).
+**quiz 那个 Task 是个例外**: 目录固定命名 `NN-prove-i-get-it`.
+
+- README 不走教学 README 的正文结构, 而走 [upskill-examples-quiz-readme-spec.md](upskill-examples-quiz-readme-spec.md) 的问答结构.
+- TICKET 另有规范 [upskill-examples-quiz-ticket-spec.md](upskill-examples-quiz-ticket-spec.md), 内容固定极简 (读一遍题库加 `/upskill-quiz` 测到 70%), 结构仍沿用通用的 task ticket spec.
+
+**`docs/tasks/`** 下的东西全部由 `lesson-smith sync` 生成, 不手写. SYLLABUS 对 upskill 来说只有 `01-upskill` 一段.
+
+**`docs/upskill/`** 下三份 doc 由 `lesson-smith-upskill-forge` 产出, 规范见 [docs-upskill-learn-spec.md](docs-upskill-learn-spec.md), [docs-upskill-runbook-spec.md](docs-upskill-runbook-spec.md), [docs-upskill-quiz-spec.md](docs-upskill-quiz-spec.md).
 
 ---
 
 ## 5. 与通用标准的关系
 
-upskill 在 [ref/repo-layout.md](../repo-layout.md) 的基础上做了两处特化: 一是把带序号的 Task branch 收敛成唯一的 01-upskill, 二是新增了 examples 这一层放 mini task 及其索引. 其余 (特殊文件命名, 多语言后缀, description 的长度与字符约束, docs/tasks 汇总视图, SYLLABUS 生成与校验) 都沿用通用标准, 不在这里重复.
+upskill 在通用标准之上做了三处特化:
+
+- 把带序号的 branch 收敛成唯一的 `01-upskill`.
+- 新增 `examples/` 这一层放 Task 及其索引.
+- 新增 `docs/upskill/` 与两个子 skill 这一整套学习工具链.
+
+其余 (特殊文件命名, 多语言后缀, description 的长度与字符约束, `docs/tasks/` 汇总视图, SYLLABUS 生成与校验) 都沿用通用标准, 不在这里重复.
