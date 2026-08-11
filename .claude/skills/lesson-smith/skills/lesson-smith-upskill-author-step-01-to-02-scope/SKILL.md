@@ -1,15 +1,15 @@
 ---
-name: lesson-smith-upskill-author-step-01-to-03-plan
-description: "第 1 到 3 步: 想清楚教什么, 写 README-ORIGINAL 粗稿, 完成 examples 之外的做的部分, 和 AI 讨论出课程规划"
+name: lesson-smith-upskill-author-step-01-to-02-scope
+description: "第 1 到 2 步: 想清楚这门课教什么, 写 README-ORIGINAL 粗稿, 并把 examples 之外要学的东西先做完"
 argument-hint: "[自由说明...]"
 disable-model-invocation: true
 ---
 
-# upskill 创作流 第 1 到 3 步
+# upskill 创作流 第 1 到 2 步
 
-你在 **upskill 创作工作流的第 1 到 3 步**: 把这门课要教什么想清楚, 并把地基铺好.
+你在 **upskill 创作工作流的第 1 到 2 步**: 定题. 把这门课教什么想清楚, 并把 `examples/` 之外的地基铺好.
 
-主剧本是 `lesson-smith` skill 的 `ref/02-upskill/upskill-authoring-workflow.md`, 本步对应它的第 2 到 4 节. 先读那几节接上上下文, 再按下面动手.
+主剧本是 `lesson-smith` skill 的 `ref/02-upskill/upskill-authoring-workflow.md`, 本步对应它的第 2 到 3 节. 先读那两节接上上下文, 再按下面动手.
 
 ---
 
@@ -31,9 +31,9 @@ disable-model-invocation: true
 ## 3. 这一步的红线
 
 - **README-ORIGINAL 这一版是粗稿种子, 不要抠 description.** 第 12 步会拿定稿的 examples 当素材整份重写它. 现在内容还没写, 抠也抠不准.
-- **examples 之外的 "做的部分" 要先做完.** 从第 4 步开始就默认它们存在了. 边写教程边补代码, 教程会跟着半成品漂.
-- **规划要落到 `examples/_lm-example-plan.md`**, 别只留在对话里. 那份文件后面几步还要反复改, 允许进 git.
-- 这一步**不碰 `examples/` 下任何 Task**. 一个 Task 都还不该有.
+- **第 2 步很多课压根没有.** 纯讲解型的课, 要学的东西全在 `examples/` 里. 没有就直说没有, **不要为了凑一个步骤去造点什么出来**.
+- 有的话就**先做完再往下走**. 从第 3 步开始就默认它们存在了, 边写教程边补代码, 教程会跟着半成品漂.
+- 这一步**不碰 `examples/` 下任何 Task**. 一个 Task 都还不该有, 连规划底稿也还没建.
 - 只写 `-cn.md`.
 
 ---

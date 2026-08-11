@@ -14,26 +14,32 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 
 | 步骤 | 阶段 | step skill | 建议开新 session |
 | :--- | :--- | :--- | :--- |
-| 1 到 3 | 规划 | `/lesson-smith-upskill-author-step-01-to-03-plan` | 跟 author 一起 |
-| 4 到 6 | 写教学 Task | `/lesson-smith-upskill-author-step-04-to-06-write` | |
+| 1 到 2 | 定题 | `/lesson-smith-upskill-author-step-01-to-02-scope` | 跟 author 一起 |
+| 3 到 5 | 规划与试水 | `/lesson-smith-upskill-author-step-03-to-05-plan-and-trial` | |
+| 6 | 写主线 | `/lesson-smith-upskill-author-step-06-mainline` | |
 | 7 到 8 | 写 quiz | `/lesson-smith-upskill-author-step-07-to-08-quiz` | |
-| 9 | 补两头 | `/lesson-smith-upskill-author-step-09-bookends` | |
-| 10 | 统稿 | `/lesson-smith-upskill-author-step-10-converge` | 是 |
+| 9 到 10 | 补两头加统稿 | `/lesson-smith-upskill-author-step-09-to-10-bookends-and-converge` | 是 |
 | 11 | 锻造 | `/lesson-smith-upskill-author-step-11-forge` | 是 |
 | 12 | 写根目录文档 | `/lesson-smith-upskill-author-step-12-root-docs` | 接着 11 那个 session |
 | 13 | 出厂 | `/lesson-smith-upskill-author-step-13-ship` | 是 |
 
-统稿, 锻造, 出厂三个阶段建议各开一个新 session, 因为它们都要通读整门课, 而前面留下的上下文只会挤占注意力. 每个新 session 开头先敲一次 `/lesson-smith-upskill-author`, 再敲那一步的 step skill.
+后面几个阶段建议各开一个新 session, 因为它们都要通读整门课, 而前面留下的上下文只会挤占注意力. 每个新 session 开头先敲一次 `/lesson-smith-upskill-author`, 再敲那一步的 step skill.
 
 **第 12 步不要另开 session.** 锻造那一步已经把整套 examples 读进来了, 写根目录文档要的正是同一批素材, 接着写能省一次通读, 而且刚锻造出来的两个子 skill 就在手边, 根 README 里提到它们时可以立刻验证.
 
-三个写作阶段这么切, 是因为它们的规范和红线不重叠: 4 到 6 写的是这门课独有的教学内容, 7 到 8 写的是 upskill 才有的 quiz, 9 写的是每个 repo type 都有的那两头.
+阶段这么切, 是因为缝都在真实的地方:
+
+- **定题和规划之间**: 第 1 到 2 步想的是题材和代码, 第 3 步开始想的才是怎么教.
+- **规划与试水不分家**: `examples/_lm-example-plan.md` 是第 3 步建的, 第 5 步改的. 把建它和改它切到两个阶段, 等于把一个循环从中间剖开.
+- **主线单独成段**: 前面是边写边定风格, 第 6 步风格已经锁死, 剩下的是产量.
+- **quiz 单独成段**: 它是 upskill 才有的特殊 Task, 规范和红线跟教学 Task 完全不重叠. 三类共有的东西和某一类专属的东西分开切, 将来加一个特殊 Task 就是加一个阶段, 前后都不用动.
+- **补两头和统稿合并**: 两步都要通读全系列, 分开就是读两遍. 而且统稿要查 "规定动作齐不齐", 刚写完的两头正好一起过.
 
 ---
 
 ## 2. 想清楚教什么, 写大背景
 
-> 步骤 1, 属于规划阶段.
+> 步骤 1, 属于定题阶段.
 
 先用概括, 笼统的方式想清楚这个 repo 大致要教一个什么东西, 按规范写 `README-ORIGINAL-cn.md` (遵循 [00-common/02-readme-original-spec](../00-common/02-readme-original-spec/readme-original-cn-spec.md)). 这是整门课的大背景与电梯陈述, 后面所有内容都长在它之上.
 
@@ -43,9 +49,11 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 
 ## 3. 先完成 examples 之外的 "做的部分"
 
-> 步骤 2, 属于规划阶段.
+> 步骤 2, 属于定题阶段.
 
 如果这门课除了 `examples/` 之外还有很多代码, 文档, 例子 (即学生真正要去读, 去跑的东西), 先把这些 "做的部分" 全部完成. 从下一步开始, 就默认这些 examples 之外的东西已经写完了.
+
+**很多课压根没有这一块.** 纯讲解型的课, 要学的东西全在 `examples/` 里, 那就直接跳到下一步, 不用为了凑一个步骤去造点什么出来.
 
 为什么这一层要放在 `examples/` 而不是 tutorials, 见 [upskill-repo-layout.md](upskill-repo-layout.md) 第 1 节.
 
@@ -53,25 +61,36 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 
 ## 4. 和 AI 讨论, 规划这门课写哪些
 
-> 步骤 3, 属于规划阶段.
+> 步骤 3, 属于规划与试水阶段.
 
 和 AI 讨论: 这门课应该写哪些内容, 边界在哪. 把讨论结果写进 `examples/_lm-example-plan.md` (这个文件允许进 git). 它是创作过程中的规划底稿, 会随着后面几步不断精修.
+
+**这一步和第 5 步是一对.** 现在写的是纸上的计划, 第 5 步会拿写过三篇之后的手感回来改它. 所以这里不用抠细节, 把范围和分组的大方向定下来就行.
 
 ---
 
 ## 5. 先写前几篇试水, 锁定风格
 
-> 步骤 4, 属于写 Task 阶段.
+> 步骤 4, 属于规划与试水阶段.
 
 很难一次性写出完美的计划, 也很难凭空定好文章的深浅和风格. 所以先写前几篇试试水.
 
-**从 02 开始写.** 01 那个位置留给索引 Task, 它是整门课的地图, 只能在路修完之后画, 属于第 9 步的活. 所以这里从 `examples/02-title/` 起手, 写 02, 03 之类, 写过之后心里才会清楚整个系列该怎么写.
+**从 02 开始写.** 01 那个位置留给索引 Task, 它是整门课的地图, 只能在路修完之后画, 属于第 9 步的活.
+
+所以这里从 `examples/02-title/` 起手, 一般写到 04 左右:
+
+- **02 是综述**, 交代话题本身的背景: 这个领域怎么来的, 现在什么局面, 学生进来之前该知道什么. 长短取决于话题需要多少铺垫, 可以很长.
+- **03, 04 是最前面两篇主线**, 真正开始教东西.
+
+位置约定见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 4.2 节.
+
+写过这三篇, 心里才会清楚整个系列该怎么写.
 
 ---
 
 ## 6. 精修前几篇, 更新计划, 进入快速迭代
 
-> 步骤 5, 属于写 Task 阶段. **最容易被跳过的一步.**
+> 步骤 5, 属于规划与试水阶段. **最容易被跳过的一步.**
 
 写完 02, 03, 04 基本心里有数了. 回到 `examples/_lm-example-plan.md` 更新一版, 顺手精修这几篇. 从这里开始进入快速迭代模式.
 
@@ -83,27 +102,29 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 
 ## 7. 一步步往后写
 
-> 步骤 6, 属于写 Task 阶段.
+> 步骤 6, 属于写主线阶段.
 
-从 05 开始 (具体从第几篇取决于前面写了几篇) 一步步往后推进, 把教学系列写完.
+从 05 开始 (具体从第几篇取决于前面写了几篇) 一步步往后推进, 把主线写完.
+
+**这一阶段单独成段**, 因为它和前面两个阶段的性质不同: 前面是边写边定风格, 这里风格已经锁死, 剩下的是产量. 它也是全流程最长的一段.
 
 ---
 
 ## 8. 规划 quiz
 
-> 步骤 7, 属于写 Task 阶段.
+> 步骤 7, 属于写 quiz 阶段.
 
 教学系列的最后一篇写完之后, 开始准备 quiz 材料.
 
 **动笔写题之前先规划.** 扫一遍之前写过的全部教学 Task 和其它教学相关文件, 定出一个问题清单和题量, 写进 `examples/_lm-quiz-plan.md`. AI 提建议, 创作者也给反馈, 讨论几轮, 把题量和方向锁定.
 
-quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get-it` (视角是学生自己检查自己), 位置通常是倒数第 2, 后面只剩梳理拔高那一篇.
+quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get-it` (视角是学生自己检查自己). 它排在主线之后, **收尾 Task 之前** (位置约定见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 4.2 节).
 
 ---
 
 ## 9. 写 quiz 并精修
 
-> 步骤 8, 属于写 Task 阶段.
+> 步骤 8, 属于写 quiz 阶段.
 
 按 [upskill-quiz-readme-spec](upskill-quiz-readme-spec/upskill-quiz-readme-cn-spec.md) 写这个 Task 的 README, 也就是题库真身 (每题四段: 问题, 考察点, 参考回答, 深入解读).
 
@@ -115,29 +136,31 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 
 ## 10. 回头补开头和结尾
 
-> 步骤 9, 属于写 Task 阶段.
+> 步骤 9, 属于补两头加统稿阶段. **建议开新 session.**
 
-主干和 quiz 都写完了, 现在补两头. 两个都写完, `examples/` 才算齐.
+主线和 quiz 都写完了, 现在补两头. 两个都写完, `examples/` 才算齐.
 
-**结尾: 梳理与拔高 Task.** 放在最后一个位置 (quiz 之后). 它梳理这门课学了什么, 学完应该达到什么水平; 如果还想更进一步, 给出拔高方向: 可以搜索引擎搜哪些关键字, 以及一句话的话题, 方便学生直接复制粘贴去喂给 AI, 深挖, 拓宽边界.
+**结尾: 收尾 Task.** 放在最后一个位置, 在 quiz 之后. 它梳理这门课学了什么, 学完应该达到什么水平; 如果还想更进一步, 给出拔高方向: 可以搜索引擎搜哪些关键字, 以及一句话的话题, 方便学生直接复制粘贴去喂给 AI, 深挖, 拓宽边界.
 
 **开头: 索引 Task.** 放在 `examples/01-title/`, 位置固定在 01, 目录名随课程而定. 它给刚进来的人一张地图: 这门课有哪些 Task, 怎么分组, 该按什么顺序读. 规范见 [00-common/05-overview-readme-spec](../00-common/05-overview-readme-spec/overview-readme-cn-spec.md) 与 [00-common/06-overview-ticket-spec](../00-common/06-overview-ticket-spec/overview-ticket-cn-spec.md).
 
 **为什么放在这一步而不是最前面**: 地图只能在路修完之后画. 一开始就写索引, 写出来的一定是计划而不是成品的地图, 而计划在第 5, 6 步里还会变.
 
-索引里给 Task 分组时, **quiz 与梳理拔高各自单独成组**, 不要混进教学 Task 的列表.
+索引里给 Task 分组时, **quiz 与收尾各自单独成组**, 不要混进教学 Task 的列表.
 
 ---
 
 ## 11. 统稿
 
-> 步骤 10. **建议开新 session.**
+> 步骤 10, 属于补两头加统稿阶段. **接着第 9 步做, 同一个 session.**
 
 到这里 `examples/` 下全部 Task 都写完了, 但它们是一篇篇分头写出来的, 合起来未必是一条线. 这一步通读全系列, 一半纠错 (术语与表达不一致, 前后矛盾, 承上启下断掉), 一半给改稿建议 (头重脚轻, 该拆该并, 规定动作齐不齐).
 
 做法见 [00-common/08-series-converge-spec.md](../00-common/08-series-converge-spec.md).
 
-**这一步是主干成文的判据**: 过了它, 这门课的教学内容才算定稿. 后面三步 (锻造, 根目录文档, 出厂) 全都拿 `examples/` 当素材, 素材不稳就白做.
+**这一步是主线成文的判据**: 过了它, 这门课的教学内容才算定稿. 后面三步 (锻造, 根目录文档, 出厂) 全都拿 `examples/` 当素材, 素材不稳就白做.
+
+**为什么和第 9 步同一个 session**: 补两头本来就要通读全系列 (索引要按顺序和分组画地图, 收尾要说清整门课学了什么), 统稿要的是同一次通读. 分成两个 session 就是把同一批内容读两遍. 而且统稿第 3 节要查 "规定动作齐不齐", 刚写完的两头正好一起过.
 
 ---
 

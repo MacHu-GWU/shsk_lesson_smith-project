@@ -31,11 +31,13 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 
 | 看到什么 | 在哪一步 |
 | :--- | :--- |
-| `examples/` 下没有 Task 目录 | 第 1 到 3 步 |
-| 有几个 Task 但没有 `examples/_lm-example-plan.md` | 第 3 到 5 步 |
-| plan 在, Task 还在增加 | 第 4 到 6 步 |
-| 教学 Task 写完了, 但没有 `examples/NN-prove-i-get-it/` | 第 7 到 8 步 |
-| quiz 在, 但 `examples/01-*/` 这个索引 Task 或结尾那篇梳理拔高还缺 | 第 9 步 |
+| 连 `README-ORIGINAL-cn.md` 都没有 | 第 1 步 |
+| 有 README-ORIGINAL, `examples/` 下没有 Task 目录 | 第 2 到 3 步 |
+| 有几个 Task 但没有 `examples/_lm-example-plan.md` | 第 3 步 |
+| plan 在, `examples/` 里只有 02 到 04 那几篇 | 第 4 到 5 步 |
+| plan 在, Task 还在往后增加 | 第 6 步 |
+| 主线写完了, 但没有 `examples/NN-prove-i-get-it/` | 第 7 到 8 步 |
+| quiz 在, 但 `examples/01-*/` 这个索引 Task 或最后那个收尾 Task 还缺 | 第 9 步 |
 | examples 齐了, 但没有 `docs/upskill/` | 第 10 步或第 11 步. **直接问创作者统稿做没做**, 这一步从文件系统看不出来 |
 | `docs/upskill/` 与两个子 skill 都在, 根目录缺 `README-cn.md` 或 `TICKET-cn.md` | 第 12 步 |
 | 根目录三份 cn 齐了, 但没有 `docs/tasks/SYLLABUS-cn.md` | 第 13 步 |
@@ -47,17 +49,17 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 八条 step 命令:
 
 ```text
-/lesson-smith-upskill-author-step-01-to-03-plan
-/lesson-smith-upskill-author-step-04-to-06-write
+/lesson-smith-upskill-author-step-01-to-02-scope
+/lesson-smith-upskill-author-step-03-to-05-plan-and-trial
+/lesson-smith-upskill-author-step-06-mainline
 /lesson-smith-upskill-author-step-07-to-08-quiz
-/lesson-smith-upskill-author-step-09-bookends
-/lesson-smith-upskill-author-step-10-converge
+/lesson-smith-upskill-author-step-09-to-10-bookends-and-converge
 /lesson-smith-upskill-author-step-11-forge
 /lesson-smith-upskill-author-step-12-root-docs
 /lesson-smith-upskill-author-step-13-ship
 ```
 
-统稿, 锻造, 出厂三条各建议开一个新 session, 因为它们都要通读整门课. 创作者在新 session 里会重新敲你一次, 这是预期行为, 不是重复劳动.
+后面几条各建议开一个新 session, 因为它们都要通读整门课. 创作者在新 session 里会重新敲你一次, 这是预期行为, 不是重复劳动.
 
 **第 12 步是唯一一条不要另开 session 的**: 它接着第 11 步做, 用的是锻造时刚读进来的那批素材, 而且刚产出的两个子 skill 就在手边, 根 README 提到它们时可以立刻验证.
 
@@ -70,6 +72,7 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 - **创作铁律**: 全程只写中文. 无后缀的英文文件留空占位, **任何一步都不产英文内容**. 中译英那一步当前跳过, 理由见主剧本末尾的附节.
 - **README 与 TICKET 成对联动**: 每个 Task 的 README (教什么) 和 TICKET (怎么验收) 是一对, 一起写也一起改. 只改一边是统稿时返工最多的来源.
 - **讨论产出落到文件**: 课程规划写进 `examples/_lm-example-plan.md`, quiz 规划写进 `examples/_lm-quiz-plan.md` (都可进 git), 别只留在对话里.
+- **`examples/` 的位置约定**: 01 索引, 02 综述, 03 往后主线, 然后 quiz, 最后一个是收尾. 完整约定见 `ref/00-common/01-repo-layout.md` 第 4.2 节.
 - **两个固定名字不许改**: quiz 那个 Task 是 `examples/NN-prove-i-get-it`, forge 靠这个名字定位它. 索引 Task 的位置固定在 01, 但名字是软的.
 - 写任何 .md 文件遵循 `markdown-style` 和 `chinese-english-punctuation` 两个 Agent Skill.
 
