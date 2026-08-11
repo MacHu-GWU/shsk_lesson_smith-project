@@ -8,13 +8,13 @@
 
 ---
 
-## 1. 它是什么, 以及为什么它是一个 Task
+## 1. 它是什么
 
 它给刚进来的人一张地图: 这门课有哪些 Task, 它们是怎么分组的, 该按什么顺序读.
 
 **它不是教学文档**, 教程在各个 Task 自己的 README 里.
 
-早先这份东西放在 `examples/README-cn.md`, 不是 Task, 没有 TICKET, 也没有 frontmatter. 那个位置制造了两个麻烦: 它和根目录那份 README 界线不清 (两个都像 "总览"), 而且它是整个 examples 下唯一一个不成对的孤儿文件. 所以现在把它降格成 examples 里的第一个普通 Task, **一切都走 Task 的规矩**, 没有例外可记.
+**它是一个普通 Task**, 一切都走 Task 的规矩: 有 frontmatter, 有 H1, 有配套的 TICKET. 没有例外可记.
 
 **什么时候写**: 不是第一个写的. 主干内容 (02 往后) 全部写完并统稿之后, 回头补开头结尾时才写它. 地图只能在路修完之后画.
 
@@ -44,6 +44,8 @@
 
 **group 的数量与主题都随课程而定**, template 里的分组和用词只是示例.
 
+**固定位置的特殊 Task 单独处理.** 有的 repo type 在 examples 末尾有位置固定, 性质和教学 Task 不同的 Task (例如 showcase 的自测环节与讲故事环节). 这类 Task 在索引里**各自单独成组, 或者并进结尾那个 "收尾与展示" 组**, 并用一句话点明它的性质, 不要和前面的教学 Task 混在一条 bullet 列表里. 哪个类型有哪些固定 Task, 见该类型自己的 repo layout.
+
 ---
 
 ## 4. 链接怎么写
@@ -54,7 +56,7 @@
 [02-title](../02-title/README-cn.md)
 ```
 
-这是从旧的 `examples/README-cn.md` 搬过来时最容易漏的一处: 旧位置写的是 `02-title/README-cn.md`, 少了 `../` 就全是死链.
+少写 `../` 是这一份最常见的错, 而且错了是**整片死链**, 不是一条.
 
 ---
 
@@ -62,7 +64,7 @@
 
 H1 字符集, frontmatter `description` 的形态与长度, 编号与分隔线, 术语保留英文, 都照 [03-task-readme-spec](../03-task-readme-spec/task-readme-cn-spec.md), 这里不重复.
 
-只有一处要特别说: 它的 `description` 是**这个索引 Task 的承诺**, 写 "读完你知道这门课怎么走", 不是把整门课的介绍搬过来 (那是 README-ORIGINAL 的活).
+只有一处要特别说: 它的 `description` 是**这个索引 Task 的承诺**, 写 "读完你知道这门课分成哪几块, 该按什么顺序走". 别写成整门课的介绍, 那是另一份文件的活.
 
 ---
 
@@ -71,4 +73,5 @@ H1 字符集, frontmatter `description` 的形态与长度, 编号与分隔线, 
 - 各 group 的 Task 加起来, 覆盖了 `examples/` 下除它自己以外的全部 Task, 一个不漏
 - 指向兄弟 Task 的链接都带 `../`
 - 读起来是分组和递进, 不是平铺罗列
-- description 写的是 "读完你知道这门课怎么走", 没有和 README-ORIGINAL 撞车
+- 固定位置的特殊 Task 没被混进教学 Task 的列表里
+- description 写的是 "读完你知道这门课怎么走", 不是整门课的介绍
