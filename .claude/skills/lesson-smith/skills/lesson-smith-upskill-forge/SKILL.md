@@ -1,6 +1,6 @@
 ---
 name: lesson-smith-upskill-forge
-description: "为当前 upskill 教学仓库锻造学习工具链: 产出 docs/upskill 三份文档 (learn, runbook, quiz) 与 upskill-learn, upskill-quiz 两个子 skill. 课程内容写完后手动跑一次."
+description: "为当前 upskill 教学仓库锻造学习工具链: 产出 docs/upskill 三份文档 (learn, runbook, quiz) 与 upskill-learn-cn, upskill-quiz-cn 两个子 skill. 课程内容写完后手动跑一次."
 argument-hint: "[init | refresh | learn | runbook | quiz] [自由说明...]"
 allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(git rev-parse *) Bash(uvx *)
 ---
@@ -10,9 +10,9 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 你是 upskill 学习工具链的锻造者. 对着当前这个 upskill 教学仓库跑一次, 产出两样东西:
 
 1. `docs/upskill/` 下 3 份文档 (学习索引 + 跑起来 + quiz 薄壳).
-2. `.claude/skills/` 下 2 个子 skill (upskill-learn, upskill-quiz).
+2. `.claude/skills/` 下 2 个子 skill (upskill-learn-cn, upskill-quiz-cn).
 
-产出后, 创作者与任何学员都能用 `/upskill-learn` 带着学, `/upskill-quiz` 自测.
+产出后, 创作者与任何学员都能用 `/upskill-learn-cn` 带着学, `/upskill-quiz-cn` 自测.
 
 ## 第 0 步: 先加载 lesson-smith skill (不可跳过)
 
@@ -23,11 +23,11 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 按用途从 lesson-smith skill 读这些文件, 不要一次全读:
 
 - `ref/upskill/upskill-repo-layout.md` — upskill 的目录结构特化, 先读它对齐整体布局.
-- `ref/upskill/docs-upskill-learn-spec.md` — 写 `01-upskill-learn.md` 的规范.
+- `ref/upskill/docs-upskill-learn-spec.md` — 写 `01-upskill-learn-cn.md` 的规范.
 - `ref/upskill/docs-upskill-runbook-spec.md` — 写 `02-upskill-runbook.md` 的规范.
-- `ref/upskill/docs-upskill-quiz-spec.md` — 写 `03-upskill-quiz.md` 的规范.
+- `ref/upskill/docs-upskill-quiz-spec.md` — 写 `03-upskill-quiz-cn.md` 的规范.
 - `ref/upskill/upskill-examples-quiz-readme-spec.md` — 题库真身 (quiz mini task 的 README) 的格式, 用来定位它并写好 `03` 的指针.
-- `ref/upskill/upskill-learn.SKILL.md`, `ref/upskill/upskill-quiz.SKILL.md` — 两个子 skill 的近乎静态模板, 直接拷.
+- `ref/upskill/upskill-learn-cn.SKILL.md`, `ref/upskill/upskill-quiz-cn.SKILL.md` — 两个子 skill 的近乎静态模板, 直接拷.
 - `ref/agent-skill-interaction-pattern.md` — 通用交互模式 (英文权威版), 生成子 skill 时拷一份进各自的 ref/ 下.
 
 ## 参数
@@ -64,7 +64,7 @@ upskill 的内容是创作者手写的 mini task, 不用像扫陌生代码那样
 
 - **学习素材 (#1)**: 把 Phase 2 找到的候选列出来, 请创作者确认或增删, 并说清是情况 A (教程本身就是要学的东西) 还是情况 B (真东西在 examples 之外).
 - **runbook 隐性步骤**: 开始前的一次性 setup, 以及推进中导师默认懂, 学生却不懂的操作 (cd, 环境变量, 注册账号, 浏览器里 setup 等).
-- **quiz 考法自定义**: `03-upskill-quiz.md` 里对 upskill-quiz 行为的特殊要求 (没有就按默认).
+- **quiz 考法自定义**: `03-upskill-quiz-cn.md` 里对 upskill-quiz-cn 行为的特殊要求 (没有就按默认).
 
 自由说明里已经给到的直接采纳, 只补没给的.
 
@@ -72,9 +72,9 @@ upskill 的内容是创作者手写的 mini task, 不用像扫陌生代码那样
 
 按各自规范写到 `docs/upskill/`:
 
-- `01-upskill-learn.md` (依 docs-upskill-learn-spec): #1 学习素材 + #2 引导路径.
+- `01-upskill-learn-cn.md` (依 docs-upskill-learn-spec): #1 学习素材 + #2 引导路径.
 - `02-upskill-runbook.md` (依 docs-upskill-runbook-spec): 一次性 setup + 推进中操作, 把隐性步骤显式化.
-- `03-upskill-quiz.md` (依 docs-upskill-quiz-spec): 指向 Phase 2 定位到的题库真身, 加上考法自定义.
+- `03-upskill-quiz-cn.md` (依 docs-upskill-quiz-spec): 指向 Phase 2 定位到的题库真身, 加上考法自定义.
 
 溯源一律用 markdown 链接加 header 或关键字, 不用 line no. 猜不准的地方显式标注请创作者确认, 不许凭空编.
 
@@ -93,9 +93,9 @@ upskill 的内容是创作者手写的 mini task, 不用像扫陌生代码那样
 
 具体拷贝:
 
-- `ref/upskill/upskill-learn.SKILL.md` → `.claude/skills/upskill-learn/SKILL.md`
-- `ref/upskill/upskill-quiz.SKILL.md` → `.claude/skills/upskill-quiz/SKILL.md`
-- `ref/agent-skill-interaction-pattern.md` (英文权威版) → 各拷一份到 `.claude/skills/upskill-learn/ref/agent-skill-interaction-pattern.md` 和 `.claude/skills/upskill-quiz/ref/agent-skill-interaction-pattern.md`.
+- `ref/upskill/upskill-learn-cn.SKILL.md` → `.claude/skills/upskill-learn-cn/SKILL.md`
+- `ref/upskill/upskill-quiz-cn.SKILL.md` → `.claude/skills/upskill-quiz-cn/SKILL.md`
+- `ref/agent-skill-interaction-pattern.md` (英文权威版) → 各拷一份到 `.claude/skills/upskill-learn-cn/ref/agent-skill-interaction-pattern.md` 和 `.claude/skills/upskill-quiz-cn/ref/agent-skill-interaction-pattern.md`.
 
 模板近乎全静态, 落地时只需核对: 每个 SKILL.md 都固定加载它自己 ref/ 下那份交互模式 (路径已写死在模板里), 且对 `docs/upskill/` 的引用路径正确.
 
@@ -104,7 +104,7 @@ upskill 的内容是创作者手写的 mini task, 不用像扫陌生代码那样
 1. 列出创建或更新的文件 (3 份 doc + 2 份 SKILL.md).
 2. sanity check: 每个 SKILL.md 都引到 `docs/upskill/` 下的文件; 每个生成的 skill 的 `ref/` 下都有 `agent-skill-interaction-pattern.md`, 且 SKILL.md 固定加载了它; 3 份 doc 都非空.
 3. 用 uvx 跑 `lesson-smith lint` 看仓库结构是否仍合规 (`uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .`; `<version>` 与 pin 版本的说明见 lesson-smith skill 的 `ref/repo-layout.md` 第 6 节, 本地已装 package 则直接 `lesson-smith lint`).
-4. 告诉用户: 用 `/upskill-learn` 开始学, `/upskill-quiz` 自测; `docs/upskill/` 里哪里不对直接改, 或 `refresh <name>` 重生成一份.
+4. 告诉用户: 用 `/upskill-learn-cn` 开始学, `/upskill-quiz-cn` 自测; `docs/upskill/` 里哪里不对直接改, 或 `refresh <name>` 重生成一份.
 
 ## 约束
 

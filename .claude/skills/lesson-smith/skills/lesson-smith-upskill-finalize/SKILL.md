@@ -44,7 +44,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 ### Phase 1 — Preflight (不可跳过)
 
 1. 确认是 upskill repo: 读根目录 `lm.json`, `type` 必须是 `upskill`; `examples/` 必须存在. 不满足就停下问用户.
-2. 确认前置步骤已完成: `docs/upskill/` 下三份 doc 与 `.claude/skills/upskill-learn`, `.claude/skills/upskill-quiz` 都在. 缺了就提醒用户 finalize 是最后一步, 应先跑 `/lesson-smith-upskill-forge`, 再问是否仍要继续.
+2. 确认前置步骤已完成: `docs/upskill/` 下三份 doc 与 `.claude/skills/upskill-learn-cn`, `.claude/skills/upskill-quiz-cn` 都在. 缺了就提醒用户 finalize 是最后一步, 应先跑 `/lesson-smith-upskill-forge`, 再问是否仍要继续.
 3. init 模式下若根目录 README 或 TICKET 已存在, 停下让用户确认改用 refresh.
 
 ### Phase 2 — 采集素材 (轻量, 不派 Explore subagent)
@@ -69,13 +69,13 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 按 `upskill-readme-spec.md` 写, 一次产出英文版加 `supported-languages.json` 里每个语种 (目前是 `README.md` 与 `README-cn.md`). 这份结构固定, 低歧义, 直接产全部语种, 不走 "先 cn 再重写成 en" 的分两步; 思考口径以中文为准, 英文版自然改写.
 
-要点: 操作总入口, 多链接少复述 (pitch 链到 README-ORIGINAL, 内容地图链到 examples/README); 固定提及 `/upskill-learn` 与 `/upskill-quiz`; 不提 runbook; 篇幅软上限约 60 到 80 行. 顶部 frontmatter 的 description 是 Task (这个 branch) 级的介绍, 回答 "你将学到什么" (这个 branch 教的具体内容与获得的能力, 可以罗列知识点), 和 README-ORIGINAL 那段的分工不同, 别把它抄过来; 它会流进 SYLLABUS.
+要点: 操作总入口, 多链接少复述 (pitch 链到 README-ORIGINAL, 内容地图链到 examples/README); 固定提及 `/upskill-learn-cn` 与 `/upskill-quiz-cn`; 不提 runbook; 篇幅软上限约 60 到 80 行. 顶部 frontmatter 的 description 是 Task (这个 branch) 级的介绍, 回答 "你将学到什么" (这个 branch 教的具体内容与获得的能力, 可以罗列知识点), 和 README-ORIGINAL 那段的分工不同, 别把它抄过来; 它会流进 SYLLABUS.
 
 ### Phase 5 — 写根目录 TICKET (全部语种)
 
 按 `upskill-ticket-spec.md` 写, 同样一次产出全部语种.
 
-要点: 三段式 (目标, 要做的事情, 检查清单) 加第 4 个 H2 (关键能力). 第 4 节从各 mini task 的 TICKET 萃取, 纯 bullet, 不带 checkbox, 10 条以内且必须取舍 (按自由说明给的侧重, 没给就自行挑最能代表这门课的). 预计用时用自由说明给的值, 没给就保守估计或省略. **不写指向 repo 内文件或目录的相对路径链接** (TICKET 会进 GitHub Issue, 相对路径点不动; 绝对 URL 可以), 提到 mini task, 系列索引, upskill-quiz 一律用文字提及.
+要点: 三段式 (目标, 要做的事情, 检查清单) 加第 4 个 H2 (关键能力). 第 4 节从各 mini task 的 TICKET 萃取, 纯 bullet, 不带 checkbox, 10 条以内且必须取舍 (按自由说明给的侧重, 没给就自行挑最能代表这门课的). 预计用时用自由说明给的值, 没给就保守估计或省略. **不写指向 repo 内文件或目录的相对路径链接** (TICKET 会进 GitHub Issue, 相对路径点不动; 绝对 URL 可以), 提到 mini task, 系列索引, upskill-quiz-cn 一律用文字提及.
 
 ### Phase 6 — 生成 SYLLABUS 与快照
 

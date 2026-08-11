@@ -96,7 +96,7 @@ docs/showcase/05-showcase-publish-cn.md publish 清单, 自包含, 无 examples 
 
 **`docs/showcase/`** 下五份 doc 与四个子 skill 都由 `lesson-smith-showcase-forge` 产出, 它要读的规范与模板集中在 [forge/](forge/) 下: [docs-showcase-learn](forge/docs-showcase-learn/docs-showcase-learn-cn-spec.md), [docs-showcase-runbook](forge/docs-showcase-runbook/docs-showcase-runbook-cn-spec.md), [docs-showcase-quiz](forge/docs-showcase-quiz/docs-showcase-quiz-cn-spec.md), [docs-showcase-demo](forge/docs-showcase-demo/docs-showcase-demo-cn-spec.md), [docs-showcase-publish](forge/docs-showcase-publish/docs-showcase-publish-cn-spec.md), 加上四份 SKILL 模板.
 
-这一层**分语种**: 每份 doc 中英各一套 spec 加 template, 子 skill 也是 `showcase-learn` 与 `showcase-learn-cn` 两份. **但 forge 当前只产 `-cn` 那一套**, 因为无后缀的英文课程正文留空, 英文索引只会指向一堆空文件. 英文那一套规范留着, 等多语种模块回来接手.
+这一层**分语种**: 每份 doc 中英各一套 spec 加 template, 子 skill 也是无后缀的英文版与 `-cn` 版各一份. **但 forge 当前只产 `-cn` 那一套**, 因为无后缀的英文课程正文留空, 英文索引只会指向一堆空文件. 英文那一套规范留着, 等多语种模块回来接手.
 
 **publish 那份要特别注意语种**: 作品 repo 只带一个语种, 所以发布时要**留下有内容的那一版 (`-cn`), 删掉留空的占位符, 再把后缀去掉**. 判断哪一版是占位符必须去读文件, 不许看后缀. 做反了就是把整门课删光.
 

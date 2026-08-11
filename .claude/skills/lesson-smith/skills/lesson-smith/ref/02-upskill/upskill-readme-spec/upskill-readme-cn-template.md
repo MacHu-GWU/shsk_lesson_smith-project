@@ -18,8 +18,8 @@ description: "一行, 你将学到什么: 挑几个有代表性的 examples 主�
 
 1. 进 [examples/](examples/), 从 01 开始按编号往下刷. 第一篇是索引, 会给你整门课的地图.
 2. 每个 Task 都照它自己的 TICKET 做完再往下.
-3. 学的过程中有两个帮手随叫随到: `/upskill-learn` 是带学教练 (要地图, 要某一处讲透, 要决定下一步, 或卡住了都找它, 环境 setup 也由它带); `/upskill-quiz` 是面试式自测, 检验你是不是真的学懂了 (know-what 和 know-why).
-4. 学到什么算成: 用 `/upskill-quiz` 测到 70% 的题都能思路清晰地答出来.
+3. 学的过程中有两个帮手随叫随到: `/upskill-learn-cn` 是带学教练 (要地图, 要某一处讲透, 要决定下一步, 或卡住了都找它, 环境 setup 也由它带); `/upskill-quiz-cn` 是面试式自测, 检验你是不是真的学懂了 (know-what 和 know-why).
+4. 学到什么算成: 用 `/upskill-quiz-cn` 测到 70% 的题都能思路清晰地答出来.
 
 ---
 

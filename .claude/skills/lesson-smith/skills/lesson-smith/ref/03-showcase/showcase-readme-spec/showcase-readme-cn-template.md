@@ -18,8 +18,8 @@ description: "一行, 你将学到什么: 挑几个有代表性的 examples 主�
 
 1. 进 [examples/](examples/), 从 01 开始按编号往下刷. 第一篇是索引, 会给你整门课的地图.
 2. 每个 Task 都照它自己的 TICKET 做完再往下.
-3. 学的过程中有两个帮手随叫随到: `/showcase-learn` 是带学教练 (要地图, 要某一处讲透, 要决定下一步, 或卡住了都找它, 环境 setup 也由它带); `/showcase-quiz` 是面试式自测, 检验你是不是真的学懂了 (know-what 和 know-why).
-4. 学到什么算成: 用 `/showcase-quiz` 测到 70% 的题都能思路清晰地答出来.
+3. 学的过程中有两个帮手随叫随到: `/showcase-learn-cn` 是带学教练 (要地图, 要某一处讲透, 要决定下一步, 或卡住了都找它, 环境 setup 也由它带); `/showcase-quiz-cn` 是面试式自测, 检验你是不是真的学懂了 (know-what 和 know-why).
+4. 学到什么算成: 用 `/showcase-quiz-cn` 测到 70% 的题都能思路清晰地答出来.
 
 ---
 
@@ -27,10 +27,10 @@ description: "一行, 你将学到什么: 挑几个有代表性的 examples 主�
 
 showcase 的落点是把这段经历讲出去, 并把这个 repo 变成你自己的作品. 学完全部 Task 后, 再用两个帮手收尾:
 
-1. `/showcase-demo` 陪你排练 "我是怎么做出这个项目的" 这段故事: 别人问你 "你会不会 XX" 时, 你能打开这个 repo 有条理地讲一遍怎么学的, 遇到什么问题, 怎么解决的, 并接住追问.
-2. `/showcase-publish` 把这个 repo 抹去所有教学痕迹, 转成一个可以放上你自己 GitHub 的 portfolio repo, 再做一次 "会不会被看出是教学项目" 的敌意扫描.
+1. `/showcase-demo-cn` 陪你排练 "我是怎么做出这个项目的" 这段故事: 别人问你 "你会不会 XX" 时, 你能打开这个 repo 有条理地讲一遍怎么学的, 遇到什么问题, 怎么解决的, 并接住追问.
+2. `/showcase-publish-cn` 把这个 repo 抹去所有教学痕迹, 转成一个可以放上你自己 GitHub 的 portfolio repo, 再做一次 "会不会被看出是教学项目" 的敌意扫描.
 
-顺序是先用 `/showcase-demo` 排练好怎么讲, 再跑 `/showcase-publish` 清理发布 (publish 会把排练用的底稿本身也一并清掉).
+顺序是先用 `/showcase-demo-cn` 排练好怎么讲, 再跑 `/showcase-publish-cn` 清理发布 (publish 会把排练用的底稿本身也一并清掉).
 
 ---
 

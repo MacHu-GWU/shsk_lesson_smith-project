@@ -5,7 +5,7 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 
 # LessonSmith: 教学仓库规范基座
 
-: v1
+LESSON-SMITH-LOADED: v1
 
 上面那行是加载标记. 每个 step skill 开工前都要确认自己能在上下文里看到它, 看不到就先加载本 skill. 这样约定 (每个 session 开头敲一次 author) 变成了一条会自检的规则: 忘了敲, 下一个 step skill 当场发现, 而不是一路写到出厂那步跑 lint 才炸.
 
@@ -46,7 +46,7 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 - **evolve**: 一个 Repo 多个 branch, 每个 branch 一个 Task. 代码逐步演化, 文件渐增, 能看到项目一点点长大. 适合企业级, 完成度高的复杂项目.
 - **showcase**: 一个 Repo 只有一个 `showcase` branch (单 Task), `examples/` 下每个目录是一个 Task. 内容偏技能性质, 学完可以抹去所有教学痕迹, 把它当作自己的 repo 拿去面试展示 (含对外 publish 环节).
 - **upskill**: 结构与 showcase 几乎一致, 唯一区别是没有对外 publish. 适合 "如何做某一类事情", "如何改简历" 这类学会即止, 不需外部背书的内容.
-- **readup**: upskill 的精简子集, 结构相同但砍掉了整条 AI 工具链: 没有 `upskill-learn` / `upskill-quiz` 那套子 skill, 没有 docs 学习文档, 也没有 quiz 那个 Task. 适合读者还不知道 AI Agent Skill 是什么, 只想像读一份普通教程那样, 打开 `examples/` 一篇篇顺着读下来就能学会的内容; 因此它的根 README 与 TICKET 里绝不出现任何斜杠命令, 只引导 "进 `examples/` 从 01 开始按编号读".
+- **readup**: upskill 的精简子集, 结构相同但砍掉了整条 AI 工具链: 没有 `upskill-learn-cn` / `upskill-quiz-cn` 那套子 skill, 没有 docs 学习文档, 也没有 quiz 那个 Task. 适合读者还不知道 AI Agent Skill 是什么, 只想像读一份普通教程那样, 打开 `examples/` 一篇篇顺着读下来就能学会的内容; 因此它的根 README 与 TICKET 里绝不出现任何斜杠命令, 只引导 "进 `examples/` 从 01 开始按编号读".
 
 后三类的 `examples/` 里, **第一个 Task 固定是索引** (给整门课一张地图), 位置固定在 01, 目录名随课程而定.
 

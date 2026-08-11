@@ -28,9 +28,9 @@
 
 ## 2. 两条固定内容
 
-**写死四个 skill.** `/showcase-learn`, `/showcase-quiz`, `/showcase-demo`, `/showcase-publish` 由 `lesson-smith-showcase-forge` 必然产出, 所以对应小节固定提及它们, 措辞近乎静态. learn 与 quiz 属 "怎么学", demo 与 publish 属 "学完怎么展示发布".
+**写死四个 skill.** `/showcase-learn-cn`, `/showcase-quiz-cn`, `/showcase-demo-cn`, `/showcase-publish-cn` 由 `lesson-smith-showcase-forge` 必然产出, 所以对应小节固定提及它们, 措辞近乎静态. learn 与 quiz 属 "怎么学", demo 与 publish 属 "学完怎么展示发布".
 
-**不提 runbook.** 正文不引导环境 setup, 也不提 `docs/showcase/02-showcase-runbook.md` (那是给 AI 看的元文件). setup 交给 `/showcase-learn` 在学生真遇到麻烦时智能介入.
+**不提 runbook.** 正文不引导环境 setup, 也不提 `docs/showcase/02-showcase-runbook.md` (那是给 AI 看的元文件). setup 交给 `/showcase-learn-cn` 在学生真遇到麻烦时智能介入.
 
 ---
 
@@ -65,13 +65,13 @@ showcase 只有一个 branch, 所以这一行看起来像在讲整个 Repo, 其�
 **第 2 节 怎么学.** 讲三件事:
 
 - 学的顺序: 进 `examples/`, 从 01 开始按编号一篇篇刷, 每个都照它自己的 TICKET 做完再往下. `examples/` 的第一个 Task 就是索引, 会给出整门课的地图.
-- 两个帮手: `/showcase-learn` 带学, `/showcase-quiz` 自测.
-- 学到什么算成: 用 `/showcase-quiz` 测到 70% 且思路清晰.
+- 两个帮手: `/showcase-learn-cn` 带学, `/showcase-quiz-cn` 自测.
+- 学到什么算成: 用 `/showcase-quiz-cn` 测到 70% 且思路清晰.
 
 **第 3 节 学完之后: 展示与发布.** showcase 特有, 也是它的落点: 把这段经历讲出去, 并把 repo 变成作品. 两个帮手:
 
-- `/showcase-demo` 陪你排练 "我是怎么做出这个的" 这段故事, 含接住追问.
-- `/showcase-publish` 把 repo 抹去教学痕迹, 转成可放上自己 GitHub 的 portfolio repo.
+- `/showcase-demo-cn` 陪你排练 "我是怎么做出这个的" 这段故事, 含接住追问.
+- `/showcase-publish-cn` 把 repo 抹去教学痕迹, 转成可放上自己 GitHub 的 portfolio repo.
 
 **顺序要点明**: 先排练 demo, 再跑 publish. publish 会把 demo 底稿本身也一并清掉.
 

@@ -26,9 +26,9 @@
 
 ## 2. 两条固定内容
 
-**写死两个 skill.** `/upskill-learn` 与 `/upskill-quiz` 由 `lesson-smith-upskill-forge` 必然产出, 所以 "怎么学" 一节固定提及它们, 措辞近乎静态.
+**写死两个 skill.** `/upskill-learn-cn` 与 `/upskill-quiz-cn` 由 `lesson-smith-upskill-forge` 必然产出, 所以 "怎么学" 一节固定提及它们, 措辞近乎静态.
 
-**不提 runbook.** 正文不引导环境 setup, 也不提 `docs/upskill/02-upskill-runbook.md` (那是给 AI 看的元文件). setup 只在开始那一下和中途偶发, 交给 `/upskill-learn` 在学生真遇到麻烦时智能介入, 根 README 不必唠叨.
+**不提 runbook.** 正文不引导环境 setup, 也不提 `docs/upskill/02-upskill-runbook.md` (那是给 AI 看的元文件). setup 只在开始那一下和中途偶发, 交给 `/upskill-learn-cn` 在学生真遇到麻烦时智能介入, 根 README 不必唠叨.
 
 ---
 
@@ -63,8 +63,8 @@ upskill 只有一个 branch, 所以这一行看起来像在讲整个 Repo, 其�
 **第 2 节 怎么学.** 全文的篇幅重心. 讲三件事:
 
 - 学的顺序: 进 `examples/`, 从 01 开始按编号一篇篇刷, 每个都照它自己的 TICKET 做完再往下. `examples/` 的第一个 Task 就是索引, 会给出整门课的地图.
-- 两个帮手: `/upskill-learn` 带学, `/upskill-quiz` 自测.
-- 学到什么算成: 用 `/upskill-quiz` 测到 70% 且思路清晰.
+- 两个帮手: `/upskill-learn-cn` 带学, `/upskill-quiz-cn` 自测.
+- 学到什么算成: 用 `/upskill-quiz-cn` 测到 70% 且思路清晰.
 
 **第 3 节 学完你能做到什么.** 收尾一句, 呼应顶部 description 说的那些.
 

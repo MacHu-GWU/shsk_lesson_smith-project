@@ -16,7 +16,7 @@
 
 别人问你 "你怎么做 XX 这件事" 时, 你就用这个 repo 讲: 当时怎么学的, 遇到什么问题, 怎么解决的. 因为学生真的掌握了底层能力, **抹去教学痕迹后把它当自己的作品来讲是完全正当的**.
 
-`docs/showcase/04-showcase-demo.md` 只是一层指过来的薄壳, `/showcase-demo` 拿它来陪学生排练.
+`docs/showcase/04-showcase-demo-cn.md` 只是一层指过来的薄壳, `/showcase-demo-cn` 拿它来陪学生排练.
 
 视角是**学生第一人称** (我是怎么做出这个的). 配套的 TICKET 另有规范, 见 [showcase-demo-ticket-spec](../showcase-demo-ticket-spec/showcase-demo-ticket-cn-spec.md).
 
@@ -24,7 +24,7 @@
 
 ## 2. 它和 publish 的关系
 
-**demo 是在 publish 之前读的.** 学生先靠这份底稿把故事排练好; 之后跑 `/showcase-publish` 时, `NN-how-i-build-this` 这个 Task, `docs/showcase/04-showcase-demo.md` 以及 `showcase-demo` skill 都会作为教学痕迹被删掉.
+**demo 是在 publish 之前读的.** 学生先靠这份底稿把故事排练好; 之后跑 `/showcase-publish-cn` 时, `NN-how-i-build-this` 这个 Task, `docs/showcase/04-showcase-demo-cn.md` 以及 `showcase-demo-cn` skill 都会作为教学痕迹被删掉.
 
 也就是说**底稿服务于排练, 排练完它的使命就结束了**. 真正带走的是学生脑子里那套能讲的故事和背后的能力.
 

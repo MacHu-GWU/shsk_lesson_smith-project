@@ -44,7 +44,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 ### Phase 1 — Preflight (不可跳过)
 
 1. 确认是 showcase repo: 读根目录 `lm.json`, `type` 必须是 `showcase`; `examples/` 必须存在. 不满足就停下问用户.
-2. 确认前置步骤已完成: `docs/showcase/` 下五份 doc 与 `.claude/skills/showcase-learn`, `showcase-quiz`, `showcase-demo`, `showcase-publish` 都在. 缺了就提醒用户 finalize 是最后一步, 应先跑 `/lesson-smith-showcase-forge`, 再问是否仍要继续.
+2. 确认前置步骤已完成: `docs/showcase/` 下五份 doc 与 `.claude/skills/showcase-learn-cn`, `showcase-quiz-cn`, `showcase-demo-cn`, `showcase-publish-cn` 都在. 缺了就提醒用户 finalize 是最后一步, 应先跑 `/lesson-smith-showcase-forge`, 再问是否仍要继续.
 3. init 模式下若根目录 README 或 TICKET 已存在, 停下让用户确认改用 refresh.
 
 ### Phase 2 — 采集素材 (轻量, 不派 Explore subagent)
@@ -69,7 +69,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 按 `showcase-readme-spec.md` 写, 一次产出英文版加 `supported-languages.json` 里每个语种 (目前是 `README.md` 与 `README-cn.md`). 这份结构固定, 低歧义, 直接产全部语种, 不走 "先 cn 再重写成 en" 的分两步; 思考口径以中文为准, 英文版自然改写.
 
-要点: 操作总入口, 多链接少复述 (pitch 链到 README-ORIGINAL, 内容地图链到 examples/README); 五个 H2, "怎么学" 一节固定提及 `/showcase-learn` 与 `/showcase-quiz`, "学完之后: 展示与发布" 一节固定提及 `/showcase-demo` 与 `/showcase-publish` (并点明先排练 demo 再跑 publish); 不提 runbook; 篇幅软上限约 70 到 90 行. 顶部 frontmatter 的 description 是 Task (这个 branch) 级的介绍, 回答 "你将学到什么" (这个 branch 教的具体内容与获得的能力, 可以罗列知识点), 和 README-ORIGINAL 那段的分工不同, 别把它抄过来; 它会流进 SYLLABUS.
+要点: 操作总入口, 多链接少复述 (pitch 链到 README-ORIGINAL, 内容地图链到 examples/README); 五个 H2, "怎么学" 一节固定提及 `/showcase-learn-cn` 与 `/showcase-quiz-cn`, "学完之后: 展示与发布" 一节固定提及 `/showcase-demo-cn` 与 `/showcase-publish-cn` (并点明先排练 demo 再跑 publish); 不提 runbook; 篇幅软上限约 70 到 90 行. 顶部 frontmatter 的 description 是 Task (这个 branch) 级的介绍, 回答 "你将学到什么" (这个 branch 教的具体内容与获得的能力, 可以罗列知识点), 和 README-ORIGINAL 那段的分工不同, 别把它抄过来; 它会流进 SYLLABUS.
 
 ### Phase 5 — 写根目录 TICKET (全部语种)
 
@@ -86,7 +86,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 1. 在 repo 根目录跑 `uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .` (命令细节同上, 见 `ref/repo-layout.md` 第 6 节) 看整仓结构是否合规; 有问题按报告修到通过.
 2. 列出创建或更新的文件 (README-ORIGINAL, 根 README 与 TICKET 各语种, SYLLABUS 与快照).
 3. sanity check: README-ORIGINAL 的 description 与 github_about 都在, 都经创作者确认过, description 是能发给学生的两段式而不是知识点罗列, 且 H1 等于 repo 名; 根 README 提及了四个子 skill 且没提 runbook; 根 TICKET 有第 4 节关键能力且无相对路径链接; 各语种根 README 的相对路径链接语种正确 (英文版链英文文件, 不含 -cn 链接).
-4. 告诉用户: 这门 showcase 课到此收尾完成, 可以从根目录 README 进入开始学; 学完可用 `/showcase-demo` 排练, `/showcase-publish` 发布.
+4. 告诉用户: 这门 showcase 课到此收尾完成, 可以从根目录 README 进入开始学; 学完可用 `/showcase-demo-cn` 排练, `/showcase-publish-cn` 发布.
 
 ## 约束
 

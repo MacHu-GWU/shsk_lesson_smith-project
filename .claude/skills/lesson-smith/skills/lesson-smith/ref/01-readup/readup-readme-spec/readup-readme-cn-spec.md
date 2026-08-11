@@ -30,7 +30,7 @@
 
 readup 是纯阅读型仓库, 面向还不知道 AI Agent Skill 是什么的读者, 整门课不带任何辅助 skill. 所以正文:
 
-- 绝不出现 `/upskill-learn`, `/upskill-quiz` 之类的斜杠命令.
+- 绝不出现 `/upskill-learn-cn`, `/upskill-quiz-cn` 之类的斜杠命令.
 - 不引导环境 setup.
 - 不提任何给 AI 看的元文档.
 
