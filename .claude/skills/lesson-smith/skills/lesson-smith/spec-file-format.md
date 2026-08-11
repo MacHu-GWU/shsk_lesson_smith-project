@@ -80,4 +80,4 @@ spec 开头点名它配套的 template; template 不反向引用 spec (它要能
 
 ## 6. 写一份新 spec 的顺序
 
-先去读真实写过的同类文件, 再从里面归纳规范, 最后才写 template. 展开见 [ref/ref-maintainer-README.md](ref/ref-maintainer-README.md) 第 4 节.
+先去读真实写过的同类文件, 再从里面归纳规范, 最后才写 template. 展开见 [ref/ref-maintainer-README.md](ref/ref-maintainer-README.md) 第 5 节.
