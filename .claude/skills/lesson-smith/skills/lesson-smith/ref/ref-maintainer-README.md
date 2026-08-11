@@ -38,20 +38,22 @@ ref/
 
 ## 3. 两种文件形态
 
-**spec 目录**, 形如 `NN-<name>-spec/`. 用在有固定产物的文档上, 里面两样东西:
+**spec 目录**, 形如 `NN-<name>-spec/`. 用在有固定产物的文档上, 每个语种两份文件:
 
-- `<name>-spec.md`: 规范加可直接套用的模板, 走 `spec-file-format.md` 那套 (规范全部写在顶部 `<!-- -->` 注释里, 正文就是模板, 产出真文件时把注释整段删掉).
-- `corpus/`: 真实语料, 已发布 repo 里的同类文件. **语料是例子, 不是判据**; 语料和规范对不上时以规范为准.
+- `<name>-<lang>-spec.md`: 规范. 普通 markdown, 有编号 H2, 有表格, 有分隔线, 能渲染, 能被别的文档用锚点链过来. 权威在这.
+- `<name>-<lang>-template.md`: 骨架. frontmatter 加 `[方括号]` 占位, **一个注释都没有**, 起草时整份复制过去填空.
 
-**单文件**, 形如 `NN-<name>.md`. 用在没有模板可套的东西上, 比如目录布局标准, 工作流规范. 就是一份普通的 markdown, 不带顶部注释那一套.
+spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻译. **目录下不放语料库.** 完整理由 (以及为什么不再把规范塞进顶部注释) 见 skill 根目录的 `spec-file-format.md`.
+
+**单文件**, 形如 `NN-<name>.md`. 用在没有固定产物的东西上, 比如目录布局标准, 工作流规范. 就是一份普通的 markdown, 没有配套 template.
 
 ---
 
 ## 4. 写一份新 spec 的顺序
 
-1. **先攒语料.** 从已发布的 repo 里挑真实文件放进 `corpus/`, 尽量覆盖不同题材.
-2. **再从语料里归纳规范.** 读的时候找的是重复出现的分寸: 哪一节到什么程度就该收, 哪一类写法每次都翻车.
-3. **最后才写模板正文.**
+1. **先去读真实写过的文件.** 从已发布的 repo 里翻出几份同类的, 尽量覆盖不同题材. 读完就走, 不要往 ref 里拷贝.
+2. **再从里面归纳规范.** 找的是重复出现的分寸: 哪一节到什么程度就该收, 哪一类写法每次都翻车.
+3. **最后才写 template.**
 
 顺序不能反. 先拍脑袋定规范再回头找例子印证, 出来的规范一定和实际写法对不上, 而且对不上的地方要等到真去写一门课才暴露.
 
@@ -83,14 +85,16 @@ ref/
 **已经落位的**:
 
 - `00-common/01-repo-layout.md`: 已按中文单语种重写, 大段话改成 bullet, frontmatter 那一节从两屏压到一节.
-- `00-common/02-task-readme-spec/`, `03-task-ticket-spec/`, `04-readme-original-spec/`: 目录已按 task 术语与序号就位.
+- **spec 目录改成两文件制**: `spec-file-format.md` 已重写, `00-common` 下 `02`, `03`, `04` 三份都已按新格式落地 (spec 加 template), 顶部注释与 `corpus/` 那两套都作废.
+- `ref/readme-spec.md` 与 `ref/ticket-spec.md` 已删, 由 `03` 与 `04` 取代.
 - **lint 的按语种开关**: `constants.py` 的 `LINT_ENABLED_BY_LANG` 决定每个语种参不参与 lint, 英文当前是关的. 关掉的语种被整个跳过, 既不要求存在, 内容也不检查, 所以留空的英文占位文件不再拖垮整仓. 改回来是改一个词.
 - `linter.py` 与 `linter_utils.py` 里指向规范位置的 docstring 已改到 `ref/00-common/`.
 
 **还欠的**:
 
-- `02` 的 spec 文件还是空的, `03` 与 `04` 的内容仍带翻译时代的痕迹 (英文版专属小节, 撇号禁令, 英文长度档), 待重写.
-- `ref/` 根目录还剩一批 flat 文件: `readme-spec.md` 与 `ticket-spec.md` 已被 `02` `03` 取代待删; `syllabus-spec.md` 待迁进 `00-common`; `review-spec.md` 与 `ship-spec.md` 待定位; `rewrite-en-spec.md` 属于翻译, 待 archive.
+- **`03-task-readme-spec/` 的风格层最薄.** 它是从旧 `readme-spec.md` 忠实迁过来的, 而那一份关于 "怎么写才算写好" 只有零星几句, 骨架也已经和实际写法漂开了. 三份里就数它最需要回去读真实的教学 README 再补一层.
+- `ref/01-readup/` 下还留着三个 `corpus/` 目录 (`readme-spec/`, `ticket-spec/`, `examples-readme-spec/`), 语料废弃之后它们该一起删, 但那是特化层的事, 等收敛到那里再动.
+- `ref/` 根目录还剩一批 flat 文件: `syllabus-spec.md` 待迁进 `00-common`; `review-spec.md` 与 `ship-spec.md` 待定位; `rewrite-en-spec.md` 属于翻译, 待 archive.
 - `01-readup` 等目录里, flat 文件与新式 spec 目录并存, 待收敛.
 - 大量入链仍指向旧路径 (`ref/repo-layout.md`, `ref/readup/`, `ref/upskill/`, `ref/showcase/`). 等 ref 重写收敛之后统一扫一遍, 现在改是白改.
 
