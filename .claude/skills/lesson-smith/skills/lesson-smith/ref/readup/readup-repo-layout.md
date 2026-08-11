@@ -63,7 +63,7 @@ readup 到此为止: 没有任何给 AI 看的学习工具文档, 也没有 .cla
 
 根目录 README 与 TICKET 是这一个 branch 的 Task 文件, 也是整门课的阅读入口与验收清单. 它们不遵循教学用的 [ref/readme-spec.md](../readme-spec.md) 与 [ref/ticket-spec.md](../ticket-spec.md) (那是给单个 mini task 的教程正文用的), 而各有专属 spec: root README 遵循 [ref/readup/readup-readme-spec.md](readup-readme-spec.md) (仓库总览加 "怎么读" 的入口, 带一行会流进 SYLLABUS 的 description 承诺; 正文不提及任何斜杠命令), root TICKET 遵循 [ref/readup/readup-ticket-spec.md](readup-ticket-spec.md) (整门课的验收清单, 三段式加一个 "关键能力" H2). 这两份走创作铁律: 先写 cn 版 (在 examples 全部定稿并统稿之后, 拿成品当素材), 英文版随整门课那一次统一重写产生, 见 [ref/rewrite-en-spec.md](../rewrite-en-spec.md); description 的长度与字符约束仍照 [ref/repo-layout.md](../repo-layout.md) 第 4 节.
 
-README-ORIGINAL 是对外 README, 遵循 [ref/readme-original-spec.md](../readme-original-spec.md).
+README-ORIGINAL 是对外 README, 遵循 [ref/common/readme-original-spec/readme-original-spec.md](../common/readme-original-spec/readme-original-spec.md).
 
 examples/NN-title 下的 README 与 TICKET 才是真正的教学文档, 它们直接遵循标准的 [ref/readme-spec.md](../readme-spec.md) 与 [ref/ticket-spec.md](../ticket-spec.md), 不另立 spec: 内容规范和根目录情形完全一样, 唯一区别是所在位置 (examples/NN-title 而非 repo 根).
 

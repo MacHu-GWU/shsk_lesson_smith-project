@@ -11,7 +11,7 @@
 | `examples/README-cn.md` | 系列索引, 内容地图 | [ref/readup/readup-examples-readme-spec.md](readup-examples-readme-spec.md) |
 | `README-cn.md` | 仓库总览加 "怎么读" 的入口 | [ref/readup/readup-readme-spec.md](readup-readme-spec.md) |
 | `TICKET-cn.md` | 整门课的验收清单 | [ref/readup/readup-ticket-spec.md](readup-ticket-spec.md) |
-| `README-ORIGINAL-cn.md` | 对外门面, 重写第 1 步那版粗稿 | [ref/readme-original-spec.md](../readme-original-spec.md) |
+| `README-ORIGINAL-cn.md` | 对外门面, 重写第 1 步那版粗稿 | [ref/common/readme-original-spec/readme-original-spec.md](../common/readme-original-spec/readme-original-spec.md) |
 
 **一份英文都不写.** 英文是下一步整门课统一重写出来的, 在这里另起一条产英文的路径, 术语和标题就会和 examples 那批对不上.
 
@@ -60,7 +60,7 @@
 
 第 1 步那版是内容还没写时的粗稿, description 太粗, 也和最终的 examples 对不齐. 现在内容齐了, 重写整份 (正文加 description 加 github_about), 让这门 Lesson 的门面和成品对齐.
 
-要点见 [ref/readme-original-spec.md](../readme-original-spec.md), 这里只强调最容易翻车的三处:
+要点见 [ref/common/readme-original-spec/readme-original-spec.md](../common/readme-original-spec/readme-original-spec.md), 这里只强调最容易翻车的三处:
 
 - `description` 写给**学生**, 黄金标准是这段话能原样复制粘贴发给一个学生. 两段式: 先一句人话说清这门课学的是什么, 再说清为什么值得学以及学完有什么收获. cn 版用足预算写到接近 400 字符. **绝不罗列知识点**, 写出 "涵盖 A, B, C, D" 这种句式就是跑偏了, 哪怕前面加了 "学完你能" 也一样.
 - `github_about` 写给**老师** (创作者本人与同行), 一句话说清这个 repo 教什么即可, 望文生义, 不写收获, cn 版 200 字符以内.

@@ -29,7 +29,7 @@ readup 是纯阅读型仓库: 不带任何 AI 学习工具链 (没有带学, 自
 
 > 步骤 1, 属于规划阶段.
 
-先用概括, 笼统的方式想清楚这个 repo 大致要教一个什么东西, 按规范写 `README-ORIGINAL-cn.md` (遵循 [ref/readme-original-spec.md](../readme-original-spec.md)). 这是整门课的大背景与电梯陈述, 后面所有内容都长在它之上.
+先用概括, 笼统的方式想清楚这个 repo 大致要教一个什么东西, 按规范写 `README-ORIGINAL-cn.md` (遵循 [ref/common/readme-original-spec/readme-original-spec.md](../common/readme-original-spec/readme-original-spec.md)). 这是整门课的大背景与电梯陈述, 后面所有内容都长在它之上.
 
 注意这只是一版粗稿种子: 此时 examples 还没写, description 难免粗糙, 也和最终内容对不齐. 等全部内容完工后, 第 9 步会重写整份 `README-ORIGINAL-cn.md`, 让这门 Lesson 的门面和成品对齐. 所以这一步不用抠 description, 先把大方向写出来即可. 也不要写英文版, 英文是第 10 步的事.
 

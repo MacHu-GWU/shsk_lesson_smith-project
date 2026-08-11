@@ -67,7 +67,7 @@ description: 教学仓库 (hands-on IT 学习课程) 的规范基座. 定义整�
 - 布局, 命名, 校验有疑问, 或要跑 lesson-smith lint / sync 时 → [ref/repo-layout.md](ref/repo-layout.md): 目录结构与命名标准.
 - 写某个 Task 或 mini task 的教学 README 时 → [ref/readme-spec.md](ref/readme-spec.md): README 规范加模板.
 - 写 TICKET 时 → [ref/ticket-spec.md](ref/ticket-spec.md): 任务卡片规范加模板.
-- 写 repo 对外长介绍 README-ORIGINAL 时 → [ref/readme-original-spec.md](ref/readme-original-spec.md): 电梯陈述规范加模板.
+- 写 repo 对外长介绍 README-ORIGINAL 时 → [ref/common/readme-original-spec/readme-original-spec.md](ref/common/readme-original-spec/readme-original-spec.md): 电梯陈述规范加模板.
 - examples 全部写完, 要通读统稿时 → [ref/review-spec.md](ref/review-spec.md): 找哪五类问题, 怎么改, 什么时候算过.
 - 中文定稿后要产出英文版时 → [ref/rewrite-en-spec.md](ref/rewrite-en-spec.md): 英文版产出规范 (命令, 文件集, 额外约束, 链接规则).
 - 创作流最后一步, 跑 sync 与 lint 出厂时 → [ref/ship-spec.md](ref/ship-spec.md): 前置检查, 两条命令, lint 报错回哪一步修.
