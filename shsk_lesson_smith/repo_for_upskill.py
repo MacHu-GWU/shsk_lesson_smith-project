@@ -2,7 +2,7 @@
 
 """Upskill-specific repo and metadata.
 
-An upskill repo has the same layout as showcase (mini tasks under
+An upskill repo has the same layout as showcase (tasks under
 ``examples/NN-title/``) but no external publish step. Both the :class:`Repo`
 and :class:`Metadata` bases are subclassed so future upskill-only fields have a
 home.

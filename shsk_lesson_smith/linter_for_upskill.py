@@ -3,7 +3,7 @@
 """Upskill-specific lint rules.
 
 Reuses the shared rules from ``linter.py`` and adds the two upskill-only ones:
-the repo-root overview files, and the ``examples/`` mini tasks. ``RULES`` is the
+the repo-root overview files, and the ``examples/`` tasks. ``RULES`` is the
 composed rule list that :func:`linter.lint` runs for an upskill repo.
 
 Spec source of truth: the upskill-only rules here enforce the specs in
@@ -16,7 +16,6 @@ sync with them.
 
 import re
 
-from .constants import README_BASE
 from .exc import LintError
 from .linter import (
     CheckResult,
@@ -33,7 +32,7 @@ from .linter import (  # re-exported: shared helpers now live in linter.py
     rule_root_overview,
 )
 from .linter_utils import check_file_exists
-from .repo import Repo, get_variant_filename
+from .repo import Repo
 
 # Files the forge step produces for a finished upskill repo (checked for
 # existence only; their content is AI-facing and not linted).
@@ -49,7 +48,7 @@ QUIZ_TASK_SUFFIX = "prove-i-get-it"
 def rule_single_branch(repo: Repo) -> "list[CheckResult]":
     """Upskill has exactly one task branch, and it must be ``01-upskill``.
 
-    The mini tasks live under ``examples/``; ``docs/tasks/`` holds the snapshot
+    The tasks live under ``examples/``; ``docs/tasks/`` holds the snapshot
     of that single branch, so it must contain exactly one dir whose name is
     :attr:`Repo.single_task_branch`.
     """
@@ -67,7 +66,7 @@ def rule_single_branch(repo: Repo) -> "list[CheckResult]":
 
 
 def _check_quiz_task_present(example_dirs: "list") -> None:
-    """Exactly one examples mini task must be the quiz, named NN-prove-i-get-it."""
+    """Exactly one examples task must be the quiz, named NN-prove-i-get-it."""
     quiz = [
         d.name
         for d in example_dirs
@@ -75,13 +74,13 @@ def _check_quiz_task_present(example_dirs: "list") -> None:
     ]
     if len(quiz) != 1:
         raise LintError(
-            "An upskill repo must have exactly one quiz mini task named "
+            "An upskill repo must have exactly one quiz task named "
             f"NN-{QUIZ_TASK_SUFFIX} under examples/; found {quiz}."
         )
 
 
 def rule_examples(repo: Repo) -> "list[CheckResult]":
-    """The ``examples/`` tree: the dir, its index README, and each mini task."""
+    """The ``examples/`` tree: the dir and each task."""
     dir_examples = repo.dir_examples
     if dir_examples is None or not dir_examples.exists():
         target = dir_examples or (repo.dir_project_root / "examples")
@@ -91,11 +90,9 @@ def rule_examples(repo: Repo) -> "list[CheckResult]":
 
         return [run_check(target, _missing)]
 
-    # examples/README is a series index, not a teaching README: existence only.
-    out = lint_file_group(
-        lambda lang: dir_examples / get_variant_filename(README_BASE, lang),
-        required=True,
-    )
+    # No examples/README: the series index is a normal first task under
+    # examples/, indistinguishable from a teaching task as far as lint can tell.
+    out: "list[CheckResult]" = []
     example_dirs = list(repo.iter_dir_examples())
     out.append(run_check(dir_examples, _check_examples_numbering, example_dirs))
     out.append(run_check(dir_examples, _check_quiz_task_present, example_dirs))

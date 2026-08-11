@@ -2,7 +2,7 @@
 
 """Showcase-specific repo and metadata.
 
-A showcase repo keeps mini tasks under ``examples/NN-title/`` and is publishable
+A showcase repo keeps tasks under ``examples/NN-title/`` and is publishable
 as the student's own work. Structure is defined here; showcase-specific rules
 are still TODO (see linter_for_showcase.py).
 """

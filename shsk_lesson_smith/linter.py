@@ -19,10 +19,10 @@ Design (see also linter_for_<type>.py):
 
 Spec source of truth: the shared rules here enforce the type-agnostic specs under
 ``.claude/skills/lesson-smith/skills/lesson-smith/ref/00-common/``: 01-repo-layout,
-02-task-readme-spec, 03-task-ticket-spec, 04-readme-original-spec, plus syllabus-spec
-(still at the ref root). Type-specific rules live in the ``linter_for_<type>``
-modules and reference that type's spec folder. Those specs are authoritative; keep
-these checks in sync with them.
+02-readme-original-spec, 03-task-readme-spec, 04-task-ticket-spec,
+05-overview-readme-spec, 06-overview-ticket-spec, 07-syllabus-spec. Type-specific
+rules live in the ``linter_for_<type>`` modules and reference that type's spec
+folder. Those specs are authoritative; keep these checks in sync with them.
 """
 
 import dataclasses
@@ -376,7 +376,7 @@ def rule_task_snapshots(repo: Repo) -> "list[CheckResult]":
 # --------------------------------------------------------------------------- #
 # Shared helpers for examples-based repo types (upskill / showcase / readup)
 #
-# These are type-agnostic but only apply to the types that keep mini tasks under
+# These are type-agnostic but only apply to the types that keep tasks under
 # examples/, so they live here and each of those linter_for_<type> modules
 # composes them (upskill re-exports them for backward-compatible imports).
 # --------------------------------------------------------------------------- #
@@ -403,25 +403,25 @@ def rule_root_overview(repo: Repo) -> "list[CheckResult]":
 
 
 def _check_examples_numbering(example_dirs: "list") -> None:
-    """The examples mini tasks must be numbered consecutively from 01, no gaps."""
+    """The examples tasks must be numbered consecutively from 01, no gaps."""
     numbers = []
     for dir_example in example_dirs:
         match = re.match(r"^(\d\d)-", dir_example.name)
         if match is None:
             raise LintError(
-                f"examples mini task {dir_example.name!r} must start with a "
+                f"examples task {dir_example.name!r} must start with a "
                 "two-digit number, e.g. 01-title."
             )
         numbers.append(int(match.group(1)))
     if not numbers:
         raise LintError(
-            "examples/ has no mini task directories; expected 01-title, "
+            "examples/ has no task directories; expected 01-title, "
             "02-title, and so on."
         )
     numbers.sort()
     if numbers != list(range(1, len(numbers) + 1)):
         raise LintError(
-            "examples mini tasks must be numbered consecutively from 01 with no "
+            "examples tasks must be numbered consecutively from 01 with no "
             f"gaps; got {numbers}."
         )
 

@@ -2,8 +2,8 @@
 
 """Showcase-specific lint rules.
 
-The showcase layout matches upskill (examples/ mini tasks under a single
-``01-showcase`` branch) plus two showcase-only things: a demo mini task
+The showcase layout matches upskill (examples/ tasks under a single
+``01-showcase`` branch) plus two showcase-only things: a demo task
 (``NN-how-i-build-this``, the last example) and a publish step. The forge step
 produces five docs and four child skills (upskill produces three and two).
 
@@ -22,7 +22,6 @@ are authoritative; keep these rules in sync with them.
 
 import re
 
-from .constants import README_BASE
 from .exc import LintError
 from .linter import (
     CheckResult,
@@ -37,7 +36,7 @@ from .linter import (
     run_check,
 )
 from .linter_utils import check_file_exists
-from .repo import Repo, get_variant_filename
+from .repo import Repo
 
 # Files the forge step produces for a finished showcase repo (existence only;
 # their content is AI-facing and not linted). Five docs, four child skills.
@@ -56,7 +55,7 @@ DEMO_TASK_SUFFIX = "how-i-build-this"
 def rule_single_branch(repo: Repo) -> "list[CheckResult]":
     """Showcase has exactly one task branch, and it must be ``01-showcase``.
 
-    The mini tasks live under ``examples/``; ``docs/tasks/`` holds the snapshot
+    The tasks live under ``examples/``; ``docs/tasks/`` holds the snapshot
     of that single branch, so it must contain exactly one dir whose name is
     :attr:`Repo.single_task_branch`.
     """
@@ -74,7 +73,7 @@ def rule_single_branch(repo: Repo) -> "list[CheckResult]":
 
 
 def _check_quiz_task_present(example_dirs: "list") -> None:
-    """Exactly one examples mini task must be the quiz, named NN-prove-i-get-it."""
+    """Exactly one examples task must be the quiz, named NN-prove-i-get-it."""
     quiz = [
         d.name
         for d in example_dirs
@@ -82,13 +81,13 @@ def _check_quiz_task_present(example_dirs: "list") -> None:
     ]
     if len(quiz) != 1:
         raise LintError(
-            "A showcase repo must have exactly one quiz mini task named "
+            "A showcase repo must have exactly one quiz task named "
             f"NN-{QUIZ_TASK_SUFFIX} under examples/; found {quiz}."
         )
 
 
 def _check_demo_task_present(example_dirs: "list") -> None:
-    """Exactly one mini task is the demo, named NN-how-i-build-this, and it is last.
+    """Exactly one task is the demo, named NN-how-i-build-this, and it is last.
 
     The demo story is the last example (highest number), so it comes after the
     teaching tasks and the quiz.
@@ -100,18 +99,18 @@ def _check_demo_task_present(example_dirs: "list") -> None:
     ]
     if len(demo) != 1:
         raise LintError(
-            "A showcase repo must have exactly one demo mini task named "
+            "A showcase repo must have exactly one demo task named "
             f"NN-{DEMO_TASK_SUFFIX} under examples/; found {demo}."
         )
     if example_dirs and example_dirs[-1].name != demo[0]:
         raise LintError(
-            f"The demo mini task NN-{DEMO_TASK_SUFFIX} must be the last example "
+            f"The demo task NN-{DEMO_TASK_SUFFIX} must be the last example "
             f"(highest number); the last example is {example_dirs[-1].name!r}."
         )
 
 
 def rule_examples(repo: Repo) -> "list[CheckResult]":
-    """The ``examples/`` tree: the dir, its index README, and each mini task.
+    """The ``examples/`` tree: the dir and each task.
 
     Beyond consecutive numbering, showcase requires exactly one quiz task
     (``NN-prove-i-get-it``) and exactly one demo task (``NN-how-i-build-this``,
@@ -126,11 +125,9 @@ def rule_examples(repo: Repo) -> "list[CheckResult]":
 
         return [run_check(target, _missing)]
 
-    # examples/README is a series index, not a teaching README: existence only.
-    out = lint_file_group(
-        lambda lang: dir_examples / get_variant_filename(README_BASE, lang),
-        required=True,
-    )
+    # No examples/README: the series index is a normal first task under
+    # examples/, indistinguishable from a teaching task as far as lint can tell.
+    out: "list[CheckResult]" = []
     example_dirs = list(repo.iter_dir_examples())
     out.append(run_check(dir_examples, _check_examples_numbering, example_dirs))
     out.append(run_check(dir_examples, _check_quiz_task_present, example_dirs))

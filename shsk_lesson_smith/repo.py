@@ -154,7 +154,7 @@ class Repo:
         |           |-- README.md        + README-<lang>.md
         |           `-- TICKET.md        + TICKET-<lang>.md
         `-- examples/                    showcase / upskill only
-            `-- NN-title/                one mini task
+            `-- NN-title/                one task
                 |-- README.md            + README-<lang>.md
                 `-- TICKET.md            + TICKET-<lang>.md
     """
@@ -198,7 +198,7 @@ class Repo:
 
     @property
     def has_examples_layout(self) -> bool:
-        """Whether this repo type keeps mini tasks under ``examples/``."""
+        """Whether this repo type keeps tasks under ``examples/``."""
         return self.repo_type in (
             RepoTypeEnum.showcase,
             RepoTypeEnum.upskill,
@@ -336,7 +336,7 @@ class Repo:
         return self.dir_project_root / "examples"
 
     def get_dir_example(self, example_name: str) -> "Path | None":
-        """One mini task dir ``examples/<example_name>/``, or None if not applicable."""
+        """One task dir ``examples/<example_name>/``, or None if not applicable."""
         if self.dir_examples is None:
             return None
         return self.dir_examples / example_name

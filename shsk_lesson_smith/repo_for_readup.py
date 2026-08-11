@@ -4,7 +4,7 @@
 
 A readup repo has the same ``examples/NN-title/`` layout as upskill but is a
 pure-reading course: no AI learning toolchain (no learn / quiz child skills, no
-docs/ learning docs, no quiz mini task). Both the :class:`Repo` and
+docs/ learning docs, no quiz task). Both the :class:`Repo` and
 :class:`Metadata` bases are subclassed so future readup-only fields have a home.
 """
 

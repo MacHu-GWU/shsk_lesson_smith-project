@@ -2,14 +2,14 @@
 
 """Readup-specific lint rules.
 
-A readup repo has the same ``examples/`` layout as upskill (mini tasks under a
+A readup repo has the same ``examples/`` layout as upskill (tasks under a
 single ``01-readup`` branch) but is a pure-reading course: it strips the entire
 AI toolchain. So compared with upskill it drops two rules:
 
 - no ``rule_forge_outputs`` (there is no ``docs/upskill``-style learning doc and
   no child skill to check for),
-- no quiz mini task check (there is no ``NN-prove-i-get-it`` task; self-checking
-  is done through each mini task's own TICKET).
+- no quiz task check (there is no ``NN-prove-i-get-it`` task; self-checking
+  is done through each task's own TICKET).
 
 What remains is the shared rules plus the examples tree and the single-branch
 check. ``RULES`` is the composed rule list that :func:`linter.lint` runs for a
@@ -22,7 +22,6 @@ type-agnostic checks come from ``linter.py`` and its top-level ``ref/*.md`` spec
 Those specs are authoritative; keep these rules in sync with them.
 """
 
-from .constants import README_BASE
 from .exc import LintError
 from .linter import (
     CheckResult,
@@ -36,13 +35,13 @@ from .linter import (
     rule_task_snapshots,
     run_check,
 )
-from .repo import Repo, get_variant_filename
+from .repo import Repo
 
 
 def rule_single_branch(repo: Repo) -> "list[CheckResult]":
     """Readup has exactly one task branch, and it must be ``01-readup``.
 
-    The mini tasks live under ``examples/``; ``docs/tasks/`` holds the snapshot
+    The tasks live under ``examples/``; ``docs/tasks/`` holds the snapshot
     of that single branch, so it must contain exactly one dir whose name is
     :attr:`Repo.single_task_branch`.
     """
@@ -60,10 +59,10 @@ def rule_single_branch(repo: Repo) -> "list[CheckResult]":
 
 
 def rule_examples(repo: Repo) -> "list[CheckResult]":
-    """The ``examples/`` tree: the dir, its index README, and each mini task.
+    """The ``examples/`` tree: the dir and each task.
 
     Readup only requires consecutive numbering from 01; unlike upskill it has no
-    quiz mini task, so there is no ``NN-prove-i-get-it`` check.
+    quiz task, so there is no ``NN-prove-i-get-it`` check.
     """
     dir_examples = repo.dir_examples
     if dir_examples is None or not dir_examples.exists():
@@ -74,11 +73,9 @@ def rule_examples(repo: Repo) -> "list[CheckResult]":
 
         return [run_check(target, _missing)]
 
-    # examples/README is a series index, not a teaching README: existence only.
-    out = lint_file_group(
-        lambda lang: dir_examples / get_variant_filename(README_BASE, lang),
-        required=True,
-    )
+    # No examples/README: the series index is a normal first task under
+    # examples/, indistinguishable from a teaching task as far as lint can tell.
+    out: "list[CheckResult]" = []
     example_dirs = list(repo.iter_dir_examples())
     out.append(run_check(dir_examples, _check_examples_numbering, example_dirs))
     for dir_example in example_dirs:

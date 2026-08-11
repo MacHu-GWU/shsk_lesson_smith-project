@@ -467,7 +467,7 @@ class TestLinterInternalBranches:
             _check_examples_numbering([Path("bad-name")])
 
     def test_examples_numbering_empty(self):
-        with pytest.raises(LintError, match="no mini task"):
+        with pytest.raises(LintError, match="no task"):
             _check_examples_numbering([])
 
     def test_syllabus_rule_entry_and_match_modes(self, tmp_path):
