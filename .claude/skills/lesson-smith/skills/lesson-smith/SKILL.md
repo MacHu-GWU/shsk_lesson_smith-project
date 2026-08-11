@@ -19,7 +19,7 @@ LESSON-SMITH-LOADED: v1
 - Repo 的 main URL 就是 **Lesson URL**, branch 的 URL 就是 **Task URL**.
 - **每个 Task 必有 `README.md` (教学入口) 和 `TICKET.md` (验收 checklist), 这一对是硬的.** 在 readup, upskill, showcase 三类里, Task 落在 `examples/NN-title/` 下.
 - `README-ORIGINAL.md` 是整个 Repo 逻辑意义上的长介绍. 因为每个 branch 的 `README.md` 都被它那个 Task 占用了, 所以 Repo 自身的介绍要另起这个文件.
-- 这些特殊文件 (README, TICKET, README-ORIGINAL) 名字主体一律大写, 且都有多语言版本: 英文版无后缀, 其他语种是 `<NAME>-<lang>.md` (lang 小写). 支持哪些语种定义在 [supported-languages.json](supported-languages.json).
+- **特殊文件一共四份**: README, TICKET, README-ORIGINAL, 加上脚本生成的 SYLLABUS. 名字主体一律大写, 且都有多语言版本: 英文版无后缀, 其他语种是 `<NAME>-<lang>.md` (lang 小写). 支持哪些语种定义在 [supported-languages.json](supported-languages.json).
 
 **术语只用 Lesson, Task, 特殊文件三个词.** 人嘴里的 tutorial, example, mini task 都指 Task, 写进文档一律用 Task.
 

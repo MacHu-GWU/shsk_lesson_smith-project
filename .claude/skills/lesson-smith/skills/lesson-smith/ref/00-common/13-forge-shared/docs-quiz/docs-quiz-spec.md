@@ -12,7 +12,7 @@
 
 **A pointer, not a quiz.** No questions are written here.
 
-The questions, what each one probes, the reference answers, and the deep dives all live in the README of the quiz task, specified in [11-quiz-readme-spec](../../11-quiz-readme-spec/quiz-readme-cn-spec.md).
+The questions, what each one probes, the reference answers, and the deep dives all live in the README of the quiz task, specified in [11-quiz-readme-spec](../../11-quiz-readme-spec/quiz-readme-cn-spec.md). That link points at the Chinese spec on purpose: the bank is course content a learner reads, so it only exists in `-cn` today, and its English counterpart lands with the multi-language module.
 
 This file does two things: it says **where the bank is**, and it records **how the author wants the quiz run**.
 

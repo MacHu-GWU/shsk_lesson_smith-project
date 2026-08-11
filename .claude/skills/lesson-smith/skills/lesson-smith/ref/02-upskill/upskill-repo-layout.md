@@ -53,6 +53,7 @@ docs/upskill/                          forge 产出: 学习工具文档
 docs/upskill/01-upskill-learn-cn.md    学习索引
 docs/upskill/02-upskill-runbook-cn.md  跑起来的操作
 docs/upskill/03-upskill-quiz-cn.md     quiz 薄壳, 指向题库真身
+docs/upskill/notes/                    可选, 学生用 upskill-learn-cn 时它写的进度笔记
 .claude/skills/upskill-learn-cn/SKILL.md   forge 产出: 带学 skill
 .claude/skills/upskill-quiz-cn/SKILL.md    forge 产出: 自测 skill
 ```
@@ -84,6 +85,8 @@ docs/upskill/03-upskill-quiz-cn.md     quiz 薄壳, 指向题库真身
 这两份**和 showcase 共用**, 所以住在通用层, 落地时把里面的 `{{TYPE}}` 换成 `upskill`.
 
 **`docs/tasks/`** 下的东西全部由 `lesson-smith sync` 生成, 不手写. SYLLABUS 对 upskill 来说只有 `01-upskill` 一段.
+
+`docs/upskill/notes/` **不是 forge 的产物, 也不是布局的一部分**: 学生用 `/upskill-learn-cn` 时, 它经学生同意后往那里写一份进度笔记 (`learn-progress-cn.md`). 一个刚出厂的 repo 里没有这个目录, lint 也不查它. 列在这里只是为了让人知道它是从哪冒出来的.
 
 **`docs/upskill/`** 下三份 doc 与两个子 skill 都由 `lesson-smith-upskill-forge` 产出. **它要读的规范与模板一份都不在这一层**, 全部在 [00-common/13-forge-shared/](../00-common/13-forge-shared/): [docs-learn](../00-common/13-forge-shared/docs-learn/docs-learn-cn-spec.md), [docs-runbook](../00-common/13-forge-shared/docs-runbook/docs-runbook-cn-spec.md), [docs-quiz](../00-common/13-forge-shared/docs-quiz/docs-quiz-cn-spec.md), 加上两份 SKILL 模板.
 

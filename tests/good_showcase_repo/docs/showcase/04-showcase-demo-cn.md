@@ -1,6 +1,6 @@
 # GitHub Collaboration Basics Demo
 
-> The showcase-demo-cn skill uses this doc to find the story script and learn how to rehearse it. The full script (the seven beats, the follow-up questions, the audience tailoring) is not here; it lives in the example this points to.
+> The `/showcase-demo-cn` skill uses this doc to find the story script and learn how to rehearse it. The full script (the seven beats, the follow-up questions, the audience tailoring) is not here; it lives in the example this points to.
 
 ## 1. Story Script Location
 
@@ -22,4 +22,4 @@ Uses the default seven beat arc.
 
 ## 3. Demo Customization
 
-No special requirements, use the showcase-demo-cn skill default.
+No special requirements, use the `/showcase-demo-cn` skill default.

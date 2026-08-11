@@ -1,5 +1,5 @@
 ---
-description: "Review the whole GitHub collaboration loop you learned, and get directions and keywords for going further."
+description: "Review the whole GitHub collaboration loop you learned, confirm the quiz and the demo both landed, and get directions and keywords for going further."
 ---
 
 # Review and Level Up
@@ -8,13 +8,13 @@ description: "Review the whole GitHub collaboration loop you learned, and get di
 
 ## 1. Overview
 
-Over the last five mini tasks you created a repo from scratch and learned commit, branch, Pull Request, and merge, plus a round of self-testing. This lesson teaches nothing new; it helps you connect the scattered pieces into one line, confirm your level, and hand you a map for going further. Learning most often stalls right here, at "I finished but do not know what is next", which is why this lesson matters.
+Over the last six tasks you created a repo from scratch and learned commit, branch, Pull Request, and merge, ran a round of self-testing, and rehearsed the whole experience into a story you can tell. This lesson teaches nothing new; it helps you connect the scattered pieces into one line, confirm your level, and hand you a map for going further. Learning most often stalls right here, at "I finished but do not know what is next", which is why this lesson matters.
 
 ---
 
 ## 2. What you have learned
 
-The whole course in one sentence: **you can now walk a full collaboration loop on GitHub.**
+The whole course in one sentence: **you can now walk a full collaboration loop on GitHub, and explain how you walked it.**
 
 Broken out, that loop is:
 
@@ -26,6 +26,11 @@ Broken out, that loop is:
 
 These five steps are not isolated facts; they are a wheel that keeps turning. On a real team, every feature added and every bug fixed is another turn of this wheel.
 
+The two special tasks before this one each proved something. Do not write them off as formalities:
+
+- **The self-check** proved you know why, not just what. You can answer "why is it done this way", not only "which button do I press".
+- **The story rehearsal** proved the experience holds up under questioning. When someone asks "did an AI just do this for you", you have an answer.
+
 ---
 
 ## 3. What level counts as done
@@ -34,15 +39,16 @@ Check yourself against these markers of being ready:
 
 - Without the tutorials, you can go from creating a repo all the way to merging, solo, on your own account.
 - You can explain in your own words what repository, commit, branch, Pull Request, and merge each solve.
-- With `/upskill-quiz-cn`, you can answer 70% of the questions clearly.
+- With `/showcase-quiz-cn`, you can answer 70% of the questions clearly.
+- With `/showcase-demo-cn`, you have rehearsed until you can tell the story without notes and field the usual follow-ups.
 
-If any of these is still shaky, go back to [examples/README.md](../README.md), pick the relevant mini task, and walk it again, or use `/upskill-learn-cn` to have it fill your weak spots.
+If any of these is still shaky, go back to the matching task and walk it again, or use `/showcase-learn-cn` to have it fill your weak spots.
 
 ---
 
 ## 4. Directions to level up
 
-This course is a foundation, meant to be learned and left at that. But if you want to dig deeper, each direction below gives a search keyword and a one-line topic you can copy straight into an AI. Pick one or two that interest you most; you do not need them all.
+This course is a foundation. If you want to dig deeper, each direction below gives a search keyword and a one-line topic you can copy straight into an AI. Pick one or two that interest you most; you do not need them all.
 
 - **The git command line**
 - Search keywords: git command line basics, git clone commit push
@@ -52,10 +58,6 @@ This course is a foundation, meant to be learned and left at that. But if you wa
 - Search keywords: GitHub Flow, feature branch workflow
 - One-line topic: Explain the GitHub Flow branching model and how a small team should collaborate day to day with branches and Pull Requests.
 
-- **Ignoring files with gitignore**
-- Search keywords: gitignore, what files to ignore
-- One-line topic: Explain what .gitignore is for and which files in a typical project should not be committed into the repo.
-
 - **Fork and open-source collaboration**
 - Search keywords: GitHub fork pull request open source contribution
 - One-line topic: I want to contribute a change to an open-source project; walk me through fork and then opening a Pull Request against someone else's repo.
@@ -64,9 +66,9 @@ This course is a foundation, meant to be learned and left at that. But if you wa
 - Search keywords: GitHub Actions CI basics
 - One-line topic: Use the simplest example to explain what GitHub Actions is and how to make it run a check automatically on every Pull Request.
 
-- **Resolving merge conflicts**
-- Search keywords: resolve merge conflict GitHub
-- One-line topic: Walk me step by step through resolving a merge conflict in the GitHub web UI, and explain what each part of the conflict markers means.
+- **Making a repo read as portfolio work**
+- Search keywords: GitHub profile README, portfolio repository best practices
+- One-line topic: Explain what a GitHub repo worth showing in an interview looks like, which sections its README needs, and which leftovers count against it.
 
 ---
 
@@ -74,7 +76,7 @@ This course is a foundation, meant to be learned and left at that. But if you wa
 
 **Why this step matters:**
 
-I have seen too many people finish an intro course and stall in place, not because they learned poorly, but because they do not know which way to step next. The ones who pull ahead are those who can plan their own next stretch. You now hold a collaboration loop you have actually walked; that is the foothold for climbing higher.
+I have seen too many people finish an intro course and stall in place, not because they learned poorly, but because they do not know which way to step next. The ones who pull ahead are those who can plan their own next stretch. You now hold a collaboration loop you have actually walked, and one you can talk about; that is the foothold for climbing higher.
 
 **Key insights:**
 
@@ -83,4 +85,4 @@ I have seen too many people finish an intro course and stall in place, not becau
 
 **Next step:**
 
-Choose the direction you feel most drawn to, copy its one-line topic into an AI, and then actually do it once. Learned and left at that does not mean stopping here; it means this foundation is solid enough to build on with confidence.
+Choose the direction you feel most drawn to, copy its one-line topic into an AI, and then actually do it once. When you want this repo to become your own published work, run `/showcase-publish-cn`.

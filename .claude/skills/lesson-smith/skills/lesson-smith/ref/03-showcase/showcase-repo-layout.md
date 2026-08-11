@@ -58,6 +58,7 @@ docs/showcase/02-showcase-runbook-cn.md 跑起来的操作
 docs/showcase/03-showcase-quiz-cn.md    quiz 薄壳, 指向题库真身
 docs/showcase/04-showcase-demo-cn.md    demo 薄壳, 指向讲故事底稿加默认主线
 docs/showcase/05-showcase-publish-cn.md publish 清单, 自包含, 无 examples 撑
+docs/showcase/notes/                    可选, 学生用 showcase-learn-cn 时它写的进度笔记
 .claude/skills/showcase-learn-cn/SKILL.md    forge 产出: 带学 skill
 .claude/skills/showcase-quiz-cn/SKILL.md     forge 产出: 自测 skill
 .claude/skills/showcase-demo-cn/SKILL.md     forge 产出: 讲故事排练 skill
@@ -93,6 +94,8 @@ docs/showcase/05-showcase-publish-cn.md publish 清单, 自包含, 无 examples 
 两份 TICKET 的结构仍沿用通用的 task ticket spec, 只是内容固定极简. **quiz 那两份规范和 upskill 共用**, 所以住在通用层, 落地时把里面的 `{{TYPE}}` 换成 `showcase`; demo 那两份是 showcase 独有的, 留在本层.
 
 **`docs/tasks/`** 下的东西全部由 `lesson-smith sync` 生成, 不手写. SYLLABUS 对 showcase 来说只有 `01-showcase` 一段.
+
+`docs/showcase/notes/` **不是 forge 的产物, 也不是布局的一部分**: 学生用 `/showcase-learn-cn` 时, 它经学生同意后往那里写一份进度笔记 (`learn-progress-cn.md`). 一个刚出厂的 repo 里没有这个目录, lint 也不查它. 列在这里只是为了让人知道它是从哪冒出来的.
 
 **`docs/showcase/`** 下五份 doc 与四个子 skill 都由 `lesson-smith-showcase-forge` 产出, 它要读的规范与模板**分两处**:
 

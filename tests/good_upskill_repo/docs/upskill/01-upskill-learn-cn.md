@@ -1,6 +1,6 @@
 # GitHub Collaboration Basics Learning Index
 
-> What there is to learn in this course, where it lives, and in what order to go through it. The upskill-learn-cn skill walks you along this index.
+> What there is to learn in this course, where it lives, and in what order to go through it. The `/upskill-learn-cn` skill walks you along this index.
 
 ## 1. Study Material
 

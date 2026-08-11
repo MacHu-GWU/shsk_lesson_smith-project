@@ -1,6 +1,6 @@
 # GitHub Collaboration Basics Learning Index
 
-> What there is to learn in this course, where it lives, and in what order to go through it. The showcase-learn-cn skill walks you along this index.
+> What there is to learn in this course, where it lives, and in what order to go through it. The `/showcase-learn-cn` skill walks you along this index.
 
 ## 1. Study Material
 
@@ -15,6 +15,6 @@ The examples/01, 02 ... progression is the path the student walks. The trailing 
 
 - **Set up your repository**: examples/01 to examples/02 — create a repository from scratch and record every change with a clean commit. Covers repository, commit, README, public vs private, the web editor, commit messages, and commit history.
 - **Branches and Pull Requests**: examples/03 to examples/04 — the heart of collaboration: isolate unfinished work on a branch, then merge it back into main through a reviewed Pull Request. Covers branch, the default branch main, Pull Request, code review, merge, deleting a merged branch, and merge conflicts.
-- **Prove it and tell it**: examples/05 to examples/06 — an interview-style self-test that checks you know both the how and the why, then the story script for telling how you built this (handled by showcase-quiz-cn and showcase-demo-cn).
+- **Prove it and tell it**: examples/05 to examples/06 — an interview-style self-test that checks you know both the how and the why, then the story script for telling how you built this (handled by `/showcase-quiz-cn` and `/showcase-demo-cn`).
 
 See the [examples theme index](../../examples/README.md) and the [SYLLABUS](../tasks/SYLLABUS.md).

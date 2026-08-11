@@ -355,13 +355,49 @@ class TestShowcaseSingleBranch:
             for m in messages
         )
 
-    def test_demo_not_last_flagged(self, tmp_path):
-        # A how-i-build-this that is not the highest-numbered example is flagged.
+    def test_demo_sits_between_quiz_and_wrap_up(self):
+        # The spec order is ... mainline, quiz, demo, wrap-up. This used to
+        # assert the demo was the *last* example, which contradicted the layout
+        # spec ("the wrap-up comes after every special task, this one is hard")
+        # and failed every conformant showcase repo at ship time.
         from shsk_lesson_smith.linter_for_showcase import _check_demo_task_present
 
-        dirs = [Path("06-how-i-build-this"), Path("07-extra")]
-        with pytest.raises(LintError, match="must be the last example"):
+        _check_demo_task_present(
+            [
+                Path("04-merge-branch"),
+                Path("05-prove-i-get-it"),
+                Path("06-how-i-build-this"),
+                Path("07-level-up"),
+            ]
+        )
+
+    def test_demo_last_is_flagged_as_missing_wrap_up(self):
+        from shsk_lesson_smith.linter_for_showcase import _check_demo_task_present
+
+        dirs = [Path("05-prove-i-get-it"), Path("06-how-i-build-this")]
+        with pytest.raises(LintError, match="wrap-up"):
             _check_demo_task_present(dirs)
+
+    def test_demo_not_adjacent_to_quiz_is_flagged(self):
+        from shsk_lesson_smith.linter_for_showcase import _check_demo_task_present
+
+        dirs = [
+            Path("05-prove-i-get-it"),
+            Path("06-one-more-lesson"),
+            Path("07-how-i-build-this"),
+            Path("08-level-up"),
+        ]
+        with pytest.raises(LintError, match="directly after the quiz"):
+            _check_demo_task_present(dirs)
+
+    def test_demo_position_is_silent_when_the_quiz_is_missing(self):
+        # A missing quiz is _check_quiz_task_present's report to make; this rule
+        # must not pile a second, confusing message on top of it.
+        from shsk_lesson_smith.linter_for_showcase import _check_demo_task_present
+
+        _check_demo_task_present(
+            [Path("05-how-i-build-this"), Path("06-level-up")]
+        )
 
 
 class TestManifestAndSingleBranch:

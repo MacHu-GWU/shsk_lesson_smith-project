@@ -1,6 +1,6 @@
 # GitHub Collaboration Basics Publish Checklist
 
-> The showcase-publish-cn skill uses this doc to turn this teaching repo into a publish-ready portfolio repo. Machine-facing: paths and tables, not prose. Generated for this specific repo; globs below are expanded against the actual tree.
+> The `/showcase-publish-cn` skill uses this doc to turn this teaching repo into a publish-ready portfolio repo. Machine-facing: paths and tables, not prose. Generated for this specific repo; globs below are expanded against the actual tree.
 
 ## 1. Cardinal Deletes — Never Publishable
 

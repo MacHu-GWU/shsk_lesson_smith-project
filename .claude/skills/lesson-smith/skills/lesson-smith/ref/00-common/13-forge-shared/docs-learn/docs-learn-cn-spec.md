@@ -50,5 +50,6 @@ repo 里除 `examples/` 渐进序列以外, 要学的东西: 根目录代码, �
 ## 3. 写作原则
 
 - 全程用 markdown 链接溯源, 定位一律用 header 或关键字, **不用 line no** (line no 会随代码漂移).
-- 遵循 markdown-style 与 chinese-english-punctuation 两个 Agent Skill.
+- 遵循 markdown-style 与 chinese-english-punctuation 两个 Agent Skill, **但 H2 之间不加分隔线**.
+- 那条分隔线的豁免是有意的, 不是漏了: `docs/<type>/` 下这几份是给 skill 读的机器文件, 没有 frontmatter, 不进 lint, 也没人会从头念一遍. 配套 template 里因此一条分隔线都没有, 照抄即可. 全套里只有这一类文件是这样, 别拿它去套别处的 spec.
 - 这份 doc **可被直接编辑修正**, 也可以重新 forge 刷新. 素材列错了直接改这里.

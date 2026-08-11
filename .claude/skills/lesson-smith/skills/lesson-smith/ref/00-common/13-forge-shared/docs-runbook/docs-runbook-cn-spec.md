@@ -44,4 +44,5 @@
 - **命令原样可跑, 逐字照抄**, 不要转述或改写. 命令本身不翻译.
 - 需要指向文件时用 markdown 链接, 定位用 header 或关键字, 不用 line no.
 - **没有内容的小节保留标题**, 写一句占位 (例如 "暂时没有, 遇到了再补"), 不要整节删掉.
-- 遵循 markdown-style 与 chinese-english-punctuation 两个 Agent Skill.
+- 遵循 markdown-style 与 chinese-english-punctuation 两个 Agent Skill, **但 H2 之间不加分隔线**.
+- 那条分隔线的豁免是有意的, 不是漏了: `docs/<type>/` 下这几份是给 skill 读的机器文件, 没有 frontmatter, 不进 lint, 也没人会从头念一遍. 配套 template 里因此一条分隔线都没有, 照抄即可. 全套里只有这一类文件是这样, 别拿它去套别处的 spec.

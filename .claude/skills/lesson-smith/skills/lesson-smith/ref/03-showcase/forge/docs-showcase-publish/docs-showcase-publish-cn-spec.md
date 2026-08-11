@@ -98,4 +98,5 @@ publish skill 陪学生共写 README 时 follow 的结构. README 要讲出和 d
 - **机器友好.** 表格, 列表, 真实路径. 这份文件是给 skill 读的, 没人会把它念出来. skill 模板已经覆盖的散文解释不要重复写.
 - **空的小节也保留.** 这个 repo 没有 `tmp/`, 没有待定项, 也要留着标题写 "这个 repo 里没有". skill 期望六节都在.
 - 每个 glob 都在生成时展开. 这份文件的意义就在于它是针对一个具体 repo 的.
-- 遵循 markdown-style 与 chinese-english-punctuation 两个 Agent Skill.
+- 遵循 markdown-style 与 chinese-english-punctuation 两个 Agent Skill, **但 H2 之间不加分隔线**.
+- 那条分隔线的豁免是有意的, 不是漏了: `docs/<type>/` 下这几份是给 skill 读的机器文件, 没有 frontmatter, 不进 lint, 也没人会从头念一遍. 配套 template 里因此一条分隔线都没有, 照抄即可. 全套里只有这一类文件是这样, 别拿它去套别处的 spec.

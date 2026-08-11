@@ -10,7 +10,7 @@
 
 ## 1. What this file is
 
-**A pointer, not a story.** The script itself, all seven beats of it, the follow-up questions, and the audience notes, lives in the README of the demo task, specified in [showcase-demo-readme-spec](../../showcase-demo-readme-spec/showcase-demo-readme-cn-spec.md).
+**A pointer, not a story.** The script itself, all seven beats of it, the follow-up questions, and the audience notes, lives in the README of the demo task, specified in [showcase-demo-readme-spec](../../showcase-demo-readme-spec/showcase-demo-readme-cn-spec.md). That link points at the Chinese spec on purpose: the script is course content a learner reads, so it only exists in `-cn` today, and its English counterpart lands with the multi-language module.
 
 This file does three things: it says **where the script is**, it keeps **a one-line-per-beat copy of the default arc** so the skill does not have to reconstruct it every session, and it records **how the author wants rehearsals run**.
 

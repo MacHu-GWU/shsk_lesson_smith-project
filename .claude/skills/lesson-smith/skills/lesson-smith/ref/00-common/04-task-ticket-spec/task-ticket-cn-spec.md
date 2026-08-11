@@ -86,6 +86,15 @@ TICKET 正文最终会被程序放进 GitHub Issue, 所以对链接有讲究.
 
 这一条由 lint 卡死.
 
+### 6.1 提到子 skill 时怎么写
+
+upskill 与 showcase 的 TICKET 会提到 forge 产出的那几个子 skill. 写法只有一种, 全套统一:
+
+- **正文里**: 反引号包住带斜杠的完整命令, 形如 `` `/upskill-quiz-cn` ``. 斜杠是学生真要敲的东西, 不能省; 反引号是为了让它一眼看出是一条命令而不是一个路径, 也挡住 markdown 把它当别的东西解析.
+- **frontmatter 的 `description` 里**: 写**裸的** `/upskill-quiz-cn`, **不加反引号**. 这不是风格选择, 是硬约束: 反引号在 description 的禁用字符集里 (见 [01-repo-layout.md](../01-repo-layout.md) 第 6.2 节), 加了 lint 当场报错.
+
+这一条不钉死就会长出三四种写法 (裸斜杠, 无斜杠裸名, 带反引号无斜杠), 而同一个课程系列排进一个看板就会露馅. 理由和受控词汇那一条一样.
+
 ---
 
 ## 7. 三节各写什么

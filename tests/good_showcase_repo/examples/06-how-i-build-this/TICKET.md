@@ -11,12 +11,12 @@ Be able to tell the story of how you learned this collaboration loop clearly, an
 ## 2. What to Do
 
 1. Read this mini task's story script (the README) from start to finish, getting the default seven-beat line and the follow-ups clear.
-2. Rehearse with showcase-demo-cn: tell the main line once, then practice tailoring to different listeners and fielding the common follow-ups.
+2. Rehearse with `/showcase-demo-cn`: tell the main line once, then practice tailoring to different listeners and fielding the common follow-ups.
 
 **Estimated time:** 30 to 60 minutes
 
 ## 3. Checklist
 
 - [ ] **Script read**: you went through the whole story script; the seven beats and the follow-ups are clear.
-- [ ] **Can deliver it**: you rehearsed with showcase-demo-cn and can tell the main line without the script.
+- [ ] **Can deliver it**: you rehearsed with `/showcase-demo-cn` and can tell the main line without the script.
 - [ ] **Can field follow-ups**: the common follow-ups (why this skill, do you really get it, what went wrong) all have grounded answers.

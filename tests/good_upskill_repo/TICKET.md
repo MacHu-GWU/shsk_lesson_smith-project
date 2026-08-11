@@ -15,7 +15,7 @@ Work through every mini task in this course and build a complete feel for GitHub
 1. Read the root README first so you know how to learn this course.
 2. Read the examples series index to get a map of the whole course.
 3. Work through every mini task under examples in order, actually doing each one on your own GitHub account and confirming it against that task's own TICKET.
-4. Once all tasks are done, self-test with upskill-quiz-cn until you can answer 70% of the questions clearly.
+4. Once all tasks are done, self-test with `/upskill-quiz-cn` until you can answer 70% of the questions clearly.
 
 **Estimated time:** 2 to 3 hours
 
@@ -24,7 +24,7 @@ Work through every mini task in this course and build a complete feel for GitHub
 ## 3. Checklist
 
 - [ ] **All mini tasks done**: every task under examples has its TICKET checklist fully ticked off.
-- [ ] **Self-test passed**: upskill-quiz-cn reaches 70% of questions answered clearly.
+- [ ] **Self-test passed**: `/upskill-quiz-cn` reaches 70% of questions answered clearly.
 - [ ] **Can reproduce solo**: without the tutorials, you can go from creating a repository all the way to merging via a Pull Request.
 - [ ] **Can explain the concepts**: you can say in your own words what repository, commit, branch, Pull Request, and merge each solve.
 

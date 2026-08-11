@@ -36,4 +36,5 @@
 
 - **不要把题目本身复制到这里**, 避免和题库真身两处漂移. 这里只放指针和自定义说明.
 - 指向文件用 markdown 链接, 定位用 header 或关键字, 不用 line no.
-- 遵循 markdown-style 与 chinese-english-punctuation 两个 Agent Skill.
+- 遵循 markdown-style 与 chinese-english-punctuation 两个 Agent Skill, **但 H2 之间不加分隔线**.
+- 那条分隔线的豁免是有意的, 不是漏了: `docs/<type>/` 下这几份是给 skill 读的机器文件, 没有 frontmatter, 不进 lint, 也没人会从头念一遍. 配套 template 里因此一条分隔线都没有, 照抄即可. 全套里只有这一类文件是这样, 别拿它去套别处的 spec.

@@ -111,12 +111,17 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见下一小�
 | :--- | :--- | :--- |
 | 编号从 01 连续 | 硬 | **查** |
 | 每个 `NN-title/` 下有 README 与 TICKET | 硬 | **查** |
-| `01` 是索引, 最后一个是收尾 | 硬 | 不查 |
-| 特殊 Task 的目录名 (`NN-prove-i-get-it` 等) | 硬, forge 与 publish 按名字找它们 | 不查 |
+| quiz 那个 Task 存在且目录名是 `NN-prove-i-get-it` | 硬, forge 与 publish 按名字找它 | **查** (upskill 与 showcase) |
+| demo 那个 Task 存在且目录名是 `NN-how-i-build-this` | 硬, 同上 | **查** (仅 showcase) |
+| demo 紧跟 quiz, 且后面还有 Task | 硬 | **查** (仅 showcase, 见下) |
+| `01` 是索引 | 硬 | 不查 |
+| 最后一个是收尾 | 硬 | 不查 (showcase 间接查到, 见下) |
 | `02` 是综述 | 惯例, 几乎总有 | 不查 |
 | 索引与收尾的目录名 | 软, 随课程而定 | 不查 |
 
-**lint 认不出角色**, 在它眼里所有 `NN-title/` 长得一样. 所以索引或收尾整个漏掉, lint 不报. 这是明确接受的代价: 缺席很响 (谁打开 `examples/` 都立刻发现没有入口), 而且统稿那一步的 "规定动作齐不齐" 本来就是拿这张表对着人工核的.
+**lint 只认得出名字固定的那几个角色.** 索引与收尾的目录名随课程而定, 所以在 lint 眼里它们和主线 Task 长得一样, 整个漏掉也不报. 这是明确接受的代价: 缺席很响 (谁打开 `examples/` 都立刻发现没有入口), 而且统稿那一步的 "规定动作齐不齐" 本来就是拿这张表对着人工核的.
+
+**showcase 多查到一层, 是白捡的.** demo 的目录名是固定的, 而规范要求收尾排在它后面, 所以 "demo 不是最后一个" 这一条不用认出收尾是谁就能判: 后面那个必然是它. 于是 showcase 漏写收尾会被 lint 抓到, 而 upskill 与 readup 不会. **这个不对称是能力所限, 不是规则不同**: 三类的收尾都是硬要求, 只是另外两类没有一个固定名字可以当锚点.
 
 `02` 综述与主线 Task 走通用的 [03-task-readme-spec](03-task-readme-spec/task-readme-cn-spec.md) 与 [04-task-ticket-spec](04-task-ticket-spec/task-ticket-cn-spec.md). 三个角色 Task 各有补充:
 
@@ -131,7 +136,7 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见下一小�
 
 ## 5. 各文件说明
 
-每个特殊文件的规范是一个目录, 里面一份 spec (规范, 权威) 加一份 template (骨架, 原样复制). 格式详见 skill 根目录的 `spec-file-format.md`.
+每个特殊文件的规范是一个目录, 里面一份 spec (规范, 权威) 加一份 template (骨架, 原样复制). 唯一的例外是 `14-wrap-up-readme-spec/`, 它只有 spec, 骨架直接用 `03` 那一份. 格式详见 skill 根目录的 `spec-file-format.md`.
 
 - **`README.md`**: 教学文档, 给学生阅读. 教学内容的结构随课程本身而定, 只有少量硬标准. 见 [03-task-readme-spec](03-task-readme-spec/task-readme-cn-spec.md).
 - **`TICKET.md`**: 任务目标与验收 checklist, 给学生阅读, 同时作为 Kanban 里 Ticket body 的正文. 见 [04-task-ticket-spec](04-task-ticket-spec/task-ticket-cn-spec.md).
@@ -223,7 +228,7 @@ uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 ```
 
 - `sync`: 快照当前 branch 的 README 与 TICKET 到 `docs/tasks/<branch>/`, 并重建 SYLLABUS.
-- `lint`: 只读校验. 目录结构, 语种完整性, frontmatter 的 description 与 github_about, H1 字符集, TICKET 里有没有相对路径链接, SYLLABUS 内容是否与各 README 的 description 一致.
+- `lint`: 只读校验. 目录结构, 语种完整性, 特殊 Task 的目录名与位置 (见第 4.3 节那张表), frontmatter 的 description 与 github_about, H1 字符集, TICKET 里有没有相对路径链接, SYLLABUS 内容是否与各 README 的 description 一致.
 - **lint 按语种开关.** 只有开着的语种才被检查, 关掉的整个跳过 (既不要求存在, 内容也不检查). 英文当前是关的, 所以留空的英文占位文件不会报错. 开关在 package 的 `constants.py` 里.
 - `<version>` 填创作时的最新发布版本 (当前是 0.3.0; 最新版见 https://pypi.org/pypi/shsk-lesson-smith).
 - **pin 死版本**是为了让校验规范可复现, 不随新版悄悄漂移.

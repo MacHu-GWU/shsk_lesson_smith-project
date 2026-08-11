@@ -4,8 +4,9 @@
 
 The showcase layout matches upskill (examples/ tasks under a single
 ``01-showcase`` branch) plus two showcase-only things: a demo task
-(``NN-how-i-build-this``, the last example) and a publish step. The forge step
-produces five docs and four child skills (upskill produces three and two).
+(``NN-how-i-build-this``, sitting between the quiz and the wrap-up) and a
+publish step. The forge step produces five docs and four child skills (upskill
+produces three and two).
 
 Reuses the shared rules and the examples-based helpers from ``linter.py`` and
 adds the showcase-only ones. ``RULES`` is the composed rule list that
@@ -97,25 +98,45 @@ def _check_quiz_task_present(example_dirs: "list") -> None:
 
 
 def _check_demo_task_present(example_dirs: "list") -> None:
-    """Exactly one task is the demo, named NN-how-i-build-this, and it is last.
+    """Exactly one demo task, NN-how-i-build-this, sitting between quiz and wrap-up.
 
-    The demo story is the last example (highest number), so it comes after the
-    teaching tasks and the quiz.
+    Two position rules, both from section 4.2 of ``01-repo-layout.md``: the demo
+    comes directly after the quiz, and the wrap-up task comes after every
+    special task, so the demo is never the last example.
+
+    lint cannot recognize the wrap-up by name (its directory name is up to the
+    course), but "something follows the demo" is that check by another route,
+    and it falls out for free from the two names that *are* fixed. This is why
+    showcase catches a missing wrap-up while upskill and readup do not; see the
+    hardness table in section 4.3.
     """
+    names = [d.name for d in example_dirs]
     demo = [
-        d.name
-        for d in example_dirs
-        if re.match(r"^\d\d-" + re.escape(DEMO_TASK_SUFFIX) + r"$", d.name)
+        n for n in names if re.match(r"^\d\d-" + re.escape(DEMO_TASK_SUFFIX) + r"$", n)
     ]
     if len(demo) != 1:
         raise LintError(
             "A showcase repo must have exactly one demo task named "
             f"NN-{DEMO_TASK_SUFFIX} under examples/; found {demo}."
         )
-    if example_dirs and example_dirs[-1].name != demo[0]:
+    index_demo = names.index(demo[0])
+
+    # The quiz's own existence is _check_quiz_task_present's job; only check
+    # adjacency when there is exactly one quiz to be adjacent to.
+    quiz = [
+        n for n in names if re.match(r"^\d\d-" + re.escape(QUIZ_TASK_SUFFIX) + r"$", n)
+    ]
+    if len(quiz) == 1 and names.index(quiz[0]) != index_demo - 1:
         raise LintError(
-            f"The demo task NN-{DEMO_TASK_SUFFIX} must be the last example "
-            f"(highest number); the last example is {example_dirs[-1].name!r}."
+            f"The demo task {demo[0]!r} must come directly after the quiz task "
+            f"{quiz[0]!r}; the examples are ordered {names}."
+        )
+
+    if index_demo == len(names) - 1:
+        raise LintError(
+            f"The demo task {demo[0]!r} is the last example, but the wrap-up "
+            "task must come after every special task, so one more example has "
+            "to follow it."
         )
 
 
