@@ -1,6 +1,8 @@
 # 索引 Task 的 README 规范, 中文版
 
-**适用范围**: `examples/01-overview/README-cn.md`, 也就是 examples 下**固定排在最前面那个索引 Task** 的教学正文. readup, upskill, showcase 三类都有这个 Task; evolve 没有 examples 这一层, 不适用.
+**适用范围**: `examples/01-<title>/README-cn.md`, 也就是 examples 下**固定排在最前面那个索引 Task** 的教学正文. readup, upskill, showcase 三类都有这个 Task; evolve 没有 examples 这一层, 不适用.
+
+**位置是硬的, 名字是软的.** 它必须是 01, 但目录名随课程而定, `01-overview` 只是推荐. 没有任何工具需要按名字找到它, 所以不钉死. 代价是 lint 认不出它, 索引 Task 缺席只能靠统稿那一步 (见 [08-series-converge-spec.md](../08-series-converge-spec.md) 第 3 节) 和人来发现.
 
 **配套骨架**: [overview-readme-cn-template.md](overview-readme-cn-template.md).
 

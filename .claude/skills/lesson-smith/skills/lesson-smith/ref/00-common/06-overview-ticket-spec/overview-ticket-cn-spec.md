@@ -1,6 +1,6 @@
 # 索引 Task 的 TICKET 规范, 中文版
 
-**适用范围**: `examples/01-overview/TICKET-cn.md`, 也就是 examples 下那个索引 Task 的任务卡片. readup, upskill, showcase 三类都有; evolve 不适用.
+**适用范围**: `examples/01-<title>/TICKET-cn.md`, 也就是 examples 下那个索引 Task 的任务卡片. 位置固定在 01, 目录名随课程而定 (`01-overview` 只是推荐). readup, upskill, showcase 三类都有; evolve 不适用.
 
 **配套骨架**: [overview-ticket-cn-template.md](overview-ticket-cn-template.md).
 
