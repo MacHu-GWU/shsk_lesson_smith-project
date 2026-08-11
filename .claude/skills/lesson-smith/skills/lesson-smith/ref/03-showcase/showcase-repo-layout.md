@@ -1,104 +1,109 @@
 # Showcase 类型仓库目录结构
 
-showcase 是 examples 系列型仓库: 整个 repo 就是一门课, 内容拆成 examples 下的一个个 mini task. 它和 upskill 的结构几乎一致, 唯一的本质区别是 showcase 有对外 publish 环节: 学完可以抹去所有教学痕迹, 把这个 repo 当作自己的作品拿去面试展示. 本文档在 [ref/repo-layout.md](../repo-layout.md) 的通用标准之上, 只说清 showcase 的特化之处; 通用命名与 frontmatter 约束仍以它为准.
-
-## 1. 定位
-
-showcase 教偏技能性质的内容 (例如某个工具, 某套工作流, 某类工程能力), 学完不止是学会, 还要能把整个 repo 抹去教学痕迹后当作自己的作品对外展示. 整个 repo 就是一门课, 只有一个 Task. 课程内容拆成若干个 mini task, 每个 mini task 放在 examples 下的一个目录里.
-
-为什么这一层叫 examples 而不是 tutorials: showcase 的 repo 最终要拿去给外面看, tutorials 给人的感觉是 "别人在教这个学生", 而 examples 给人的感觉是 "这个学生在教别人, 在展示自己怎么学会的". 后者视角更主动, 更适合对外展示, showcase 尤其吃这一点, 所以统一用 examples.
+本文档在 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 的通用标准之上, **只说 showcase 的特化之处**. 通用的命名与 frontmatter 约束仍以它为准.
 
 ---
 
-## 2. 唯一的 Task branch: 01-showcase
+## 1. 定位
 
-showcase 只有一个带序号的 Task branch, 名字固定为 01-showcase. 因为整门课就是这一个 Task, 序号必然是 01, 名字直接由类型决定, 创作者不用另取. examples 下的那些 mini task 是这一个 branch 内部的内容, 不是各自独立的 branch.
+showcase 教 "如何做某一类事情", 但**学会不是终点**: 学完之后要抹去教学痕迹, 把这个 repo 当作自己的作品拿去展示. 整个 repo 就是一门课, 只有一个 branch. 课程内容拆成 `examples/` 下一个个 Task.
 
-这一条由 lesson-smith lint 强制: docs/tasks 下必须恰好只有一个目录, 且名为 01-showcase.
+和 upskill 的差别集中在收尾: showcase 多两个环节 (讲故事排练与抹痕迹发布), 因此多两个固定 Task, 多两份 doc, 多两个子 skill.
+
+**为什么这一层叫 examples 而不是 tutorials**: 如果这个 repo 最终要拿去给外面看, tutorials 给人的感觉是 "别人在教这个学生", 而 examples 给人的感觉是 "这个学生在教别人, 在展示自己怎么学会的". 后者视角更主动, 更适合展示, 所以统一用 examples.
+
+---
+
+## 2. 唯一的 branch: 01-showcase
+
+showcase 只有一个带序号的 branch, **名字固定为 `01-showcase`**. 因为整门课就是这一个 branch, 序号必然是 01, 名字直接由类型决定, 创作者不用另取.
+
+`examples/` 下那些 Task 是这一个 branch 内部的内容, 不是各自独立的 branch.
+
+这一条由 `lesson-smith lint` 强制: `docs/tasks/` 下必须恰好只有一个目录, 且名为 `01-showcase`.
 
 ---
 
 ## 3. 目录结构
 
-```
+```text
 lm.json                              type = showcase
-README.md                            仓库总览 (是这一个 branch 的 Task README)
-README-<lang>.md
-README-ORIGINAL.md                   对外 README (电梯陈述)
-README-ORIGINAL-<lang>.md
-TICKET.md                            这一个 branch 的 Task TICKET
-TICKET-<lang>.md
+README.md                            仓库总览, 留空
+README-cn.md
+README-ORIGINAL.md                   对外 README, 留空
+README-ORIGINAL-cn.md
+TICKET.md                            留空
+TICKET-cn.md
 examples/
-examples/README.md                   系列索引 (把 mini task 按主题梳理)
-examples/README-<lang>.md
-examples/01-title/
-examples/01-title/README.md          mini task 教程
-examples/01-title/README-<lang>.md
-examples/01-title/TICKET.md          mini task 任务卡片
-examples/01-title/TICKET-<lang>.md
-examples/02-title/
+examples/01-title/                   索引 Task, 位置固定在 01
+examples/01-title/README-cn.md
+examples/01-title/TICKET-cn.md
+examples/02-title/                   教学 Task 从 02 开始
+examples/02-title/README-cn.md
+examples/02-title/TICKET-cn.md
 examples/...
-examples/NN-prove-i-get-it/     quiz 环节 (靠后), 标题固定 prove-i-get-it
-examples/NN-prove-i-get-it/README.md        题库真身, 走 showcase-examples-quiz-readme-spec
-examples/NN-prove-i-get-it/README-<lang>.md
-examples/NN-prove-i-get-it/TICKET.md
-examples/NN-prove-i-get-it/TICKET-<lang>.md
-examples/ZZ-how-i-build-this/   demo 环节 (examples 最后一个), 标题固定 how-i-build-this
-examples/ZZ-how-i-build-this/README.md      讲故事底稿, 走 showcase-examples-demo-readme-spec
-examples/ZZ-how-i-build-this/README-<lang>.md
-examples/ZZ-how-i-build-this/TICKET.md
-examples/ZZ-how-i-build-this/TICKET-<lang>.md
+examples/NN-prove-i-get-it/          quiz 环节, 靠后, 目录名固定
+examples/NN-prove-i-get-it/README-cn.md      题库真身
+examples/NN-prove-i-get-it/TICKET-cn.md
+examples/ZZ-how-i-build-this/        demo 环节, examples 最后一个, 目录名固定
+examples/ZZ-how-i-build-this/README-cn.md    讲故事底稿
+examples/ZZ-how-i-build-this/TICKET-cn.md
 docs/tasks/
 docs/tasks/SYLLABUS.md               生成
-docs/tasks/SYLLABUS-<lang>.md
+docs/tasks/SYLLABUS-cn.md            生成
 docs/tasks/01-showcase/              唯一 branch 的快照
-docs/tasks/01-showcase/README.md
-docs/tasks/01-showcase/README-<lang>.md
-docs/tasks/01-showcase/TICKET.md
-docs/tasks/01-showcase/TICKET-<lang>.md
 docs/showcase/                       forge 产出: 学习与展示工具文档
 docs/showcase/01-showcase-learn.md   学习索引
 docs/showcase/02-showcase-runbook.md 跑起来的操作
-docs/showcase/03-showcase-quiz.md    quiz 薄壳 (指向题库真身)
-docs/showcase/04-showcase-demo.md    demo 薄壳 (指向讲故事底稿 + 默认主线)
-docs/showcase/05-showcase-publish.md publish 清单 (自包含, 无 examples 撑)
+docs/showcase/03-showcase-quiz.md    quiz 薄壳, 指向题库真身
+docs/showcase/04-showcase-demo.md    demo 薄壳, 指向讲故事底稿加默认主线
+docs/showcase/05-showcase-publish.md publish 清单, 自包含, 无 examples 撑
 .claude/skills/showcase-learn/SKILL.md    forge 产出: 带学 skill
 .claude/skills/showcase-quiz/SKILL.md     forge 产出: 自测 skill
 .claude/skills/showcase-demo/SKILL.md     forge 产出: 讲故事排练 skill
 .claude/skills/showcase-publish/SKILL.md  forge 产出: 抹痕迹发布 skill
 ```
 
+无后缀的英文文件仍然存在, 当前留空, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 2 节. 上面的树为了少占篇幅, 只在根目录逐一列了两版, 下面各层同理.
+
 ---
 
 ## 4. 各文件遵循哪个 spec
 
-根目录 README 与 TICKET 是这一个 branch 的 Task 文件, 也是整门课的操作入口与验收清单. 它们不遵循教学用的 [ref/readme-spec.md](../readme-spec.md) 与 [ref/ticket-spec.md](../ticket-spec.md) (那是给单个 mini task 的教程正文用的), 而各有专属 spec: root README 遵循 [showcase-readme-spec.md](showcase-readme-spec.md) (仓库总览加操作入口, 覆盖怎么学与学完怎么展示发布), root TICKET 遵循 [showcase-ticket-spec.md](showcase-ticket-spec.md) (整门课的验收清单, 三段式加一个 "关键能力" H2). 这两份走创作铁律: 先写 cn 版 (在 examples 全部定稿并统稿之后, 拿成品当素材), 英文版随整门课那一次统一重写产生, 见 [ref/rewrite-en-spec.md](../rewrite-en-spec.md); description 的长度与字符约束仍照 [ref/repo-layout.md](../repo-layout.md) 第 4 节.
+**根目录 README 与 TICKET** 是这一个 branch 的 Task 文件, 也是整门课的操作入口与验收清单. 它们**不遵循**教学用的通用 spec (那是给 `examples/` 下单个 Task 用的), 而各有专属 spec:
 
-README-ORIGINAL 是对外 README, 遵循 [ref/common/readme-original-spec/readme-original-spec.md](../common/readme-original-spec/readme-original-spec.md).
+- `README-cn.md` 遵循 [showcase-readme-spec](showcase-readme-spec/showcase-readme-cn-spec.md). 仓库总览加操作入口, 覆盖怎么学与学完怎么展示发布.
+- `TICKET-cn.md` 遵循 [showcase-ticket-spec](showcase-ticket-spec/showcase-ticket-cn-spec.md). 整门课的验收清单, 三段式加一个 "关键能力" H2.
 
-examples/NN-title 下的 README 与 TICKET 才是真正的教学文档, 它们直接遵循标准的 [ref/readme-spec.md](../readme-spec.md) 与 [ref/ticket-spec.md](../ticket-spec.md), 不另立 spec: 内容规范和根目录情形完全一样, 唯一区别是所在位置 (examples/NN-title 而非 repo 根).
+这两份在 `examples/` 全部定稿并统稿之后才写, 拿成品当素材.
 
-examples/README 是系列索引, 它不是教程, 也不同于 SYLLABUS 的无脑罗列, 而是把 mini task 按主题分组梳理. 它遵循单独的 [showcase-examples-readme-spec.md](showcase-examples-readme-spec.md).
+**`README-ORIGINAL-cn.md`** 是对外 README, 遵循 [00-common/02-readme-original-spec](../00-common/02-readme-original-spec/readme-original-cn-spec.md).
 
-examples 下有两个特殊 mini task, 都走各自专属结构而非教学 readme-spec:
+**`examples/01-title/`** 是索引 Task, 位置固定在 01 但名字随课程而定. README 遵循 [00-common/05-overview-readme-spec](../00-common/05-overview-readme-spec/overview-readme-cn-spec.md), TICKET 遵循 [00-common/06-overview-ticket-spec](../00-common/06-overview-ticket-spec/overview-ticket-cn-spec.md).
 
-- quiz 环节: 目录固定命名 NN-prove-i-get-it, 靠后. 它的 README 走 [showcase-examples-quiz-readme-spec.md](showcase-examples-quiz-readme-spec.md) 的问答结构, TICKET 走 [showcase-examples-quiz-ticket-spec.md](showcase-examples-quiz-ticket-spec.md) (固定极简: 读一遍题库加 /showcase-quiz 测到 70% 通过).
-- demo 环节: 目录固定命名 how-i-build-this, 是 examples 的最后一个 mini task. 它的 README 走 [showcase-examples-demo-readme-spec.md](showcase-examples-demo-readme-spec.md) 的讲故事底稿结构, TICKET 走 [showcase-examples-demo-ticket-spec.md](showcase-examples-demo-ticket-spec.md) (固定极简: 读一遍底稿加 /showcase-demo 排练到能流畅讲完).
+**`examples/02-title/` 往后**才是教学 Task, 它们直接遵循通用的 [00-common/03-task-readme-spec](../00-common/03-task-readme-spec/task-readme-cn-spec.md) 与 [00-common/04-task-ticket-spec](../00-common/04-task-ticket-spec/task-ticket-cn-spec.md), 不另立 spec.
 
-docs/tasks/01-showcase 下的四个文件是根目录 README 与 TICKET 的快照, 由 lesson-smith sync 生成, 不手写. SYLLABUS 同样由 sync 生成, 对 showcase 来说只有 01-showcase 一段.
+**两个固定 Task 是例外**, 它们的 README 都不走教学 README 的正文结构:
 
-docs/showcase 下的五份 doc 由 lesson-smith-showcase-forge 产出, 各自的规范见 [docs-showcase-learn-spec.md](docs-showcase-learn-spec.md), [docs-showcase-runbook-spec.md](docs-showcase-runbook-spec.md), [docs-showcase-quiz-spec.md](docs-showcase-quiz-spec.md), [docs-showcase-demo-spec.md](docs-showcase-demo-spec.md), [docs-showcase-publish-spec.md](docs-showcase-publish-spec.md).
+| 目录 | README 走 | TICKET 走 |
+| :--- | :--- | :--- |
+| `NN-prove-i-get-it` | [showcase-examples-quiz-readme-spec.md](showcase-examples-quiz-readme-spec.md) 的问答结构 | [showcase-examples-quiz-ticket-spec.md](showcase-examples-quiz-ticket-spec.md) |
+| `ZZ-how-i-build-this` | [showcase-examples-demo-readme-spec.md](showcase-examples-demo-readme-spec.md) 的讲故事结构 | [showcase-examples-demo-ticket-spec.md](showcase-examples-demo-ticket-spec.md) |
+
+两份 TICKET 的结构仍沿用通用的 task ticket spec, 只是内容固定极简.
+
+**`docs/tasks/`** 下的东西全部由 `lesson-smith sync` 生成, 不手写. SYLLABUS 对 showcase 来说只有 `01-showcase` 一段.
+
+**`docs/showcase/`** 下五份 doc 由 `lesson-smith-showcase-forge` 产出, 规范见 [docs-showcase-learn-spec.md](docs-showcase-learn-spec.md), [docs-showcase-runbook-spec.md](docs-showcase-runbook-spec.md), [docs-showcase-quiz-spec.md](docs-showcase-quiz-spec.md), [docs-showcase-demo-spec.md](docs-showcase-demo-spec.md), [docs-showcase-publish-spec.md](docs-showcase-publish-spec.md).
 
 ---
 
 ## 5. 与通用标准的关系
 
-showcase 在 [ref/repo-layout.md](../repo-layout.md) 的基础上做了两处特化: 一是把带序号的 Task branch 收敛成唯一的 01-showcase, 二是新增了 examples 这一层放 mini task 及其索引. 其余 (特殊文件命名, 多语言后缀, description 的长度与字符约束, docs/tasks 汇总视图, SYLLABUS 生成与校验) 都沿用通用标准, 不在这里重复.
+showcase 在通用标准之上做了三处特化:
 
----
+- 把带序号的 branch 收敛成唯一的 `01-showcase`.
+- 新增 `examples/` 这一层放 Task 及其索引, 其中末尾两个 Task 的目录名固定.
+- 新增 `docs/showcase/` 与四个子 skill 这一整套学习与展示工具链.
 
-## 6. publish: showcase 特有的对外环节
-
-publish 是 showcase 区别于其它类型的核心. 它不是一份静态文件, 而是一个由 /showcase-publish skill 执行的运行时步骤: 学完全部课程后, 学生跑一次 publish, 把这个教学 repo 就地转成一个可以放上自己 GitHub 的 portfolio repo. 它的清单 (删哪些教学痕迹, 怎么排 commit, 怎么重写 README, 怎么做敌意扫描) 由 forge 产出的 docs/showcase/05-showcase-publish.md 承载, 规范见 [docs-showcase-publish-spec.md](docs-showcase-publish-spec.md).
-
-具体删掉哪些教学痕迹, 怎么改写, 唯一真相在 [docs-showcase-publish-spec.md](docs-showcase-publish-spec.md), 这里不重复. 布局层面只点明一个时序: demo 底稿本身也是教学痕迹, 会在 publish 时被删掉, 所以学生是在 publish 之前读 demo, 排练好怎么讲这段经历, 之后再 publish 出一个干净的作品 repo 拿去展示. 这个 "抹痕迹发布" 环节 upskill 没有, 是 showcase 独有的.
+其余 (特殊文件命名, 多语言后缀, description 的长度与字符约束, `docs/tasks/` 汇总视图, SYLLABUS 生成与校验) 都沿用通用标准, 不在这里重复.
