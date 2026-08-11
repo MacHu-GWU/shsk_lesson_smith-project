@@ -86,6 +86,39 @@ def lang_from_filename(name: str) -> "LangEnum | None":
     return None
 
 
+# --------------------------------------------------------------------------- #
+# Per-language lint switch.
+#
+# A teaching repo keeps every language variant of every special file in place, so
+# the layout never changes, but a variant that has not been written yet is an
+# empty placeholder. Linting one of those would fail on every content check for a
+# reason that says nothing about the repo's quality, so each language carries a
+# flag saying whether it takes part in linting at all. A disabled language is
+# skipped whole: no existence check, no frontmatter check, no H1 check.
+#
+# English is currently disabled: the authoring workflow writes Chinese only, and
+# the English variants exist as empty files until the multi-language module picks
+# them up. Flipping English back on is a one-word change here, not a rewrite of
+# the linter.
+#
+# A language absent from the mapping defaults to enabled, so adding a language to
+# ``LangEnum`` starts it out linted; turning it off has to be deliberate.
+# --------------------------------------------------------------------------- #
+LINT_ENABLED_BY_LANG: "dict[LangEnum | None, bool]" = {
+    None: False,  # English: placeholder files, left empty on purpose
+    LangEnum.cn: True,
+}
+
+
+def is_lint_enabled(lang: "LangEnum | None") -> bool:
+    """Whether the variant written in ``lang`` takes part in linting.
+
+    ``None`` means English. Languages not listed in
+    :data:`LINT_ENABLED_BY_LANG` default to enabled.
+    """
+    return LINT_ENABLED_BY_LANG.get(lang, True)
+
+
 def max_description_chars(lang: "LangEnum | None") -> int:
     """The ``description`` budget for one language. ``None`` means English."""
     return MAX_DESCRIPTION_CHARS_BY_LANG.get(lang, DEFAULT_MAX_DESCRIPTION_CHARS)

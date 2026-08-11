@@ -84,6 +84,8 @@ ref/
 
 - `00-common/01-repo-layout.md`: 已按中文单语种重写, 大段话改成 bullet, frontmatter 那一节从两屏压到一节.
 - `00-common/02-task-readme-spec/`, `03-task-ticket-spec/`, `04-readme-original-spec/`: 目录已按 task 术语与序号就位.
+- **lint 的按语种开关**: `constants.py` 的 `LINT_ENABLED_BY_LANG` 决定每个语种参不参与 lint, 英文当前是关的. 关掉的语种被整个跳过, 既不要求存在, 内容也不检查, 所以留空的英文占位文件不再拖垮整仓. 改回来是改一个词.
+- `linter.py` 与 `linter_utils.py` 里指向规范位置的 docstring 已改到 `ref/00-common/`.
 
 **还欠的**:
 
@@ -92,8 +94,6 @@ ref/
 - `01-readup` 等目录里, flat 文件与新式 spec 目录并存, 待收敛.
 - 大量入链仍指向旧路径 (`ref/repo-layout.md`, `ref/readup/`, `ref/upskill/`, `ref/showcase/`). 等 ref 重写收敛之后统一扫一遍, 现在改是白改.
 
-**规范与 lint 已经对不上的三处**, 改 `shsk_lesson_smith` package 时一并处理:
+**规范与 lint 还对不上的一处**:
 
-- **撇号**: `constants.py` 的 `DESCRIPTION_FORBIDDEN_CHARS` 里目前含 ASCII 单引号 (U+0027). 规范已改成允许 (值本身被双引号包着, 撇号不产生歧义), 需要把它从这个集合里去掉.
-- **留空的英文文件过不了 lint**: 语种完整性那一条本身没问题 (英文文件确实存在), 但空文件没有 frontmatter, `check_frontmatter_description` 会当场报错. lint 要能认出 "还在占位的空文件" 并跳过它的内容检查.
-- **spec 位置**: `linter.py` 与 `linter_utils.py` 的 docstring 里写着规范的权威位置是 `ref/` 顶层的 `.md`, 迁到 `00-common/` 之后要改.
+- **撇号**: `constants.py` 的 `DESCRIPTION_FORBIDDEN_CHARS` 里目前含 ASCII 单引号 (U+0027). 规范已改成允许 (值本身被双引号包着, 撇号不产生歧义), 需要把它从这个集合里去掉. 注意 `H1_FORBIDDEN_CHARS` 里也有一个, 但 H1 不带包裹的引号, 理由不通用, 那一个要单独决定动不动.

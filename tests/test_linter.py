@@ -4,12 +4,15 @@ from pathlib import Path
 
 import pytest
 
+from shsk_lesson_smith import constants
+from shsk_lesson_smith.constants import LangEnum, is_lint_enabled
 from shsk_lesson_smith.exc import LintError
 from shsk_lesson_smith.linter import (
     CheckResult,
     LintReport,
     _check_syllabus_numbering,
     lint,
+    linted_langs,
     rule_syllabus,
 )
 from shsk_lesson_smith.linter_for_upskill import (
@@ -473,7 +476,7 @@ class TestLinterInternalBranches:
         # matching task README.
         tasks = tmp_path / "docs" / "tasks"
         (tasks / "01-upskill").mkdir(parents=True)
-        (tasks / "SYLLABUS.md").write_text(
+        (tasks / "SYLLABUS-cn.md").write_text(
             "# Syllabus\n\n## 01-upskill\n\nmulti\nline\n\n"
             "## 02-empty\n\n## 04-ghost\n\nghost desc\n",
             encoding="utf-8",
@@ -509,6 +512,73 @@ class TestDispatch:
         report = lint(Repo(dir_project_root=evolve_root))
         assert isinstance(report, LintReport)
         assert len(report.results) > 1
+
+
+class TestPerLanguageLintSwitch:
+    """A language turned off in LINT_ENABLED_BY_LANG is skipped whole.
+
+    English is off by default: the authoring workflow writes Chinese only, and
+    the English variants sit there as empty placeholders. So a broken English
+    file must produce no failures, while the same breakage in the Chinese file
+    must still be caught.
+    """
+
+    def test_english_is_off_and_chinese_is_on(self):
+        assert is_lint_enabled(None) is False
+        assert is_lint_enabled(LangEnum.cn) is True
+
+    def test_linted_langs_excludes_english(self):
+        assert linted_langs() == (LangEnum.cn,)
+
+    def test_unlisted_language_defaults_to_enabled(self, monkeypatch):
+        # Adding a language to LangEnum should start it out linted; opting out
+        # has to be a deliberate entry in the mapping.
+        monkeypatch.setattr(constants, "LINT_ENABLED_BY_LANG", {})
+        assert is_lint_enabled(None) is True
+        assert is_lint_enabled(LangEnum.cn) is True
+
+    def test_broken_english_file_is_not_reported(self, tmp_path):
+        # An English variant that would fail several checks, next to a clean
+        # Chinese one. Nothing about the English file may show up.
+        (tmp_path / "README-ORIGINAL.md").write_text(
+            "# Not The Repo Name\n\nno frontmatter at all\n", encoding="utf-8"
+        )
+        (tmp_path / "README-ORIGINAL-cn.md").write_text(
+            '---\ndescription: "'
+            + "描述" * 60
+            + '"\ngithub_about: "一句话说清这个 repo 教什么."\n---\n\n'
+            f"# {tmp_path.name}\n\nbody\n",
+            encoding="utf-8",
+        )
+        from shsk_lesson_smith.linter import rule_readme_original
+
+        results = rule_readme_original(Repo(dir_project_root=tmp_path))
+        assert [r for r in results if not r.passed] == []
+        assert all("README-ORIGINAL.md" not in r.location for r in results)
+
+    def test_switching_english_on_reports_it_again(self, tmp_path, monkeypatch):
+        # Same repo, same files: flipping the flag is the only difference.
+        (tmp_path / "README-ORIGINAL.md").write_text(
+            "# Not The Repo Name\n\nno frontmatter at all\n", encoding="utf-8"
+        )
+        (tmp_path / "README-ORIGINAL-cn.md").write_text(
+            '---\ndescription: "'
+            + "描述" * 60
+            + '"\ngithub_about: "一句话说清这个 repo 教什么."\n---\n\n'
+            f"# {tmp_path.name}\n\nbody\n",
+            encoding="utf-8",
+        )
+        from shsk_lesson_smith.linter import rule_readme_original
+
+        monkeypatch.setattr(
+            constants, "LINT_ENABLED_BY_LANG", {None: True, LangEnum.cn: True}
+        )
+        blob = " | ".join(
+            (r.message or "")
+            for r in rule_readme_original(Repo(dir_project_root=tmp_path))
+            if not r.passed
+        )
+        assert "description" in blob
 
 
 class TestRender:

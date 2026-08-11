@@ -17,12 +17,12 @@ Design (see also linter_for_<type>.py):
   dispatches on ``repo.repo_type`` to the right module. Splitting a type into
   its own file is a "grow into it" knob, not an upfront commitment.
 
-Spec source of truth: the shared rules here enforce the type-agnostic specs in the
-top-level ``.claude/skills/lesson-smith/skills/lesson-smith/ref/*.md`` files (that
-directory's own ``.md`` files, not its subfolders): repo-layout, readme-spec,
-ticket-spec, readme-original-spec, syllabus-spec. Type-specific rules live in the
-``linter_for_<type>`` modules and reference that type's spec subfolder. Those specs
-are authoritative; keep these checks in sync with them.
+Spec source of truth: the shared rules here enforce the type-agnostic specs under
+``.claude/skills/lesson-smith/skills/lesson-smith/ref/00-common/``: 01-repo-layout,
+02-task-readme-spec, 03-task-ticket-spec, 04-readme-original-spec, plus syllabus-spec
+(still at the ref root). Type-specific rules live in the ``linter_for_<type>``
+modules and reference that type's spec folder. Those specs are authoritative; keep
+these checks in sync with them.
 """
 
 import dataclasses
@@ -34,6 +34,7 @@ from .constants import (
     TASK_DIR_PATTERN,
     LangEnum,
     RepoTypeEnum,
+    is_lint_enabled,
 )
 from .exc import LintError
 from .linter_utils import (
@@ -47,8 +48,20 @@ from .linter_utils import (
 )
 from .repo import Metadata, Repo
 
-# English (None) plus every supported language variant.
+# Every variant a special file can have: English (None) plus each supported language.
 LANGS = (None, *LangEnum)
+
+
+def linted_langs() -> "tuple[LangEnum | None, ...]":
+    """The subset of :data:`LANGS` that linting actually inspects.
+
+    Filtered through the per-language switch in ``constants``. Every place that
+    walks language variants goes through this rather than :data:`LANGS`, so a
+    disabled language is skipped whole: it is not required to exist, and its
+    content is never checked. Recomputed on each call so flipping the switch (in
+    a test, say) takes effect without reimporting.
+    """
+    return tuple(lang for lang in LANGS if is_lint_enabled(lang))
 
 
 # --------------------------------------------------------------------------- #
@@ -167,12 +180,15 @@ def lint_file_content(
 def lint_file_group(get_path, *, required: bool, **content) -> "list[CheckResult]":
     """Existence + language completeness + content checks for one special file.
 
-    ``get_path`` maps a language (None = English) to a path. If any variant
-    exists, every variant must exist (language completeness). Content checks
-    (``description=``, ``h1=``, ``h1_expected=``) run on each existing variant.
-    A missing group is a failure only when ``required``.
+    ``get_path`` maps a language (None = English) to a path. Only the languages
+    :func:`linted_langs` returns are considered; variants of a disabled language
+    are skipped whole, so they neither have to exist nor get their content
+    checked. Among the considered ones, if any exists, every one must exist
+    (language completeness). Content checks (``description=``, ``h1=``,
+    ``h1_expected=``) run on each existing variant. A missing group is a failure
+    only when ``required``.
     """
-    variants = [p for lang in LANGS if (p := get_path(lang)) is not None]
+    variants = [p for lang in linted_langs() if (p := get_path(lang)) is not None]
     if not variants:
         return []
     existing = [p for p in variants if p.exists()]
@@ -328,7 +344,7 @@ def rule_syllabus(repo: Repo) -> "list[CheckResult]":
     the matching-language README's frontmatter description.
     """
     out = lint_file_group(repo.get_path_syllabus, required=True)
-    for lang in LANGS:
+    for lang in linted_langs():
         path = repo.get_path_syllabus(lang)
         if not path.exists():
             continue

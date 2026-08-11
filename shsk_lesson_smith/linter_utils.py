@@ -14,11 +14,10 @@ building block:
 The repo-aware linters in ``linter.py`` compose these into full lint runs.
 
 Spec source of truth: the constraints these primitives enforce (frontmatter
-description, H1 charset, and so on) are defined in the top-level spec files under
-``.claude/skills/lesson-smith/skills/lesson-smith/ref/*.md`` (that directory's own
-``.md`` files, not its subfolders). Those specs are authoritative; when they
-change, update these checks to match, and when adding a check, anchor it to the
-spec clause it enforces.
+description, H1 charset, and so on) are defined in the common spec files under
+``.claude/skills/lesson-smith/skills/lesson-smith/ref/00-common/``. Those specs are
+authoritative; when they change, update these checks to match, and when adding a
+check, anchor it to the spec clause it enforces.
 """
 
 import re
