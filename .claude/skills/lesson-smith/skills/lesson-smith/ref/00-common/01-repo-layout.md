@@ -72,11 +72,11 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见各自的�
 
 ## 5. 各文件说明
 
-每个特殊文件的规范与模板合在同一个 spec 文件里: 规范写在顶部 `<!-- -->` 注释, 正文即可直接套用的模板. 格式详见 skill 根目录的 `spec-file-format.md`.
+每个特殊文件的规范是一个目录, 里面一份 spec (规范, 权威) 加一份 template (骨架, 原样复制). 格式详见 skill 根目录的 `spec-file-format.md`.
 
-- **`README.md`**: 教学文档, 给学生阅读. 教学内容的结构随课程本身而定, 只有少量硬标准. 见 [02-task-readme-spec](02-task-readme-spec/task-readme-spec.md).
-- **`TICKET.md`**: 任务目标与验收 checklist, 给学生阅读, 同时作为 Kanban 里 Ticket body 的正文. 见 [03-task-ticket-spec](03-task-ticket-spec/task-ticket-spec.md).
-- **`README-ORIGINAL.md`**: 整个 Repo 逻辑意义上的长介绍. 因为各 branch 的 `README.md` 都归它那个 Task 用了, Repo 自身的介绍才另起这个文件. 见 [04-readme-original-spec](04-readme-original-spec/readme-original-spec.md).
+- **`README.md`**: 教学文档, 给学生阅读. 教学内容的结构随课程本身而定, 只有少量硬标准. 见 [03-task-readme-spec](03-task-readme-spec/task-readme-cn-spec.md).
+- **`TICKET.md`**: 任务目标与验收 checklist, 给学生阅读, 同时作为 Kanban 里 Ticket body 的正文. 见 [04-task-ticket-spec](04-task-ticket-spec/task-ticket-cn-spec.md).
+- **`README-ORIGINAL.md`**: 整个 Repo 逻辑意义上的长介绍. 因为各 branch 的 `README.md` 都归它那个 Task 用了, Repo 自身的介绍才另起这个文件. 见 [02-readme-original-spec](02-readme-original-spec/readme-original-cn-spec.md).
 - **`SYLLABUS.md`**: 整个 Repo 所有 Task 的清单索引. **不手写**, 由脚本从各 Task `README.md` 的 frontmatter `description` 汇总生成. 见 `syllabus-spec.md` (尚未迁入本目录).
 - **`lm.json`**: Repo 根目录的机器可读清单. 它不是文档, 不走上面的 spec 加注释格式. 目前 schema 只有一个字段 `type`, 取值 `evolve` | `showcase` | `upskill` | `readup`, 声明这个 repo 属于哪一类. 以后可以往里加更多结构化字段, 也方便校验脚本按 `type` 分支处理不同布局.
 
