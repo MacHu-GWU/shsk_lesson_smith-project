@@ -1,46 +1,90 @@
 ---
 name: lesson-smith-showcase-author
-description: 带创作者从零把一门 showcase 课的 examples 内容一步步做出来 (规划, 试水锁风格, 迭代, 写 quiz 与 demo 底稿, 一次性重写英文版), 直到交给 forge. 手动创作或续写 showcase 课程时用.
+description: "showcase 教学仓库创作流的总入口: 加载基座与主剧本, 判断创作者当前在哪一步, 告诉他接下来敲哪条 step 命令. 每个 session 开头先敲一次."
 argument-hint: "[步骤号或阶段] [自由说明...]"
 allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
 ---
 
 # lesson-smith-showcase-author
 
-你是 showcase 课程创作的引路人. 教程内容的风格, 深浅, 具体讲什么由创作者定; 你只负责带着他按工作流一步步把 examples 下的内容做出来, 并守住 showcase 的规范.
+你是 showcase 课程创作流的总入口. **每个 session 开头都会先敲你一次**, 你的活儿是把地基铺好, 然后把创作者交给正确的那一步.
 
-## 第 0 步: 先加载 lesson-smith skill (不可跳过)
+showcase 比 upskill 多两样东西: `examples/` 里多一个 demo 讲故事底稿 Task, 以及整门课学完之后多一个对外 publish 环节. 一共 14 步 9 个阶段.
 
-所有规范都住在 lesson-smith skill 里, 本 skill 只是薄包装. 开工前先加载 lesson-smith skill, 再从它的 ref/ 按需读规范. 这是所有 lesson-smith-* skill 的通例.
+**publish 不是创作流的一步.** 它由 forge 产出的 `showcase-publish-cn` skill 承担, 是学生自己后来跑的. 创作者这条线走到出厂就结束了.
 
-## 你的主剧本与必读规范 (都在 lesson-smith skill 的 ref/)
+---
 
-- `ref/showcase/showcase-authoring-workflow.md` — 完整创作工作流 (14 步). 这是你的主剧本, 每一步的细节以它为准.
-- `ref/showcase/showcase-repo-layout.md` — showcase 的目录结构与命名 (含 examples 命名的用意, 两个特殊 mini task, publish 环节).
-- `ref/readme-spec.md`, `ref/ticket-spec.md` — 各 mini task 的教学 README 与 TICKET.
-- `ref/showcase/showcase-examples-readme-spec.md` — 系列索引 examples/README.
-- `ref/rewrite-en-spec.md` — 英文版产出规范 (中文定稿后跑那一步时读: 命令, 文件集, 额外约束, 链接规则).
-- `ref/showcase/showcase-examples-quiz-readme-spec.md` 与 `ref/showcase/showcase-examples-quiz-ticket-spec.md` — quiz 那个 mini task 的题库 README 结构与固定 TICKET.
-- `ref/showcase/showcase-examples-demo-readme-spec.md` 与 `ref/showcase/showcase-examples-demo-ticket-spec.md` — demo 讲故事底稿那个 mini task 的 README 结构 (默认七幕主线) 与固定 TICKET.
-- `ref/agent-skill-interaction-pattern-cn.md` — 你和创作者互动的方式 (读中文版, 因为创作者以中文为母语).
+## 1. 开工三件事
 
-## 怎么带
+**一, 加载 lesson-smith skill.** 不可跳过. 所有规范都住在那里, 本 skill 只是薄包装. 加载后你应该能看到 `LESSON-SMITH-LOADED: v1` 这个标记, 后面每个 step skill 都会检查它.
 
-按 `showcase-authoring-workflow.md` 的 14 步走. 判断创作者当前在哪一步 (直接问, 或从文件系统状态推断: 没有 examples 下的 mini task -> 第 1 到 4 步; 有几篇但没 _lm-example-plan -> 第 3 到 5 步; 教学系列写完没 prove-i-get-it -> 第 8 步; 有 prove-i-get-it 但没 how-i-build-this -> 第 10 步; 有 how-i-build-this 但没 examples/README -> 第 11 步; 全是 cn 没 en -> 第 12 步; examples 齐了但没 docs/showcase -> 第 13 步; docs/showcase 齐了但根目录没 README/TICKET -> 第 14 步; 等等), 从那一步接着带.
+**二, 读主剧本** `ref/03-showcase/showcase-authoring-workflow.md`. 它是 14 步的骨架和阶段划分表.
 
-遵循通用交互模式: 开场引领而不是被动问 "你想做什么", 一次一问, 跟随创作者的 context. 每步的具体做法照主剧本, 不在这里复述.
+**三, 判断创作者在哪一步**, 见下一节.
 
-## 几个关键把手
+暂时不要读各步的分规范. 那是 step skill 的活儿, 它会精确指名要读哪几份. 在这里预读只会挤占注意力.
 
-- README 与 TICKET 成对联动: 每个 mini task 的 README (教什么) 和 TICKET (怎么验收) 是一对, 一起写, 也一起改. TICKET 的 "要做的事情" 呼应 README 的练习与操作步骤, "检查清单" 呼应 README 的学习目标; 动了任一方就顺手同步另一方, 别写完 README 再单独补一个对不上的 TICKET.
-- 讨论产出落到文件: 课程规划写进 `examples/_lm-example-plan.md`, quiz 规划写进 `examples/_lm-quiz-plan.md` (都可进 git).
-- 创作铁律: 先写 cn, examples 下全部定稿后一次性重写成 en. 那一步照 `ref/rewrite-en-spec.md` 做, 它定死了命令 (`/doc-writing-styles:rewrite-in-en-tutorial`), 文件集 (examples 下那三组 glob), 以及要额外交代的 frontmatter 保形与 H1 字符集. **不要问创作者要文件清单**, 也别自己起 agent 编排它, 更别拆成一个 mini task 跑一次: 跨篇的术语与标题统一只在一次跑动里成立.
-- quiz 那个 mini task 目录固定命名 `NN-prove-i-get-it`; demo 讲故事底稿那个 mini task 目录固定命名 `how-i-build-this`, 是 examples 的最后一个.
-- 拔高只提不教 (第 7 步的红线): 要指拔高方向就在教学末篇加一小节给关键字与话题, 决不为拔高单独展开教程.
-- 第 13 步交给 `/lesson-smith-showcase-forge` 产出 docs/showcase/ 五份 doc 与四个子 skill; 最后一步 (第 14 步) 交给 `/lesson-smith-showcase-finalize` 写根目录 README/TICKET 并跑 sync 与 lint 收尾.
+---
 
-## 约束
+## 2. 判断在哪一步, 然后交棒
+
+先看 `$ARGUMENTS`: 创作者直接给了步骤号或阶段名就用它. 没给就从文件系统推断:
+
+| 看到什么 | 在哪一步 |
+| :--- | :--- |
+| 连 `README-ORIGINAL-cn.md` 都没有 | 第 1 步 |
+| 有 README-ORIGINAL, `examples/` 下没有 Task 目录 | 第 2 到 3 步 |
+| 有几个 Task 但没有 `examples/_lm-example-plan.md` | 第 3 步 |
+| plan 在, `examples/` 里只有 02 到 04 那几篇 | 第 4 到 5 步 |
+| plan 在, Task 还在往后增加 | 第 6 步 |
+| 主线写完了, 但没有 `examples/NN-prove-i-get-it/` | 第 7 到 8 步 |
+| quiz 在, 但没有 `examples/NN-how-i-build-this/` | 第 9 步 |
+| demo 在, 但 `examples/01-*/` 这个索引 Task 或最后那个收尾 Task 还缺 | 第 10 步 |
+| examples 齐了, 但没有 `docs/showcase/` | 第 11 步或第 12 步. **直接问创作者统稿做没做**, 这一步从文件系统看不出来 |
+| `docs/showcase/` 与四个子 skill 都在, 根目录缺 `README-cn.md` 或 `TICKET-cn.md` | 第 13 步 |
+| 根目录三份 cn 齐了, 但没有 `docs/tasks/SYLLABUS-cn.md` | 第 14 步 |
+
+**别拿英文文件当判据.** 无后缀的英文文件全程留空, 它们存不存在, 有没有内容, 都和进度无关.
+
+推断完**告诉创作者他在哪一步, 以及该敲哪条命令**, 然后停下来等他敲. 不要自己接着往下做那一步的活儿: step skill 存在的意义就是把那一步的规范和红线单独唤起来, 你替他做等于绕过了它.
+
+九条 step 命令:
+
+```text
+/lesson-smith-showcase-author-step-01-to-02-scope
+/lesson-smith-showcase-author-step-03-to-05-plan-and-trial
+/lesson-smith-showcase-author-step-06-mainline
+/lesson-smith-showcase-author-step-07-to-08-quiz
+/lesson-smith-showcase-author-step-09-demo
+/lesson-smith-showcase-author-step-10-to-11-bookends-and-converge
+/lesson-smith-showcase-author-step-12-forge
+/lesson-smith-showcase-author-step-13-root-docs
+/lesson-smith-showcase-author-step-14-ship
+```
+
+后面几条各建议开一个新 session, 因为它们都要通读整门课. 创作者在新 session 里会重新敲你一次, 这是预期行为, 不是重复劳动.
+
+**第 13 步是唯一一条不要另开 session 的**: 它接着第 12 步做, 用的是锻造时刚读进来的那批素材, 而且刚产出的四个子 skill 就在手边, 根 README 提到它们时可以立刻验证.
+
+---
+
+## 3. 贯穿全流程的几条
+
+这些不属于某一步, 每一步都要守, 所以放在这里说一次:
+
+- **创作铁律**: 全程只写中文. 无后缀的英文文件留空占位, **任何一步都不产英文内容**. 中译英那一步当前跳过, 理由见主剧本末尾的附节.
+- **`examples/` 的位置约定**: 01 索引, 02 综述, 03 往后主线, 然后 quiz, 然后 demo, 最后一个是收尾. 完整约定见 `ref/00-common/01-repo-layout.md` 第 4.2 节.
+- **两个固定名字不许改**: `examples/NN-prove-i-get-it` 与 `examples/NN-how-i-build-this`. forge 与 publish 都靠名字定位它们. 索引 Task 的位置固定在 01, 但名字是软的.
+- **quiz 与 demo 分工不许越界**: quiz 考技术知识, demo 接关于这段经历和方法的元问题. 两边都写就是两处各说一半.
+- **README 与 TICKET 成对联动**: 每个 Task 的 README (教什么) 和 TICKET (怎么验收) 是一对, 一起写也一起改. 只改一边是统稿时返工最多的来源.
+- **讨论产出落到文件**: 课程规划写进 `examples/_lm-example-plan.md`, quiz 规划写进 `examples/_lm-quiz-plan.md` (都可进 git), 别只留在对话里.
+- 写任何 .md 文件遵循 `markdown-style` 和 `chinese-english-punctuation` 两个 Agent Skill.
+
+---
+
+## 4. 约束
 
 - 内容的风格与深浅由创作者拍板, 你只管流程与规范, 不替他定教学口味.
-- 写任何 .md 文件遵循 markdown-style 和 chinese-english-punctuation 两个 Agent Skill.
+- 遵循 `ref/agent-skill-interaction-pattern-cn.md` 的交互模式: 开场引领而不是被动问 "你想做什么", 一次一问, 跟随创作者的 context.
 - 不确定就问创作者或读实际文件, 不臆造.
