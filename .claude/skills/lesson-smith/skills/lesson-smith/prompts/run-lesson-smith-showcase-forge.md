@@ -1,8 +1,10 @@
 # 运行 /lesson-smith-showcase-forge 的输入
 
-> 用法: 把下面每个 "无" 换成你的内容, 然后把整份内容连同 /lesson-smith-showcase-forge 一起发出去. forge 会据此收集信息, 产出 docs/showcase/*.md 五份和 .claude/skills/showcase-*/ 四个子 skill. 过程中它会向你确认, 你兜底做决策.
+> 用法: 把下面每个 "无" 换成你的内容, 然后把整份内容连同 /lesson-smith-showcase-forge 一起发出去. forge 会据此收集信息, 产出 `docs/showcase/` 下五份 `-cn` doc 与 `showcase-learn-cn`, `showcase-quiz-cn`, `showcase-demo-cn`, `showcase-publish-cn` 四个子 skill. 过程中它会向你确认, 你兜底做决策.
 
-请按 /lesson-smith-showcase-forge 中的规范, 先收集信息, 再产出对应的 docs/showcase/*.md 和 .claude/skills/showcase-*/.
+> 前置: 这是创作流的**第 12 步**, 统稿之后才能跑. 统稿之前跑, 产出的链接和锚点会全部指在还会变的东西上, 而且没有任何检查会报出来 (publish 那份更糟, 它记的是要删哪些真实路径). 跑完接着做第 13 步 (写根目录文档), 不要另开 session.
+
+请按 /lesson-smith-showcase-forge 中的规范, 先收集信息, 再产出对应的 doc 与子 skill.
 
 ## 1. examples 之外的学习素材
 
@@ -44,7 +46,7 @@
 
 ## 5. publish 口径
 
-> 对 publish 清单的兜底取舍 (哪些 borderline 项默认保留, commit plan 想突出什么, 有没有额外要删或要留的东西). 没有写 "无", 按 spec 默认.
+> 对 publish 清单的兜底取舍 (哪些待定项默认保留, commit plan 想突出什么, 有没有额外要删或要留的东西). 没有写 "无", 按 spec 默认.
 
 无
 

@@ -1,8 +1,10 @@
 # 运行 /lesson-smith-upskill-forge 的输入
 
-> 用法: 把下面每个 "无" 换成你的内容, 然后把整份内容连同 /lesson-smith-upskill-forge 一起发出去. forge 会据此收集信息, 产出 docs/upskill/*.md 和 .claude/skills/upskill-*/. 过程中它会向你确认, 你兜底做决策.
+> 用法: 把下面每个 "无" 换成你的内容, 然后把整份内容连同 /lesson-smith-upskill-forge 一起发出去. forge 会据此收集信息, 产出 `docs/upskill/` 下三份 `-cn` doc 与 `upskill-learn-cn`, `upskill-quiz-cn` 两个子 skill. 过程中它会向你确认, 你兜底做决策.
 
-请按 /lesson-smith-upskill-forge 中的规范, 先收集信息, 再产出对应的 docs/upskill/*.md 和 .claude/skills/upskill-*/.
+> 前置: 这是创作流的**第 11 步**, 统稿之后才能跑. 统稿之前跑, 产出的链接和锚点会全部指在还会变的东西上, 而且没有任何检查会报出来. 跑完接着做第 12 步 (写根目录文档), 不要另开 session.
+
+请按 /lesson-smith-upskill-forge 中的规范, 先收集信息, 再产出对应的 doc 与子 skill.
 
 ## 1. examples 之外的学习素材
 
