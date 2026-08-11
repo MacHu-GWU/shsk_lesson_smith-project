@@ -118,7 +118,14 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见下一小�
 
 **lint 认不出角色**, 在它眼里所有 `NN-title/` 长得一样. 所以索引或收尾整个漏掉, lint 不报. 这是明确接受的代价: 缺席很响 (谁打开 `examples/` 都立刻发现没有入口), 而且统稿那一步的 "规定动作齐不齐" 本来就是拿这张表对着人工核的.
 
-`02` 综述和特殊 Task 都走通用的 [03-task-readme-spec](03-task-readme-spec/task-readme-cn-spec.md) 与 [04-task-ticket-spec](04-task-ticket-spec/task-ticket-cn-spec.md); 索引 Task 另有 [05-overview-readme-spec](05-overview-readme-spec/overview-readme-cn-spec.md) 与 [06-overview-ticket-spec](06-overview-ticket-spec/overview-ticket-cn-spec.md); 特殊 Task 的正文结构由各类型的特化 spec 覆盖.
+`02` 综述与主线 Task 走通用的 [03-task-readme-spec](03-task-readme-spec/task-readme-cn-spec.md) 与 [04-task-ticket-spec](04-task-ticket-spec/task-ticket-cn-spec.md). 三个角色 Task 各有补充:
+
+| Task | README 走 | TICKET 走 |
+| :--- | :--- | :--- |
+| `01` 索引 | [05-overview-readme-spec](05-overview-readme-spec/overview-readme-cn-spec.md) | [06-overview-ticket-spec](06-overview-ticket-spec/overview-ticket-cn-spec.md) |
+| quiz | [11-quiz-readme-spec](11-quiz-readme-spec/quiz-readme-cn-spec.md) | [12-quiz-ticket-spec](12-quiz-ticket-spec/quiz-ticket-cn-spec.md) |
+| demo (showcase) | [showcase-demo-readme-spec](../03-showcase/showcase-demo-readme-spec/showcase-demo-readme-cn-spec.md) | [showcase-demo-ticket-spec](../03-showcase/showcase-demo-ticket-spec/showcase-demo-ticket-cn-spec.md) |
+| 最后一个 收尾 | [14-wrap-up-readme-spec](14-wrap-up-readme-spec/wrap-up-readme-cn-spec.md) | 通用 `04` |
 
 ---
 

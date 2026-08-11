@@ -1,6 +1,6 @@
-# Spec for docs/<type>/02-<type>-runbook.md (English)
+# Spec for docs/{{TYPE}}/02-{{TYPE}}-runbook.md (English)
 
-**Scope**: the file `docs/<type>/02-<type>-runbook.md` in an <type> repo. Written by `lesson-smith-<type>-forge`, read by the `<type>-learn` skill.
+**Scope**: the file `docs/{{TYPE}}/02-{{TYPE}}-runbook.md` in an {{TYPE}} repo. Written by `lesson-smith-{{TYPE}}-forge`, read by the `{{TYPE}}-learn` skill.
 
 **Skeleton**: [docs-runbook-template.md](docs-runbook-template.md).
 
@@ -13,7 +13,7 @@
 **The operations manual for the course.** It covers one thing only: how to get the material running.
 
 - It does not teach. The teaching is in `examples/` and in the material itself.
-- It does not index. That is what `01-<type>-learn.md` is for.
+- It does not index. That is what `01-{{TYPE}}-learn.md` is for.
 
 ---
 

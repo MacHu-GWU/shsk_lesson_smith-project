@@ -4,6 +4,8 @@
 
 **配套骨架**: [overview-ticket-cn-template.md](overview-ticket-cn-template.md).
 
+**只管中文版**: 英文版另有一套, 属于多语种模块, 现在还没做.
+
 ---
 
 ## 1. 它为什么存在

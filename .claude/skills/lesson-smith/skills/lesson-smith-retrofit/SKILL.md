@@ -38,7 +38,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(c
 ## 必读规范 (都在 lesson-smith skill 的 ref/)
 
 - 本类型的目录结构: readup 读 `ref/01-readup/readup-repo-layout.md`, upskill 读 `ref/02-upskill/upskill-repo-layout.md`, showcase 读 `ref/03-showcase/showcase-repo-layout.md`.
-- `ref/00-common/03-task-readme-spec/`, `ref/00-common/04-task-ticket-spec/`: 每个教学 Task 的 README 与 TICKET. 迁徙时按它们重整旧正文, 精修写开头篇与结尾篇时也用它们.
+- `ref/00-common/03-task-readme-spec/`, `ref/00-common/04-task-ticket-spec/`: 每个教学 Task 的 README 与 TICKET. 迁徙时按它们重整旧正文. 索引 Task 与收尾 Task 另有专属 spec, 见主剧本第 5 步.
 - 索引 Task 的 spec, 以及精修要用的 quiz 与 demo spec. 清单见主剧本第 5 步, 用到哪份读哪份.
 - `ref/agent-skill-interaction-pattern-cn.md`: 你和创作者互动的方式 (读中文版, 因为创作者以中文为母语).
 - 英文版当前不产出: 无后缀的英文文件全程留空, retrofit 也只写 `-cn`.
@@ -51,7 +51,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(c
 
 ## 怎么带
 
-按 `ref/retrofit-workflow.md` 的 6 步走. 判断创作者当前在哪一步 (直接问, 或从新 repo 的文件系统状态推断: `examples/` 下还是空的 -> 第 1 到 3 步; 迁了一部分 -> 第 4 步; 主线齐了但缺开头篇, 结尾篇, quiz 或 demo -> 第 5 步; 都齐了 -> 第 6 步交棒), 从那一步接着带.
+按 `ref/retrofit-workflow.md` 的 6 步走. 判断创作者当前在哪一步 (直接问, 或从新 repo 的文件系统状态推断: `examples/` 下还是空的 -> 第 1 到 3 步; 迁了一部分 -> 第 4 步; 主线齐了但缺索引 Task, 收尾 Task, quiz 或 demo -> 第 5 步; 都齐了 -> 第 6 步交棒), 从那一步接着带.
 
 遵循通用交互模式: 开场引领而不是被动问 "你想做什么", 一次一问, 跟随创作者的 context. 每步的具体做法照主剧本, 不在这里复述.
 

@@ -77,6 +77,7 @@ LESSON-SMITH-LOADED: v1
 - 写某个教学 Task 的 README 时 → [03-task-readme-spec](ref/00-common/03-task-readme-spec/task-readme-cn-spec.md).
 - 写某个教学 Task 的 TICKET 时 → [04-task-ticket-spec](ref/00-common/04-task-ticket-spec/task-ticket-cn-spec.md).
 - 写 `examples/` 第一个那个索引 Task 时 → [05-overview-readme-spec](ref/00-common/05-overview-readme-spec/overview-readme-cn-spec.md) 与 [06-overview-ticket-spec](ref/00-common/06-overview-ticket-spec/overview-ticket-cn-spec.md).
+- 写 `examples/` 最后那个收尾 Task 时 → [14-wrap-up-readme-spec](ref/00-common/14-wrap-up-readme-spec/wrap-up-readme-cn-spec.md) (它的 TICKET 走通用的 `04`).
 - 关心 SYLLABUS 的格式或内容 (它由 sync 生成, 也被 lint 校验) 时 → [07-syllabus-spec.md](ref/00-common/07-syllabus-spec.md).
 
 每个 spec 目录里都是**一份 spec 加一份 template**: spec 是规范, template 是可以整份复制过去填空的骨架, 里面没有任何注释.
@@ -119,11 +120,11 @@ LESSON-SMITH-LOADED: v1
 
 **多类共享 (在 ref/00-common/ 下, upskill 与 showcase 都读):**
 
-这些东西两类逐字相同, 所以住在通用层, **里面的 `<type>` 是占位符, 落地时换成实际类型名**.
+这些东西两类逐字相同, 所以住在通用层, **里面的 `{{TYPE}}` 是占位符, 落地时换成实际类型名**.
 
 - 写 quiz 那个 Task 的 README (题库真身) → [11-quiz-readme-spec](ref/00-common/11-quiz-readme-spec/quiz-readme-cn-spec.md); 它的 TICKET → [12-quiz-ticket-spec](ref/00-common/12-quiz-ticket-spec/quiz-ticket-cn-spec.md).
 - forge 写 `docs/<type>/` 前三份 doc → [docs-learn](ref/00-common/13-forge-shared/docs-learn/docs-learn-cn-spec.md) (学习索引), [docs-runbook](ref/00-common/13-forge-shared/docs-runbook/docs-runbook-cn-spec.md) (跑起来的操作), [docs-quiz](ref/00-common/13-forge-shared/docs-quiz/docs-quiz-cn-spec.md) (quiz 薄壳).
-- forge 产出 learn 与 quiz 两个子 skill 时 → [learn-cn.SKILL.md](ref/00-common/13-forge-shared/learn-cn.SKILL.md), [quiz-cn.SKILL.md](ref/00-common/13-forge-shared/quiz-cn.SKILL.md): 近乎静态的 SKILL 模板, 换掉 `<type>` 就能拷.
+- forge 产出 learn 与 quiz 两个子 skill 时 → [learn-cn.SKILL.md](ref/00-common/13-forge-shared/learn-cn.SKILL.md), [quiz-cn.SKILL.md](ref/00-common/13-forge-shared/quiz-cn.SKILL.md): 近乎静态的 SKILL 模板, 换掉 `{{TYPE}}` 就能拷.
 
 每个目录里中英各一套 spec 加 template, **当前只产 `-cn`**.
 

@@ -1,12 +1,12 @@
-# docs/<type>/03-<type>-quiz-cn.md 规范, 中文版
+# docs/{{TYPE}}/03-{{TYPE}}-quiz-cn.md 规范, 中文版
 
-**适用范围**: <type> 类型 repo 的 `docs/<type>/03-<type>-quiz-cn.md`, 由 `lesson-smith-<type>-forge` 生成, 给 `<type>-quiz-cn` skill 消费.
+**适用范围**: {{TYPE}} 类型 repo 的 `docs/{{TYPE}}/03-{{TYPE}}-quiz-cn.md`, 由 `lesson-smith-{{TYPE}}-forge` 生成, 给 `{{TYPE}}-quiz-cn` skill 消费.
 
 **配套骨架**: [docs-quiz-cn-template.md](docs-quiz-cn-template.md).
 
 **当前只产这一套**: 英文版规范与骨架就在同目录下, 但 forge 现在只产 `-cn`.
 
-**链接一律指 `-cn`**: 题库指针必须指向 `README-cn.md`. 指到无后缀那一版就是指到一个空文件, 而且 `<type>-quiz-cn` 不会报错, 它会以为这门课没有题.
+**链接一律指 `-cn`**: 题库指针必须指向 `README-cn.md`. 指到无后缀那一版就是指到一个空文件, 而且 `{{TYPE}}-quiz-cn` 不会报错, 它会以为这门课没有题.
 
 ---
 
@@ -22,11 +22,11 @@
 
 ## 2. 两个部分
 
-**第一部分, 题库位置.** 用 markdown 链接指向 quiz 那个 Task 的 `README-cn.md` (即题库真身), 让 `<type>-quiz-cn` skill 知道去哪读题.
+**第一部分, 题库位置.** 用 markdown 链接指向 quiz 那个 Task 的 `README-cn.md` (即题库真身), 让 `{{TYPE}}-quiz-cn` skill 知道去哪读题.
 
 这部分容易, forge 按固定目录名 `NN-prove-i-get-it` 就能定位. 一句话说清是哪个 Task, 顺带给出题量.
 
-**第二部分, 考法自定义 (可选).** 人类在这里写对 `<type>-quiz-cn` 行为的特殊要求和说明. 例如: 默认抽几道, 是否按主题分组考, 哪些题偏重, 用什么口吻, 有没有时间限制, 及格线怎么算.
+**第二部分, 考法自定义 (可选).** 人类在这里写对 `{{TYPE}}-quiz-cn` 行为的特殊要求和说明. 例如: 默认抽几道, 是否按主题分组考, 哪些题偏重, 用什么口吻, 有没有时间限制, 及格线怎么算.
 
 没有特殊要求就写一句 "没有特殊要求, 按 skill 默认来".
 

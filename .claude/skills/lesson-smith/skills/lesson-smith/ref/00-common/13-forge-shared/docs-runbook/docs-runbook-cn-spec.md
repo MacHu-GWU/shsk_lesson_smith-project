@@ -1,6 +1,6 @@
-# docs/<type>/02-<type>-runbook-cn.md 规范, 中文版
+# docs/{{TYPE}}/02-{{TYPE}}-runbook-cn.md 规范, 中文版
 
-**适用范围**: <type> 类型 repo 的 `docs/<type>/02-<type>-runbook-cn.md`, 由 `lesson-smith-<type>-forge` 生成, 给 `<type>-learn-cn` skill 消费.
+**适用范围**: {{TYPE}} 类型 repo 的 `docs/{{TYPE}}/02-{{TYPE}}-runbook-cn.md`, 由 `lesson-smith-{{TYPE}}-forge` 生成, 给 `{{TYPE}}-learn-cn` skill 消费.
 
 **配套骨架**: [docs-runbook-cn-template.md](docs-runbook-cn-template.md).
 
@@ -17,7 +17,7 @@
 它只管 "怎么把要学的东西跑起来":
 
 - 不讲知识 (知识在 `examples/` 和素材里).
-- 不做索引 (那是 `01-<type>-learn-cn.md` 的活).
+- 不做索引 (那是 `01-{{TYPE}}-learn-cn.md` 的活).
 
 ---
 

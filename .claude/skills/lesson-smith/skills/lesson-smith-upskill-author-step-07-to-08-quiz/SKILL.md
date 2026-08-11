@@ -25,7 +25,7 @@ disable-model-invocation: true
 
 - `ref/00-common/11-quiz-readme-spec/`: 题库真身的问答结构 (每题一个 H2, 四段).
 - `ref/00-common/12-quiz-ticket-spec/`: 它的 TICKET, 内容固定极简.
-- 这两份和另一类共用, 里面的 `<type>` 是占位符, **写进 repo 时一律换成 `upskill`**.
+- 这两份和另一类共用, 里面的 `{{TYPE}}` 是占位符, **写进 repo 时一律换成 `upskill`**.
 
 ---
 

@@ -34,11 +34,13 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 - `ref/agent-skill-interaction-pattern-cn.md`: 通用交互模式中文版, 生成子 skill 时拷一份进各自的 `ref/` 下.
 - `ref/00-common/11-quiz-readme-spec/` 与 `ref/03-showcase/showcase-demo-readme-spec/`: 题库真身与讲故事底稿的格式, 用来核对定位到的那两个 Task 对不对.
 
-### 素材里的 `<type>` 是占位符
+### 素材里的 `{{TYPE}}` 是占位符
 
-`13-forge-shared/` 那一层被 upskill 与 showcase 共用, 所以里面的类型名一律写成 `<type>`. **拷过去之后必须全部替换成 `showcase`**, 路径, skill 名, frontmatter 里的 `name` 与 `description` 全算.
+`13-forge-shared/` 那一层被 upskill 与 showcase 共用, 所以里面的类型名一律写成 `{{TYPE}}`. **拷过去之后必须全部替换成 `showcase`**, 路径, skill 名, frontmatter 里的 `name` 与 `description` 全算.
 
-漏掉一个的后果是产出一条指向不存在的路径的链接, 而且不报错. 所以 Phase 6 有一条硬检查: **生成的文件里 grep `<type>`, 必须 0 命中.**
+漏掉一个的后果是产出一条指向不存在的路径的链接, 而且不报错. **替换是纯机械的**: `{{TYPE}}` 一律换成 `showcase`, 没有例外, 不用判断上下文.
+
+所以 Phase 6 有一条硬检查: **生成的文件里 grep `{{`, 必须 0 命中.** 用 `{{` 而不是完整的占位符去 grep, 是因为万一拼错了 (写成 `{TYPE}` 或 `{{type}}`) 那样也能抓到.
 
 `13-forge-shared/` 之外的两份 (demo 与 publish) 写死 `showcase`, 不带占位符, 照常直接拷.
 
@@ -149,7 +151,7 @@ ref/agent-skill-interaction-pattern-cn.md           ->  上面四个 skill 各�
    - 每个 SKILL.md 的 `name` 等于它的目录名.
    - 每个 SKILL.md 都引到 `docs/showcase/` 下对应的 `-cn` 文件.
    - 每个生成的 skill 的 `ref/` 下都有交互模式, 且 SKILL.md 加载了它.
-   - **产出的文件里 grep `<type>`, 必须 0 命中.** 有命中就是共享模板的占位符没换干净.
+   - **产出的文件里 grep `{{`, 必须 0 命中.** 有命中就是共享模板的占位符没换干净, 那会产出一条指向不存在路径的链接.
    - 5 份 doc 都非空, 且里面指向 `examples/` 的链接都是 `-cn` 的.
    - **publish 清单里的铁律删除已经展开成真实路径, 不是停在 glob**, 且语种收敛那一节写明了哪一版留哪一版删.
 3. 用 uvx 跑 `lesson-smith lint` 看仓库结构是否仍合规 (`uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .`; `<version>` 与 pin 版本的说明见 `ref/00-common/01-repo-layout.md` 第 8 节, 本地已装 package 则直接 `lesson-smith lint`).

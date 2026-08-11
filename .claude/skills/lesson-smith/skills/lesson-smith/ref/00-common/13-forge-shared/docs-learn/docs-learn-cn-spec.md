@@ -1,6 +1,6 @@
-# docs/<type>/01-<type>-learn-cn.md 规范, 中文版
+# docs/{{TYPE}}/01-{{TYPE}}-learn-cn.md 规范, 中文版
 
-**适用范围**: <type> 类型 repo 的 `docs/<type>/01-<type>-learn-cn.md`, 由 `lesson-smith-<type>-forge` 生成, 给 `<type>-learn-cn` skill 消费.
+**适用范围**: {{TYPE}} 类型 repo 的 `docs/{{TYPE}}/01-{{TYPE}}-learn-cn.md`, 由 `lesson-smith-{{TYPE}}-forge` 生成, 给 `{{TYPE}}-learn-cn` skill 消费.
 
 **配套骨架**: [docs-learn-cn-template.md](docs-learn-cn-template.md).
 
@@ -37,13 +37,13 @@ repo 里除 `examples/` 渐进序列以外, 要学的东西: 根目录代码, �
 
 ### 2.2 引导路径
 
-`examples/01, 02 ...` 的渐进序列就是学生要走的路, `<type>-learn-cn` skill 按它往前推.
+`examples/01, 02 ...` 的渐进序列就是学生要走的路, `{{TYPE}}-learn-cn` skill 按它往前推.
 
 这部分 forge 扫一遍 `examples/` 目录就能得到, 容易. **只概述整条线怎么推进** (分成几段, 每段学到什么), 并点向 `examples/01` 那个索引 Task 和 `docs/tasks/SYLLABUS-cn.md`.
 
 - 对情况 B, 标明每一段路径覆盖第 1 节的哪些素材.
 - **不要逐条复述每个 Task 的正文.**
-- **走到教学 Task 为止.** 主线之后那些特殊 Task 各归自己的 skill 管, 不在带学路径里 (quiz 归 `<type>-quiz-cn`; 这门课如果有 demo 环节, 那个归 `<type>-demo-cn`). **收尾 Task 归你**, 它本身就是教学内容.
+- **走到教学 Task 为止.** 主线之后那些特殊 Task 各归自己的 skill 管, 不在带学路径里 (quiz 归 `{{TYPE}}-quiz-cn`; 这门课如果有 demo 环节, 那个归 `{{TYPE}}-demo-cn`). **收尾 Task 归你**, 它本身就是教学内容.
 
 ---
 

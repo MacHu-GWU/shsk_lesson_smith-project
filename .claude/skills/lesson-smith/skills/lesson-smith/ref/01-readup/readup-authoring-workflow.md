@@ -110,7 +110,7 @@ readup 是纯阅读型仓库: 不带任何 AI 学习工具链 (没有带学, 自
 
 主线写完了, 现在补两头. 两个都要写完, `examples/` 才算齐.
 
-**结尾: 收尾 Task.** 放在最后一个位置. 它梳理这门课学了什么, 学完应该达到什么水平; 如果还想更进一步, 给出拔高方向: 可以搜索引擎搜哪些关键字, 以及一句话的话题, 方便学生直接复制粘贴去喂给 AI, 深挖, 拓宽边界.
+**结尾: 收尾 Task.** 放在最后一个位置. 它干两件事: 回望 (梳理这门课学了什么, 学完该到什么水平) 和拔高 (往哪走, 给搜索关键字与可粘贴的话题). 规范见 [00-common/14-wrap-up-readme-spec](../00-common/14-wrap-up-readme-spec/wrap-up-readme-cn-spec.md), 那里有一条红线: **拔高只提, 决不能教.**
 
 **开头: 索引 Task.** 放在 `examples/01-title/`, 位置固定在 01, 目录名随课程而定. 它给刚进来的人一张地图: 这门课有哪些 Task, 怎么分组, 该按什么顺序读. 规范见 [00-common/05-overview-readme-spec](../00-common/05-overview-readme-spec/overview-readme-cn-spec.md) 与 [00-common/06-overview-ticket-spec](../00-common/06-overview-ticket-spec/overview-ticket-cn-spec.md).
 

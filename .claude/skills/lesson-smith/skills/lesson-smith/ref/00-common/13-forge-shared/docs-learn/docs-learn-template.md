@@ -1,6 +1,6 @@
 # [Course Name] Learning Index
 
-> What this course covers, where each piece lives, and the order to work through it. The <type>-learn skill uses this index to guide you.
+> What this course covers, where each piece lives, and the order to work through it. The {{TYPE}}-learn skill uses this index to guide you.
 
 ## 1. Study Material
 
@@ -8,7 +8,7 @@
 
 - [some_module at the repo root](../../some_module/): [what to take from it] ([why it matters, or a gotcha])
 - [a section of some doc](../../docs/some-doc.md): [what to take from it] ([what to watch out for])
-- [the tasks section of mise.toml](../../mise.toml): [the commands you will reach for most] (see docs/<type>/02-<type>-runbook.md for how to run them)
+- [the tasks section of mise.toml](../../mise.toml): [the commands you will reach for most] (see docs/{{TYPE}}/02-{{TYPE}}-runbook.md for how to run them)
 
 ## 2. Guided Path
 

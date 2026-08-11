@@ -38,7 +38,7 @@
 
 **template**: 纯骨架. frontmatter 加 `[方括号]` 占位内容, 结构就是真实的 markdown 结构. **一个注释都没有.** 起草时整份复制过去填空, **复制完不用删任何东西**.
 
-**一个例外: 多类共享的 spec 目录带 `<type>` 占位符.** `11`, `12`, `13-forge-shared/` 那几份被 upskill 与 showcase 共用, 里面的类型名一律写成 `<type>`, 拷过去之后要全部替换. 这是为共享付的唯一代价, 而它可以机械验证: 产出的文件里 grep `<type>` 必须 0 命中, 两个 forge SKILL 的 Verify 阶段都钉了这一条.
+**一个例外: 多类共享的 spec 目录带 `{{TYPE}}` 占位符.** `11`, `12`, `13-forge-shared/` 那几份被 upskill 与 showcase 共用, 里面的类型名一律写成 `{{TYPE}}`, 拷过去之后要全部替换. 这是为共享付的唯一代价, 而它可以机械验证: 产出的文件里 grep `{{TYPE}}` 必须 0 命中, 两个 forge SKILL 的 Verify 阶段都钉了这一条.
 
 spec 开头点名它配套的 template; template 不反向引用 spec (它要能被原样复制).
 

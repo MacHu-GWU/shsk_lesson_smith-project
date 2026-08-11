@@ -140,7 +140,7 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 
 主线和 quiz 都写完了, 现在补两头. 两个都写完, `examples/` 才算齐.
 
-**结尾: 收尾 Task.** 放在最后一个位置, 在 quiz 之后. 它梳理这门课学了什么, 学完应该达到什么水平; 如果还想更进一步, 给出拔高方向: 可以搜索引擎搜哪些关键字, 以及一句话的话题, 方便学生直接复制粘贴去喂给 AI, 深挖, 拓宽边界.
+**结尾: 收尾 Task.** 放在最后一个位置, 在 quiz 之后. 它干两件事: 回望 (梳理这门课学了什么, 学完该到什么水平) 和拔高 (往哪走, 给搜索关键字与可粘贴的话题). 规范见 [00-common/14-wrap-up-readme-spec](../00-common/14-wrap-up-readme-spec/wrap-up-readme-cn-spec.md), 那里有一条红线: **拔高只提, 决不能教.**
 
 **开头: 索引 Task.** 放在 `examples/01-title/`, 位置固定在 01, 目录名随课程而定. 它给刚进来的人一张地图: 这门课有哪些 Task, 怎么分组, 该按什么顺序读. 规范见 [00-common/05-overview-readme-spec](../00-common/05-overview-readme-spec/overview-readme-cn-spec.md) 与 [00-common/06-overview-ticket-spec](../00-common/06-overview-ticket-spec/overview-ticket-cn-spec.md).
 
@@ -173,7 +173,7 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 - `docs/upskill/` 下三份 doc: 学习索引, 跑起来的操作, quiz 薄壳.
 - `.claude/skills/` 下两个子 skill: `upskill-learn-cn` 与 `upskill-quiz-cn`.
 
-规范与模板都在 [00-common/13-forge-shared/](../00-common/13-forge-shared/) 下 (和 showcase 共用, 里面的 `<type>` 落地时换成 `upskill`), 每份中英各一套, **当前只产 `-cn` 那一套**.
+规范与模板都在 [00-common/13-forge-shared/](../00-common/13-forge-shared/) 下 (和 showcase 共用, 里面的 `{{TYPE}}` 落地时换成 `upskill`), 每份中英各一套, **当前只产 `-cn` 那一套**.
 
 这一步 AI 猜不出的部分要创作者兜底拍板: 哪些算学习素材, runbook 里有哪些隐性步骤, quiz 想怎么考. 为方便编辑那次调用的输入, 用模板 [prompts/run-lesson-smith-upskill-forge.md](../../prompts/run-lesson-smith-upskill-forge.md).
 

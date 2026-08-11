@@ -81,13 +81,13 @@ docs/upskill/03-upskill-quiz-cn.md     quiz 薄壳, 指向题库真身
 - README 不走教学 README 的正文结构, 而走 [00-common/11-quiz-readme-spec](../00-common/11-quiz-readme-spec/quiz-readme-cn-spec.md) 的问答结构.
 - TICKET 另有规范 [00-common/12-quiz-ticket-spec](../00-common/12-quiz-ticket-spec/quiz-ticket-cn-spec.md), 内容固定极简 (读一遍题库加 `/upskill-quiz-cn` 测到 70%), 结构仍沿用通用的 task ticket spec.
 
-这两份**和 showcase 共用**, 所以住在通用层, 落地时把里面的 `<type>` 换成 `upskill`.
+这两份**和 showcase 共用**, 所以住在通用层, 落地时把里面的 `{{TYPE}}` 换成 `upskill`.
 
 **`docs/tasks/`** 下的东西全部由 `lesson-smith sync` 生成, 不手写. SYLLABUS 对 upskill 来说只有 `01-upskill` 一段.
 
 **`docs/upskill/`** 下三份 doc 与两个子 skill 都由 `lesson-smith-upskill-forge` 产出. **它要读的规范与模板一份都不在这一层**, 全部在 [00-common/13-forge-shared/](../00-common/13-forge-shared/): [docs-learn](../00-common/13-forge-shared/docs-learn/docs-learn-cn-spec.md), [docs-runbook](../00-common/13-forge-shared/docs-runbook/docs-runbook-cn-spec.md), [docs-quiz](../00-common/13-forge-shared/docs-quiz/docs-quiz-cn-spec.md), 加上两份 SKILL 模板.
 
-**upskill 的 forge 产物和 showcase 完全重合**, 所以那些素材全归通用层, upskill 这一层没有自己的 `forge/` 目录. showcase 只是在同一套之上多两份 (demo 与 publish). 素材里的 `<type>` 是占位符, 落地时换成 `upskill`.
+**upskill 的 forge 产物和 showcase 完全重合**, 所以那些素材全归通用层, upskill 这一层没有自己的 `forge/` 目录. showcase 只是在同一套之上多两份 (demo 与 publish). 素材里的 `{{TYPE}}` 是占位符, 落地时换成 `upskill`.
 
 那一层**分语种**: 每份 doc 中英各一套 spec 加 template, 子 skill 也是无后缀的英文版与 `-cn` 版各一份. **但 forge 当前只产 `-cn` 那一套**, 因为无后缀的英文课程正文留空, 英文索引只会指向一堆空文件. 英文那一套规范留着, 等多语种模块回来接手.
 

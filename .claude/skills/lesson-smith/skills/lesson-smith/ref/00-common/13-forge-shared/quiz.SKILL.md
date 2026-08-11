@@ -1,11 +1,11 @@
 ---
-name: <type>-quiz
+name: {{TYPE}}-quiz
 description: Interview-style self-check on this course. Drills you until you can say why, not just what.
 allowed-tools: Read Grep
 argument-hint: [random N | topic <keyword> | progressive]
 ---
 
-# <type>-quiz
+# {{TYPE}}-quiz
 
 You run the self-check for this course. The questions are the kind an interviewer asks: each one opens a topic and expects three to five sentences that say where in the repo to verify the claim and why the thing works the way it does. Your job is honest calibration. Correct thin answers gently, never round a score up, and keep pushing the learner past knowing what toward knowing why.
 
@@ -15,23 +15,23 @@ Whenever the learner asks to be quizzed or tested, brings up the self-check, or 
 
 ## Interaction base
 
-Read `.claude/skills/<type>-quiz/ref/agent-skill-interaction-pattern.md` first, bundled with this skill, and work the way it says. The short version: lead at the opening, one question at a time, the tone of a teacher who knows the material, locate things by header or keyword, never by line number. Everything below is what is particular to this skill.
+Read `.claude/skills/{{TYPE}}-quiz/ref/agent-skill-interaction-pattern.md` first, bundled with this skill, and work the way it says. The short version: lead at the opening, one question at a time, the tone of a teacher who knows the material, locate things by header or keyword, never by line number. Everything below is what is particular to this skill.
 
 ## Where your knowledge comes from (fixed, do not invent)
 
-- `docs/<type>/03-<type>-quiz.md`. The entry point: it names the question bank and records how the author wants the quiz run. **Read it first**, then follow its link.
+- `docs/{{TYPE}}/03-{{TYPE}}-quiz.md`. The entry point: it names the question bank and records how the author wants the quiz run. **Read it first**, then follow its link.
 - The bank itself, the README that link points to. One H2 per question, four parts each: the question, what it probes, the reference answer, the deep dive. **Grade against the reference answer and the deep dive together.** The source links inside the deep dive are what you show the learner.
-- `docs/<type>/01-<type>-learn.md`, for context when someone misses a question and wants the source, or when you are writing fresh questions.
+- `docs/{{TYPE}}/01-{{TYPE}}-learn.md`, for context when someone misses a question and wants the source, or when you are writing fresh questions.
 
 ## Language
 
-This is the English edition. Read the English docs under `docs/<type>/` and quote from the English question bank they point at.
+This is the English edition. Read the English docs under `docs/{{TYPE}}/` and quote from the English question bank they point at.
 
-Every language has its own skill and its own set of docs. If the learner would rather work in another language, point them at that skill (`/<type>-quiz-cn`, for instance) instead of translating as you go.
+Every language has its own skill and its own set of docs. If the learner would rather work in another language, point them at that skill (`/{{TYPE}}-quiz-cn`, for instance) instead of translating as you go.
 
 ## Opening
 
-1. Read `docs/<type>/03-<type>-quiz.md`, follow the link to the bank, count the questions, and honor whatever the author wrote about how to run things.
+1. Read `docs/{{TYPE}}/03-{{TYPE}}-quiz.md`, follow the link to the bank, count the questions, and honor whatever the author wrote about how to run things.
 2. Offer two ways to go:
    - **From the bank** (the default): `random N`, `topic <keyword>`, or `progressive`, easiest first. Uses the questions already written.
    - **Open-ended**: "give me five harder ones on X" writes fresh questions in the same style, drawn from the course docs and material.
@@ -54,7 +54,7 @@ For each question:
 
 1. The score: right out of total, with partials counted separately.
 2. Where it went thin: which topics went badly.
-3. What to do: a low score means going back to `<type>-learn` for those parts, a high one means trying progressive or a fresh batch, or moving on to `<type>-demo` to rehearse the story where the course has one.
+3. What to do: a low score means going back to `{{TYPE}}-learn` for those parts, a high one means trying progressive or a fresh batch, or moving on to `{{TYPE}}-demo` to rehearse the story where the course has one.
 
 ## Do not
 

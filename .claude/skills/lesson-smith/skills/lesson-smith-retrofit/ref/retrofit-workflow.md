@@ -41,7 +41,7 @@ retrofit 与从零创作的关系: **retrofit 就是 author, 不是别的东西*
 
 | 形态 | 判据 (只看序号 < 50 的 branch) | 课程材料在 | 截图在 |
 | :--- | :--- | :--- | :--- |
-| learn-this-project | 只有一个, 名为 `01-Learn-This-Project` (大小写不敏感) | `examples/NN-title/` 与 `docs/learn-this-project/` | 通常已在各 mini task 目录内 |
+| learn-this-project | 只有一个, 名为 `01-Learn-This-Project` (大小写不敏感) | `examples/NN-title/` 与 `docs/learn-this-project/` | 通常已在各 Task 目录内 |
 | 多 branch 教程 | 有 `01`, `02`, ... 多个 | `docs/tutorials/NN-Title/` | `img/NN-Title/` |
 
 learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已经接近新规范, 迁移主要是重命名与补齐. 多 branch 形态离新规范远一些, 迁移动作更大.
@@ -60,7 +60,7 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 
 ### 3.3 产出一张迁移清单
 
-探索完不要直接动手. 先把清单摆给创作者过目: 旧 repo 停在哪个 branch, 判成哪种形态, 每个旧 tutorial 或 mini task 映射到新 repo 的哪个路径, 截图有几张各归到哪, 源代码与 AI 配置各要搬什么.
+探索完不要直接动手. 先把清单摆给创作者过目: 旧 repo 停在哪个 branch, 判成哪种形态, 每个旧 tutorial 或课时目录映射到新 repo 的哪个路径, 截图有几张各归到哪, 源代码与 AI 配置各要搬什么.
 
 清单写进新 repo 的 `examples/_lm-example-plan.md` (可进 git), 复用 author 那套约定. 创作者点头之后再进第 4 步.
 
@@ -83,7 +83,7 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 ### 4.2 映射规则
 
 - **目录名全部转小写**: 旧的 `05-Mastering-Artifacts` 变成新的 `examples/05-mastering-artifacts`. 新规范里 branch 名与目录名一律小写加连字符.
-- **一课一目录**: 旧的一个 tutorial 或 mini task 目录, 对应新的一个 `examples/NN-title/`, 里面是 `README.md`, `README-cn.md`, `TICKET.md`, `TICKET-cn.md`.
+- **一课一目录**: 旧的一个 tutorial 或课时目录, 对应新的一个 `examples/NN-title/`, 里面是 `README.md`, `README-cn.md`, `TICKET.md`, `TICKET-cn.md`.
 - **语种补齐**: 旧 repo 常常只有单语 (例如只有 `TICKET.md` 没有 `TICKET-cn.md`), 新 repo 要按 `supported-languages.json` 补齐. 照创作铁律, 缺中文就先补中文, 再据此产出英文.
 - **链接跟着语种走**: 迁过来的正文里指向 repo 内其他**文件**的相对路径链接, `-cn.md` 里一律链 `-cn` 版, 英文文件里一律链英文版; 指向**目录**的链接不带语种后缀, 两边一样. 旧 repo 常常只有单语链接, 补语种时要顺手把后缀改对. 后面产英文版时这条由重写管线自己兜底 (见基座的 `ref/rewrite-en-spec.md` 第 5 节), 不用再显式交代. 顺带: 旧 repo 里若有目录名带 `-cn`, 那是命名错误, 迁过来时改掉.
 - **截图跟着课走**: 旧的 `img/05-Mastering-Artifacts/05-Mastering-Artifacts-1.png` 变成新的 `examples/05-mastering-artifacts/img/05-mastering-artifacts-1.png`, 文件名一并转小写; 正文里的引用改成 `./img/...` 的相对路径.
@@ -102,18 +102,18 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 
 | type | 精修要补的环节 |
 | :--- | :--- |
-| readup | 开头篇, 结尾的梳理与拔高篇, 各 mini task 之间的承上启下 |
-| upskill | 上面三项, 外加 quiz 题库 mini task (`examples/NN-prove-i-get-it`) |
-| showcase | 上面三项, 外加 quiz 题库, 以及 demo 讲故事底稿 mini task (`examples/NN-how-i-build-this`, 排在 quiz 之后, 收尾之前) |
+| readup | 索引 Task, 收尾 Task, 各 Task 之间的承上启下 |
+| upskill | 上面三项, 外加 quiz 题库 Task (`examples/NN-prove-i-get-it`) |
+| showcase | 上面三项, 外加 quiz 题库, 以及 demo 讲故事底稿 Task (`examples/NN-how-i-build-this`, 排在 quiz 之后, 收尾之前) |
 
-开头篇一般是 overview, 综述, 讲清这门课的意义, 背景与怎么学; 结尾篇梳理学了什么, 学完到什么水平, 并给出拔高方向 (几个搜索关键字加一句话话题, 方便创作者的学生直接喂给 AI 深挖). 承上启下是把各 mini task 之间的衔接补顺, 让它读起来是一条线而不是一堆独立文章.
+索引 Task 给整门课一张地图 (有哪些 Task, 怎么分组, 按什么顺序读); 收尾 Task 回望学了什么, 学完到什么水平, 并给出拔高方向 (几个搜索关键字加一句话话题, 方便创作者的学生直接喂给 AI 深挖). 承上启下是把各 Task 之间的衔接补顺, 让它读起来是一条线而不是一堆独立文章.
 
 各环节照本类型的 spec 写, 全部到基座 lesson-smith 的 `ref/` 下读:
 
-- 开头篇与结尾篇是普通教学 mini task, 走 `ref/00-common/03-task-readme-spec/` 与 `ref/00-common/04-task-ticket-spec/`.
-- quiz 题库走 `ref/00-common/11-quiz-readme-spec/`, 它的 TICKET 走 `ref/00-common/12-quiz-ticket-spec/`. 两份 upskill 与 showcase 共用, 里面的 `<type>` 换成本 repo 的类型名.
+- 索引 Task 走 `ref/00-common/05-overview-readme-spec/` 与 `ref/00-common/06-overview-ticket-spec/`.
+- 收尾 Task 的 README 走 `ref/00-common/14-wrap-up-readme-spec/` (那里有条红线: 拔高只提, 决不能教), TICKET 走通用的 `ref/00-common/04-task-ticket-spec/`.
+- quiz 题库走 `ref/00-common/11-quiz-readme-spec/`, 它的 TICKET 走 `ref/00-common/12-quiz-ticket-spec/`. 两份 upskill 与 showcase 共用, 里面的 `{{TYPE}}` 换成本 repo 的类型名.
 - demo 底稿走 `ref/03-showcase/showcase-demo-readme-spec/`, 它的 TICKET 走 `ref/03-showcase/showcase-demo-ticket-spec/`.
-- `examples/README` 系列索引走本类型的 examples-readme-spec, 迁徙改完编号顺序之后要重写它.
 
 这一步 AI 提建议, 人类拍板. quiz 的题目清单尤其要先讨论几轮再动笔, 做法照本类型 authoring workflow 里 quiz 那一步 (规划写进 `examples/_lm-quiz-plan.md`).
 

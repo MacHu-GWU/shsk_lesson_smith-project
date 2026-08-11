@@ -1,6 +1,6 @@
-# Spec for docs/<type>/01-<type>-learn.md (English)
+# Spec for docs/{{TYPE}}/01-{{TYPE}}-learn.md (English)
 
-**Scope**: the file `docs/<type>/01-<type>-learn.md` in a `<type>` repo. Written by `lesson-smith-<type>-forge`, read by the `<type>-learn` skill.
+**Scope**: the file `docs/{{TYPE}}/01-{{TYPE}}-learn.md` in a `{{TYPE}}` repo. Written by `lesson-smith-{{TYPE}}-forge`, read by the `{{TYPE}}-learn` skill.
 
 **Skeleton**: [docs-learn-template.md](docs-learn-template.md).
 
@@ -37,13 +37,13 @@ Give three things per entry: a markdown link (to the file, and to a specific hea
 
 ## 3. Section 2, Guided Path
 
-The numbered tasks under `examples/` are the route, and the `<type>-learn` skill walks the learner along it.
+The numbered tasks under `examples/` are the route, and the `{{TYPE}}-learn` skill walks the learner along it.
 
 forge can derive this section by listing the directory, so it is the easy half. Keep it at the level of **how the route progresses as a whole**: break it into a few stages and say what each stage leaves the learner with. Link out to the index task at `examples/01` and to `docs/tasks/SYLLABUS`.
 
 - Under shape B, name which study-material entries each stage draws on.
 - **Do not summarize the tasks one by one.** That is what the tasks themselves are for.
-- **Stop at the teaching tasks.** The special tasks after the mainline each belong to their own skill and are not part of the guided path (quiz belongs to `<type>-quiz`; if the course has a demo stage, that one belongs to `<type>-demo`). **The wrap-up task is yours**, it is teaching material like any other.
+- **Stop at the teaching tasks.** The special tasks after the mainline each belong to their own skill and are not part of the guided path (quiz belongs to `{{TYPE}}-quiz`; if the course has a demo stage, that one belongs to `{{TYPE}}-demo`). **The wrap-up task is yours**, it is teaching material like any other.
 
 ---
 

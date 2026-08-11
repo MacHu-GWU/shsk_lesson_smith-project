@@ -1,6 +1,6 @@
-# Spec for docs/<type>/03-<type>-quiz.md (English)
+# Spec for docs/{{TYPE}}/03-{{TYPE}}-quiz.md (English)
 
-**Scope**: the file `docs/<type>/03-<type>-quiz.md` in an <type> repo. Written by `lesson-smith-<type>-forge`, read by the `<type>-quiz` skill.
+**Scope**: the file `docs/{{TYPE}}/03-{{TYPE}}-quiz.md` in an {{TYPE}} repo. Written by `lesson-smith-{{TYPE}}-forge`, read by the `{{TYPE}}-quiz` skill.
 
 **Skeleton**: [docs-quiz-template.md](docs-quiz-template.md).
 
@@ -22,7 +22,7 @@ The two are written for different readers. The bank is course content a learner 
 
 ## 2. The two sections
 
-**Where the bank lives.** A markdown link to the README of the quiz task, so `<type>-quiz` knows where to read from. forge finds it by the fixed directory name `NN-prove-i-get-it`. One sentence naming the task, plus the number of questions it holds.
+**Where the bank lives.** A markdown link to the README of the quiz task, so `{{TYPE}}-quiz` knows where to read from. forge finds it by the fixed directory name `NN-prove-i-get-it`. One sentence naming the task, plus the number of questions it holds.
 
 **How to run the quiz (optional).** Whatever the author wants done differently: how many questions to draw by default, whether to group by topic, which areas to weight, what tone to take, whether there is a time limit, where the pass mark sits.
 

@@ -1,6 +1,6 @@
 # [课程名] 学习索引
 
-> 这门课要学的东西有哪些, 分别在哪, 按什么顺序过. <type>-learn-cn skill 就是按这份索引带着你往前走的.
+> 这门课要学的东西有哪些, 分别在哪, 按什么顺序过. {{TYPE}}-learn-cn skill 就是按这份索引带着你往前走的.
 
 ## 1. 学习素材
 
@@ -8,7 +8,7 @@
 
 - [根目录的 some_module](../../some_module/): [学什么] ([为什么重要, 或者有什么坑])
 - [某份文档的某一节](../../docs/some-doc-cn.md): [学什么] ([要留意什么])
-- [mise.toml 的 tasks 部分](../../mise.toml): [常用命令] (怎么跑见 docs/<type>/02-<type>-runbook-cn.md)
+- [mise.toml 的 tasks 部分](../../mise.toml): [常用命令] (怎么跑见 docs/{{TYPE}}/02-{{TYPE}}-runbook-cn.md)
 
 ## 2. 引导路径
 

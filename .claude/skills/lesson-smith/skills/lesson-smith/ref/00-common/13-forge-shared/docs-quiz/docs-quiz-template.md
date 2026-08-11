@@ -1,6 +1,6 @@
 # [Course Name] Quiz
 
-> The <type>-quiz skill reads this file to find the question bank and to learn how you want the quiz run. The questions themselves are not here; they live in the task linked below.
+> The {{TYPE}}-quiz skill reads this file to find the question bank and to learn how you want the quiz run. The questions themselves are not here; they live in the task linked below.
 
 ## 1. Where the Question Bank Lives
 
@@ -8,6 +8,6 @@ The bank is the README of the quiz task: [examples/NN-prove-i-get-it](../../exam
 
 ## 2. How to Run the Quiz
 
-[Anything you want <type>-quiz to do differently: how many questions to draw by default, whether to group by topic, which areas to weight, what tone to take, time limits, where the pass mark sits. If you have no preferences, keep the line below.]
+[Anything you want {{TYPE}}-quiz to do differently: how many questions to draw by default, whether to group by topic, which areas to weight, what tone to take, time limits, where the pass mark sits. If you have no preferences, keep the line below.]
 
-No special requirements; use the <type>-quiz defaults.
+No special requirements; use the {{TYPE}}-quiz defaults.
