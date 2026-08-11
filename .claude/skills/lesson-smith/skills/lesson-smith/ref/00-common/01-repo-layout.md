@@ -16,16 +16,19 @@
 
 关于 Task, 三条要记住:
 
-- **README 与 TICKET 必然成对.** 有 Task 就有这两份, 一份说教什么, 一份说怎么验收. 只写一份就是欠账, 统稿时一定返工.
+- **README 与 TICKET 必然成对.** 有 Task 就有这两份, 一份说教什么, 一份说怎么验收.
 - **Task 只是一个位置无关的单位.** 它可能落在 branch 根目录 (evolve), 也可能落在 `examples/NN-title/` 下 (readup, upskill, showcase). 落在哪里由类型的特化文档定, 规范本身是同一份.
-- **不再用 tutorial, mini task 这类叫法.** 它们指的都是 Task. 混着用的直接后果是各 spec 之间对不上, 读的人以为是两种东西.
+- **人类嘴里的别名, 都映射回 Task.** 口头怎么说都行, 但**写进 spec 一律用 Task**, 否则各 spec 之间会对不上, 读的人以为是两种东西.
+  - **tutorial**: 指一个 Task 里 `README` 那份教学.
+  - **example**, **mini task**: 指 readup, upskill, showcase 三类里 `examples/NN-title/` 下那个 Task 的 `README`.
 
 ---
 
 ## 2. 语种
 
-- **当前只写中文.** 一门课的全部文档都是 `-cn` 版, 工作流里没有任何翻译或重写环节.
-- **语种后缀的位置仍然保留.** 中文写作 `-cn`, 无后缀那个位置留给英文. 多语种以后作为独立模块单独做, 不在现在这条线里.
+- **当前只写中文.** 正文全部落在 `-cn` 版上, 工作流里没有任何翻译或重写环节.
+- **英文版文件仍然存在, 只是留空.** 布局不变, 每份 `-cn` 都有一个无后缀的同名文件占位, 现在里面没有内容. 等多语种作为独立模块单独做的时候才填.
+- **所以英文那一套约束不许删.** 长度预算, 字符集这些规则照旧写在规范里 (见第 6 节), 只是暂时不生效. 删掉的代价是多语种模块接手时得重新推导一遍.
 - 支持哪些语种由 skill 根目录的 `supported-languages.json` 声明, 目前只有 `cn`.
 
 ---
@@ -46,13 +49,19 @@
 
 ```text
 lm.json
+README.md                              留空
 README-cn.md
+README-ORIGINAL.md                     留空
 README-ORIGINAL-cn.md
+TICKET.md                              留空
 TICKET-cn.md
 docs/tasks/
-docs/tasks/SYLLABUS-cn.md
+docs/tasks/SYLLABUS.md                 生成
+docs/tasks/SYLLABUS-cn.md              生成
 docs/tasks/01-branch-name/
+docs/tasks/01-branch-name/README.md
 docs/tasks/01-branch-name/README-cn.md
+docs/tasks/01-branch-name/TICKET.md
 docs/tasks/01-branch-name/TICKET-cn.md
 docs/tasks/02-branch-name/
 ```
@@ -97,16 +106,21 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见各自的�
 
 ### 6.3 长度预算
 
-| 字段 | 出现在 | 下限 | 上限 |
-| :--- | :--- | ---: | ---: |
-| `description` | `README.md`, `TICKET.md` | 无 | 400 |
-| `description` | `README-ORIGINAL.md` | 200 | 400 |
-| `github_about` | `README-ORIGINAL.md` | 无 | 200 |
+单位是字符, 只算双引号内的内容.
 
+| 字段 | 出现在 | 中文下限 | 中文上限 | 英文下限 | 英文上限 |
+| :--- | :--- | ---: |---------:| ---: | ---: |
+| `description` | `README.md`, `TICKET.md` | 无 |      400 | 无 | 800 |
+| `description` | `README-ORIGINAL.md` | 200 |      400 | 400 | 800 |
+| `github_about` | `README-ORIGINAL.md` | 无 |      150 | 无 | 300 |
+
+- **英文那几档现在是备用的.** 英文文件留空, 所以这几个数字暂时不生效; 留在表里是因为多语种模块接手时要照这个预算写, 不该让它重新推导一遍.
 - **紧度按海拔分档.** Task 级的 `README` 与 `TICKET` 要紧, 1 到 2 句. Lesson 级的 `README-ORIGINAL` 是整门课的门面, 会进 org 级课程索引, 允许多句写长.
 - **上限是硬线, 不是靶心.** 内容说完就停, 一段 280 字的 description 完全可以比一段 395 字的更好.
-- **`README-ORIGINAL` 的下限只用来挡敷衍.** 概述, 动机, 收获三件事都认真写清楚, 自然就过线, 不需要盯着字数凑.
-- **`github_about` 的上限性质不同.** description 的上限是我们自己定的风格预算; 这一条是外部限制, GitHub 的 About box 约 350 字符就截断, 而且不分语种. 所以它没有下限, 短是优点.
+- **`README-ORIGINAL` 的中文下限只用来挡敷衍.** 概述, 动机, 收获三件事都认真写清楚, 自然就过线, 不需要盯着字数凑.
+- **英文上限为什么翻倍.** 一个字符在不同书写系统里承载的信息量差得远, 400 字符的中文写成英文大约要 700 到 900 字符. 一个全局上限要么卡死每一份英文, 要么让中文永远用不满.
+- **`README-ORIGINAL` 的英文下限则是防压缩.** 英文版是重写不是压缩, 如果它只比中文版长一点点, 基本可以断定内容被砍过.
+- **`github_about` 的上限性质不同.** description 的上限是我们自己定的风格预算; 这一条是外部限制, GitHub 的 About box 约 350 字符就截断, 而且不分语种. 所以英文只给一点余量, 不像 description 那样翻倍, 也没有下限, 短是优点.
 
 ### 6.4 各自回答什么
 
