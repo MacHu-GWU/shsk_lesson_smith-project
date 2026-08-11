@@ -66,7 +66,7 @@ frontmatter 的两句也是一对, 分工不同: README 那句是承诺 (学完�
 
 紧度按海拔走: 这是 Task 级的 description, 一句话, 说完就停. 别拿 README-ORIGINAL 那种用足预算的写法套过来. 英文那一档翻倍是为了让重写不必压缩, 不是让你多写一句.
 
-其余细节见 repo-layout.md 第 4 节.
+其余细节见 00-common/01-repo-layout.md 第 6 节.
 
 
 == 链接约定 ==
