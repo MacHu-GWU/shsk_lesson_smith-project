@@ -75,6 +75,7 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见下一小�
 带 `examples/` 的三类 repo (readup, upskill, showcase) **共用同一套位置约定**. evolve 没有这一层.
 
 **为什么这一层叫 examples 而不是 tutorials**: 如果这个 repo 最终要拿去给外面看, tutorials 给人的感觉是 "别人在教这个学生", 而 examples 给人的感觉是 "这个学生在教别人, 在展示自己怎么学会的". 后者视角更主动, 更适合展示, 所以统一用 examples.
+
 编号两位数打头, **从 01 连续, 不许跳号** (lint 查这条). 每个位置的角色是固定的:
 
 | 位置 | 是什么 | 谁有 |
@@ -228,7 +229,7 @@ uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 ```
 
 - `sync`: 快照当前 branch 的 README 与 TICKET 到 `docs/tasks/<branch>/`, 并重建 SYLLABUS.
-- `lint`: 只读校验. 目录结构, 语种完整性, 特殊 Task 的目录名与位置 (见第 4.3 节那张表), frontmatter 的 description 与 github_about, H1 字符集, TICKET 里有没有相对路径链接, SYLLABUS 内容是否与各 README 的 description 一致.
+- `lint`: 只读校验. 目录结构, 语种完整性, 唯一那个带序号 branch 的名字对不对 (`01-<type>`), 特殊 Task 的目录名与位置 (见第 4.3 节那张表), forge 产物在不在 (upskill 与 showcase), frontmatter 的 description 与 github_about, H1 字符集, TICKET 里有没有相对路径链接, SYLLABUS 内容是否与各 README 的 description 一致.
 - **lint 按语种开关.** 只有开着的语种才被检查, 关掉的整个跳过 (既不要求存在, 内容也不检查). 英文当前是关的, 所以留空的英文占位文件不会报错. 开关在 package 的 `constants.py` 里.
 - `<version>` 填创作时的最新发布版本 (当前是 0.3.0; 最新版见 https://pypi.org/pypi/shsk-lesson-smith).
 - **pin 死版本**是为了让校验规范可复现, 不随新版悄悄漂移.

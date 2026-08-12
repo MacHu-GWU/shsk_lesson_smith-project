@@ -58,7 +58,7 @@ showcase 比 upskill 多两样东西: `examples/` 里多一个 demo 讲故事底
 
 不过 showcase 是三类里**最可能有这一块的**: 它的终点是学生把这个 repo 当自己的作品拿出去讲, 而一个只有教程没有产物的 repo 讲不出故事.
 
-为什么这一层要放在 `examples/` 而不是 tutorials, 见 [showcase-repo-layout.md](showcase-repo-layout.md) 第 1 节.
+为什么这一层要放在 `examples/` 而不是 tutorials, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 4.2 节.
 
 ---
 

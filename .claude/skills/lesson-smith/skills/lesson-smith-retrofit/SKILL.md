@@ -15,7 +15,9 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(c
 
 **本 skill 是过渡性的, 且自包含.** 它服务于一批旧 repo 的一次性改造, 旧 repo 全部改造完就整个目录删掉, 基座 lesson-smith 不该为它留下任何痕迹. 所以你的主剧本与输入模板都随本 skill 放在自己的 `ref/` 与 `prompts/` 下, 而不放进基座; 但各类 spec 仍以基座为准, 本 skill 一份都不复制.
 
-## 第 0 步: 先定型, 再加载这几个 skill (不可跳过)
+---
+
+## 1. 先定型, 再加载这几个 skill (不可跳过)
 
 先读新 repo 根目录的 `lm.json`, `type` 字段就是目标类型. 然后按下表加载对应的 skill, 全部加载完再开工:
 
@@ -31,11 +33,15 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(c
 
 `lm.json` 缺失, 或 `type` 不是上面三种 (例如 `evolve`), 就停下问创作者, 不要猜.
 
-## 你的主剧本 (随本 skill 自带)
+---
+
+## 2. 你的主剧本 (随本 skill 自带)
 
 - `ref/retrofit-workflow.md`: 完整 retrofit 工作流 (6 步). 这是你的主剧本, 每一步的细节以它为准. 它就在本 skill 自己的 `ref/` 下, 不在基座里.
 
-## 必读规范 (都在 lesson-smith skill 的 ref/)
+---
+
+## 3. 必读规范 (都在 lesson-smith skill 的 ref/)
 
 - 本类型的目录结构: readup 读 `ref/01-readup/readup-repo-layout.md`, upskill 读 `ref/02-upskill/upskill-repo-layout.md`, showcase 读 `ref/03-showcase/showcase-repo-layout.md`.
 - `ref/00-common/03-task-readme-spec/`, `ref/00-common/04-task-ticket-spec/`: 每个教学 Task 的 README 与 TICKET. 迁徙时按它们重整旧正文. 索引 Task 与收尾 Task 另有专属 spec, 见主剧本第 5 步.
@@ -43,19 +49,25 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(c
 - `ref/agent-skill-interaction-pattern-cn.md`: 你和创作者互动的方式 (读中文版, 因为创作者以中文为母语).
 - 英文版当前不产出: 无后缀的英文文件全程留空, retrofit 也只写 `-cn`.
 
-## 参数
+---
+
+## 4. 参数
 
 把 `$ARGUMENTS` 解析成 `<旧 repo 绝对路径> <自由说明...>`. 第一个 token 若是一个存在的绝对路径就当旧 repo, 否则整段当自由说明, 并向创作者要旧 repo 路径.
 
 自由说明是创作者对本次改造的额外指示, 通常来自本 skill 自带的输入模板 `prompts/run-lesson-smith-retrofit.md`: 哪些旧内容要删减, 增加或更新, 顺序怎么排, 截图与非课程内容怎么处理等. 有的话在对应步骤一并采纳; 没给的按主剧本一次问一件.
 
-## 怎么带
+---
+
+## 5. 怎么带
 
 按 `ref/retrofit-workflow.md` 的 6 步走. 判断创作者当前在哪一步 (直接问, 或从新 repo 的文件系统状态推断: `examples/` 下还是空的 -> 第 1 到 3 步; 迁了一部分 -> 第 4 步; 主线齐了但缺索引 Task, 收尾 Task, quiz 或 demo -> 第 5 步; 都齐了 -> 第 6 步交棒), 从那一步接着带.
 
 遵循通用交互模式: 开场引领而不是被动问 "你想做什么", 一次一问, 跟随创作者的 context. 每步的具体做法照主剧本, 不在这里复述.
 
-## 几个关键把手
+---
+
+## 6. 几个关键把手
 
 - 旧 repo 全程只读, 唯一的例外是第 2 步的 checkout. 绝不在旧 repo 里写文件, 提交, 或丢弃创作者的未提交改动.
 - 切 branch 在探索之前: 取序号 < 50 里最大的那个. 在错的 branch 上探索会漏掉后面几课.
@@ -65,7 +77,9 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(c
 - 迁移清单落到文件: 第 3 步产出的清单写进新 repo 的 `examples/_lm-example-plan.md` (可进 git), quiz 规划写进 `examples/_lm-quiz-plan.md`, 复用 author 那套约定.
 - 到精修做完就停: 收尾只提示创作者接着敲统稿那一步的 step 命令, 你不跑.
 
-## 约束
+---
+
+## 7. 约束
 
 - 内容的风格与深浅由创作者拍板, 你只管流程与规范, 不替他定教学口味. 删减, 增加, 更新, 顺序这几件事一律问, 不默默替他决定.
 - 不写根目录的 README, TICKET, README-ORIGINAL, 也不写 SYLLABUS 与 `docs/tasks/` 快照: 那些归写根目录文档和出厂那两步.

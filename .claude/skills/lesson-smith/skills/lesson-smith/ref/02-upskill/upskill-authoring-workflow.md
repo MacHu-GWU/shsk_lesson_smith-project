@@ -55,7 +55,7 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 
 **很多课压根没有这一块.** 纯讲解型的课, 要学的东西全在 `examples/` 里, 那就直接跳到下一步, 不用为了凑一个步骤去造点什么出来.
 
-为什么这一层要放在 `examples/` 而不是 tutorials, 见 [upskill-repo-layout.md](upskill-repo-layout.md) 第 1 节.
+为什么这一层要放在 `examples/` 而不是 tutorials, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 4.2 节.
 
 ---
 
@@ -114,7 +114,7 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 
 > 步骤 7, 属于写 quiz 阶段.
 
-教学系列的最后一篇写完之后, 开始准备 quiz 材料.
+主线的最后一篇写完之后, 开始准备 quiz 材料.
 
 **动笔写题之前先规划.** 扫一遍之前写过的全部教学 Task 和其它教学相关文件, 定出一个问题清单和题量, 写进 `examples/_lm-quiz-plan.md`. AI 提建议, 创作者也给反馈, 讨论几轮, 把题量和方向锁定.
 

@@ -17,10 +17,10 @@ description = "Author teaching GitHub repositories with AI: the lesson-smith age
 license = "AGPL-3.0-or-later"
 license-files = ["LICENSE.txt", "AUTHORS.rst"]
 authors = [
-    { name = "Sanhe Hu", email = "husanhe@email.com" },
+    { name = "Sanhe Hu", email = "husanhe@gmail.com" },
 ]
 maintainers = [
-    { name = "Sanhe Hu", email = "husanhe@email.com" },
+    { name = "Sanhe Hu", email = "husanhe@gmail.com" },
 ]
 keywords = []
 readme = "README.rst"

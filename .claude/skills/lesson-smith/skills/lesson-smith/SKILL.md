@@ -13,11 +13,12 @@ LESSON-SMITH-LOADED: v1
 
 ## 1. 什么是教学仓库
 
-教学仓库把 GitHub 的物理结构直接映射成课程的教学结构: 一个 **GitHub Repo = 一门课 (Lesson)**, 一个 **Branch = 一个任务 (Task)**.
+教学仓库把 GitHub 的物理结构直接映射成课程的教学结构: 一个 **GitHub Repo = 一门课 (Lesson)**.
 
-- `main` branch 永远不是 Task. Task 永远是 `01-title`, `02-title` 这种带两位数序号的 branch. Branch name 永远全部小写.
-- Repo 的 main URL 就是 **Lesson URL**, branch 的 URL 就是 **Task URL**.
-- **每个 Task 必有 `README.md` (教学入口) 和 `TICKET.md` (验收 checklist), 这一对是硬的.** 在 readup, upskill, showcase 三类里, Task 落在 `examples/NN-title/` 下.
+- **Task 是携带一对 README 与 TICKET 的最小单位, 和它落在哪儿无关.** 在 evolve 里一个带序号的 branch 就是一个 Task; 在 readup, upskill, showcase 三类里整门课只有一个 branch, Task 全部落在 `examples/NN-title/` 下. 别把 Task 和 branch 划等号, 那只对 evolve 成立.
+- **每个 Task 必有 `README.md` (教学入口) 和 `TICKET.md` (验收 checklist), 这一对是硬的.**
+- `main` branch 永远不是 Task. 带序号的 branch 一律 `NN-title` 形态, 名字全部小写.
+- Repo 的 main URL 就是 **Lesson URL**, branch 的 URL 就是 **Task URL** (evolve 之外, 那就是那个唯一 branch 的 URL).
 - `README-ORIGINAL.md` 是整个 Repo 逻辑意义上的长介绍. 因为每个 branch 的 `README.md` 都被它那个 Task 占用了, 所以 Repo 自身的介绍要另起这个文件.
 - **特殊文件一共四份**: README, TICKET, README-ORIGINAL, 加上脚本生成的 SYLLABUS. 名字主体一律大写, 且都有多语言版本: 英文版无后缀, 其他语种是 `<NAME>-<lang>.md` (lang 小写). 支持哪些语种定义在 [supported-languages.json](supported-languages.json).
 
@@ -44,9 +45,9 @@ LESSON-SMITH-LOADED: v1
 > 注: 类别命名遵循着, 一个词, 精准反应独特特性, 的设计哲学.
 
 - **evolve**: 一个 Repo 多个 branch, 每个 branch 一个 Task. 代码逐步演化, 文件渐增, 能看到项目一点点长大. 适合企业级, 完成度高的复杂项目.
-- **showcase**: 一个 Repo 只有一个 `showcase` branch (单 Task), `examples/` 下每个目录是一个 Task. 内容偏技能性质, 学完可以抹去所有教学痕迹, 把它当作自己的 repo 拿去面试展示 (含对外 publish 环节).
-- **upskill**: 结构与 showcase 几乎一致, 唯一区别是没有对外 publish. 适合 "如何做某一类事情", "如何改简历" 这类学会即止, 不需外部背书的内容.
-- **readup**: upskill 的精简子集, 结构相同但砍掉了整条 AI 工具链: 没有 `upskill-learn-cn` / `upskill-quiz-cn` 那套子 skill, 没有 docs 学习文档, 也没有 quiz 那个 Task. 适合读者还不知道 AI Agent Skill 是什么, 只想像读一份普通教程那样, 打开 `examples/` 一篇篇顺着读下来就能学会的内容; 因此它的根 README 与 TICKET 里绝不出现任何斜杠命令, 只引导 "进 `examples/` 从 01 开始按编号读".
+- **showcase**: 一个 Repo 只有一个带序号的 branch, 名字固定 `01-showcase`, `examples/` 下每个目录是一个 Task. 内容偏技能性质, 学完可以抹去所有教学痕迹, 把它当作自己的 repo 拿去面试展示 (含对外 publish 环节).
+- **upskill**: 结构与 showcase 几乎一致 (唯一 branch 固定名 `01-upskill`), 唯一区别是没有对外 publish. 适合 "如何做某一类事情", "如何改简历" 这类学会即止, 不需外部背书的内容.
+- **readup**: upskill 的精简子集 (唯一 branch 固定名 `01-readup`), 结构相同但砍掉了整条 AI 工具链: 没有 `upskill-learn-cn` / `upskill-quiz-cn` 那套子 skill, 没有 docs 学习文档, 也没有 quiz 那个 Task. 适合读者还不知道 AI Agent Skill 是什么, 只想像读一份普通教程那样, 打开 `examples/` 一篇篇顺着读下来就能学会的内容; 因此它的根 README 与 TICKET 里绝不出现任何斜杠命令, 只引导 "进 `examples/` 从 01 开始按编号读".
 
 后三类的 `examples/` 里, **第一个 Task 固定是索引** (给整门课一张地图), 位置固定在 01, 目录名随课程而定.
 
@@ -90,7 +91,7 @@ LESSON-SMITH-LOADED: v1
 
 **通用交互件 (不限教学仓库, 任何互动 skill 都可加载):**
 
-- 写或改一个需要和用户互动的 skill 时 → [ref/agent-skill-interaction-pattern.md](ref/agent-skill-interaction-pattern.md): 通用交互模式底座 (英文版, forge 会把它拷进生成的每个子 skill 的 `ref/` 下). 你自己和创作者互动时读中文版 [ref/agent-skill-interaction-pattern-cn.md](ref/agent-skill-interaction-pattern-cn.md), 两版内容一致, 改一版同步另一版.
+- 写或改一个需要和用户互动的 skill 时 → 通用交互模式底座, 中英各一份且内容对等: [ref/agent-skill-interaction-pattern.md](ref/agent-skill-interaction-pattern.md) 与 [ref/agent-skill-interaction-pattern-cn.md](ref/agent-skill-interaction-pattern-cn.md). **改一版必须同步另一版.** 你自己和创作者互动时读中文版; **forge 当前拷进生成的每个子 skill `ref/` 下的也是中文版**, 因为现在只产 `-cn` 子 skill, 英文那版等多语种模块接手.
 
 **readup 类型专属 (在 ref/01-readup/ 下):**
 

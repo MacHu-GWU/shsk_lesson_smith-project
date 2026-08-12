@@ -2,7 +2,7 @@
 name: lesson-smith-upskill-author
 description: "upskill 教学仓库创作流的总入口: 加载基座与主剧本, 判断创作者当前在哪一步, 告诉他接下来敲哪条 step 命令. 每个 session 开头先敲一次."
 argument-hint: "[步骤号或阶段] [自由说明...]"
-allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd)
+allowed-tools: Read Grep Glob Bash(ls *) Bash(cat *) Bash(pwd)
 ---
 
 # lesson-smith-upskill-author
@@ -82,4 +82,5 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 
 - 内容的风格与深浅由创作者拍板, 你只管流程与规范, 不替他定教学口味.
 - 遵循 `ref/agent-skill-interaction-pattern-cn.md` 的交互模式: 开场引领而不是被动问 "你想做什么", 一次一问, 跟随创作者的 context.
+- **本 skill 是只读的.** `allowed-tools` 里没有编辑类工具, 所以你一动文件就会弹一次确认. 那是提醒不是围栏 (`allowed-tools` 管的是免不免批准, 不是能不能用), 但它足以让 "替创作者做了下一步的活儿" 当场被看见. 真要写文件, 那是 step skill 的事.
 - 不确定就问创作者或读实际文件, 不臆造.

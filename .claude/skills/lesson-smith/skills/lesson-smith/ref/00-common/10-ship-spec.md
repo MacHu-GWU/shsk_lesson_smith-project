@@ -42,7 +42,7 @@ uvx --from shsk-lesson-smith==<version> lesson-smith sync -p .
 uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 ```
 
-它只读, 校验目录结构, 命名, 语种完整性, frontmatter 的 `description` 与 `github_about`, H1 字符集, TICKET 里的相对路径链接, 以及 SYLLABUS 是否与各 README 的 description 一致.
+它只读, 校验目录结构, 命名 (含唯一那个带序号 branch 必须叫 `01-<type>`), 语种完整性, 特殊 Task 的目录名与位置, forge 产物在不在 (upskill 与 showcase), frontmatter 的 `description` 与 `github_about`, H1 字符集, TICKET 里的相对路径链接, 以及 SYLLABUS 是否与各 README 的 description 一致.
 
 **它只检查开着的语种.** 英文当前是关的, 所以留空的英文占位文件不会报错, 报出来的路径应该全是 `-cn` 的. 开关见 [01-repo-layout.md](01-repo-layout.md) 第 8 节.
 

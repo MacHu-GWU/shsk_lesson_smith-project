@@ -16,11 +16,15 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 这一步对应创作工作流的**第 11 步**. 跑完别急着关 session, 第 12 步 (写根目录文档) 接着用同一批素材.
 
-## 第 0 步: 先加载 lesson-smith skill (不可跳过)
+---
+
+## 1. 先加载 lesson-smith skill (不可跳过)
 
 所有规范都住在 **lesson-smith** skill 里, 本 skill 只是薄包装, 自己不复制规范. 这是所有 `lesson-smith-*` skill 的通例: 默认先加载 lesson-smith, 再附带自己这一层的东西. 开工前先加载 lesson-smith skill, 之后从它的 `ref/` 按需读规范.
 
-## 必读规范 (都在 lesson-smith skill 的 ref/ 下)
+---
+
+## 2. 必读规范 (都在 lesson-smith skill 的 ref/ 下)
 
 按用途读, 不要一次全读. **forge 要的东西全在 `ref/00-common/13-forge-shared/` 下**, 不在 `ref/02-upskill/` 里: upskill 的 forge 产物和 showcase 完全重合, 所以那套素材归了通用层. 每份 doc 一个目录, 里面中英各一套 spec 加 template.
 
@@ -40,7 +44,9 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 所以 Phase 6 有一条硬检查: **生成的文件里 grep `{{`, 必须 0 命中.** 用 `{{` 而不是完整的占位符去 grep, 是因为万一拼错了 (写成 `{TYPE}` 或 `{{type}}`) 那样也能抓到.
 
-## 语种: 只产 `-cn` 那一套
+---
+
+## 3. 语种: 只产 `-cn` 那一套
 
 上面每份 doc 都有中英两套 spec 与 template, 两个子 skill 也有中英两版. **当前只产 `-cn` 那一套.**
 
@@ -52,7 +58,9 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 examples 之外的脚本, 数据, 配置等没有语种之分, 照常通读.
 
-## 参数
+---
+
+## 4. 参数
 
 把 `$ARGUMENTS` 解析成 `<mode> < 自由说明...>`. 第一个 token 若是下列 mode 就用它, 否则整段当自由说明, mode 默认 init.
 
@@ -62,7 +70,9 @@ examples 之外的脚本, 数据, 配置等没有语种之分, 照常通读.
 
 自由说明是创作者对本次生成的额外指示 (例如 "学习素材以 src/ 下的代码为主", "quiz 偏重 concurrency"). 有的话在 Phase 3 一并采纳.
 
-## 工作流
+---
+
+## 5. 工作流
 
 ### Phase 1: Preflight (不可跳过)
 
@@ -136,13 +146,17 @@ ref/agent-skill-interaction-pattern-cn.md        ->  上面两个 skill 各自�
 3. 用 uvx 跑 `lesson-smith lint` 看仓库结构是否仍合规 (`uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .`; `<version>` 与 pin 版本的说明见 `ref/00-common/01-repo-layout.md` 第 8 节, 本地已装 package 则直接 `lesson-smith lint`).
 4. 告诉用户: 用 `/upskill-learn-cn` 开始学, `/upskill-quiz-cn` 自测; `docs/upskill/` 里哪里不对直接改, 或 `refresh <name>` 重生成一份. **接着做第 12 步, 不要另开 session.**
 
-## 为什么卡在统稿之后
+---
+
+## 6. 为什么卡在统稿之后
 
 forge 产出的是**索引和指针**, 它们指向 `examples/` 里的文件与标题.
 
 统稿会改标题, 会拆篇并篇, 甚至会调整编号. 统稿之前跑, 产出的链接和锚点全都指在会变的东西上, 而且**没有任何检查会报出来**: lint 只查 `docs/upskill/` 那几份**在不在**, 不查里面的链接和锚点指向哪. 学生要等到 `/upskill-learn-cn` 带着他点进一个不存在的文件才发现.
 
-## 约束
+---
+
+## 7. 约束
 
 - 只写 `docs/upskill/` 与 `.claude/skills/upskill-{learn,quiz}-cn/`; 不碰源码, 不动 examples 内容.
 - **题目本身不在这里出**: 题库真身由创作者在 quiz 那个 Task 里手写 (第 8 步), forge 只负责定位它并写好 `03` 那份薄壳的指针.

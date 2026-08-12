@@ -49,7 +49,7 @@ readup 是纯阅读型仓库: 不带任何 AI 学习工具链 (没有带学, 自
 
 **很多课压根没有这一块.** 纯讲解型的课, 要学的东西全在 `examples/` 里, 那就直接跳到下一步, 不用为了凑一个步骤去造点什么出来.
 
-为什么这一层要放在 `examples/` 而不是 tutorials, 见 [readup-repo-layout.md](readup-repo-layout.md) 第 1 节.
+为什么这一层要放在 `examples/` 而不是 tutorials, 见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 4.2 节.
 
 ---
 

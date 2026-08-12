@@ -16,11 +16,15 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 这一步对应创作工作流的**第 12 步**. 跑完别急着关 session, 第 13 步 (写根目录文档) 接着用同一批素材.
 
-## 第 0 步: 先加载 lesson-smith skill (不可跳过)
+---
+
+## 1. 先加载 lesson-smith skill (不可跳过)
 
 所有规范都住在 **lesson-smith** skill 里, 本 skill 只是薄包装, 自己不复制规范. 这是所有 `lesson-smith-*` skill 的通例: 默认先加载 lesson-smith, 再附带自己这一层的东西. 开工前先加载 lesson-smith skill, 之后从它的 `ref/` 按需读规范.
 
-## 必读规范 (都在 lesson-smith skill 的 ref/ 下)
+---
+
+## 2. 必读规范 (都在 lesson-smith skill 的 ref/ 下)
 
 按用途读, 不要一次全读. **forge 要的东西分两处**: 和 upskill 共用的三份在 `ref/00-common/13-forge-shared/`, showcase 独有的两份在 `ref/03-showcase/forge/`. 每份 doc 一个目录, 里面中英各一套 spec 加 template.
 
@@ -44,7 +48,9 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 `13-forge-shared/` 之外的两份 (demo 与 publish) 写死 `showcase`, 不带占位符, 照常直接拷.
 
-## 语种: 只产 `-cn` 那一套
+---
+
+## 3. 语种: 只产 `-cn` 那一套
 
 上面每份 doc 都有中英两套 spec 与 template, 四个子 skill 也有中英两版. **当前只产 `-cn` 那一套.**
 
@@ -56,7 +62,9 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 examples 之外的脚本, 数据, 配置等没有语种之分, 照常通读.
 
-## 参数
+---
+
+## 4. 参数
 
 把 `$ARGUMENTS` 解析成 `<mode> < 自由说明...>`. 第一个 token 若是下列 mode 就用它, 否则整段当自由说明, mode 默认 init.
 
@@ -66,7 +74,9 @@ examples 之外的脚本, 数据, 配置等没有语种之分, 照常通读.
 
 自由说明是创作者对本次生成的额外指示 (例如 "学习素材以 src/ 下的代码为主", "quiz 偏重 concurrency", "publish 时保留 examples/03 作为作品主线"). 有的话在 Phase 3 一并采纳.
 
-## 工作流
+---
+
+## 5. 工作流
 
 ### Phase 1: Preflight (不可跳过)
 
@@ -157,7 +167,9 @@ ref/agent-skill-interaction-pattern-cn.md           ->  上面四个 skill 各�
 3. 用 uvx 跑 `lesson-smith lint` 看仓库结构是否仍合规 (`uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .`; `<version>` 与 pin 版本的说明见 `ref/00-common/01-repo-layout.md` 第 8 节, 本地已装 package 则直接 `lesson-smith lint`).
 4. 告诉用户: 用 `/showcase-learn-cn` 开始学, `/showcase-quiz-cn` 自测, `/showcase-demo-cn` 排练讲法, 学完用 `/showcase-publish-cn` 发布; `docs/showcase/` 里哪里不对直接改, 或 `refresh <name>` 重生成一份. **接着做第 13 步, 不要另开 session.**
 
-## 为什么卡在统稿之后
+---
+
+## 6. 为什么卡在统稿之后
 
 forge 产出的是**索引和指针**, 它们指向 `examples/` 里的文件与标题.
 
@@ -165,7 +177,9 @@ forge 产出的是**索引和指针**, 它们指向 `examples/` 里的文件与�
 
 publish 那一份更糟: 它记的是**要删哪些真实路径**. 对着一棵还会变的树生成的删除清单, 将来照着跑就是删错东西.
 
-## 约束
+---
+
+## 7. 约束
 
 - 只写 `docs/showcase/` 与 `.claude/skills/showcase-{learn,quiz,demo,publish}-cn/`; 不碰源码, 不动 examples 内容.
 - **题目本身不在这里出, 讲故事底稿也不在这里写**: 题库真身 (第 8 步) 与讲故事底稿 (第 9 步) 都由创作者手写, forge 只负责定位它们并写好 `03` 与 `04` 的指针.
