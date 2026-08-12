@@ -14,9 +14,10 @@
 
 跑之前核一遍, 缺了就停下来告诉创作者该回哪一步, 不要硬着头皮往下跑:
 
+- 根目录有 `lm.json`, 且 `type` 是这个 repo 的实际类型. **先核这一条**: 它一缺, lint 只报一句就短路, 后面所有检查都不跑.
 - `examples/` 下每个 Task 的 `README-cn.md` 与 `TICKET-cn.md` 都在.
 - 根目录 `README-cn.md`, `TICKET-cn.md`, `README-ORIGINAL-cn.md` 都在.
-- upskill 与 showcase: `docs/<type>/` 下的 doc 与 `.claude/skills/<type>-*/` 子 skill 都在 (那是 forge 的产物).
+- upskill 与 showcase: `docs/<type>/` 下的 doc 与 `.claude/skills/<type>-*/` 子 skill 都在 (那是 forge 的产物), **且每个子 skill 的 `ref/` 下那份交互基座也在** (lint 只查 `SKILL.md`, 这一份查不到, 只能人工核).
 
 ---
 
@@ -50,6 +51,8 @@ uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 
 | lint 报什么 | 通常是哪一步欠的账 |
 | :--- | :--- |
+| `lm.json is missing at the repo root`, 而且**整个报告只有这一条** | 第 1 步没建 `lm.json`. 它是 lint 的入口检查, 不过就什么都不查. 补一个 `{"type": "<本 repo 类型>"}` 再重跑 |
+| `lm.json is not valid JSON` 或 type 取值不对 | 同上, 手写时写坏了. 四个合法取值见 [01-repo-layout.md](01-repo-layout.md) 第 5 节 |
 | `File is missing` 指向某个 `-cn.md` | 那一份根本没写, 回对应的创作步骤 |
 | description 超长 | 写根目录文档那步, README-ORIGINAL 最常见 |
 | description 没加双引号, 或值里有禁用字符 | 起草时 frontmatter 走形, 直接在那份文件上改 |

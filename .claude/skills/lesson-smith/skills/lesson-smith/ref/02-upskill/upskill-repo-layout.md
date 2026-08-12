@@ -55,7 +55,9 @@ docs/upskill/02-upskill-runbook-cn.md  跑起来的操作
 docs/upskill/03-upskill-quiz-cn.md     quiz 薄壳, 指向题库真身
 docs/upskill/notes/                    可选, 学生用 upskill-learn-cn 时它写的进度笔记
 .claude/skills/upskill-learn-cn/SKILL.md   forge 产出: 带学 skill
+.claude/skills/upskill-learn-cn/ref/agent-skill-interaction-pattern-cn.md   随 skill 打包的交互基座
 .claude/skills/upskill-quiz-cn/SKILL.md    forge 产出: 自测 skill
+.claude/skills/upskill-quiz-cn/ref/agent-skill-interaction-pattern-cn.md    随 skill 打包的交互基座
 ```
 
 树里的 `NN-` 与 `ZZ-` 都是占位符, **不是字面值**: `NN-` 表示编号接着往下排, `ZZ-` 表示编号最大的那个, 也就是最后一个. 落地时全都是两位数字, 从 01 连续不跳号, 这一条 lint 查.
@@ -87,6 +89,8 @@ docs/upskill/notes/                    可选, 学生用 upskill-learn-cn 时它
 **`docs/tasks/`** 下的东西全部由 `lesson-smith sync` 生成, 不手写. SYLLABUS 对 upskill 来说只有 `01-upskill` 一段.
 
 `docs/upskill/notes/` **不是 forge 的产物, 也不是布局的一部分**: 学生用 `/upskill-learn-cn` 时, 它经学生同意后往那里写一份进度笔记 (`learn-progress-cn.md`). 一个刚出厂的 repo 里没有这个目录, lint 也不查它. 列在这里只是为了让人知道它是从哪冒出来的.
+
+每个子 skill 的 `ref/` 下那份交互基座**不是可选附件**: 两份 SKILL 模板开工第一句就是去读它, 丢了那个 skill 会静默地失去交互规范. 它由 forge 从 lesson-smith 的 `ref/agent-skill-interaction-pattern-cn.md` 原样拷入; **lint 只查 `SKILL.md` 在不在, 不查它**, 所以出厂前要人工核一眼.
 
 **`docs/upskill/`** 下三份 doc 与两个子 skill 都由 `lesson-smith-upskill-forge` 产出. **它要读的规范与模板一份都不在这一层**, 全部在 [00-common/13-forge-shared/](../00-common/13-forge-shared/): [docs-learn](../00-common/13-forge-shared/docs-learn/docs-learn-cn-spec.md), [docs-runbook](../00-common/13-forge-shared/docs-runbook/docs-runbook-cn-spec.md), [docs-quiz](../00-common/13-forge-shared/docs-quiz/docs-quiz-cn-spec.md), 加上两份 SKILL 模板.
 

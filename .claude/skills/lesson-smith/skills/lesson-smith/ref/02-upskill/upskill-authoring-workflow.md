@@ -45,6 +45,8 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 
 注意这**只是一版粗稿种子**: 此时 `examples/` 还没写, description 难免粗糙, 也和最终内容对不齐. 等全部内容完工后, **第 12 步会重写整份** `README-ORIGINAL-cn.md`, 让这门 Lesson 的门面和成品对齐. 所以这一步不用抠 description, 先把大方向写出来即可.
 
+**顺手把 `lm.json` 建了.** 内容就一行 `{"type": "upskill"}`. 它是 repo 根目录的机器可读清单 (见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 5 节), `lesson-smith lint` 和 `sync` 都靠它判断这是哪一类 repo. **缺了它 lint 会当场短路**: 只报一句 `lm.json is missing at the repo root` 就停, 别的一项都不查, 所以出厂那一步会看起来像整个仓库都没问题. 现在建, 一秒钟的事.
+
 ---
 
 ## 3. 先完成 examples 之外的 "做的部分"
@@ -183,7 +185,7 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 
 ## 13. 写根目录文档
 
-> 步骤 12. **建议开新 session.**
+> 步骤 12. **接着第 11 步做, 同一个 session.**
 
 这一步基于定稿的 `examples/` 写 repo 根目录那三份:
 

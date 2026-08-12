@@ -39,6 +39,8 @@ readup 是纯阅读型仓库: 不带任何 AI 学习工具链 (没有带学, 自
 
 注意这**只是一版粗稿种子**: 此时 `examples/` 还没写, description 难免粗糙, 也和最终内容对不齐. 等全部内容完工后, **第 9 步会重写整份** `README-ORIGINAL-cn.md`, 让这门 Lesson 的门面和成品对齐. 所以这一步不用抠 description, 先把大方向写出来即可.
 
+**顺手把 `lm.json` 建了.** 内容就一行 `{"type": "readup"}`. 它是 repo 根目录的机器可读清单 (见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 5 节), `lesson-smith lint` 和 `sync` 都靠它判断这是哪一类 repo. **缺了它 lint 会当场短路**: 只报一句 `lm.json is missing at the repo root` 就停, 别的一项都不查, 所以出厂那一步会看起来像整个仓库都没问题. 现在建, 一秒钟的事.
+
 ---
 
 ## 3. 先完成 examples 之外的 "做的部分"

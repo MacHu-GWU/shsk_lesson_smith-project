@@ -63,6 +63,7 @@ docs/showcase/notes/                    可选, 学生用 showcase-learn-cn 时�
 .claude/skills/showcase-quiz-cn/SKILL.md     forge 产出: 自测 skill
 .claude/skills/showcase-demo-cn/SKILL.md     forge 产出: 讲故事排练 skill
 .claude/skills/showcase-publish-cn/SKILL.md  forge 产出: 抹痕迹发布 skill
+.claude/skills/<上面四个>/ref/agent-skill-interaction-pattern-cn.md   随各 skill 打包的交互基座
 ```
 
 树里的 `NN-` 与 `ZZ-` 都是占位符, **不是字面值**: `NN-` 表示编号接着往下排, `ZZ-` 表示编号最大的那个, 也就是最后一个. 落地时全都是两位数字, 从 01 连续不跳号, 这一条 lint 查.
@@ -96,6 +97,8 @@ docs/showcase/notes/                    可选, 学生用 showcase-learn-cn 时�
 **`docs/tasks/`** 下的东西全部由 `lesson-smith sync` 生成, 不手写. SYLLABUS 对 showcase 来说只有 `01-showcase` 一段.
 
 `docs/showcase/notes/` **不是 forge 的产物, 也不是布局的一部分**: 学生用 `/showcase-learn-cn` 时, 它经学生同意后往那里写一份进度笔记 (`learn-progress-cn.md`). 一个刚出厂的 repo 里没有这个目录, lint 也不查它. 列在这里只是为了让人知道它是从哪冒出来的.
+
+每个子 skill 的 `ref/` 下那份交互基座**不是可选附件**: 四份 SKILL 模板开工第一句就是去读它, 丢了那个 skill 会静默地失去交互规范. 它由 forge 从 lesson-smith 的 `ref/agent-skill-interaction-pattern-cn.md` 原样拷入; **lint 只查 `SKILL.md` 在不在, 不查它**, 所以出厂前要人工核一眼.
 
 **`docs/showcase/`** 下五份 doc 与四个子 skill 都由 `lesson-smith-showcase-forge` 产出, 它要读的规范与模板**分两处**:
 
