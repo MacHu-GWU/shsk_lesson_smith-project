@@ -2,6 +2,8 @@
 
 > 用法: 把下面每个 "无" 换成你的想法 (还没想清楚的就留 "无"), 然后把整份连同 /lesson-smith-readup-author 一起发出去. author 会据此判断你在创作流程的哪一步, **然后告诉你该敲哪条 step 命令**, 真正的活儿由那条命令带着做. 这里填的都是初稿, 不是死规定, 后面会边写边改.
 
+/lesson-smith-readup-author-step-01-to-02-scope
+
 请按 /lesson-smith-readup-author 中的规范, 引领我从零创作这一门 readup 课程.
 
 ## 1. 主题与背景

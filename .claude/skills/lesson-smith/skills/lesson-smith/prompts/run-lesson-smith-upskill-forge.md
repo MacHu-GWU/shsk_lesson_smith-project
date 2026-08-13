@@ -4,6 +4,8 @@
 
 > 前置: 这是创作流的**第 11 步**, 统稿之后才能跑. 统稿之前跑, 产出的链接和锚点会全部指在还会变的东西上, 而且没有任何检查会报出来. 跑完接着做第 12 步 (写根目录文档), 不要另开 session.
 
+/lesson-smith-upskill-author-step-11-forge
+
 请按 /lesson-smith-upskill-forge 中的规范, 先收集信息, 再产出对应的 doc 与子 skill.
 
 ## 1. examples 之外的学习素材

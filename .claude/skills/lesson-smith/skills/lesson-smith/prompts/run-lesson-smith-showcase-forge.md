@@ -4,6 +4,8 @@
 
 > 前置: 这是创作流的**第 12 步**, 统稿之后才能跑. 统稿之前跑, 产出的链接和锚点会全部指在还会变的东西上, 而且没有任何检查会报出来 (publish 那份更糟, 它记的是要删哪些真实路径). 跑完接着做第 13 步 (写根目录文档), 不要另开 session.
 
+/lesson-smith-showcase-author-step-12-forge
+
 请按 /lesson-smith-showcase-forge 中的规范, 先收集信息, 再产出对应的 doc 与子 skill.
 
 ## 1. examples 之外的学习素材
