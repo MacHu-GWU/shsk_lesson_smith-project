@@ -1,6 +1,6 @@
 # 出厂规范
 
-创作流的最后一步: 生成 SYLLABUS 与 `docs/tasks/` 快照, 跑 lint 把整仓过一遍, 修到通过.
+创作流的最后一步: 生成 SYLLABUS 与 `docs/tasks/` 快照, 把 Repo 级总时长写进 `lm.json`, 跑 lint 把整仓过一遍, 修到通过.
 
 **适用范围**: 四类通用.
 
@@ -29,7 +29,15 @@
 uvx --from shsk-lesson-smith==<version> lesson-smith sync -p .
 ```
 
-它生成 `docs/tasks/SYLLABUS` 与 `docs/tasks/<branch>/` 下的 README, TICKET 快照.
+它做三件事, 按顺序:
+
+1. 把当前 branch 的 README 与 TICKET 快照到 `docs/tasks/<branch>/`.
+2. 从这些快照重新生成 `docs/tasks/SYLLABUS`.
+3. 把各 branch TICKET 的预计用时加总, 写进 `lm.json` 的 `estimated_hours_lower` 与 `estimated_hours_upper` (单位小数小时, 见 [04-task-ticket-spec](04-task-ticket-spec/task-ticket-cn-spec.md) 第 8.2 节).
+
+后两件都读第一件的产物, 所以顺序是死的.
+
+**第 3 件有一种会跳过的情况**: 某个 branch 的 TICKET 那一行不是 `X 到 Y 分钟` 的形态 (写成小时, 写成散文, 只给一个数), sync 解析不出来就**整份 `lm.json` 不动**, 只在报告里说跳过了谁. 少算一个 branch 的总和比没有总和更糟, 所以它宁可不写. 修法是把那一行改回分钟区间再重跑.
 
 `<version>` 取当前最新发布版, uvx 与 pin 版本的理由见 [01-repo-layout.md](01-repo-layout.md) 第 8 节. 本地已装好该 package 时直接 `lesson-smith sync` 亦可.
 
@@ -43,7 +51,7 @@ uvx --from shsk-lesson-smith==<version> lesson-smith sync -p .
 uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 ```
 
-它只读, 校验目录结构, 命名 (含唯一那个带序号 branch 必须叫 `01-<type>`), 语种完整性, 特殊 Task 的目录名与位置, forge 产物在不在 (upskill 与 showcase), frontmatter 的 `description` 与 `github_about`, H1 字符集, TICKET 里的相对路径链接, 以及 SYLLABUS 是否与各 README 的 description 一致.
+它只读, 校验目录结构, 命名 (含唯一那个带序号 branch 必须叫 `01-<type>`), 语种完整性, 特殊 Task 的目录名与位置, forge 产物在不在 (upskill 与 showcase), frontmatter 的 `description` 与 `github_about`, H1 字符集, TICKET 里的相对路径链接, SYLLABUS 是否与各 README 的 description 一致, 以及 `lm.json` 的两个时长字段是否等于重算出来的和.
 
 **它只检查开着的语种.** 英文当前是关的, 所以留空的英文占位文件不会报错, 报出来的路径应该全是 `-cn` 的. 开关见 [01-repo-layout.md](01-repo-layout.md) 第 8 节.
 
@@ -60,8 +68,10 @@ uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 | README-ORIGINAL 的 H1 不等于 repo 名 | 标题被当成散文重写了, 改回目录名 |
 | TICKET 里有相对路径链接 | 那种链接进了 Issue 就是死的, 改成文字提及 |
 | SYLLABUS 对不上 | 改过某份 README 的 description 之后没重跑 sync |
+| `lm.json estimated time is ... Re-run lesson-smith sync` | 改过某个 Task 的档位之后没重跑 sync |
+| `No usable estimated time in the TICKET of: <branch>` | 那个 branch 的 TICKET 没有 `X 到 Y 分钟` 那一行, 或者写成了小时. 回时间梳理那一步修 |
 
-改完正文之后要**重跑 sync 再重跑 lint**, 因为 SYLLABUS 是从 description 生成的.
+改完正文之后要**重跑 sync 再重跑 lint**, 因为 SYLLABUS 与 `lm.json` 的时长都是生成出来的.
 
 ---
 
@@ -69,6 +79,6 @@ uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 
 跑完告诉创作者:
 
-1. sync 创建或更新了哪些文件.
+1. sync 创建或更新了哪些文件, 以及这门课最终的 Repo 级总时长是多少.
 2. lint 报了什么, 各自怎么修的.
 3. 这门课到此收尾完成, 可以从根目录 README 进入开始学.

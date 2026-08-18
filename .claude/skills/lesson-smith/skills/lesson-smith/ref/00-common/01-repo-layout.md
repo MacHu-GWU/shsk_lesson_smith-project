@@ -143,7 +143,25 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见下一小�
 - **`TICKET.md`**: 任务目标与验收 checklist, 给学生阅读, 同时作为 Kanban 里 Ticket body 的正文. 见 [04-task-ticket-spec](04-task-ticket-spec/task-ticket-cn-spec.md).
 - **`README-ORIGINAL.md`**: 整个 Repo 逻辑意义上的长介绍. 因为各 branch 的 `README.md` 都归它那个 Task 用了, Repo 自身的介绍才另起这个文件. 见 [02-readme-original-spec](02-readme-original-spec/readme-original-cn-spec.md).
 - **`SYLLABUS.md`**: 整个 Repo 所有 Task 的清单索引. **不手写**, 由脚本从各 Task `README.md` 的 frontmatter `description` 汇总生成. 见 [07-syllabus-spec.md](07-syllabus-spec.md).
-- **`lm.json`**: Repo 根目录的机器可读清单. 它不是文档, 不走上面的 spec 加注释格式. 目前 schema 只有一个字段 `type`, 取值 `evolve` | `showcase` | `upskill` | `readup`, 声明这个 repo 属于哪一类. 以后可以往里加更多结构化字段, 也方便校验脚本按 `type` 分支处理不同布局.
+- **`lm.json`**: Repo 根目录的机器可读清单. 它不是文档, 不走上面的 spec 加注释格式. 目前三个字段:
+
+  | 字段 | 谁写 | 是什么 |
+  | :--- | :--- | :--- |
+  | `type` | 人手写 (第 1 步) | `evolve` \| `showcase` \| `upskill` \| `readup`, 声明这个 repo 属于哪一类. 校验脚本按它分支处理不同布局 |
+  | `estimated_hours_lower` | `lesson-smith sync` | 整个 Repo 的时间下限, 单位小数小时 |
+  | `estimated_hours_upper` | `lesson-smith sync` | 整个 Repo 的时间上限, 单位小数小时 |
+
+  后两个是 **Repo 级** (不是 branch 级) 的时间预算: 把 `docs/tasks/<branch>/TICKET-cn.md` 每个 branch 的分钟区间下限加下限, 上限加上限, 最后一次性换算成小时, 四舍五入到 2 位小数. **不手写**, 由 sync 生成, 由 lint 校验有没有漂. 规则见 [04-task-ticket-spec](04-task-ticket-spec/task-ticket-cn-spec.md) 第 8.2 节.
+
+  ```json
+  {
+      "type": "readup",
+      "estimated_hours_lower": 6.42,
+      "estimated_hours_upper": 11.67
+  }
+  ```
+
+  为什么从 `docs/tasks/` 算而不是从工作区算: 那是唯一一处**所有 branch 同时可见**的地方, 工作区任何时刻只 checkout 了一个 branch. 也因此 evolve 暂时没有这两个字段, sync 还不支持它的多 branch 快照.
 
 ---
 

@@ -29,8 +29,9 @@ argument-hint: "[自由说明...]"
 ## 3. 这一步的红线
 
 - **先确认前置齐了.** `docs/upskill/` 下三份 doc 与两个子 skill 都要在, 那是第 12 步的产物, lint 会查它们.
-- **SYLLABUS 与 `docs/tasks/` 快照一律由 sync 生成, 不许手写.** 命令不可用或报错就如实说, 不要自己拿键盘补一份出来.
-- **改完正文要重跑 sync 再重跑 lint.** SYLLABUS 是从各份 README 的 description 生成的, 只改正文不重跑就会对不上.
+- **SYLLABUS, `docs/tasks/` 快照, 以及 `lm.json` 里那两个时长字段一律由 sync 生成, 不许手写.** 命令不可用或报错就如实说, 不要自己拿键盘补一份出来.
+- **改完正文要重跑 sync 再重跑 lint.** SYLLABUS 是从各份 README 的 description 生成的, `lm.json` 的时长是从各 TICKET 的档位加总的, 只改正文不重跑就会对不上.
+- **sync 报 `skipped: no estimate in <branch>` 就停下来说.** 那说明那个 branch 的 TICKET 预计用时不是 `X 到 Y 分钟` 的形态, `lm.json` 整份没被写, 要回时间梳理那一步修, 不是在这里手填.
 - **报出来的路径应该全是 `-cn` 的.** 出现无后缀的英文路径说明按语种开关没生效, 那是 lint 配置的问题, 不是你要去填的空文件.
 - 修 lint 报错时**别顺手改教学内容**. 结构问题改结构, 内容问题回去找创作者.
 

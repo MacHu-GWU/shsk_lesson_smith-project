@@ -31,8 +31,9 @@ argument-hint: "[自由说明...]"
 ## 3. 这一步的红线
 
 - **这一步不写内容.** lint 报的问题若要改正文, 回到对应步骤去改.
-- SYLLABUS 与 `docs/tasks/` 快照一律不手写. 命令跑不了就如实说, 别自己拼一份.
-- 改完正文要重跑 sync 再重跑 lint, 因为 SYLLABUS 是从 description 生成的.
+- SYLLABUS, `docs/tasks/` 快照, 以及 `lm.json` 里那两个时长字段一律不手写, 全是 sync 生成的. 命令跑不了就如实说, 别自己拼一份.
+- 改完正文要重跑 sync 再重跑 lint, 因为 SYLLABUS 与 `lm.json` 的时长都是生成出来的.
+- **sync 报 `skipped: no estimate in <branch>` 就停下来说.** 那说明那个 branch 的 TICKET 预计用时不是 `X 到 Y 分钟` 的形态, `lm.json` 整份没被写, 要回时间梳理那一步修, 不是在这里手填.
 
 ---
 
