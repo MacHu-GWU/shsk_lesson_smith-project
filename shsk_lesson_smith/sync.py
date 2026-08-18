@@ -12,9 +12,10 @@ wrote. Design mirrors the linter where it helps:
 - The only type-specific input is the branch to snapshot, and that comes from
   :attr:`Repo.single_task_branch`, so the operations stay uniform across types.
 
-Today there are two operations, run in this order: snapshot the current branch's
-task files into ``docs/tasks/<branch>/``, then regenerate ``SYLLABUS`` from those
-snapshots.
+Today there are three operations, run in this order: snapshot the current
+branch's task files into ``docs/tasks/<branch>/``, regenerate ``SYLLABUS`` from
+those snapshots, then sum their estimated times into ``lm.json``. The last two
+both read the snapshots, so both must follow the first.
 """
 
 import dataclasses
@@ -24,7 +25,7 @@ from pathlib import Path
 
 from .constants import TASK_FILE_BASES, LangEnum
 from .linter_utils import MarkdownFile
-from .repo import Repo, get_variant_filename
+from .repo import Repo, estimate_repo_time, get_variant_filename
 
 # English (None) plus every supported language variant.
 LANGS = (None, *LangEnum)
@@ -34,7 +35,7 @@ LANGS = (None, *LangEnum)
 class SyncAction:
     """One file sync wrote, and why."""
 
-    kind: str  # "snapshot" | "syllabus"
+    kind: str  # "snapshot" | "syllabus" | "manifest"
     path: str
     detail: str = ""
 
@@ -57,9 +58,10 @@ class SyncReport:
 
     def render(self) -> str:
         """Human-readable summary: one line per file written."""
+        markers = {"snapshot": "📄", "syllabus": "📋", "manifest": "🧾"}
         lines = []
         for action in self.actions:
-            marker = "📄" if action.kind == "snapshot" else "📋"
+            marker = markers.get(action.kind, "📋")
             suffix = f"  ({action.detail})" if action.detail else ""
             lines.append(f"{marker} {action.kind}: {action.path}{suffix}")
         lines.append("")
@@ -117,9 +119,51 @@ def op_generate_syllabus(repo: Repo) -> "list[SyncAction]":
     return actions
 
 
-# Sync operations, run in order by sync(). Snapshot must precede syllabus, since
-# the syllabus is generated from the freshly snapshotted task READMEs.
-OPERATIONS = [op_snapshot_branch, op_generate_syllabus]
+def op_estimated_hours(repo: Repo) -> "list[SyncAction]":
+    """Sum the task snapshots' estimated times into ``lm.json``.
+
+    Each branch TICKET states one minute range; the repo total is their straight
+    sum, stored as decimal hours in ``estimated_hours_lower`` /
+    ``estimated_hours_upper``. Writing it here rather than by hand is the whole
+    point: the number is mechanical, and a hand-maintained one drifts the first
+    time a single task is re-estimated.
+
+    Two cases leave the manifest untouched and say so in the action's detail: an
+    unreadable manifest (the linter reports that properly, and rewriting it would
+    destroy whatever the creator has in there), and any branch whose TICKET has
+    no parseable estimate (a total that silently skipped a branch is worse than
+    no total at all).
+    """
+    path = repo.path_lm_json
+    metadata = repo.metadata
+    if metadata is None:
+        return [SyncAction("manifest", str(path), "skipped: lm.json missing or invalid")]
+
+    estimate = estimate_repo_time(repo)
+    if not estimate.is_complete:
+        names = ", ".join(estimate.branches_without_estimate)
+        return [
+            SyncAction("manifest", str(path), f"skipped: no estimate in {names}")
+        ]
+
+    metadata.estimated_hours_lower = estimate.lower_hours
+    metadata.estimated_hours_upper = estimate.upper_hours
+    path.write_text(
+        json.dumps(metadata.to_dict(), indent=4, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+    return [
+        SyncAction(
+            "manifest",
+            str(path),
+            f"{estimate.lower_hours} to {estimate.upper_hours} hours",
+        )
+    ]
+
+
+# Sync operations, run in order by sync(). Snapshot must precede both of the
+# others, since they are generated from the freshly snapshotted task files.
+OPERATIONS = [op_snapshot_branch, op_generate_syllabus, op_estimated_hours]
 
 
 def sync(repo: Repo) -> SyncReport:

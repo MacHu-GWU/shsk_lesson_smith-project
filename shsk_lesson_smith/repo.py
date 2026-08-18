@@ -14,6 +14,9 @@ from pathlib import Path
 from functools import cached_property
 
 from .constants import (
+    ESTIMATED_HOURS_LOWER_FIELD,
+    ESTIMATED_HOURS_UPPER_FIELD,
+    minutes_to_hours,
     README_BASE,
     TICKET_BASE,
     README_ORIGINAL_BASE,
@@ -85,18 +88,26 @@ def resolve_repo(dir_cwd: "Path | str | None" = None) -> Path:
 class Metadata:
     """Parsed ``lm.json`` manifest. Base for per-type metadata subclasses.
 
-    Today the manifest carries a single field, ``type``. It is kept as a
-    dataclass (not a bare enum) so the manifest can grow more structured fields
-    later without touching call sites, and so each repo type can subclass it
-    (e.g. ``UpskillMetadata`` in ``repo_for_upskill.py``) to add fields specific
-    to that type. Each per-type Repo subclass overrides its ``metadata`` property
-    to parse into the matching subclass, via :meth:`load_or_none`.
+    The manifest carries ``type`` plus the repo-level estimated time bounds. It
+    is kept as a dataclass (not a bare enum) so the manifest can grow more
+    structured fields later without touching call sites, and so each repo type
+    can subclass it (e.g. ``UpskillMetadata`` in ``repo_for_upskill.py``) to add
+    fields specific to that type. Each per-type Repo subclass overrides its
+    ``metadata`` property to parse into the matching subclass, via
+    :meth:`load_or_none`.
+
+    ``estimated_hours_lower`` / ``estimated_hours_upper`` are the whole repo's
+    time budget in decimal hours, summed across every branch's TICKET. They are
+    written by ``lesson-smith sync``, not by hand, and are None on a manifest
+    that predates them or has not been synced yet.
 
     ``__post_init__`` coerces and validates ``type`` into a
     :class:`RepoTypeEnum`, raising ``ValueError`` for anything else.
     """
 
     type: RepoTypeEnum
+    estimated_hours_lower: "float | None" = None
+    estimated_hours_upper: "float | None" = None
 
     def __post_init__(self):
         # Coerce a raw string (or reject anything invalid) into the enum.
@@ -107,7 +118,26 @@ class Metadata:
         """Build from an already-parsed JSON object."""
         if not isinstance(data, dict):
             raise ValueError("lm.json must contain a JSON object")
-        return cls(type=data.get("type"))
+        return cls(
+            type=data.get("type"),
+            estimated_hours_lower=data.get(ESTIMATED_HOURS_LOWER_FIELD),
+            estimated_hours_upper=data.get(ESTIMATED_HOURS_UPPER_FIELD),
+        )
+
+    def to_dict(self) -> dict:
+        """Serialize back to the lm.json shape, omitting unset time bounds.
+
+        Field order is the manifest's reading order: what the repo is, then how
+        long it takes. Bounds that are None are left out entirely rather than
+        written as ``null``, so a manifest that has never been synced keeps the
+        same one-field shape it started with.
+        """
+        data: dict = {"type": self.type.value}
+        if self.estimated_hours_lower is not None:
+            data[ESTIMATED_HOURS_LOWER_FIELD] = self.estimated_hours_lower
+        if self.estimated_hours_upper is not None:
+            data[ESTIMATED_HOURS_UPPER_FIELD] = self.estimated_hours_upper
+        return data
 
     @classmethod
     def from_json_file(cls, path: "Path | str") -> "T.Self":
@@ -399,4 +429,74 @@ def _iter_numbered_dirs(parent: Path) -> "list[Path]":
         d
         for d in parent.iterdir()
         if d.is_dir() and TASK_DIR_PREFIX_PATTERN.match(d.name)
+    )
+
+
+# --------------------------------------------------------------------------- #
+# Repo-level estimated time.
+#
+# Each branch's TICKET carries one minute range; the repo's total is the straight
+# sum of those ranges. It is computed from the ``docs/tasks/`` snapshots rather
+# than from the working tree, because those snapshots are the one place where
+# every branch is visible at once — the working tree only ever has one branch
+# checked out.
+#
+# Lives here, next to Repo, because both consumers need it: ``sync`` writes the
+# total into lm.json and the linter re-derives it to check the manifest did not
+# drift. Same shape as the SYLLABUS, which sync generates and the linter
+# re-derives.
+# --------------------------------------------------------------------------- #
+@dataclasses.dataclass
+class EstimatedTime:
+    """A repo's summed time budget, plus the branches that could not be read."""
+
+    lower_minutes: int
+    upper_minutes: int
+    branches_without_estimate: "list[str]" = dataclasses.field(default_factory=list)
+
+    @property
+    def lower_hours(self) -> float:
+        """Lower bound in decimal hours, rounded for storage in lm.json."""
+        return minutes_to_hours(self.lower_minutes)
+
+    @property
+    def upper_hours(self) -> float:
+        """Upper bound in decimal hours, rounded for storage in lm.json."""
+        return minutes_to_hours(self.upper_minutes)
+
+    @property
+    def is_complete(self) -> bool:
+        """Whether every branch contributed a parseable estimate."""
+        return not self.branches_without_estimate
+
+
+def estimate_repo_time(repo: "Repo") -> EstimatedTime:
+    """Sum every ``docs/tasks/<branch>/TICKET`` estimate into a repo total.
+
+    For each branch the first language variant that yields a parseable estimate
+    wins, so a repo written in Chinese with empty English placeholders works
+    without the caller naming a language. A branch whose TICKET has no usable
+    estimate contributes nothing and is named in
+    :attr:`EstimatedTime.branches_without_estimate`, so callers can refuse to
+    write or trust a total that is silently short.
+    """
+    langs = (None, *LangEnum)
+    lower = upper = 0
+    missing: "list[str]" = []
+    for dir_task in repo.iter_dir_tasks():
+        found = None
+        for lang in langs:
+            path = repo.get_path_task_ticket(dir_task.name, lang)
+            if not path.exists():
+                continue
+            found = MarkdownFile(path).estimated_minutes
+            if found is not None:
+                break
+        if found is None:
+            missing.append(dir_task.name)
+            continue
+        lower += found[0]
+        upper += found[1]
+    return EstimatedTime(
+        lower_minutes=lower, upper_minutes=upper, branches_without_estimate=missing
     )

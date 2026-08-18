@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import json
 import shutil
 from pathlib import Path
 
@@ -31,7 +32,7 @@ class TestSync:
         report = sync(Repo(dir_project_root=writable_good_repo))
         assert isinstance(report, SyncReport)
         kinds = {a.kind for a in report.actions}
-        assert kinds == {"snapshot", "syllabus"}
+        assert kinds == {"snapshot", "syllabus", "manifest"}
 
     def test_snapshots_root_task_files(self, writable_good_repo):
         # Remove the snapshot dir, then let sync rebuild it from root files.
@@ -52,6 +53,44 @@ class TestSync:
         assert "## 01-upskill" in syllabus
         # Description is taken verbatim from the task README.
         assert "GitHub 基础协作 upskill 课程总览" in syllabus
+
+    def test_writes_estimated_hours_into_lm_json(self, writable_good_repo):
+        # good_upskill_repo's seven example TICKETs sum to 70 to 165 minutes.
+        sync(Repo(dir_project_root=writable_good_repo))
+        manifest = json.loads(
+            (writable_good_repo / "lm.json").read_text(encoding="utf-8")
+        )
+        assert manifest["type"] == "upskill"
+        assert manifest["estimated_hours_lower"] == round(70 / 60, 2)
+        assert manifest["estimated_hours_upper"] == round(165 / 60, 2)
+
+    def test_estimated_hours_follow_the_tickets(self, writable_good_repo):
+        # Re-estimating the branch TICKET must move the manifest on the next sync.
+        ticket = writable_good_repo / "TICKET-cn.md"
+        text = ticket.read_text(encoding="utf-8")
+        old_line = [l for l in text.splitlines() if l.startswith("**预计用时:**")][0]
+        ticket.write_text(
+            text.replace(old_line, "**预计用时:** 30 到 90 分钟"), encoding="utf-8"
+        )
+        sync(Repo(dir_project_root=writable_good_repo))
+        manifest = json.loads(
+            (writable_good_repo / "lm.json").read_text(encoding="utf-8")
+        )
+        assert manifest["estimated_hours_lower"] == 0.5
+        assert manifest["estimated_hours_upper"] == 1.5
+
+    def test_manifest_untouched_when_a_branch_has_no_estimate(self, writable_good_repo):
+        # A total that silently skipped a branch would be worse than no total,
+        # so sync leaves lm.json alone and says why.
+        ticket = writable_good_repo / "TICKET-cn.md"
+        text = ticket.read_text(encoding="utf-8")
+        old_line = [l for l in text.splitlines() if l.startswith("**预计用时:**")][0]
+        ticket.write_text(text.replace(old_line, "**预计用时:** 大约两小时"), encoding="utf-8")
+        before = (writable_good_repo / "lm.json").read_text(encoding="utf-8")
+        report = sync(Repo(dir_project_root=writable_good_repo))
+        assert (writable_good_repo / "lm.json").read_text(encoding="utf-8") == before
+        detail = [a.detail for a in report.actions if a.kind == "manifest"][0]
+        assert "no estimate in 01-upskill" in detail
 
     def test_english_syllabus_is_the_documented_empty_shell(self, writable_good_repo):
         # The English variants are deliberate empty placeholders, so there is no

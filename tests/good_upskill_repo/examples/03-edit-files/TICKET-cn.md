@@ -18,7 +18,7 @@ description: "在你的 repository 里新建并编辑若干文件, 留下几条�
 4. 点开 README.md, 用铅笔图标编辑它, 补一句项目介绍, 再提交一次, message 例如 Update README with project intro.
 5. 进入 Commits 页面, 找到你刚才这几条 commit, 点开其中一条看它的 diff (绿色新增, 红色删除).
 
-**预计用时:** 10 到 15 分钟
+**预计用时:** 5 到 15 分钟
 
 ---
 

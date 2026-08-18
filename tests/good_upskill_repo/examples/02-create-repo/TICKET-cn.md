@@ -19,7 +19,7 @@ description: "在自己账号下建出一个带 README 的公开 repository, 并
 5. 点 Create repository, 确认跳转到新 repo 的主页, 页面上能看到 README 内容.
 6. 点进 commit 历史, 找到那条自动生成的 Initial commit, 看清它记录了什么.
 
-**预计用时:** 5 到 10 分钟
+**预计用时:** 5 到 15 分钟
 
 ---
 

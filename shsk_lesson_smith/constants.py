@@ -177,6 +177,37 @@ H1_FORBIDDEN_CHARS = (
 
 
 # --------------------------------------------------------------------------- #
+# Estimated time.
+#
+# Every TICKET closes its "what to do" section with one line giving the task's
+# estimated time as a minute range picked from a fixed six-tier ladder (3-5,
+# 5-15, 15-30, 30-60, 60-90, 90-120). The repo-level total in ``lm.json`` is the
+# straight sum of every branch's range, converted to decimal hours once at the
+# end and rounded to :data:`ESTIMATED_HOURS_DIGITS` places, so the stored value
+# is exactly reproducible and can be compared for equality rather than within a
+# tolerance.
+#
+# The label is Chinese because courses are authored in Chinese only; when the
+# multi-language module lands this becomes a per-language mapping like the
+# description caps above.
+# --------------------------------------------------------------------------- #
+ESTIMATED_TIME_LABEL = "**预计用时:**"
+ESTIMATED_TIME_PATTERN = re.compile(
+    r"^\*\*预计用时:\*\*\s*(\d+)\s*到\s*(\d+)\s*分钟"
+)
+ESTIMATED_HOURS_DIGITS = 2
+
+# lm.json field names for the repo-level total.
+ESTIMATED_HOURS_LOWER_FIELD = "estimated_hours_lower"
+ESTIMATED_HOURS_UPPER_FIELD = "estimated_hours_upper"
+
+
+def minutes_to_hours(minutes: int) -> float:
+    """Convert a minute count to decimal hours, rounded for storage in lm.json."""
+    return round(minutes / 60, ESTIMATED_HOURS_DIGITS)
+
+
+# --------------------------------------------------------------------------- #
 # Task branch / task dir naming.
 # --------------------------------------------------------------------------- #
 # Strict form: NN-lowercase-hyphen-words.

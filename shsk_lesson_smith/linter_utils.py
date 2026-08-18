@@ -28,6 +28,7 @@ from functools import cached_property
 
 from .constants import (
     DESCRIPTION_FORBIDDEN_CHARS,
+    ESTIMATED_TIME_PATTERN,
     H1_FORBIDDEN_CHARS,
     lang_from_filename,
     max_description_chars,
@@ -212,6 +213,25 @@ class MarkdownFile:
     def github_about_raw(self) -> "str | None":
         """The ``github_about`` value exactly as written (quotes not stripped)."""
         return self.frontmatter.github_about_raw if self.frontmatter else None
+
+    @cached_property
+    def estimated_minutes(self) -> "tuple[int, int] | None":
+        """The ``**预计用时:**`` line parsed into ``(lower, upper)`` minutes.
+
+        None when the document has no such line, or when the line is there but
+        not written in the mandated minute form (an hour range, a prose estimate,
+        a single number). Callers report that as a problem rather than guessing:
+        a total summed from a value we had to interpret would be quietly wrong.
+
+        A trailing parenthetical is ignored, so the root TICKET's
+        ``385 到 700 分钟 (约 6.5 到 11.5 小时)`` parses to ``(385, 700)``: the
+        minute pair is authoritative and the hours are there for human readers.
+        """
+        for line in self.body.splitlines():
+            match = ESTIMATED_TIME_PATTERN.match(line.strip())
+            if match:
+                return int(match.group(1)), int(match.group(2))
+        return None
 
     @cached_property
     def h1_titles(self) -> "list[str]":

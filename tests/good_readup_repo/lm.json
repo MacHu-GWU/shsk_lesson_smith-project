@@ -1,3 +1,5 @@
 {
-    "type": "readup"
+    "type": "readup",
+    "estimated_hours_lower": 0.67,
+    "estimated_hours_upper": 1.75
 }

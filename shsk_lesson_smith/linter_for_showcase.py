@@ -31,6 +31,7 @@ from .linter import (
     lint_file_group,
     lint_task_dir,
     linted_langs,
+    rule_estimated_hours,
     rule_manifest,
     rule_readme_original,
     rule_root_overview,
@@ -211,4 +212,5 @@ RULES = [
     rule_single_branch,
     rule_syllabus,
     rule_task_snapshots,
+    rule_estimated_hours,
 ]

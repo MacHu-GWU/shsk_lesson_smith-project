@@ -1,3 +1,5 @@
 {
-    "type": "showcase"
+    "type": "showcase",
+    "estimated_hours_lower": 1.67,
+    "estimated_hours_upper": 3.75
 }

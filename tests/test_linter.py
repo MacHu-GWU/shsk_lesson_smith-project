@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import json
+import shutil
 from pathlib import Path
 
 import pytest
@@ -13,6 +15,7 @@ from shsk_lesson_smith.linter import (
     _check_syllabus_numbering,
     lint,
     linted_langs,
+    rule_estimated_hours,
     rule_syllabus,
 )
 from shsk_lesson_smith.linter_for_upskill import (
@@ -657,6 +660,58 @@ class TestPerLanguageLintSwitch:
         # Five docs plus four child skills, one variant each while English is off.
         assert len(results) == 9
         assert all("-cn" in r.location for r in results)
+
+
+class TestEstimatedHours:
+    """lm.json's time budget is generated, so it is linted for drift.
+
+    The rule re-derives the sum from the docs/tasks snapshots and compares, the
+    same way the SYLLABUS is checked against the task READMEs.
+    """
+
+    @pytest.fixture
+    def writable_repo(self, tmp_path):
+        dst = tmp_path / "good_readup_repo"
+        shutil.copytree(dir_good_readup_repo, dst)
+        return dst
+
+    def test_synced_manifest_passes(self, writable_repo):
+        results = rule_estimated_hours(Repo(dir_project_root=writable_repo))
+        assert all(r.passed for r in results)
+
+    def test_stale_manifest_is_reported(self, writable_repo):
+        path = writable_repo / "lm.json"
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data["estimated_hours_upper"] = data["estimated_hours_upper"] + 1
+        path.write_text(json.dumps(data, indent=4), encoding="utf-8")
+        results = rule_estimated_hours(Repo(dir_project_root=writable_repo))
+        messages = [r.message for r in results if not r.passed]
+        assert messages
+        assert "Re-run lesson-smith sync" in messages[0]
+
+    def test_missing_bounds_are_reported(self, writable_repo):
+        # A manifest that predates the fields, or was hand-written, is stale too.
+        (writable_repo / "lm.json").write_text(
+            json.dumps({"type": "readup"}, indent=4), encoding="utf-8"
+        )
+        results = rule_estimated_hours(Repo(dir_project_root=writable_repo))
+        assert any(not r.passed for r in results)
+
+    def test_unparseable_ticket_estimate_is_reported(self, writable_repo):
+        ticket = writable_repo / "docs" / "tasks" / "01-readup" / "TICKET-cn.md"
+        text = ticket.read_text(encoding="utf-8")
+        line = [l for l in text.splitlines() if l.startswith("**预计用时:**")][0]
+        ticket.write_text(text.replace(line, "**预计用时:** 2 到 3 小时"), encoding="utf-8")
+        results = rule_estimated_hours(Repo(dir_project_root=writable_repo))
+        messages = [r.message for r in results if not r.passed]
+        assert messages
+        assert "01-readup" in messages[0]
+
+    def test_broken_manifest_is_left_to_rule_manifest(self, writable_repo):
+        # A missing lm.json is rule_manifest's report, not this rule's.
+        (writable_repo / "lm.json").unlink()
+        results = rule_estimated_hours(Repo(dir_project_root=writable_repo))
+        assert all(r.passed for r in results)
 
 
 class TestRender:

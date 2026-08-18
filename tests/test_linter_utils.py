@@ -119,6 +119,42 @@ class TestMarkdownFile:
         assert md.h1 == "Title"
 
 
+class TestEstimatedMinutes:
+    """The ``**预计用时:**`` line, parsed into a minute pair."""
+
+    def _md(self, tmp_path, line):
+        return MarkdownFile.from_path(
+            write(tmp_path / "TICKET-cn.md", f"# Title\n\n1. Do it.\n\n{line}\n")
+        )
+
+    def test_parses_a_plain_minute_range(self, tmp_path):
+        assert self._md(tmp_path, "**预计用时:** 15 到 30 分钟").estimated_minutes == (
+            15,
+            30,
+        )
+
+    def test_ignores_the_trailing_hours_parenthetical(self, tmp_path):
+        # The root TICKET writes minutes plus an hours gloss; minutes are the
+        # authoritative pair.
+        line = "**预计用时:** 385 到 700 分钟 (约 6.5 到 11.5 小时)"
+        assert self._md(tmp_path, line).estimated_minutes == (385, 700)
+
+    @pytest.mark.parametrize(
+        "line",
+        [
+            "**预计用时:** 2 到 3 小时",  # hours, not minutes
+            "**预计用时:** 大约两小时",  # prose
+            "**预计用时:** 30 分钟",  # single value, not a range
+        ],
+    )
+    def test_returns_none_for_anything_not_in_minute_form(self, tmp_path, line):
+        assert self._md(tmp_path, line).estimated_minutes is None
+
+    def test_returns_none_when_the_line_is_absent(self, tmp_path):
+        md = MarkdownFile.from_path(write(tmp_path / "TICKET-cn.md", "# Title\n"))
+        assert md.estimated_minutes is None
+
+
 class TestCheckFileExists:
     def test_passes_when_present(self, tmp_path):
         path = write(tmp_path / "README.md", "x")

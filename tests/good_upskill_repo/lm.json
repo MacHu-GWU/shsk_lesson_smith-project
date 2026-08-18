@@ -1,3 +1,5 @@
 {
-    "type": "upskill"
+    "type": "upskill",
+    "estimated_hours_lower": 1.17,
+    "estimated_hours_upper": 2.75
 }

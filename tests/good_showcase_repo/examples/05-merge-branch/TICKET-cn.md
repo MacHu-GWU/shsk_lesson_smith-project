@@ -16,7 +16,7 @@ description: "发起并完成一个 Pull Request, 把 branch 合并回 main, mer
 2. 在 Files changed 里检查 diff, 确认改动符合预期.
 3. 完成 merge, 删除该 branch, 并在 main 上验证改动已生效.
 
-**预计用时:** 10 到 15 分钟
+**预计用时:** 5 到 15 分钟
 
 ---
 

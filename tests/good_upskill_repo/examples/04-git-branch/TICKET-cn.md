@@ -16,7 +16,7 @@ description: "建出一个 branch 并在其上提交改动, 主干 (默认分支
 2. 确认你现在站在新 branch 上 (下拉按钮显示的是新分支名), 编辑 README.md, 加一行内容并提交, 提交时确认选的是 Commit directly to the 新分支 branch.
 3. 用 branch switcher 切回 main, 打开同一个 README.md, 确认你刚加的那行不在 main 上.
 
-**预计用时:** 10 到 15 分钟
+**预计用时:** 5 到 15 分钟
 
 ---
 
