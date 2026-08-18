@@ -19,7 +19,7 @@ description: "一句话, 走完整门课, 做出什么或能演示什么才算�
 5. 用 `/showcase-demo-cn` 排练 "我是怎么做出这个项目的" 这段故事, 练到能流畅讲完并接住常见追问.
 6. (可选) 用 `/showcase-publish-cn` 把 repo 抹去教学痕迹, 发布成自己 GitHub 上的 portfolio repo.
 
-**预计用时:** [X 到 Y] [小时 / 一个周末]
+**预计用时:** [各 Task 下限之和] 到 [各 Task 上限之和] 分钟 (约 [X] 到 [Y] 小时)
 
 ---
 

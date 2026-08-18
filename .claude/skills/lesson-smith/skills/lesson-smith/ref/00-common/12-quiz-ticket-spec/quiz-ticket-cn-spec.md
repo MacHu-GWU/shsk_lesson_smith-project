@@ -37,7 +37,7 @@ quiz 那个 Task 的验收清单. 配套的题库真身 README 另有规范, 见
 
 - 三个 H2, 编号连续, 之间有分隔线, 文字逐字等于受控词汇
 - 第 2 节的两个步骤和第 3 节的两个 checkbox 一一对应
-- 第 2 节末尾有预计用时那一行
+- 第 2 节末尾有预计用时那一行, 且逐字等于 `30 到 60 分钟` (六档里的第 4 档)
 - 全文没有相对路径链接
 - 斜杠命令带的是本类型的名字 (`/upskill-quiz-cn` 或 `/showcase-quiz-cn`), 没有留下 `{{TYPE}}`
 - frontmatter 的 description 在, 值用双引号包着 (见 [01-repo-layout.md](../01-repo-layout.md) 第 6 节)

@@ -36,7 +36,7 @@
 
 **第 1 节 目标.** 一段, 整门课级别的 Definition of Done: 走完这门课要建立起什么整体能力或体感, **并能把它作为一件作品讲出来**.
 
-**第 2 节 要做的事情.** 有序的学习加展示路径. 大致是: 先读根目录 README, 再进 `examples/` 从 01 开始按编号刷完全部 Task (每个照它自己的 TICKET 做), 用 `/showcase-quiz-cn` 测到 70% 且思路清晰, 再用 `/showcase-demo-cn` 排练怎么讲这段经历, 最后 (可选计入验收) 用 `/showcase-publish-cn` 把 repo 抹去教学痕迹发布出去. 末尾给一个整门课的预计用时.
+**第 2 节 要做的事情.** 有序的学习加展示路径. 大致是: 先读根目录 README, 再进 `examples/` 从 01 开始按编号刷完全部 Task (每个照它自己的 TICKET 做), 用 `/showcase-quiz-cn` 测到 70% 且思路清晰, 再用 `/showcase-demo-cn` 排练怎么讲这段经历, 最后 (可选计入验收) 用 `/showcase-publish-cn` 把 repo 抹去教学痕迹发布出去. 末尾给一个整门课的预计用时, **由各个 Task 加总得出 (下限加下限, 上限加上限), 写法见 [04-task-ticket-spec](../../00-common/04-task-ticket-spec/task-ticket-cn-spec.md) 第 8.1 节**.
 
 **第 3 节 检查清单.** markdown todo 骨架, 带 checkbox. 覆盖: 全部 Task 完成 (各自 TICKET 逐项打勾), `/showcase-quiz-cn` 达到 70%, 能不看教程独立复现, 能用自己的话讲清核心概念, 能流畅讲出这段经历 (demo). publish 那条视创作者要求决定是否列入. 视课程增删.
 
@@ -66,5 +66,5 @@
 - 检查清单里 "能讲出这段经历" 那条在
 - 全文没有相对路径链接
 - 第 4 节是纯 bullet, 不带 checkbox, 10 条以内
-- 第 2 节末尾有预计用时那一行
+- 第 2 节末尾有预计用时那一行, 且等于 `examples/` 下各 Task 的加总 (下限加下限, 上限加上限), 后面括号里附小时换算
 - description 写的是判据, 不是承诺
