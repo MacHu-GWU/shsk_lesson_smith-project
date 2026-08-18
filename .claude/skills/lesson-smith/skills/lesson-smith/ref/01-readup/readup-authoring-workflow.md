@@ -1,6 +1,6 @@
 # Readup 课程创作工作流
 
-这份文档定义如何从零创作一个符合 readup 规范的 repo. 它是整条创作流的骨架: **10 个步骤, 分成 6 个阶段**, 每个阶段有一个对应的 step skill 唤醒它.
+这份文档定义如何从零创作一个符合 readup 规范的 repo. 它是整条创作流的骨架: **11 个步骤, 分成 7 个阶段**, 每个阶段有一个对应的 step skill 唤醒它.
 
 readup 是纯阅读型仓库: 不带任何 AI 学习工具链 (没有带学, 自测子 skill, 没有给 AI 看的元文档, 也没有出题的 Task). 所以它比 upskill 和 showcase 少一个锻造工具链的阶段.
 
@@ -18,16 +18,20 @@ readup 是纯阅读型仓库: 不带任何 AI 学习工具链 (没有带学, 自
 | 3 到 5 | 规划与试水 | `/lesson-smith-readup-author-step-03-to-05-plan-and-trial` | |
 | 6 | 写主线 | `/lesson-smith-readup-author-step-06-mainline` | |
 | 7 到 8 | 补两头加统稿 | `/lesson-smith-readup-author-step-07-to-08-bookends-and-converge` | 是 |
-| 9 | 写根目录文档 | `/lesson-smith-readup-author-step-09-root-docs` | 是 |
-| 10 | 出厂 | `/lesson-smith-readup-author-step-10-ship` | 是 |
+| 9 | 梳理时间 | `/lesson-smith-readup-author-step-09-calibrate-time` | 接着 7 到 8 那个 session |
+| 10 | 写根目录文档 | `/lesson-smith-readup-author-step-10-root-docs` | 是 |
+| 11 | 出厂 | `/lesson-smith-readup-author-step-11-ship` | 是 |
 
-后三个阶段建议各开一个新 session, 因为它们都要通读整门课, 而前面写作留下的上下文只会挤占注意力. 每个新 session 开头先敲一次 `/lesson-smith-readup-author`, 再敲那一步的 step skill.
+后面几个阶段建议各开一个新 session, 因为它们都要通读整门课, 而前面写作留下的上下文只会挤占注意力. 每个新 session 开头先敲一次 `/lesson-smith-readup-author`, 再敲那一步的 step skill.
+
+**第 9 步不要另开 session.** 统稿刚把全系列通读了一遍, 梳理时间要的正是同一次通读的记忆, 接着做能省一次通读.
 
 阶段这么切, 是因为缝都在真实的地方:
 
 - **定题和规划之间**: 第 1 到 2 步想的是题材和代码, 第 3 步开始想的才是怎么教.
 - **规划与试水不分家**: `examples/_lm-example-plan.md` 是第 3 步建的, 第 5 步改的. 把建它和改它切到两个阶段, 等于把一个循环从中间剖开.
 - **补两头和统稿合并**: 两步都要通读全系列, 分开就是读两遍. 而且统稿要查 "规定动作齐不齐", 刚写完的两头正好一起过.
+- **时间梳理单独成段**: 统稿定的是内容, 它定的是刻度, 判据完全不同. 混进统稿, 后一件必然被前一件挤掉.
 
 ---
 
@@ -37,7 +41,7 @@ readup 是纯阅读型仓库: 不带任何 AI 学习工具链 (没有带学, 自
 
 先用概括, 笼统的方式想清楚这个 repo 大致要教一个什么东西, 按规范写 `README-ORIGINAL-cn.md` (遵循 [00-common/02-readme-original-spec](../00-common/02-readme-original-spec/readme-original-cn-spec.md)). 这是整门课的大背景与电梯陈述, 后面所有内容都长在它之上.
 
-注意这**只是一版粗稿种子**: 此时 `examples/` 还没写, description 难免粗糙, 也和最终内容对不齐. 等全部内容完工后, **第 9 步会重写整份** `README-ORIGINAL-cn.md`, 让这门 Lesson 的门面和成品对齐. 所以这一步不用抠 description, 先把大方向写出来即可.
+注意这**只是一版粗稿种子**: 此时 `examples/` 还没写, description 难免粗糙, 也和最终内容对不齐. 等全部内容完工后, **第 10 步会重写整份** `README-ORIGINAL-cn.md`, 让这门 Lesson 的门面和成品对齐. 所以这一步不用抠 description, 先把大方向写出来即可.
 
 **顺手把 `lm.json` 建了.** 内容就一行 `{"type": "readup"}`. 它是 repo 根目录的机器可读清单 (见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 5 节), `lesson-smith lint` 和 `sync` 都靠它判断这是哪一类 repo. **缺了它 lint 会当场短路**: 只报一句 `lm.json is missing at the repo root` 就停, 别的一项都不查, 所以出厂那一步会看起来像整个仓库都没问题. 现在建, 一秒钟的事.
 
@@ -134,15 +138,29 @@ readup 没有单独的出题 Task: 每个 Task 自己的 TICKET 就是自查手�
 
 **为什么和第 7 步同一个 session**: 补两头本来就要通读全系列 (索引要按顺序和分组画地图, 收尾要说清整门课学了什么), 统稿要的是同一次通读. 分成两个 session 就是把同一批内容读两遍. 而且统稿第 3 节要查 "规定动作齐不齐", 刚写完的两头正好一起过.
 
-**这一步是主线成文的判据**: 过了它, 这门课的教学内容才算定稿, 才能进下一步去写那些拿全系列当素材的根目录文档.
+**这一步是主线成文的判据**: 过了它, 这门课的教学内容才算定稿, 才能进下一步梳理时间, 再往后写那些拿全系列当素材的根目录文档.
 
 ---
 
-## 10. 写根目录文档
+## 10. 梳理时间
 
-> 步骤 9. **建议开新 session.**
+> 步骤 9. **接着第 8 步做, 同一个 session.**
 
-统稿之后 `examples/` 是稳定的素材, 这一步基于它们写 repo 根目录那三份:
+`examples/` 定稿了, 但每个 Task 的预计用时是各写各的时候拍的, 横向没对过刻度. 这一步把全部 Task 摆在一起比一遍, 把六档分配到位.
+
+做法见 [00-common/15-time-calibration-spec.md](../00-common/15-time-calibration-spec.md). 大意是: AI 出一张六列的汇总表 (哪个 Task, 讲什么, 现在写的是什么, 建议几档, 增还是减, 为什么), 后面原样附上六档表, 然后**停下来让创作者按档位号拍板**, 拍完才改回各个 `TICKET-cn.md`.
+
+**为什么和统稿同一个 session**: 统稿刚把全系列通读了一遍, 这一步要的正是同一次通读的记忆.
+
+**为什么必须在写根目录文档之前**: 根 TICKET 的预计用时是各 Task 的机械加总 (见 [00-common/04-task-ticket-spec](../00-common/04-task-ticket-spec/task-ticket-cn-spec.md) 第 8.1 节). 各 Task 的档位没定, 那个和就没法算.
+
+---
+
+## 11. 写根目录文档
+
+> 步骤 10. **建议开新 session.**
+
+统稿与时间梳理之后 `examples/` 是稳定的素材, 这一步基于它们写 repo 根目录那三份:
 
 - `README-cn.md` 阅读总入口
 - `TICKET-cn.md` 整门课的验收清单
@@ -152,9 +170,9 @@ readup 没有单独的出题 Task: 每个 Task 自己的 TICKET 就是自查手�
 
 ---
 
-## 11. 出厂
+## 12. 出厂
 
-> 步骤 10. **建议开新 session.**
+> 步骤 11. **建议开新 session.**
 
 跑 `lesson-smith sync` 生成 SYLLABUS 与 `docs/tasks/` 快照, 再跑 `lesson-smith lint` 把整仓过一遍, 有问题修到通过. 做法见 [00-common/10-ship-spec.md](../00-common/10-ship-spec.md).
 

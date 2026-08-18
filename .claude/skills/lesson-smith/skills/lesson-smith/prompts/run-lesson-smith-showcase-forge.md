@@ -2,9 +2,9 @@
 
 > 用法: 把下面每个 "无" 换成你的内容, 然后把整份内容连同 /lesson-smith-showcase-forge 一起发出去. forge 会据此收集信息, 产出 `docs/showcase/` 下五份 `-cn` doc 与 `showcase-learn-cn`, `showcase-quiz-cn`, `showcase-demo-cn`, `showcase-publish-cn` 四个子 skill. 过程中它会向你确认, 你兜底做决策.
 
-> 前置: 这是创作流的**第 12 步**, 统稿之后才能跑. 统稿之前跑, 产出的链接和锚点会全部指在还会变的东西上, 而且没有任何检查会报出来 (publish 那份更糟, 它记的是要删哪些真实路径). 跑完接着做第 13 步 (写根目录文档), 不要另开 session.
+> 前置: 这是创作流的**第 13 步**, 统稿之后才能跑. 统稿之前跑, 产出的链接和锚点会全部指在还会变的东西上, 而且没有任何检查会报出来 (publish 那份更糟, 它记的是要删哪些真实路径). 跑完接着做第 14 步 (写根目录文档), 不要另开 session.
 
-/lesson-smith-showcase-author-step-12-forge
+/lesson-smith-showcase-author-step-13-forge
 
 请按 /lesson-smith-showcase-forge 中的规范, 先收集信息, 再产出对应的 doc 与子 skill.
 

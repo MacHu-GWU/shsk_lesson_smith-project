@@ -4,7 +4,7 @@
 
 **适用范围**: readup, upskill, showcase 三类. evolve 没有 `examples/` 这一层, 一个 branch 一个 Task 各自独立, 没有 "系列" 可统, 不适用.
 
-**位置**: `examples/` 下全部 Task 写完之后, 包括开头的索引 Task 和结尾的收尾 Task. 再往后的顺序是: readup 走**根目录文档, 出厂**; upskill 与 showcase 中间多一步锻造, 走**forge, 根目录文档, 出厂**. **forge 在根目录文档之前**, 因为根 README 要指名道姓提到 forge 产出的那几个子 skill.
+**位置**: `examples/` 下全部 Task 写完之后, 包括开头的索引 Task 和结尾的收尾 Task. 再往后的顺序是: readup 走**梳理时间, 根目录文档, 出厂**; upskill 与 showcase 中间多一步锻造, 走**梳理时间, forge, 根目录文档, 出厂**. **梳理时间紧接着统稿**, 用的是同一次通读 (见 [15-time-calibration-spec.md](15-time-calibration-spec.md)); **forge 在根目录文档之前**, 因为根 README 要指名道姓提到 forge 产出的那几个子 skill.
 
 **一次只统一个语种.** 中文统中文的, 英文统英文的, 不要跨语种对照着改. 当前只有中文.
 

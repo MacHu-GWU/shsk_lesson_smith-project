@@ -86,7 +86,8 @@ LESSON-SMITH-LOADED: v1
 **通用层, 流程步骤 (在 ref/00-common/ 下):**
 
 - `examples/` 全部写完, 要通读统稿时 → [08-series-converge-spec.md](ref/00-common/08-series-converge-spec.md): 找哪两类问题, 怎么改, 什么时候算过.
-- 统稿之后写 repo 根目录那三份时 → [09-root-docs-spec.md](ref/00-common/09-root-docs-spec.md): 采集什么素材, 三份各写什么, 含一道必须让创作者拍板的 gate.
+- 统稿之后梳理全部 Task 的预计用时时 → [15-time-calibration-spec.md](ref/00-common/15-time-calibration-spec.md): 汇总表怎么出, 六档怎么让创作者拍板, 含一道必须让创作者拍板的 gate.
+- 时间梳理之后写 repo 根目录那三份时 → [09-root-docs-spec.md](ref/00-common/09-root-docs-spec.md): 采集什么素材, 三份各写什么, 含一道必须让创作者拍板的 gate.
 - 创作流最后一步, 跑 sync 与 lint 出厂时 → [10-ship-spec.md](ref/00-common/10-ship-spec.md): 前置检查, 两条命令, lint 报错回哪一步修.
 
 **通用交互件 (不限教学仓库, 任何互动 skill 都可加载):**

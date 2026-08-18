@@ -9,7 +9,7 @@ allowed-tools: Read Grep Glob Bash(ls *) Bash(cat *) Bash(pwd)
 
 你是 upskill 课程创作流的总入口. **每个 session 开头都会先敲你一次**, 你的活儿是把地基铺好, 然后把创作者交给正确的那一步.
 
-upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task, 以及一条锻造学习工具链的阶段. 一共 13 步 8 个阶段.
+upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task, 以及一条锻造学习工具链的阶段. 一共 14 步 9 个阶段.
 
 ---
 
@@ -17,7 +17,7 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 
 **一, 加载 lesson-smith skill.** 不可跳过. 所有规范都住在那里, 本 skill 只是薄包装. 加载后你应该能看到 `LESSON-SMITH-LOADED: v1` 这个标记, 后面每个 step skill 都会检查它.
 
-**二, 读主剧本** `ref/02-upskill/upskill-authoring-workflow.md`. 它是 13 步的骨架和阶段划分表.
+**二, 读主剧本** `ref/02-upskill/upskill-authoring-workflow.md`. 它是 14 步的骨架和阶段划分表.
 
 **三, 判断创作者在哪一步**, 见下一节.
 
@@ -38,15 +38,15 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 | plan 在, Task 还在往后增加 | 第 6 步 |
 | 主线写完了, 但没有 `examples/NN-prove-i-get-it/` | 第 7 到 8 步 |
 | quiz 在, 但 `examples/01-*/` 这个索引 Task 或最后那个收尾 Task 还缺 | 第 9 步 |
-| examples 齐了, 但没有 `docs/upskill/` | 第 10 步或第 11 步. **直接问创作者统稿做没做**, 这一步从文件系统看不出来 |
-| `docs/upskill/` 与两个子 skill 都在, 根目录缺 `README-cn.md` 或 `TICKET-cn.md` | 第 12 步 |
-| 根目录三份 cn 齐了, 但没有 `docs/tasks/SYLLABUS-cn.md` | 第 13 步 |
+| examples 齐了, 但没有 `docs/upskill/` | 第 10 到 12 步. **直接问创作者统稿和时间梳理做没做**, 这两步从文件系统看不出来 |
+| `docs/upskill/` 与两个子 skill 都在, 根目录缺 `README-cn.md` 或 `TICKET-cn.md` | 第 13 步 |
+| 根目录三份 cn 齐了, 但没有 `docs/tasks/SYLLABUS-cn.md` | 第 14 步 |
 
 **别拿英文文件当判据.** 无后缀的英文文件全程留空, 它们存不存在, 有没有内容, 都和进度无关.
 
 推断完**告诉创作者他在哪一步, 以及该敲哪条命令**, 然后停下来等他敲. 不要自己接着往下做那一步的活儿: step skill 存在的意义就是把那一步的规范和红线单独唤起来, 你替他做等于绕过了它.
 
-八条 step 命令:
+九条 step 命令:
 
 ```text
 /lesson-smith-upskill-author-step-01-to-02-scope
@@ -54,14 +54,15 @@ upskill 比 readup 多两样东西: `examples/` 里有一个固定的 quiz Task,
 /lesson-smith-upskill-author-step-06-mainline
 /lesson-smith-upskill-author-step-07-to-08-quiz
 /lesson-smith-upskill-author-step-09-to-10-bookends-and-converge
-/lesson-smith-upskill-author-step-11-forge
-/lesson-smith-upskill-author-step-12-root-docs
-/lesson-smith-upskill-author-step-13-ship
+/lesson-smith-upskill-author-step-11-calibrate-time
+/lesson-smith-upskill-author-step-12-forge
+/lesson-smith-upskill-author-step-13-root-docs
+/lesson-smith-upskill-author-step-14-ship
 ```
 
 后面几条各建议开一个新 session, 因为它们都要通读整门课. 创作者在新 session 里会重新敲你一次, 这是预期行为, 不是重复劳动.
 
-**第 12 步是唯一一条不要另开 session 的**: 它接着第 11 步做, 用的是锻造时刚读进来的那批素材, 而且刚产出的两个子 skill 就在手边, 根 README 提到它们时可以立刻验证.
+**有两条不要另开 session**: 第 11 步接着第 10 步 (统稿) 做, 用的是统稿时刚通读全系列的那份记忆; 第 13 步接着第 12 步 (锻造) 做, 用的是锻造时刚读进来的那批素材, 而且刚产出的两个子 skill 就在手边, 根 README 提到它们时可以立刻验证.
 
 ---
 

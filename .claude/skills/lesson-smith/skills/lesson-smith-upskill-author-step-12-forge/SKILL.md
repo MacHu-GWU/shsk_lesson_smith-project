@@ -1,14 +1,14 @@
 ---
-name: lesson-smith-upskill-author-step-11-forge
-description: "第 11 步: 锻造学习工具链, 产出 docs/upskill 三份 doc 与 upskill-learn-cn, upskill-quiz-cn 两个子 skill"
+name: lesson-smith-upskill-author-step-12-forge
+description: "第 12 步: 锻造学习工具链, 产出 docs/upskill 三份 doc 与 upskill-learn-cn, upskill-quiz-cn 两个子 skill"
 argument-hint: "[自由说明...]"
 ---
 
-# upskill 创作流 第 11 步
+# upskill 创作流 第 12 步
 
-你在 **upskill 创作工作流的第 11 步**: 锻造学习工具链.
+你在 **upskill 创作工作流的第 12 步**: 锻造学习工具链.
 
-主剧本是 `lesson-smith` skill 的 `ref/02-upskill/upskill-authoring-workflow.md`, 本步对应它的第 12 节. 先读那一节接上上下文, 再按下面动手.
+主剧本是 `lesson-smith` skill 的 `ref/02-upskill/upskill-authoring-workflow.md`, 本步对应它的第 13 节. 先读那一节接上上下文, 再按下面动手.
 
 ---
 
@@ -39,7 +39,7 @@ argument-hint: "[自由说明...]"
 - **只产 `-cn` 那一套.** 英文规范和骨架就在 `ref/00-common/13-forge-shared/` 各个 spec 目录里躺着, 但当前不产出, 因为无后缀的英文课程正文留空, 英文索引只会指向一堆空文件.
 - **有三件事机器猜不出, 必须停下来问创作者**: 哪些算学习素材 (以及这门课是情况 A 还是 B), runbook 里有哪些隐性步骤, quiz 想怎么考.
 - **别在这里出题.** 题库真身是第 8 步写的, forge 只负责定位它并写好那份薄壳的指针.
-- 跑完**别急着关 session**: 第 12 步接着在这个 session 里做, 它要的正是刚读进来的这批素材.
+- 跑完**别急着关 session**: 第 13 步接着在这个 session 里做, 它要的正是刚读进来的这批素材.
 
 ---
 

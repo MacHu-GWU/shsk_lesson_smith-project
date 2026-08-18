@@ -12,11 +12,11 @@ readup, upskill, showcase 三类底层是**同一个东西**: 一个 branch, 加
 
 > 定题 → 规划与试水 → 写主线 → 补两头加统稿 → 写根目录文档 → 出厂
 
-差别只在**节奏**: 主线之后插几个特殊 Task, 统稿之后加不加一步锻造.
+差别只在**节奏**: 主线之后插几个特殊 Task, 统稿与梳理时间之后加不加一步锻造.
 
 | | readup | upskill | showcase |
 | :--- | :--- | :--- | :--- |
-| 步骤 / 阶段 | 10 / 6 | 13 / 8 | 14 / 9 |
+| 步骤 / 阶段 | 11 / 7 | 14 / 9 | 15 / 10 |
 | 特殊 Task | 无 | quiz | quiz, demo |
 | forge 锻造出的工具链 | 无 | 3 份 doc, 2 个子 skill | 5 份 doc, 4 个子 skill |
 | 学完之后 | 读完就完 | 学完就完 | 多一个对外 publish 环节 |
@@ -62,6 +62,7 @@ ref/
     12-quiz-ticket-spec/
     13-forge-shared/                        多类共享: 分组目录, 见第 4 节
     14-wrap-up-readme-spec/                 多类共享: 收尾 Task, 只有 spec 没有 template
+    15-time-calibration-spec.md             流程步骤: 梳理时间 (紧跟 08, 序号往后接)
   01-readup/                            特化层
     readup-repo-layout.md
     readup-authoring-workflow.md
@@ -172,7 +173,7 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 
 **结构上已经完工.** 从通用层到三个特化层, 从 spec 到 workflow 到 SKILL 到 step skill, 一路都按上面几节的规矩落地了:
 
-- `00-common/` 十四份齐了: `01` 标准, `02` 到 `07` 通用文档 spec, `08` 到 `10` 流程三件套 (统稿, 根目录文档, 出厂), `11` 到 `13` upskill 与 showcase 共享的那部分 (quiz 那个 Task 的两份, 加 forge 素材), `14` 三类共享的收尾 Task.
+- `00-common/` 十五份齐了: `01` 标准, `02` 到 `07` 通用文档 spec, `08` 到 `10` 流程三件套 (统稿, 根目录文档, 出厂), `11` 到 `13` upskill 与 showcase 共享的那部分 (quiz 那个 Task 的两份, 加 forge 素材), `14` 三类共享的收尾 Task, `15` 流程步骤: 梳理时间 (按 "新东西往后接" 的规矩排在末尾, 虽然它在流程上紧跟 `08`).
 - spec 目录全面改成两文件制 (一份 spec 加一份 template), 顶部注释与 `corpus/` 那两套已作废. 唯一的例外是 `14`, 它只有 spec, 因为它的骨架就是通用 Task README 那一份, 再复制一份只会漂移.
 - 三个特化层的 layout, workflow, 根 README 与 TICKET spec 全部落位; 各层只留自己独有的东西, 重复的那约 850 行 (quiz 两份 spec 加整套 forge 素材) 已经收进通用层.
 - 运行时那一侧同步跟上: `SKILL.md` 的 ref 索引与工作流步骤都已重指, 三条 author 命令加对应的 step skill 全部到位, `finalize` 那一套已删.

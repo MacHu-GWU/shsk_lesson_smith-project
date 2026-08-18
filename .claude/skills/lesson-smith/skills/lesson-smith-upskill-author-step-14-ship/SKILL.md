@@ -1,14 +1,14 @@
 ---
-name: lesson-smith-upskill-author-step-13-ship
-description: "第 13 步: 出厂, 跑 sync 生成 SYLLABUS 与快照, 再跑 lint 把整仓过一遍修到通过"
+name: lesson-smith-upskill-author-step-14-ship
+description: "第 14 步: 出厂, 跑 sync 生成 SYLLABUS 与快照, 再跑 lint 把整仓过一遍修到通过"
 argument-hint: "[自由说明...]"
 ---
 
-# upskill 创作流 第 13 步
+# upskill 创作流 第 14 步
 
-你在 **upskill 创作工作流的第 13 步**: 出厂. 跑 sync 与 lint, 把整仓修到通过.
+你在 **upskill 创作工作流的第 14 步**: 出厂. 跑 sync 与 lint, 把整仓修到通过.
 
-主剧本是 `lesson-smith` skill 的 `ref/02-upskill/upskill-authoring-workflow.md`, 本步对应它的第 14 节. 先读那一节接上上下文, 再按下面动手.
+主剧本是 `lesson-smith` skill 的 `ref/02-upskill/upskill-authoring-workflow.md`, 本步对应它的第 15 节. 先读那一节接上上下文, 再按下面动手.
 
 ---
 
@@ -28,7 +28,7 @@ argument-hint: "[自由说明...]"
 
 ## 3. 这一步的红线
 
-- **先确认前置齐了.** `docs/upskill/` 下三份 doc 与两个子 skill 都要在, 那是第 11 步的产物, lint 会查它们.
+- **先确认前置齐了.** `docs/upskill/` 下三份 doc 与两个子 skill 都要在, 那是第 12 步的产物, lint 会查它们.
 - **SYLLABUS 与 `docs/tasks/` 快照一律由 sync 生成, 不许手写.** 命令不可用或报错就如实说, 不要自己拿键盘补一份出来.
 - **改完正文要重跑 sync 再重跑 lint.** SYLLABUS 是从各份 README 的 description 生成的, 只改正文不重跑就会对不上.
 - **报出来的路径应该全是 `-cn` 的.** 出现无后缀的英文路径说明按语种开关没生效, 那是 lint 配置的问题, 不是你要去填的空文件.

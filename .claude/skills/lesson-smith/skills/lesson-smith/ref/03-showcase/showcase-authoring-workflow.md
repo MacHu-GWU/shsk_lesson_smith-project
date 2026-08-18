@@ -1,6 +1,6 @@
 # Showcase 课程创作工作流
 
-这份文档定义如何从零创作一个符合 showcase 规范的 repo. 它是整条创作流的骨架: **14 个步骤, 分成 9 个阶段**, 每个阶段有一个对应的 step skill 唤醒它.
+这份文档定义如何从零创作一个符合 showcase 规范的 repo. 它是整条创作流的骨架: **15 个步骤, 分成 10 个阶段**, 每个阶段有一个对应的 step skill 唤醒它.
 
 showcase 比 upskill 多两样东西: `examples/` 里多一个 demo 讲故事底稿 Task, 以及整门课学完之后多一个对外 publish 环节 (由 forge 产出的 `showcase-publish-cn` skill 承担, **不是创作流的一步**, 是学生自己后来跑的).
 
@@ -20,13 +20,14 @@ showcase 比 upskill 多两样东西: `examples/` 里多一个 demo 讲故事底
 | 7 到 8 | 写 quiz | `/lesson-smith-showcase-author-step-07-to-08-quiz` | |
 | 9 | 写 demo | `/lesson-smith-showcase-author-step-09-demo` | |
 | 10 到 11 | 补两头加统稿 | `/lesson-smith-showcase-author-step-10-to-11-bookends-and-converge` | 是 |
-| 12 | 锻造 | `/lesson-smith-showcase-author-step-12-forge` | 是 |
-| 13 | 写根目录文档 | `/lesson-smith-showcase-author-step-13-root-docs` | 接着 12 那个 session |
-| 14 | 出厂 | `/lesson-smith-showcase-author-step-14-ship` | 是 |
+| 12 | 梳理时间 | `/lesson-smith-showcase-author-step-12-calibrate-time` | 接着 10 到 11 那个 session |
+| 13 | 锻造 | `/lesson-smith-showcase-author-step-13-forge` | 是 |
+| 14 | 写根目录文档 | `/lesson-smith-showcase-author-step-14-root-docs` | 接着 13 那个 session |
+| 15 | 出厂 | `/lesson-smith-showcase-author-step-15-ship` | 是 |
 
 后面几个阶段建议各开一个新 session, 因为它们都要通读整门课, 而前面留下的上下文只会挤占注意力. 每个新 session 开头先敲一次 `/lesson-smith-showcase-author`, 再敲那一步的 step skill.
 
-**第 13 步不要另开 session.** 锻造那一步已经把整套 examples 读进来了, 写根目录文档要的正是同一批素材, 接着写能省一次通读, 而且刚锻造出来的四个子 skill 就在手边, 根 README 里提到它们时可以立刻验证.
+**第 12 步和第 14 步都不要另开 session.** 第 12 步接着统稿做: 统稿刚把全系列通读了一遍, 梳理时间要的正是同一次通读的记忆. 第 14 步接着锻造做: 锻造已经把整套 examples 读进来了, 写根目录文档要的正是同一批素材, 而且刚锻造出来的四个子 skill 就在手边, 根 README 里提到它们时可以立刻验证.
 
 阶段这么切, 是因为缝都在真实的地方:
 
@@ -35,6 +36,7 @@ showcase 比 upskill 多两样东西: `examples/` 里多一个 demo 讲故事底
 - **主线单独成段**: 前面是边写边定风格, 第 6 步风格已经锁死, 剩下的是产量.
 - **quiz 和 demo 各自成段**: 它们是两个特殊 Task, 规范, 红线和产出形态都不一样 (一个是题库, 一个是叙事底稿). 一个 Task 一个阶段, 将来加第三个就是加一个阶段, 前后都不用动.
 - **补两头和统稿合并**: 两步都要通读全系列, 分开就是读两遍. 而且统稿要查 "规定动作齐不齐", 刚写完的两头正好一起过.
+- **时间梳理单独成段**: 统稿定的是内容, 它定的是刻度, 判据完全不同. 混进统稿, 后一件必然被前一件挤掉.
 
 ---
 
@@ -44,7 +46,7 @@ showcase 比 upskill 多两样东西: `examples/` 里多一个 demo 讲故事底
 
 先用概括, 笼统的方式想清楚这个 repo 大致要教一个什么东西, 按规范写 `README-ORIGINAL-cn.md` (遵循 [00-common/02-readme-original-spec](../00-common/02-readme-original-spec/readme-original-cn-spec.md)). 这是整门课的大背景与电梯陈述, 后面所有内容都长在它之上.
 
-注意这**只是一版粗稿种子**: 此时 `examples/` 还没写, description 难免粗糙, 也和最终内容对不齐. 等全部内容完工后, **第 13 步会重写整份** `README-ORIGINAL-cn.md`, 让这门 Lesson 的门面和成品对齐. 所以这一步不用抠 description, 先把大方向写出来即可.
+注意这**只是一版粗稿种子**: 此时 `examples/` 还没写, description 难免粗糙, 也和最终内容对不齐. 等全部内容完工后, **第 14 步会重写整份** `README-ORIGINAL-cn.md`, 让这门 Lesson 的门面和成品对齐. 所以这一步不用抠 description, 先把大方向写出来即可.
 
 **顺手把 `lm.json` 建了.** 内容就一行 `{"type": "showcase"}`. 它是 repo 根目录的机器可读清单 (见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 5 节), `lesson-smith lint` 和 `sync` 都靠它判断这是哪一类 repo. **缺了它 lint 会当场短路**: 只报一句 `lm.json is missing at the repo root` 就停, 别的一项都不查, 所以出厂那一步会看起来像整个仓库都没问题. 现在建, 一秒钟的事.
 
@@ -181,15 +183,31 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 
 做法见 [00-common/08-series-converge-spec.md](../00-common/08-series-converge-spec.md).
 
-**这一步是主线成文的判据**: 过了它, 这门课的教学内容才算定稿. 后面三步 (锻造, 根目录文档, 出厂) 全都拿 `examples/` 当素材, 素材不稳就白做.
+**这一步是主线成文的判据**: 过了它, 这门课的教学内容才算定稿. 后面四步 (梳理时间, 锻造, 根目录文档, 出厂) 全都拿 `examples/` 当素材, 素材不稳就白做.
 
 **为什么和第 10 步同一个 session**: 补两头本来就要通读全系列 (索引要按顺序和分组画地图, 收尾要说清整门课学了什么), 统稿要的是同一次通读. 分成两个 session 就是把同一批内容读两遍. 而且统稿第 3 节要查 "规定动作齐不齐", 刚写完的两头正好一起过.
 
 ---
 
-## 13. 锻造学习与展示工具链
+## 13. 梳理时间
 
-> 步骤 12. **建议开新 session.**
+> 步骤 12. **接着第 11 步做, 同一个 session.**
+
+`examples/` 定稿了, 但每个 Task 的预计用时是各写各的时候拍的, 横向没对过刻度. 这一步把全部 Task 摆在一起比一遍, 把六档分配到位.
+
+做法见 [00-common/15-time-calibration-spec.md](../00-common/15-time-calibration-spec.md). 大意是: AI 出一张六列的汇总表 (哪个 Task, 讲什么, 现在写的是什么, 建议几档, 增还是减, 为什么), 后面原样附上六档表, 然后**停下来让创作者按档位号拍板**, 拍完才改回各个 `TICKET-cn.md`.
+
+**为什么和统稿同一个 session**: 统稿刚把全系列通读了一遍, 这一步要的正是同一次通读的记忆.
+
+**为什么排在锻造之前**: 这一步要回头改 `examples/` 下的 TICKET, 属于 examples 阶段的收尾. 放在锻造之后, 等于 forge 已经拿 examples 当定稿素材跑完了, 又回去动它. `examples/` 定稿只该有一个时间点.
+
+**为什么必须在写根目录文档之前**: 根 TICKET 的预计用时是各 Task 的机械加总 (见 [00-common/04-task-ticket-spec](../00-common/04-task-ticket-spec/task-ticket-cn-spec.md) 第 8.1 节). 各 Task 的档位没定, 那个和就没法算.
+
+---
+
+## 14. 锻造学习与展示工具链
+
+> 步骤 13. **建议开新 session.**
 
 用 `/lesson-smith-showcase-forge` 产出两样东西:
 
@@ -206,9 +224,9 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 
 ---
 
-## 14. 写根目录文档
+## 15. 写根目录文档
 
-> 步骤 13. **接着第 12 步做, 同一个 session.**
+> 步骤 14. **接着第 13 步做, 同一个 session.**
 
 这一步基于定稿的 `examples/` 写 repo 根目录那三份:
 
@@ -222,13 +240,13 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 
 ---
 
-## 15. 出厂
+## 16. 出厂
 
-> 步骤 14. **建议开新 session.**
+> 步骤 15. **建议开新 session.**
 
 跑 `lesson-smith sync` 生成 SYLLABUS 与 `docs/tasks/` 快照, 再跑 `lesson-smith lint` 把整仓过一遍, 有问题修到通过. 做法见 [00-common/10-ship-spec.md](../00-common/10-ship-spec.md).
 
-lint 会检查 forge 的产物, 所以它必须排在第 12 步之后.
+lint 会检查 forge 的产物, 所以它必须排在第 13 步之后.
 
 过了 lint, 这门 showcase 课创作完成.
 

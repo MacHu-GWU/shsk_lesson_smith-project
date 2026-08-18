@@ -123,7 +123,7 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 
 ## 6. 收尾: 交回创作流的后半段
 
-精修做完, retrofit 的活儿就结束了. **后面那几步一律不要替创作者跑**: 统稿, 锻造, 写根目录文档决策密度高, 必须他亲自过, 自动化只会产出对不上的东西.
+精修做完, retrofit 的活儿就结束了. **后面那几步一律不要替创作者跑**: 统稿, 梳理时间, 锻造, 写根目录文档决策密度高, 必须他亲自过, 自动化只会产出对不上的东西.
 
 收尾时告诉创作者接下来敲哪条 step 命令:
 
@@ -133,6 +133,6 @@ learn-this-project 是要被 showcase 取代的那套旧规范, 它的布局已�
 | upskill | `/lesson-smith-upskill-author-step-09-to-10-bookends-and-converge` |
 | showcase | `/lesson-smith-showcase-author-step-10-to-11-bookends-and-converge` |
 
-往后各自还有锻造 (upskill 与 showcase 才有), 写根目录文档, 出厂三步, 由那条线自己的 author skill 带.
+往后各自还有梳理时间, 锻造 (upskill 与 showcase 才有), 写根目录文档, 出厂几步, 由那条线自己的 author skill 带.
 
 顺带提醒两件事: SYLLABUS 与 `docs/tasks/` 快照由出厂那一步的 sync 生成, 现在不要手写; 根目录的 README, TICKET 与 README-ORIGINAL 归写根目录文档那一步, retrofit 全程不碰.

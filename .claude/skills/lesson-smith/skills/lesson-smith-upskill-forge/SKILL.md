@@ -14,7 +14,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 
 产出后, 创作者与任何学员都能用 `/upskill-learn-cn` 带着学, `/upskill-quiz-cn` 自测.
 
-这一步对应创作工作流的**第 11 步**. 跑完别急着关 session, 第 12 步 (写根目录文档) 接着用同一批素材.
+这一步对应创作工作流的**第 12 步**. 跑完别急着关 session, 第 13 步 (写根目录文档) 接着用同一批素材.
 
 ---
 
@@ -77,7 +77,7 @@ examples 之外的脚本, 数据, 配置等没有语种之分, 照常通读.
 ### Phase 1: Preflight (不可跳过)
 
 1. 确认是 upskill repo: 读根目录 `lm.json`, `type` 必须是 `upskill`; `examples/` 必须存在. 不满足就停下问用户.
-2. 定课程名. 从 `README-ORIGINAL-cn.md` 取, 它从第 1 步起就存在; **根 `README-cn.md` 这时候还没写**, 那是第 12 步的产物.
+2. 定课程名. 从 `README-ORIGINAL-cn.md` 取, 它从第 1 步起就存在; **根 `README-cn.md` 这时候还没写**, 那是第 13 步的产物.
 3. **确认统稿已经过了.** 这一步从文件系统看不出来, 直接问创作者. 统稿之前跑的代价见本文末尾那一节.
 4. 列出 `docs/upskill/` 现有内容. init 模式下若目标文件已存在, 停下让用户确认改用 refresh.
 
@@ -144,7 +144,7 @@ ref/agent-skill-interaction-pattern-cn.md        ->  上面两个 skill 各自�
    - 3 份 doc 都非空, 且里面指向 `examples/` 的链接都是 `-cn` 的.
    - **产出的文件里 grep `{{`, 必须 0 命中.** 有命中就是共享模板的占位符没换干净, 那会产出一条指向不存在路径的链接.
 3. 用 uvx 跑 `lesson-smith lint` 看仓库结构是否仍合规 (`uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .`; `<version>` 与 pin 版本的说明见 `ref/00-common/01-repo-layout.md` 第 8 节, 本地已装 package 则直接 `lesson-smith lint`).
-4. 告诉用户: 用 `/upskill-learn-cn` 开始学, `/upskill-quiz-cn` 自测; `docs/upskill/` 里哪里不对直接改, 或 `refresh <name>` 重生成一份. **接着做第 12 步, 不要另开 session.**
+4. 告诉用户: 用 `/upskill-learn-cn` 开始学, `/upskill-quiz-cn` 自测; `docs/upskill/` 里哪里不对直接改, 或 `refresh <name>` 重生成一份. **接着做第 13 步, 不要另开 session.**
 
 ---
 

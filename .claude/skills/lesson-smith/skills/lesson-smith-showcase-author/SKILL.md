@@ -9,7 +9,7 @@ allowed-tools: Read Grep Glob Bash(ls *) Bash(cat *) Bash(pwd)
 
 你是 showcase 课程创作流的总入口. **每个 session 开头都会先敲你一次**, 你的活儿是把地基铺好, 然后把创作者交给正确的那一步.
 
-showcase 比 upskill 多两样东西: `examples/` 里多一个 demo 讲故事底稿 Task, 以及整门课学完之后多一个对外 publish 环节. 一共 14 步 9 个阶段.
+showcase 比 upskill 多两样东西: `examples/` 里多一个 demo 讲故事底稿 Task, 以及整门课学完之后多一个对外 publish 环节. 一共 15 步 10 个阶段.
 
 **publish 不是创作流的一步.** 它由 forge 产出的 `showcase-publish-cn` skill 承担, 是学生自己后来跑的. 创作者这条线走到出厂就结束了.
 
@@ -19,7 +19,7 @@ showcase 比 upskill 多两样东西: `examples/` 里多一个 demo 讲故事底
 
 **一, 加载 lesson-smith skill.** 不可跳过. 所有规范都住在那里, 本 skill 只是薄包装. 加载后你应该能看到 `LESSON-SMITH-LOADED: v1` 这个标记, 后面每个 step skill 都会检查它.
 
-**二, 读主剧本** `ref/03-showcase/showcase-authoring-workflow.md`. 它是 14 步的骨架和阶段划分表.
+**二, 读主剧本** `ref/03-showcase/showcase-authoring-workflow.md`. 它是 15 步的骨架和阶段划分表.
 
 **三, 判断创作者在哪一步**, 见下一节.
 
@@ -41,15 +41,15 @@ showcase 比 upskill 多两样东西: `examples/` 里多一个 demo 讲故事底
 | 主线写完了, 但没有 `examples/NN-prove-i-get-it/` | 第 7 到 8 步 |
 | quiz 在, 但没有 `examples/NN-how-i-build-this/` | 第 9 步 |
 | demo 在, 但 `examples/01-*/` 这个索引 Task 或最后那个收尾 Task 还缺 | 第 10 步 |
-| examples 齐了, 但没有 `docs/showcase/` | 第 11 步或第 12 步. **直接问创作者统稿做没做**, 这一步从文件系统看不出来 |
-| `docs/showcase/` 与四个子 skill 都在, 根目录缺 `README-cn.md` 或 `TICKET-cn.md` | 第 13 步 |
-| 根目录三份 cn 齐了, 但没有 `docs/tasks/SYLLABUS-cn.md` | 第 14 步 |
+| examples 齐了, 但没有 `docs/showcase/` | 第 11 到 13 步. **直接问创作者统稿和时间梳理做没做**, 这两步从文件系统看不出来 |
+| `docs/showcase/` 与四个子 skill 都在, 根目录缺 `README-cn.md` 或 `TICKET-cn.md` | 第 14 步 |
+| 根目录三份 cn 齐了, 但没有 `docs/tasks/SYLLABUS-cn.md` | 第 15 步 |
 
 **别拿英文文件当判据.** 无后缀的英文文件全程留空, 它们存不存在, 有没有内容, 都和进度无关.
 
 推断完**告诉创作者他在哪一步, 以及该敲哪条命令**, 然后停下来等他敲. 不要自己接着往下做那一步的活儿: step skill 存在的意义就是把那一步的规范和红线单独唤起来, 你替他做等于绕过了它.
 
-九条 step 命令:
+十条 step 命令:
 
 ```text
 /lesson-smith-showcase-author-step-01-to-02-scope
@@ -58,14 +58,15 @@ showcase 比 upskill 多两样东西: `examples/` 里多一个 demo 讲故事底
 /lesson-smith-showcase-author-step-07-to-08-quiz
 /lesson-smith-showcase-author-step-09-demo
 /lesson-smith-showcase-author-step-10-to-11-bookends-and-converge
-/lesson-smith-showcase-author-step-12-forge
-/lesson-smith-showcase-author-step-13-root-docs
-/lesson-smith-showcase-author-step-14-ship
+/lesson-smith-showcase-author-step-12-calibrate-time
+/lesson-smith-showcase-author-step-13-forge
+/lesson-smith-showcase-author-step-14-root-docs
+/lesson-smith-showcase-author-step-15-ship
 ```
 
 后面几条各建议开一个新 session, 因为它们都要通读整门课. 创作者在新 session 里会重新敲你一次, 这是预期行为, 不是重复劳动.
 
-**第 13 步是唯一一条不要另开 session 的**: 它接着第 12 步做, 用的是锻造时刚读进来的那批素材, 而且刚产出的四个子 skill 就在手边, 根 README 提到它们时可以立刻验证.
+**有两条不要另开 session**: 第 12 步接着第 11 步 (统稿) 做, 用的是统稿时刚通读全系列的那份记忆; 第 14 步接着第 13 步 (锻造) 做, 用的是锻造时刚读进来的那批素材, 而且刚产出的四个子 skill 就在手边, 根 README 提到它们时可以立刻验证.
 
 ---
 

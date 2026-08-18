@@ -1,14 +1,14 @@
 ---
-name: lesson-smith-showcase-author-step-12-forge
-description: "第 12 步: 锻造学习与展示工具链, 产出 docs/showcase 五份 doc 与四个子 skill"
+name: lesson-smith-showcase-author-step-13-forge
+description: "第 13 步: 锻造学习与展示工具链, 产出 docs/showcase 五份 doc 与四个子 skill"
 argument-hint: "[自由说明...]"
 ---
 
-# showcase 创作流 第 12 步
+# showcase 创作流 第 13 步
 
-你在 **showcase 创作工作流的第 12 步**: 锻造学习与展示工具链.
+你在 **showcase 创作工作流的第 13 步**: 锻造学习与展示工具链.
 
-主剧本是 `lesson-smith` skill 的 `ref/03-showcase/showcase-authoring-workflow.md`, 本步对应它的第 13 节. 先读那一节接上上下文, 再按下面动手.
+主剧本是 `lesson-smith` skill 的 `ref/03-showcase/showcase-authoring-workflow.md`, 本步对应它的第 14 节. 先读那一节接上上下文, 再按下面动手.
 
 ---
 
@@ -51,7 +51,7 @@ argument-hint: "[自由说明...]"
 - **有五件事机器猜不出, 必须停下来问创作者**: 哪些算学习素材 (以及这门课是情况 A 还是 B), runbook 里有哪些隐性步骤, quiz 想怎么考, demo 想怎么排练, publish 清单里哪些算待定项.
 - **别在这里出题, 也别在这里写故事.** 题库真身是第 8 步写的, 讲故事底稿是第 9 步写的, forge 只负责定位它们并写好那两份薄壳的指针.
 - **demo 按名字找, 不按位置找.** `NN-how-i-build-this` 后面还有一个收尾 Task, 它不是 `examples/` 的最后一个.
-- 跑完**别急着关 session**: 第 13 步接着在这个 session 里做, 它要的正是刚读进来的这批素材.
+- 跑完**别急着关 session**: 第 14 步接着在这个 session 里做, 它要的正是刚读进来的这批素材.
 
 ---
 
