@@ -14,6 +14,27 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
+0.3.2 (2026-08-18)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Features and Improvements**
+
+- **``lm.json`` gained a repo-level time budget, generated rather than written.** ``estimated_hours_lower`` and ``estimated_hours_upper`` hold the whole repository's span in decimal hours, and ``lesson-smith sync`` computes them as a third operation after the snapshot and the SYLLABUS: read every ``docs/tasks/<branch>/TICKET``, add the lower bounds, add the upper bounds, divide by 60 once at the end, round to two places. The snapshots are the source because they are the only place where every branch is visible at once — a working tree only ever has one branch checked out. This completes the chain 0.3.1 started: six-tier estimates per task, summed into the root TICKET, summed again across branches into the manifest.
+- **The linter re-derives that total and compares it for equality.** Rounding to a fixed two places makes the stored value exactly reproducible, so drift is a mismatch rather than a tolerance question — the same treatment the SYLLABUS gets against the task READMEs. The usual failure is re-estimating one task and forgetting to re-run sync, and the error says so. Note this is deliberately not the rounding used by the hours gloss in the root TICKET, which stays at the nearest half hour because it is prose for a human to read.
+- **Sync refuses to write a total it had to interpret.** If any branch's TICKET states its estimate as anything other than a minute range — an hour range, a prose phrase, a single number — the manifest is left completely untouched and the report names the branch. A total that silently skipped a branch is worse than no total at all.
+
+**Breaking Changes**
+
+- **``lesson-smith lint`` now fails a repo whose ``lm.json`` has no time budget, or whose budget disagrees with the TICKETs.** Every repo built against an earlier version reports one new failure until it is re-synced. The fix is to run ``lesson-smith sync`` — but a repo whose TICKETs still carry free-hand estimates has to be put on the six-tier ladder first, since sync will not guess.
+- **Pin 0.3.2 or later.** The two manifest fields do not exist before it: sync from an earlier version will not write them while lint from this one requires them. ``01-repo-layout`` section 8 now names 0.3.2 as the version to pin, and says why mixing the two is the one combination that bites.
+- ``Metadata`` grew ``estimated_hours_lower`` / ``estimated_hours_upper`` (both optional) and a ``to_dict``. Anything constructing a ``Metadata`` positionally still works; anything serialising one by hand should go through ``to_dict`` so unset bounds are omitted rather than written as ``null``.
+
+**Miscellaneous**
+
+- **The ladder itself is still not a machine check.** What lint enforces is the arithmetic — that ``lm.json`` equals the sum of the TICKETs, and that each TICKET states its estimate in minutes at all. Whether a given task genuinely belongs in tier 3 rather than tier 4 is left to the specs and the preflight checklists, and pinning the tiers in code stays deferred.
+- The computation lives next to ``Repo`` rather than in either consumer, because both need it: sync writes the total and the linter re-derives it. Same shape as the SYLLABUS.
+- The six test fixture repos were re-estimated onto the ladder and re-synced, so each now carries a worked example of the whole chain: per-task tiers, a root TICKET stating their sum in minutes with an hours gloss, and an ``lm.json`` holding the same total in decimal hours.
+
+
 0.3.1 (2026-08-18)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Features and Improvements**
@@ -23,12 +44,9 @@ x.y.z (Backlog)
 - **New authoring step: calibrate time.** It sits directly after the converge step and before the root documents — step 9 for readup, 11 for upskill, 12 for showcase — and is the first step whose whole job is the scale of a course rather than its content. The agent reads every task, produces one table (directory, what it covers taken verbatim from the README ``description``, what the estimate says today, which tier it suggests, unchanged/up/down, and why), reprints the six-tier ladder underneath because nobody remembers what "tier 4" means, and then **stops**. The creator answers in plain language — "01 through 03 are all tier 2, 07 is heavier than that, make it tier 5" — and only then does anything get written back. Deciding the tiers is a human gate of the same kind as signing off on the ``README-ORIGINAL`` frontmatter. Specified in the new ``00-common/15-time-calibration-spec.md`` and driven by one new step skill per type.
 - **Why it is its own step rather than part of converge.** Converge settles content: terminology, depth, whether one chapter hands off to the next. This settles scale, using the same read-through but a completely different test — folded together, the second one loses every time. It has to come after every task exists (the index, quiz, demo, and wrap-up tasks all count toward the total) and before the root documents (their estimate is the sum of these). For upskill and showcase it is placed before forge, because it edits ``examples/`` and a course should have exactly one moment where ``examples/`` is final. It shares the converge session, since it wants the same read-through still in context.
 
-- **``lm.json`` gained a repo-level time budget, generated rather than written.** ``estimated_hours_lower`` and ``estimated_hours_upper`` hold the whole repository's span in decimal hours, and ``lesson-smith sync`` computes them as a third operation after the snapshot and the SYLLABUS: read every ``docs/tasks/<branch>/TICKET``, add the lower bounds, add the upper bounds, divide by 60 once at the end, round to two places. The snapshots are the source because they are the only place where every branch is visible at once — a working tree only ever has one branch checked out. The stored value is exactly reproducible, so the linter re-derives it and compares for equality, the same way it checks the SYLLABUS against the task READMEs; the usual failure is re-estimating one task and forgetting to re-run sync. This is deliberately not the same rounding as the hours gloss in the root TICKET, which stays at the nearest half hour because it is prose for a human. If any branch's TICKET is not written as a minute range, sync leaves the manifest completely alone and names the branch in its report: a total that silently skipped a branch is worse than no total.
-
 **Breaking Changes**
 
 - **Inserting a step renumbered every step behind it, so eight slash commands changed name.** readup: ``step-09-root-docs`` → ``step-10-root-docs``, ``step-10-ship`` → ``step-11-ship``. upskill: ``step-11-forge`` → ``step-12-forge``, ``step-12-root-docs`` → ``step-13-root-docs``, ``step-13-ship`` → ``step-14-ship``. showcase: ``step-12-forge`` → ``step-13-forge``, ``step-13-root-docs`` → ``step-14-root-docs``, ``step-14-ship`` → ``step-15-ship``. Step counts are now 11 steps in 7 phases for readup, 14 in 9 for upskill, and 15 in 10 for showcase. Anything holding an old command name — notes, saved prompts, a half-finished course — needs repointing.
-- **``lesson-smith lint`` now fails a repo whose ``lm.json`` has no time budget, or whose budget disagrees with the TICKETs.** Every existing course therefore reports one new failure until it is re-synced. The fix is to run ``lesson-smith sync`` — but a repo whose TICKETs still carry free-hand estimates has to be put on the six-tier ladder first, since sync refuses to write a total it had to interpret.
 
 **Minor Improvements**
 
@@ -38,8 +56,7 @@ x.y.z (Backlog)
 
 **Miscellaneous**
 
-- **The ladder itself is still not a machine check.** What lint enforces is the arithmetic — that ``lm.json`` equals the sum of the TICKETs, and that each TICKET states its estimate in minutes at all. Whether a given task genuinely belongs in tier 3 rather than tier 4 is left to the specs and the preflight checklists, and pinning the tiers in code is deferred until a few courses have been written against them.
-- The six test fixture repos were re-estimated onto the ladder and re-synced, so each now carries a worked example of the whole chain: per-task tiers, a root TICKET stating their sum in minutes with an hours gloss, and an ``lm.json`` holding the same total in decimal hours.
+- ``lesson-smith lint`` and ``sync`` are untouched by this release: everything here is specs and skills. The six-tier ladder is carried by the specs and the preflight checklists only. (0.3.2 adds the machine-checked half.)
 - Added a project-local ``maintain-lesson-smith`` skill: what the plugin is for, how ``ref/`` and the skill family are organised, the layering rules, and which references have to be updated together for each kind of change. Inserting this step touched about thirty files across five of those surfaces, which is exactly the ripple that skill exists to enumerate.
 
 

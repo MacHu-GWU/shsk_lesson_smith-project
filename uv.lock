@@ -1421,7 +1421,7 @@ wheels = [
 
 [[package]]
 name = "shsk-lesson-smith"
-version = "0.3.1"
+version = "0.3.2"
 source = { editable = "." }
 dependencies = [
     { name = "fire" },
