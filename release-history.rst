@@ -14,6 +14,20 @@ x.y.z (Backlog)
 **Miscellaneous**
 
 
+0.3.3 (2026-08-19)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Bugfixes**
+
+- **Structural lint checks no longer look inside fenced code blocks.** ``MarkdownFile`` grew a ``body_outside_code`` property, and the three checks that read the body line by line now go through it: the H1 scan, the estimated-time line, and the TICKET relative-link scan. Before this, a Python comment written at column zero inside a ``` ```python ``` block counted as an H1, so a perfectly ordinary teaching README that labels its snippets — ``# 读一行``, ``# Q1: the whole hierarchy`` — failed with "The document has 4 H1 titles, but exactly one is allowed." The same bug reached two other checks that nobody had hit yet: a ``**预计用时:**`` line quoted inside a sample would have been summed into a repo's time budget, and a TICKET illustrating what a relative link looks like would have been failed for containing one. All three came from the same root cause, so all three are fixed together rather than special-casing the one that surfaced.
+- **The workaround this removes was worse than the bug.** With no way to exempt a code block, the only fix available to an author was to mangle otherwise-correct sample code: indent the comment by a space, move a section label into a trailing inline comment, or split one coherent snippet into three so each label could become a markdown heading. Lint should not push authors to write worse examples.
+
+**Miscellaneous**
+
+- ``strip_fenced_code_blocks`` follows CommonMark closely enough for real documents: an opening fence is three or more backticks or tildes indented by at most three spaces, and only a fence of the same character, at least as long, and carrying no info string closes it. That last rule is what lets a ````` ```` ````` block quote an inner ``` ``` ``` block, which the specs themselves rely on. An unclosed fence runs to the end of the document.
+- Fifteen new tests cover the fence grammar (both fence characters, info strings, longer closing fences, nesting, unclosed blocks, indented fences) and, for each of the three checks, one case that must stay quiet next to one that must still fail. A fix that silences a check everywhere is not a fix.
+- ``01-repo-layout`` section 8 now states the exclusion as part of the documented lint contract, so an author reading the spec knows sample code is exempt rather than discovering it by trial.
+
+
 0.3.2 (2026-08-18)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Features and Improvements**

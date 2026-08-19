@@ -15,6 +15,7 @@ from shsk_lesson_smith.linter_utils import (
     check_h1_matches,
     check_no_relative_links,
     find_emoji,
+    strip_fenced_code_blocks,
 )
 
 
@@ -377,3 +378,97 @@ if __name__ == "__main__":
         "shsk_lesson_smith.linter_utils",
         preview=False,
     )
+
+
+class TestStripFencedCodeBlocks:
+    """Fenced code blocks are literal content, not markdown structure."""
+
+    def test_no_fence_is_unchanged(self):
+        assert strip_fenced_code_blocks("# Title\n\ntext") == "# Title\n\ntext"
+
+    def test_drops_block_and_its_fences(self):
+        text = "before\n```python\nx = 1\n```\nafter"
+        assert strip_fenced_code_blocks(text) == "before\nafter"
+
+    def test_drops_hash_comments_inside_a_block(self):
+        text = "before\n```python\n# not a heading\nx = 1\n```\nafter"
+        assert strip_fenced_code_blocks(text) == "before\nafter"
+
+    def test_tilde_fences(self):
+        text = "a\n~~~\n# comment\n~~~\nb"
+        assert strip_fenced_code_blocks(text) == "a\nb"
+
+    def test_longer_fence_can_quote_an_inner_fence(self):
+        # A ````-fenced block quoting a ```-fenced one: the inner fence must not
+        # close the outer block. The specs themselves are written this way.
+        text = "a\n````text\n```python\n# inner\n```\n````\nb"
+        assert strip_fenced_code_blocks(text) == "a\nb"
+
+    def test_closing_fence_may_be_longer(self):
+        text = "a\n```\nx\n`````\nb"
+        assert strip_fenced_code_blocks(text) == "a\nb"
+
+    def test_fence_with_info_string_does_not_close(self):
+        # Only a bare fence closes a block, so this stays open to the end.
+        text = "a\n```python\nx = 1\n```python\ny = 2\n```\nb"
+        assert strip_fenced_code_blocks(text) == "a\nb"
+
+    def test_unclosed_fence_runs_to_end_of_document(self):
+        assert strip_fenced_code_blocks("a\n```\nx\ny") == "a"
+
+    def test_indented_opening_fence_up_to_three_spaces(self):
+        text = "a\n   ```\n# comment\n   ```\nb"
+        assert strip_fenced_code_blocks(text) == "a\nb"
+
+
+class TestStructuralChecksIgnoreCodeBlocks:
+    """H1s, the estimated-time line and relative links all skip fenced blocks."""
+
+    def test_python_comment_is_not_an_h1(self, tmp_path):
+        path = write(
+            tmp_path / "README.md",
+            "# Real Title\n\n```python\n# Q1: the whole hierarchy\n"
+            'for e in Entity.query("CUSTOMER#C001"): ...\n```\n',
+        )
+        md = MarkdownFile.from_path(path)
+        assert md.h1_titles == ["Real Title"]
+        check_h1_charset(md)
+
+    def test_shell_comment_is_not_an_h1(self, tmp_path):
+        path = write(
+            tmp_path / "README.md",
+            "# Real Title\n\n```bash\n# run it\npython main.py\n```\n",
+        )
+        md = MarkdownFile.from_path(path)
+        assert md.h1_titles == ["Real Title"]
+
+    def test_real_second_h1_is_still_flagged(self, tmp_path):
+        path = write(
+            tmp_path / "README.md",
+            "# One\n\n```python\n# comment\n```\n\n# Two\n",
+        )
+        md = MarkdownFile.from_path(path)
+        assert md.h1_titles == ["One", "Two"]
+
+    def test_sample_relative_link_is_not_flagged(self, tmp_path):
+        path = write(
+            tmp_path / "TICKET.md",
+            "# T\n\nSample:\n\n```text\n[label](../other/README-cn.md)\n```\n",
+        )
+        check_no_relative_links(MarkdownFile.from_path(path))
+
+    def test_real_relative_link_is_still_flagged(self, tmp_path):
+        path = write(
+            tmp_path / "TICKET.md",
+            "# T\n\n[label](../other/README-cn.md)\n",
+        )
+        with pytest.raises(LintError, match="relative-path link"):
+            check_no_relative_links(MarkdownFile.from_path(path))
+
+    def test_estimated_time_inside_a_block_is_ignored(self, tmp_path):
+        path = write(
+            tmp_path / "TICKET.md",
+            "# T\n\n```text\n**预计用时:** 5 到 15 分钟\n```\n\n"
+            "**预计用时:** 30 到 60 分钟\n",
+        )
+        assert MarkdownFile.from_path(path).estimated_minutes == (30, 60)

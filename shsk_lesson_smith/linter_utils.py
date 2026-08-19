@@ -54,6 +54,11 @@ _GITHUB_ABOUT_KEY = "github_about:"
 # Inline markdown link target: the "..." in [text](...). A target is allowed in a
 # TICKET only when it is an absolute URL or an in-page anchor; anything else is a
 # relative path, which does not resolve once the TICKET is pasted into an Issue.
+# A fenced code block delimiter: three or more backticks or tildes, indented by
+# at most three spaces (CommonMark). Everything between an opening fence and its
+# matching closing fence is literal content, not markdown structure.
+_CODE_FENCE = re.compile(r"^ {0,3}(?P<fence>`{3,}|~{3,})")
+
 _MD_LINK_TARGET = re.compile(r"\]\(\s*([^)]+?)\s*\)")
 _ALLOWED_LINK_TARGET = re.compile(r"^(?:https?://|mailto:|#)", re.IGNORECASE)
 
@@ -66,6 +71,47 @@ def find_emoji(text: str) -> "str | None":
             if low <= code <= high:
                 return char
     return None
+
+
+def strip_fenced_code_blocks(text: str) -> str:
+    """Return ``text`` with every fenced code block (fences included) removed.
+
+    Structural markdown checks must not look inside fenced code blocks. A Python
+    comment such as ``# Q1: the whole hierarchy`` is a comment, not an H1; a
+    ``[label](../path.md)`` shown inside a sample is an illustration, not a live
+    relative link. Scanning the raw body makes those false positives, and the
+    author's only workaround is to mangle otherwise-correct sample code.
+
+    Fence matching follows CommonMark closely enough for real documents: an
+    opening fence is three or more backticks or tildes indented by at most three
+    spaces, and only a fence of the same character and at least the same length,
+    carrying no info string, closes it. That last rule is what lets a ````` ```` `````
+    block quote an inner ``` ``` ``` block, which the specs themselves do. An
+    unclosed fence runs to the end of the document, again per CommonMark.
+    """
+    kept: "list[str]" = []
+    fence_char: "str | None" = None
+    fence_len = 0
+    for line in text.splitlines():
+        match = _CODE_FENCE.match(line)
+        if fence_char is None:
+            if match:
+                fence = match.group("fence")
+                fence_char, fence_len = fence[0], len(fence)
+            else:
+                kept.append(line)
+            continue
+        # Inside a block: only a matching bare closing fence ends it.
+        if match:
+            fence = match.group("fence")
+            closes = (
+                fence[0] == fence_char
+                and len(fence) >= fence_len
+                and not line.strip().lstrip(fence_char).strip()
+            )
+            if closes:
+                fence_char, fence_len = None, 0
+    return "\n".join(kept)
 
 
 def _split_frontmatter(text: str) -> "tuple[list[str] | None, str]":
@@ -215,6 +261,18 @@ class MarkdownFile:
         return self.frontmatter.github_about_raw if self.frontmatter else None
 
     @cached_property
+    def body_outside_code(self) -> str:
+        """The body with fenced code blocks removed.
+
+        Every structural check (H1s, the estimated-time line, relative links)
+        reads this rather than :attr:`body`, so sample code is never mistaken
+        for markdown structure. Checks that care about the literal text of a
+        title, such as the emoji and charset scans, still work off the value
+        those structural checks hand them.
+        """
+        return strip_fenced_code_blocks(self.body)
+
+    @cached_property
     def estimated_minutes(self) -> "tuple[int, int] | None":
         """The ``**预计用时:**`` line parsed into ``(lower, upper)`` minutes.
 
@@ -227,7 +285,7 @@ class MarkdownFile:
         ``385 到 700 分钟 (约 6.5 到 11.5 小时)`` parses to ``(385, 700)``: the
         minute pair is authoritative and the hours are there for human readers.
         """
-        for line in self.body.splitlines():
+        for line in self.body_outside_code.splitlines():
             match = ESTIMATED_TIME_PATTERN.match(line.strip())
             if match:
                 return int(match.group(1)), int(match.group(2))
@@ -239,10 +297,13 @@ class MarkdownFile:
 
         A well-formed document has exactly one; the full list is kept so
         :func:`check_h1_charset` can flag documents that have none or several.
+
+        Fenced code blocks are skipped: a ``# ...`` line inside a Python or shell
+        sample is a comment, not a heading.
         """
         return [
             line[2:].strip()
-            for line in self.body.splitlines()
+            for line in self.body_outside_code.splitlines()
             if line.startswith("# ")
         ]
 
@@ -401,9 +462,12 @@ def check_no_relative_links(md: MarkdownFile) -> None:
     where relative links do not resolve. Absolute ``http(s)://`` / ``mailto:`` URLs
     and in-page ``#anchor`` links are fine; a link whose target is anything else
     (``./x``, ``../x``, ``x/y.md``) is a relative path and is flagged.
+
+    Links shown inside a fenced code block are samples, not live links, so they
+    are not flagged.
     """
     relative = []
-    for target in _MD_LINK_TARGET.findall(md.body):
+    for target in _MD_LINK_TARGET.findall(md.body_outside_code):
         cleaned = target.strip()
         if cleaned.startswith("<") and cleaned.endswith(">"):
             cleaned = cleaned[1:-1].strip()

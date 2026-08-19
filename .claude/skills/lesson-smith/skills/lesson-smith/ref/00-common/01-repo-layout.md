@@ -249,8 +249,8 @@ uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 - `sync`: 快照当前 branch 的 README 与 TICKET 到 `docs/tasks/<branch>/`, 重建 SYLLABUS, 再把各 branch 的预计用时加总写进 `lm.json` 的 `estimated_hours_lower` 与 `estimated_hours_upper` (见第 5 节).
 - `lint`: 只读校验. 目录结构, 语种完整性, 唯一那个带序号 branch 的名字对不对 (`01-<type>`), 特殊 Task 的目录名与位置 (见第 4.3 节那张表), forge 产物在不在 (upskill 与 showcase), frontmatter 的 description 与 github_about, H1 字符集, TICKET 里有没有相对路径链接, SYLLABUS 内容是否与各 README 的 description 一致, 以及 `lm.json` 那两个时长字段是否等于重算出来的和.
 - **lint 按语种开关.** 只有开着的语种才被检查, 关掉的整个跳过 (既不要求存在, 内容也不检查). 英文当前是关的, 所以留空的英文占位文件不会报错. 开关在 package 的 `constants.py` 里.
-- `<version>` 填创作时的最新发布版本 (**当前是 0.3.2, 也是能用的最低版本**; 最新版见 https://pypi.org/pypi/shsk-lesson-smith).
-- **`lm.json` 那两个时长字段要 0.3.2 起才有.** 0.3.1 及更早的 sync 不会写它们, 而 0.3.2 的 lint 要求它们在, 所以**一新一旧混着跑是唯一会咬人的组合**. 两条命令 pin 同一个版本, 且不低于 0.3.2.
+- `<version>` 填创作时的最新发布版本 (**当前是 0.3.3**; 最新版见 https://pypi.org/pypi/shsk-lesson-smith).
+- **lint 的结构性检查一律跳过 fenced code block** (0.3.3 起). 代码块里顶格的 `# 注释` 是注释不是 H1, 示例里的 `[label](../x.md)` 是示范不是活链接, 代码块里的 `**预计用时:**` 也不参与加总. 在此之前这三项都会误报, 而唯一的绕法是去改本来正确的示例代码.
 - **pin 死版本**是为了让校验规范可复现, 不随新版悄悄漂移.
 - 本地已经装好这个 package 时, 直接跑 `lesson-smith sync` 与 `lesson-smith lint` 效果相同.
 
