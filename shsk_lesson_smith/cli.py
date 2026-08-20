@@ -11,14 +11,21 @@ Usage::
 
     lesson-smith lint [--project-root PATH] [--json] [--quiet]
     lesson-smith sync [--project-root PATH] [--json] [--quiet]
+    lesson-smith version
+    lesson-smith --version
 """
 
 import sys
 
 import fire
 
+from . import __version__
 from .linter import lint_project
 from .sync import sync_project
+
+#: Top-level flags handled before Fire sees them. Fire consumes ``-v`` itself as
+#: an alias of ``--verbose``, so the short form here is the capital ``-V``.
+VERSION_FLAGS = ("--version", "-V")
 
 
 class Command:
@@ -76,7 +83,23 @@ class Command:
         if not quiet:
             print(report.to_json() if json else report.render())
 
+    def version(self):
+        """Print the installed ``shsk-lesson-smith`` version, then exit.
+
+        Worth running whenever a repo is linted through a pinned
+        ``uvx --from shsk-lesson-smith==X.Y.Z``: it is the only way to confirm
+        which ruleset actually ran.
+        """
+        print(__version__)
+
 
 def main():
     """Console script entry point (``lesson-smith``)."""
+    # Fire has no notion of a top-level flag: it tries to consume ``--version``
+    # as an argument to a command and fails with "Could not consume arg". So the
+    # conventional spelling is intercepted here, and ``version`` also exists as a
+    # real subcommand so that it shows up in Fire's own usage listing.
+    if len(sys.argv) == 2 and sys.argv[1] in VERSION_FLAGS:
+        print(__version__)
+        return
     fire.Fire(Command)

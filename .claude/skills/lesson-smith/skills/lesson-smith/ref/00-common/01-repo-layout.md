@@ -96,8 +96,8 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见下一小�
 
 **`01` 索引和 `02` 综述不是一回事**, 别合并:
 
-- **索引**梳理这门课有哪些 Task, 怎么分组, 该按什么顺序读. 它短, 是一张地图.
-- **综述**交代话题本身: 这个领域是怎么来的, 现在什么局面, 学生进来之前该知道哪些背景. 它可以很长, 取决于话题需要多少铺垫.
+- **索引** 梳理这门课有哪些 Task, 怎么分组, 该按什么顺序读. 它短, 是一张地图.
+- **综述** 交代话题本身: 这个领域是怎么来的, 现在什么局面, 学生进来之前该知道哪些背景. 它可以很长, 取决于话题需要多少铺垫.
 
 **收尾排在所有特殊 Task 之后**, 这是硬的. 两条理由:
 
@@ -161,7 +161,7 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见下一小�
   }
   ```
 
-  为什么从 `docs/tasks/` 算而不是从工作区算: 那是唯一一处**所有 branch 同时可见**的地方, 工作区任何时刻只 checkout 了一个 branch. 也因此 evolve 暂时没有这两个字段, sync 还不支持它的多 branch 快照.
+  为什么从 `docs/tasks/` 算而不是从工作区算: 那是唯一一处**所有 branch 同时可见** 的地方, 工作区任何时刻只 checkout 了一个 branch. 也因此 evolve 暂时没有这两个字段, sync 还不支持它的多 branch 快照.
 
 ---
 
@@ -177,7 +177,7 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见下一小�
 ### 6.2 形态, lint 全都卡
 
 - 值保持**一行**, 不含换行.
-- 值必须用**双引号**包起来, 形如 `description: "..."`.
+- 值必须用**双引号** 包起来, 形如 `description: "..."`.
 - 值里**不许出现**: 双引号, 反引号, 以及四个弯引号 (成对的那些).
 - 值里**允许出现 ASCII 撇号** (`'`). 值本身已经被双引号包住, 撇号在里面不产生歧义, 而英文的 `it's`, `GitHub's` 这类写法少不了它.
 - 长度只算双引号内的内容, 不含包裹的那两个字符.
@@ -236,7 +236,28 @@ readup, upskill, showcase 还会在这之上多一层 `examples/`, 见下一小�
 
 维护 `docs/tasks/` 以及校验命名, 语种完整性, description 规范的逻辑在 `shsk_lesson_smith` 这个 Python package 里 (已发布到 PyPI, 项目名 `shsk-lesson-smith`), CLI 入口是 `lesson-smith`, 两个子命令 `sync` 与 `lint`.
 
-教学仓库自己不依赖这个 package, 所以在教学 repo 根目录下用 uvx 临时拉一个 pin 死的版本来跑, 不必预装:
+**教学仓库自己不依赖这个 package.** 它是维护者手里的工具, 不是课程的一部分, 所以两种跑法都不需要教学 repo 装任何东西.
+
+**推荐给人类课程维护者: 用 uv 全局装一份, 之后直接敲命令.** 装一次管所有教学 repo:
+
+```bash
+uv tool install shsk-lesson-smith
+```
+
+后续升到最新版:
+
+```bash
+uv tool upgrade shsk-lesson-smith
+```
+
+装完在任意教学 repo 根目录下直接跑:
+
+```bash
+lesson-smith sync -p .
+lesson-smith lint -p .
+```
+
+**AI 或一次性使用: 用 uvx 临时拉一个 pin 死的版本, 不必预装.**
 
 ```bash
 uvx --from shsk-lesson-smith==<version> lesson-smith sync -p .
@@ -251,8 +272,10 @@ uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 - **lint 按语种开关.** 只有开着的语种才被检查, 关掉的整个跳过 (既不要求存在, 内容也不检查). 英文当前是关的, 所以留空的英文占位文件不会报错. 开关在 package 的 `constants.py` 里.
 - `<version>` 填创作时的最新发布版本 (**当前是 0.3.3**; 最新版见 https://pypi.org/pypi/shsk-lesson-smith).
 - **lint 的结构性检查一律跳过 fenced code block** (0.3.3 起). 代码块里顶格的 `# 注释` 是注释不是 H1, 示例里的 `[label](../x.md)` 是示范不是活链接, 代码块里的 `**预计用时:**` 也不参与加总. 在此之前这三项都会误报, 而唯一的绕法是去改本来正确的示例代码.
-- **pin 死版本**是为了让校验规范可复现, 不随新版悄悄漂移.
-- 本地已经装好这个 package 时, 直接跑 `lesson-smith sync` 与 `lesson-smith lint` 效果相同.
+- **pin 死版本** 是为了让校验规范可复现, 不随新版悄悄漂移. 全局装的那份反过来会随 `uv tool upgrade` 前进, 所以拿它跑出来的结果要对得上时, 先确认版本.
+- **问它自己是哪个版本**: `lesson-smith --version` (等价写法还有 `-V` 和子命令 `lesson-smith version`). 小写 `-v` 不行, 那个被 CLI 框架占作 `--verbose` 了.
+
+**不要把这两条命令写进教学 repo 的 `mise.toml`.** `mise.toml` 是学生要读的文件 (runbook 直接从它抄 setup 命令), 往里加一个 lint 或 sync task, 等于把这门课是怎么生产出来的摆在学生面前. 工具链的存在感留在维护者这一侧: 全局装一份, 手动跑.
 
 ---
 

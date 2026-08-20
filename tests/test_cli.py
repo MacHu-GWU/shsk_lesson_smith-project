@@ -2,11 +2,13 @@
 
 import json as json_module
 import shutil
+import sys
 from pathlib import Path
 
 import pytest
 
-from shsk_lesson_smith.cli import Command
+from shsk_lesson_smith import __version__
+from shsk_lesson_smith.cli import VERSION_FLAGS, Command, main
 
 dir_tests = Path(__file__).absolute().parent
 dir_good_upskill_repo = dir_tests / "good_upskill_repo"
@@ -97,6 +99,32 @@ class TestSync:
             Command().sync(project_root=str(root))
         assert excinfo.value.code == 1
         assert "ERROR" in capsys.readouterr().err
+
+
+class TestVersion:
+    def test_subcommand_prints_the_installed_version(self, capsys):
+        Command().version()
+        assert capsys.readouterr().out.strip() == __version__
+
+    def test_version_is_a_real_version_not_the_fallback(self):
+        # Guards the ``importlib.metadata`` lookup: a renamed distribution would
+        # silently degrade to "unknown" rather than raise.
+        assert __version__ != "unknown"
+        assert __version__[0].isdigit()
+
+    @pytest.mark.parametrize("flag", VERSION_FLAGS)
+    def test_top_level_flag_bypasses_fire(self, flag, capsys, monkeypatch):
+        monkeypatch.setattr(sys, "argv", ["lesson-smith", flag])
+        main()
+        assert capsys.readouterr().out.strip() == __version__
+
+    def test_lowercase_v_is_left_to_fire(self, capsys, monkeypatch):
+        # ``-v`` is Fire's own alias of ``--verbose``; intercepting it here would
+        # shadow that. Fire rejects it as a bare argument, which is the status quo.
+        monkeypatch.setattr(sys, "argv", ["lesson-smith", "-v"])
+        with pytest.raises(SystemExit):
+            main()
+        assert __version__ not in capsys.readouterr().out
 
 
 if __name__ == "__main__":

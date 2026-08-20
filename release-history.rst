@@ -7,11 +7,19 @@ x.y.z (Backlog)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Features and Improvements**
 
+- **The CLI can finally state its own version.** ``lesson-smith --version`` prints it, and so do the short flag ``-V`` and the new ``version`` subcommand. This matters because the documented way to lint a teaching repo is a pinned ``uvx --from shsk-lesson-smith==X.Y.Z``: without this there was no way to confirm which ruleset actually ran, and a lint failure that came from a version skew looked exactly like a lint failure that came from the repo.
+- **A global install is now the recommended path for a human course maintainer.** ``uv tool install shsk-lesson-smith`` once, then bare ``lesson-smith lint -p .`` in any teaching repo, with ``uv tool upgrade`` to move forward. The pinned ``uvx`` form stays as the reproducible path for an AI or a one-off run. ``01-repo-layout`` section 8 now presents both and says which is for whom.
+
 **Minor Improvements**
+
+- ``01-repo-layout`` section 8 states that neither command may be wired into a teaching repo's ``mise.toml``. Students read that file — the runbook spec tells authors to copy its setup commands verbatim — so a lint task sitting in it exposes how the course was produced. The toolchain stays on the maintainer's side of the line.
 
 **Bugfixes**
 
 **Miscellaneous**
+
+- ``shsk_lesson_smith.__version__`` reads ``importlib.metadata``, matching what ``docs/source/conf.py`` already did. No ``_version.py`` was added: ``pyproject.toml`` stays the single source of truth. The comment in ``pyproject.toml`` that instructed the reader to keep the version aligned with ``shsk_lesson_smith/_version.py`` was pointing at a file that has never existed, and is corrected.
+- ``--version`` is intercepted in ``main()`` before Fire runs, because Fire has no notion of a top-level flag and answers ``ERROR: Could not consume arg: --version``. The short form is a capital ``-V``; lowercase ``-v`` is left alone since Fire claims it as ``--verbose``, and a test pins that boundary.
 
 
 0.3.3 (2026-08-19)

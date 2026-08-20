@@ -39,7 +39,7 @@ uvx --from shsk-lesson-smith==<version> lesson-smith sync -p .
 
 **第 3 件有一种会跳过的情况**: 某个 branch 的 TICKET 那一行不是 `X 到 Y 分钟` 的形态 (写成小时, 写成散文, 只给一个数), sync 解析不出来就**整份 `lm.json` 不动**, 只在报告里说跳过了谁. 少算一个 branch 的总和比没有总和更糟, 所以它宁可不写. 修法是把那一行改回分钟区间再重跑.
 
-`<version>` 取当前最新发布版, uvx 与 pin 版本的理由见 [01-repo-layout.md](01-repo-layout.md) 第 8 节. 本地已装好该 package 时直接 `lesson-smith sync` 亦可.
+`<version>` 取当前最新发布版, uvx 与 pin 版本的理由见 [01-repo-layout.md](01-repo-layout.md) 第 8 节. 创作者本人若已经 `uv tool install shsk-lesson-smith` 全局装过, 直接跑 `lesson-smith sync -p .` 是等价的, 跑之前用 `lesson-smith --version` 确认版本. **两种跑法都不要写进这个 repo 的 `mise.toml`**, 理由同上.
 
 **SYLLABUS 与快照一律不手写.** 命令不可用或报错就如实告诉创作者, 不要自己拼一份出来: 手写的那份下次 sync 会被覆盖, 而在被覆盖之前它会一直看起来是对的.
 
