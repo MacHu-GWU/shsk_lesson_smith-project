@@ -106,12 +106,6 @@ class TestVersion:
         Command().version()
         assert capsys.readouterr().out.strip() == __version__
 
-    def test_version_is_a_real_version_not_the_fallback(self):
-        # Guards the ``importlib.metadata`` lookup: a renamed distribution would
-        # silently degrade to "unknown" rather than raise.
-        assert __version__ != "unknown"
-        assert __version__[0].isdigit()
-
     @pytest.mark.parametrize("flag", VERSION_FLAGS)
     def test_top_level_flag_bypasses_fire(self, flag, capsys, monkeypatch):
         monkeypatch.setattr(sys, "argv", ["lesson-smith", flag])

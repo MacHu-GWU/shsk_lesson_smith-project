@@ -7,9 +7,12 @@
 name = "shsk_lesson_smith"
 # Increment version before each release - follow `semantic versioning <https://semver.org/>`_
 # (Read https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#version)
-# This is the SINGLE source of truth for the version. There is no ``_version.py``:
-# ``shsk_lesson_smith.__version__`` reads this value back through
-# ``importlib.metadata``, and so does ``docs/source/conf.py``. Nothing to keep in sync.
+# This is the SINGLE source of truth for the version, and it has to stay a literal:
+# the build backend and the ``.mise/tasks/`` release scripts read it without importing
+# the package. ``shsk_lesson_smith/_version.py`` reads it back through
+# ``importlib.metadata``, and so does ``docs/source/conf.py``. Nothing to keep in sync,
+# but re-run ``mise run inst`` after bumping it so the editable install stops reporting
+# the old number.
 version = "0.3.3"
 description = "Author teaching GitHub repositories with AI: the lesson-smith agent-skill family scaffolds, forges the learning tools for, and finalizes upskill and showcase course repos."
 # Read https://dev-exp-share.readthedocs.io/en/latest/search.html?q=Pick+An+Open+Source+License+For+Python+Project&check_keywords=yes&area=default

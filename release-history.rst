@@ -18,7 +18,8 @@ x.y.z (Backlog)
 
 **Miscellaneous**
 
-- ``shsk_lesson_smith.__version__`` reads ``importlib.metadata``, matching what ``docs/source/conf.py`` already did. No ``_version.py`` was added: ``pyproject.toml`` stays the single source of truth. The comment in ``pyproject.toml`` that instructed the reader to keep the version aligned with ``shsk_lesson_smith/_version.py`` was pointing at a file that has never existed, and is corrected.
+- ``shsk_lesson_smith/_version.py`` now exists, which is what ``paths.py`` has always assumed with its ``path_version_py`` entry, and ``shsk_lesson_smith.__version__`` re-exports it. The version literal is not copied into it: ``pyproject.toml`` stays the single source of truth and ``_version.py`` reads it back through ``importlib.metadata``, the way ``docs/source/conf.py`` already did. The comment in ``pyproject.toml`` that told the reader to keep the two aligned by hand described a file that did not exist, and is corrected.
+- An editable install freezes its version into ``.dist-info`` at install time, so between a version bump and the next ``uv sync`` the package reports the previous number. ``tests/test_version.py`` fails in that window and names the fix, rather than letting a stale value pass. ``mise run cov`` already depends on ``inst``, so the normal test path closes the gap on its own.
 - ``--version`` is intercepted in ``main()`` before Fire runs, because Fire has no notion of a top-level flag and answers ``ERROR: Could not consume arg: --version``. The short form is a capital ``-V``; lowercase ``-v`` is left alone since Fire claims it as ``--verbose``, and a test pins that boundary.
 
 
