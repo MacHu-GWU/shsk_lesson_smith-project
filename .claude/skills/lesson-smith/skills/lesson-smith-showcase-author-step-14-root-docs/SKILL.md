@@ -33,6 +33,7 @@ argument-hint: "[自由说明...]"
 
 - **不碰 `examples/`.** 索引, 主线, quiz, demo, 收尾都属于 examples, 在统稿与时间梳理那两步就该定稿了.
 - **README-ORIGINAL 的 `description` 与 `github_about` 必须停下来让创作者拍板.** 不许单方面定稿.
+- **顺带把 `github_about` 的英文版写进 `pyproject.toml` 的 `description`**, 它最终会粘贴到 GitHub About box, 跟中文那句一起拍板.
 - **根 README 要覆盖两件事**: 怎么学 (进 examples 从 01 顺着走, 用 learn 与 quiz 两个子 skill), 以及**学完怎么展示发布** (用 demo 排练, 用 publish 抹痕迹). 后面这一半是 showcase 区别于 upskill 的地方, 漏了根 README 就只是个 upskill.
 - **四个子 skill 第 13 步刚产出来, 就在手边, 写之前先确认它们真的在.** 顺序要点明: 先 demo 排练, 再 publish 发布.
 - **不提 runbook.** `docs/showcase/02-showcase-runbook-cn.md` 是给 skill 读的元文件, 根 README 一个字都不提它; 环境 setup 交给 `/showcase-learn-cn` 在学生真遇到麻烦时介入.

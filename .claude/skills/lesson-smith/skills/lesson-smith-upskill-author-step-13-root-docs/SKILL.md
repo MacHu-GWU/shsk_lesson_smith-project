@@ -33,6 +33,7 @@ argument-hint: "[自由说明...]"
 
 - **不碰 `examples/`.** 索引, 主线, quiz, 收尾都属于 examples, 在统稿与时间梳理那两步就该定稿了.
 - **README-ORIGINAL 的 `description` 与 `github_about` 必须停下来让创作者拍板.** 不许单方面定稿.
+- **顺带把 `github_about` 的英文版写进 `pyproject.toml` 的 `description`**, 它最终会粘贴到 GitHub About box, 跟中文那句一起拍板.
 - **根 README 要提到 `upskill-learn-cn` 与 `upskill-quiz-cn`**, 这两个子 skill 第 12 步刚产出来, 就在手边, **写之前先确认它们真的在**. 不提 runbook, 那是给 skill 读的.
 - 根 TICKET 里不写相对路径链接, 它要进 GitHub Issue. 提到 Task 或子 skill 一律用文字.
 - 根 TICKET 第 4 节关键能力: 纯 bullet, 不带 checkbox, **10 条以内且必须取舍**.

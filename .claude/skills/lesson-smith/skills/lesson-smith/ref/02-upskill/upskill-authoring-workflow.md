@@ -210,6 +210,7 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 - `README-cn.md` 仓库总览加 "怎么学" 的操作入口
 - `TICKET-cn.md` 整门课的验收清单
 - 重写 `README-ORIGINAL-cn.md`
+- 顺带把 `github_about` 的英文版写进 `pyproject.toml` 的 `description`, 它最终会粘贴到 GitHub About box
 
 完整做法见 [00-common/09-root-docs-spec.md](../00-common/09-root-docs-spec.md), 里面含**一道必须停下来让创作者拍板的 gate**.
 

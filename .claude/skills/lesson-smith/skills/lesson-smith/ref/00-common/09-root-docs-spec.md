@@ -18,6 +18,8 @@
 | `TICKET-cn.md` | 整门课的验收清单 | readup [readup-ticket-spec](../01-readup/readup-ticket-spec/readup-ticket-cn-spec.md) / upskill [upskill-ticket-spec](../02-upskill/upskill-ticket-spec/upskill-ticket-cn-spec.md) / showcase [showcase-ticket-spec](../03-showcase/showcase-ticket-spec/showcase-ticket-cn-spec.md) |
 | `README-ORIGINAL-cn.md` | 对外门面, 重写最早那版粗稿 | [02-readme-original-spec](02-readme-original-spec/readme-original-cn-spec.md), 三类通用 |
 
+另外顺带改一处: 把 `github_about` 的英文版写进 `pyproject.toml` 的 `description`, 见第 5.2 节.
+
 **这一步不碰 `examples/`.** 索引 Task 和收尾 Task 都属于 examples, 在统稿之前就该写完了.
 
 ---
@@ -68,6 +70,10 @@
 
 正文那三段不需要这道 gate, 只有这两个字段需要.
 
+### 5.2 github_about 英文版写进 pyproject.toml
+
+`github_about` 定稿后, 给它写一个英文版, 覆盖 repo 根目录 `pyproject.toml` 里 `[project]` 的 `description` 字段. 这句最终会被原样复制粘贴到 GitHub repo 首页的 About box, 所以同样一句话, 同样 150 字符以内, 要读起来像地道英文而不是逐字直译. 它跟着中文那句一起过 5.1 那道 gate.
+
 ---
 
 ## 6. 收尾自查
@@ -80,4 +86,5 @@
 - readup: 根 README 与根 TICKET 里没有任何斜杠命令.
 - upskill 与 showcase: 该写死的那几个 skill 都提到了.
 - README-ORIGINAL 的两个字段都经创作者确认过, H1 等于 repo 名.
+- `pyproject.toml` 的 `description` 已换成 `github_about` 的英文版, 也经创作者确认过.
 - 根 README 的 description 是 "你将学到什么", 不是 README-ORIGINAL 那段的复制.

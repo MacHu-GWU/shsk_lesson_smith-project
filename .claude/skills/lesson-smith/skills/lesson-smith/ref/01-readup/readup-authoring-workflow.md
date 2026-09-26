@@ -165,6 +165,7 @@ readup 没有单独的出题 Task: 每个 Task 自己的 TICKET 就是自查手�
 - `README-cn.md` 阅读总入口
 - `TICKET-cn.md` 整门课的验收清单
 - 重写 `README-ORIGINAL-cn.md`
+- 顺带把 `github_about` 的英文版写进 `pyproject.toml` 的 `description`, 它最终会粘贴到 GitHub About box
 
 完整做法见 [00-common/09-root-docs-spec.md](../00-common/09-root-docs-spec.md), 里面含**一道必须停下来让创作者拍板的 gate**.
 

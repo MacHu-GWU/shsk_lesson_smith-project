@@ -31,6 +31,7 @@ argument-hint: "[自由说明...]"
 
 - **不碰 `examples/`.** 索引, 主线, 收尾都属于 examples, 在统稿与时间梳理那两步就该定稿了.
 - **README-ORIGINAL 的 `description` 与 `github_about` 必须停下来让创作者拍板.** 不许单方面定稿.
+- **顺带把 `github_about` 的英文版写进 `pyproject.toml` 的 `description`**, 它最终会粘贴到 GitHub About box, 跟中文那句一起拍板.
 - readup 红线: 根 README 与根 TICKET 里不出现任何斜杠命令.
 - 根 TICKET 里不写相对路径链接, 它要进 GitHub Issue.
 - 根 README 的 description 是 "你将学到什么", 不是 README-ORIGINAL 那段的复制.
