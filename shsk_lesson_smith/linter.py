@@ -31,7 +31,11 @@ import re
 from pathlib import Path
 
 from .constants import (
+    AGENTS_SKILL_FRONTMATTER_KEYS,
+    AGENTS_SKILLS_DIR,
     ESTIMATED_TIME_LABEL,
+    FORGE_SKILL_ROOTS,
+    INTERACTION_PATTERN_BASE,
     TASK_DIR_PATTERN,
     LangEnum,
     RepoTypeEnum,
@@ -43,11 +47,12 @@ from .linter_utils import (
     check_file_exists,
     check_frontmatter_description,
     check_frontmatter_github_about,
+    check_frontmatter_keys_only,
     check_h1_charset,
     check_h1_matches,
     check_no_relative_links,
 )
-from .repo import Metadata, Repo, estimate_repo_time
+from .repo import Metadata, Repo, estimate_repo_time, get_variant_filename
 
 # Every variant a special file can have: English (None) plus each supported language.
 LANGS = (None, *LangEnum)
@@ -228,6 +233,36 @@ def lint_task_dir(dir_path: Path, get_readme, get_ticket) -> "list[CheckResult]"
             no_relative_links=True,
         )
     )
+    return out
+
+
+def lint_forge_skill(
+    project_root: Path, skill: str, lang: "LangEnum | None"
+) -> "list[CheckResult]":
+    """One forge child skill, checked in both its .claude and .agents copy.
+
+    Each copy needs its ``SKILL.md`` and the interaction pattern bundled under
+    its own ``ref/``. The .agents copy's frontmatter must carry only the
+    portable keys. Existence and frontmatter keys only; the body is AI-facing
+    and not linted.
+    """
+    pattern = get_variant_filename(INTERACTION_PATTERN_BASE, lang)
+    out: "list[CheckResult]" = []
+    for parts in FORGE_SKILL_ROOTS:
+        dir_skill = project_root.joinpath(*parts, skill)
+        path_skill_md = dir_skill / "SKILL.md"
+        path_pattern = dir_skill / "ref" / pattern
+        out.append(run_check(path_skill_md, check_file_exists, path_skill_md))
+        out.append(run_check(path_pattern, check_file_exists, path_pattern))
+        if parts == AGENTS_SKILLS_DIR and path_skill_md.exists():
+            out.append(
+                run_check(
+                    path_skill_md,
+                    check_frontmatter_keys_only,
+                    MarkdownFile(path_skill_md),
+                    AGENTS_SKILL_FRONTMATTER_KEYS,
+                )
+            )
     return out
 
 

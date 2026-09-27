@@ -11,6 +11,7 @@ from shsk_lesson_smith.linter_utils import (
     check_file_exists,
     check_frontmatter_description,
     check_frontmatter_github_about,
+    check_frontmatter_keys_only,
     check_h1_charset,
     check_h1_matches,
     check_no_relative_links,
@@ -317,6 +318,32 @@ class TestCheckFrontmatterGithubAbout:
         text = '---\ngithub_about: "Has a `code` char."\n---\n'
         with pytest.raises(LintError, match="forbidden character"):
             check_frontmatter_github_about(self._md(tmp_path, text))
+
+
+class TestCheckFrontmatterKeysOnly:
+    ALLOWED = ("name", "description")
+
+    def _md(self, tmp_path, text):
+        return MarkdownFile.from_path(write(tmp_path / "SKILL.md", text))
+
+    def test_valid(self, tmp_path):
+        md = self._md(tmp_path, "---\nname: x\ndescription: y\n---\n# x\n")
+        check_frontmatter_keys_only(md, self.ALLOWED)
+
+    def test_missing_frontmatter(self, tmp_path):
+        with pytest.raises(LintError, match="no YAML frontmatter"):
+            check_frontmatter_keys_only(self._md(tmp_path, "# x\n"), self.ALLOWED)
+
+    def test_extra_key(self, tmp_path):
+        text = "---\nname: x\ndescription: y\nargument-hint: [a | b]\n---\n"
+        with pytest.raises(LintError, match="argument-hint"):
+            check_frontmatter_keys_only(self._md(tmp_path, text), self.ALLOWED)
+
+    def test_nested_lines_are_not_keys(self, tmp_path):
+        text = "---\nname: x\ndescription: y\n  more: z\n- item: w\n# c: d\n---\n"
+        md = self._md(tmp_path, text)
+        assert md.frontmatter_keys == ["name", "description"]
+        check_frontmatter_keys_only(md, self.ALLOWED)
 
 
 class TestCheckNoRelativeLinks:

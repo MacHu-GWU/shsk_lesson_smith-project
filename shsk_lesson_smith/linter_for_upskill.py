@@ -21,6 +21,7 @@ from .exc import LintError
 from .linter import (
     CheckResult,
     lint_file_group,
+    lint_forge_skill,
     lint_task_dir,
     rule_estimated_hours,
     rule_manifest,
@@ -116,8 +117,11 @@ def rule_examples(repo: Repo) -> "list[CheckResult]":
 def rule_forge_outputs(repo: Repo) -> "list[CheckResult]":
     """The forge step's outputs must exist: the docs/upskill/ docs and the skills.
 
-    Existence only; these files are AI-facing (meta docs and skill definitions),
-    so their content is not linted here. A finished upskill repo has run
+    Each child skill is checked in both its .claude/skills/ and .agents/skills/
+    copy, with its bundled ``ref/`` interaction pattern (see
+    :func:`linter.lint_forge_skill`). Existence only, plus the .agents copy's
+    frontmatter keys; these files are AI-facing (meta docs and skill
+    definitions), so their content is not linted here. A finished upskill repo has run
     ``/lesson-smith-upskill-forge``, so these are expected to be present.
 
     Forge produces one variant per language, so this walks
@@ -133,9 +137,7 @@ def rule_forge_outputs(repo: Repo) -> "list[CheckResult]":
             path = root / "docs" / "upskill" / get_variant_filename(base, lang)
             out.append(run_check(path, check_file_exists, path))
         for base in FORGE_SKILL_BASES:
-            skill = get_variant_name(base, lang)
-            path = root / ".claude" / "skills" / skill / "SKILL.md"
-            out.append(run_check(path, check_file_exists, path))
+            out.extend(lint_forge_skill(root, get_variant_name(base, lang), lang))
     return out
 
 

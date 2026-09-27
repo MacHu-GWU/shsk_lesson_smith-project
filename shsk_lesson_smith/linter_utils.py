@@ -231,6 +231,22 @@ class MarkdownFile:
         _, body = self._frontmatter_lines_and_body
         return body
 
+    @cached_property
+    def frontmatter_keys(self) -> "list[str] | None":
+        """Top-level keys of the frontmatter, in order, or None when absent.
+
+        Only unindented ``key: value`` lines count; list items, nested values
+        and comments are skipped.
+        """
+        lines, _ = self._frontmatter_lines_and_body
+        if lines is None:
+            return None
+        return [
+            line.split(":", 1)[0].strip()
+            for line in lines
+            if ":" in line and line[:1] not in ("", " ", "\t", "-", "#")
+        ]
+
     @property
     def has_frontmatter(self) -> bool:
         """Whether the file opens with a well-formed ``---`` frontmatter block."""
@@ -404,6 +420,28 @@ def check_frontmatter_github_about(md: MarkdownFile) -> None:
         field="github_about",
         max_chars=max_github_about_chars(lang_from_filename(md.path.name)),
     )
+
+
+def check_frontmatter_keys_only(md: MarkdownFile, allowed: "T.Sequence[str]") -> None:
+    """The frontmatter must be present and carry no keys outside ``allowed``.
+
+    Used on the .agents/skills/ copy of a forge child skill: Codex and
+    Antigravity read only ``name`` and ``description``, and every other key is
+    Claude Code private.
+    """
+    keys = md.frontmatter_keys
+    if keys is None:
+        raise LintError(
+            "The file has no YAML frontmatter. Add a '---' block at the top "
+            f"with only these keys: {', '.join(allowed)}."
+        )
+    extra = [key for key in keys if key not in allowed]
+    if extra:
+        raise LintError(
+            f"The frontmatter has key(s) outside {', '.join(allowed)}: "
+            f"{', '.join(extra)}. This copy is for Codex and Antigravity; drop "
+            "the Claude Code private keys."
+        )
 
 
 def check_h1_charset(md: MarkdownFile) -> None:

@@ -17,7 +17,7 @@
 - 根目录有 `lm.json`, 且 `type` 是这个 repo 的实际类型. **先核这一条**: 它一缺, lint 只报一句就短路, 后面所有检查都不跑.
 - `examples/` 下每个 Task 的 `README-cn.md` 与 `TICKET-cn.md` 都在.
 - 根目录 `README-cn.md`, `TICKET-cn.md`, `README-ORIGINAL-cn.md` 都在.
-- upskill 与 showcase: `docs/<type>/` 下的 doc 与 `.claude/skills/<type>-*/`, `.agents/skills/<type>-*/` 两份子 skill 都在 (那是 forge 的产物), **且每个子 skill 的 `ref/` 下那份交互基座也在** (lint 只查 `.claude` 下的 `SKILL.md`, `.agents` 那份与交互基座都查不到, 只能人工核).
+- upskill 与 showcase: `docs/<type>/` 下的 doc 与 `.claude/skills/<type>-*/`, `.agents/skills/<type>-*/` 两份子 skill 都在 (那是 forge 的产物), 且每个子 skill 的 `ref/` 下那份交互基座也在, `.agents` 那份的 frontmatter 只有 `name` 与 `description`. 这几条 lint 都会查.
 
 ---
 
@@ -51,7 +51,7 @@ uvx --from shsk-lesson-smith==<version> lesson-smith sync -p .
 uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 ```
 
-它只读, 校验目录结构, 命名 (含唯一那个带序号 branch 必须叫 `01-<type>`), 语种完整性, 特殊 Task 的目录名与位置, forge 产物在不在 (upskill 与 showcase), frontmatter 的 `description` 与 `github_about`, H1 字符集, TICKET 里的相对路径链接, SYLLABUS 是否与各 README 的 description 一致, 以及 `lm.json` 的两个时长字段是否等于重算出来的和.
+它只读, 校验目录结构, 命名 (含唯一那个带序号 branch 必须叫 `01-<type>`), 语种完整性, 特殊 Task 的目录名与位置, forge 产物在不在 (upskill 与 showcase, 含 `.claude` 与 `.agents` 两份子 skill 及其交互基座, 以及 `.agents` 那份的 frontmatter 只留 `name` 与 `description`), frontmatter 的 `description` 与 `github_about`, H1 字符集, TICKET 里的相对路径链接, SYLLABUS 是否与各 README 的 description 一致, 以及 `lm.json` 的两个时长字段是否等于重算出来的和.
 
 **它只检查开着的语种.** 英文当前是关的, 所以留空的英文占位文件不会报错, 报出来的路径应该全是 `-cn` 的. 开关见 [01-repo-layout.md](01-repo-layout.md) 第 8 节.
 

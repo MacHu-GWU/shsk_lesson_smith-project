@@ -29,6 +29,7 @@ from .linter import (
     CheckResult,
     _check_examples_numbering,
     lint_file_group,
+    lint_forge_skill,
     lint_task_dir,
     linted_langs,
     rule_estimated_hours,
@@ -179,8 +180,11 @@ def rule_examples(repo: Repo) -> "list[CheckResult]":
 def rule_forge_outputs(repo: Repo) -> "list[CheckResult]":
     """The forge step's outputs must exist: the docs/showcase/ docs and the skills.
 
-    Existence only; these files are AI-facing (meta docs and skill definitions),
-    so their content is not linted here. A finished showcase repo has run
+    Each child skill is checked in both its .claude/skills/ and .agents/skills/
+    copy, with its bundled ``ref/`` interaction pattern (see
+    :func:`linter.lint_forge_skill`). Existence only, plus the .agents copy's
+    frontmatter keys; these files are AI-facing (meta docs and skill
+    definitions), so their content is not linted here. A finished showcase repo has run
     ``/lesson-smith-showcase-forge``, so these are expected to be present.
 
     Forge produces one variant per language, so this walks
@@ -196,9 +200,7 @@ def rule_forge_outputs(repo: Repo) -> "list[CheckResult]":
             path = root / "docs" / "showcase" / get_variant_filename(base, lang)
             out.append(run_check(path, check_file_exists, path))
         for base in FORGE_SKILL_BASES:
-            skill = get_variant_name(base, lang)
-            path = root / ".claude" / "skills" / skill / "SKILL.md"
-            out.append(run_check(path, check_file_exists, path))
+            out.extend(lint_forge_skill(root, get_variant_name(base, lang), lang))
     return out
 
 

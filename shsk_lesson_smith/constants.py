@@ -46,6 +46,17 @@ TASK_FILE_BASES = (README_BASE, TICKET_BASE)
 # Repo-level special files that live at the project root.
 REPO_FILE_BASES = (README_BASE, TICKET_BASE, README_ORIGINAL_BASE)
 
+# Forge child skills (upskill and showcase). Each one is written twice: under
+# .claude/skills/ for Claude Code, and under .agents/skills/ for Codex and
+# Antigravity. The .agents copy keeps only the portable frontmatter keys; the
+# rest (allowed-tools, argument-hint, ...) is private to Claude Code. Every copy
+# bundles the interaction pattern in its own ref/ dir.
+CLAUDE_SKILLS_DIR = (".claude", "skills")
+AGENTS_SKILLS_DIR = (".agents", "skills")
+FORGE_SKILL_ROOTS = (CLAUDE_SKILLS_DIR, AGENTS_SKILLS_DIR)
+AGENTS_SKILL_FRONTMATTER_KEYS = ("name", "description")
+INTERACTION_PATTERN_BASE = "agent-skill-interaction-pattern"
+
 
 # --------------------------------------------------------------------------- #
 # Frontmatter description constraints.

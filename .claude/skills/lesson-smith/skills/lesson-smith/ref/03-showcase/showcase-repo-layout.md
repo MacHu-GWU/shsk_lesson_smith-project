@@ -99,7 +99,7 @@ docs/showcase/notes/                    可选, 学生用 showcase-learn-cn 时�
 
 `docs/showcase/notes/` **不是 forge 的产物, 也不是布局的一部分**: 学生用 `/showcase-learn-cn` 时, 它经学生同意后往那里写一份进度笔记 (`learn-progress-cn.md`). 一个刚出厂的 repo 里没有这个目录, lint 也不查它. 列在这里只是为了让人知道它是从哪冒出来的.
 
-每个子 skill 的 `ref/` 下那份交互基座**不是可选附件**: 四份 SKILL 模板开工第一句就是去读它, 丢了那个 skill 会静默地失去交互规范. 它由 forge 从 lesson-smith 的 `ref/agent-skill-interaction-pattern-cn.md` 原样拷入; **lint 只查 `SKILL.md` 在不在, 不查它**, 所以出厂前要人工核一眼.
+每个子 skill 的 `ref/` 下那份交互基座**不是可选附件**: 四份 SKILL 模板开工第一句就是去读它, 丢了那个 skill 会静默地失去交互规范. 它由 forge 从 lesson-smith 的 `ref/agent-skill-interaction-pattern-cn.md` 原样拷入; `.claude` 与 `.agents` 两份各带一份, lint 会查它在不在.
 
 **`docs/showcase/`** 下五份 doc 与四个子 skill 都由 `lesson-smith-showcase-forge` 产出, 它要读的规范与模板**分两处**:
 

@@ -120,6 +120,12 @@ class TestBadUpskillRepoReproducesErrors:
     def test_missing_forge_outputs(self):
         assert self.has("01-upskill-learn-cn.md")
         assert self.has("upskill-quiz-cn/SKILL.md")
+        assert self.has(".agents/skills/upskill-quiz-cn/SKILL.md")
+        assert self.has("upskill-quiz-cn/ref/agent-skill-interaction-pattern-cn.md")
+
+    def test_agents_skill_extra_frontmatter_key(self):
+        # The .agents copy of a forge skill carries only name and description.
+        assert self.has("allowed-tools")
 
     def test_missing_github_about(self):
         assert self.has("github_about")
@@ -209,6 +215,11 @@ class TestBadShowcaseRepoReproducesErrors:
     def test_missing_forge_outputs(self):
         assert self.has("01-showcase-learn-cn.md")
         assert self.has("showcase-publish-cn/SKILL.md")
+        assert self.has(".agents/skills/showcase-publish-cn/SKILL.md")
+        assert self.has("showcase-publish-cn/ref/agent-skill-interaction-pattern-cn.md")
+
+    def test_agents_skill_extra_frontmatter_key(self):
+        assert self.has("allowed-tools")
 
     def test_missing_github_about(self):
         assert self.has("github_about")
@@ -651,14 +662,18 @@ class TestPerLanguageLintSwitch:
         blob = " | ".join(r.location for r in rule_forge_outputs(repo) if not r.passed)
         assert "01-upskill-learn.md" in blob
         assert "upskill-learn/SKILL.md" in blob
+        assert ".agents/skills/upskill-learn/SKILL.md" in blob
+        assert "upskill-learn/ref/agent-skill-interaction-pattern.md" in blob
 
     def test_showcase_forge_outputs_are_the_cn_set(self):
         from shsk_lesson_smith.linter_for_showcase import rule_forge_outputs
 
         results = rule_forge_outputs(Repo(dir_project_root=dir_good_showcase_repo))
         assert [r for r in results if not r.passed] == []
-        # Five docs plus four child skills, one variant each while English is off.
-        assert len(results) == 9
+        # Five docs, plus four child skills with five checks each (SKILL.md and
+        # ref/ interaction pattern in both .claude and .agents, plus the .agents
+        # frontmatter keys), one variant each while English is off.
+        assert len(results) == 25
         assert all("-cn" in r.location for r in results)
 
 
