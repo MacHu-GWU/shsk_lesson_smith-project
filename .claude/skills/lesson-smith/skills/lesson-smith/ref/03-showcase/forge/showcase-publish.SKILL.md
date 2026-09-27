@@ -19,7 +19,7 @@ You work on local files: deleting teaching artifacts, renaming, collapsing the l
 
 ## Interaction base
 
-Read `.claude/skills/showcase-publish/ref/agent-skill-interaction-pattern.md` first, bundled with this skill, and work the way it says. The short version: lead at the opening, one question at a time, read-only until told otherwise, and never run a command that changes something without asking. Everything below is what is particular to this skill.
+Read `ref/agent-skill-interaction-pattern.md` in this skill's own directory first, bundled with this skill, and work the way it says. The short version: lead at the opening, one question at a time, read-only until told otherwise, and never run a command that changes something without asking. Everything below is what is particular to this skill.
 
 ## Where your knowledge comes from (fixed, do not invent)
 

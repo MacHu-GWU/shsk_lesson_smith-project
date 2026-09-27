@@ -34,7 +34,7 @@ For a showcase repo that normally means:
 | :--- | :--- |
 | `README-ORIGINAL` and its variants | an outward lesson pitch; only teaching repos have one |
 | `lm.json`, `docs/tasks/`, `docs/showcase/` | the lesson-smith manifest and its generated views |
-| the four generated child skills under `.claude/skills/` | learn, quiz, demo, publish |
+| the four generated child skills under `.claude/skills/` and `.agents/skills/` | learn, quiz, demo, publish |
 | the index task at `examples/01-*/` | a teaching-stage map, not portfolio content |
 | the quiz task and everything after it | `NN-prove-i-get-it`, `NN-how-i-build-this`, and the wrap-up task. These three sit together at the end: self-check, story rehearsal, retrospective. None of them is the work itself |
 | every `TICKET` and its variants | teaching task cards, at the root and in each task |
@@ -80,12 +80,12 @@ Assume a reader who is looking for the seam. Give each category a detection meth
 
 | Category | Severity | How to detect |
 | :--- | :--- | :--- |
-| leftover cardinal artifacts | HIGH | glob for `README-ORIGINAL`, `docs/tasks/`, `docs/showcase/`, `.claude/skills/showcase-*`, `**/TICKET*.md` |
+| leftover cardinal artifacts | HIGH | glob for `README-ORIGINAL`, `docs/tasks/`, `docs/showcase/`, `.claude/skills/showcase-*`, `.agents/skills/showcase-*`, `**/TICKET*.md` |
 | any surviving language-suffixed file | HIGH | glob for `**/*-<locale>.md`; a portfolio repo has no locale system |
 | teaching voice in the README | HIGH | grep the README and root `*.md` for "this tutorial", "this course", "in this lesson", "as a student", "we learned" |
 | teaching voice in commit messages | MEDIUM | the same phrases over `git log --all --format="%s%n%b"` |
 | git refs that name the lesson | MEDIUM | `git tag --list` and `git branch --all` for `01-showcase`, `tutorial-base`, `from-course`, `original` |
-| leftover child skill directories | HIGH | any surviving `.claude/skills/showcase-*` or `docs/showcase/` |
+| leftover child skill directories | HIGH | any surviving `.claude/skills/showcase-*`, `.agents/skills/showcase-*` or `docs/showcase/` |
 | hygiene | LOW | `.DS_Store`, `__pycache__/`, `.venv/`, `*.egg-info/`, `.idea/` |
 | suspicious symmetry | MEDIUM | identical comment banners or docstring shapes across many files; surface it, do not enforce |
 

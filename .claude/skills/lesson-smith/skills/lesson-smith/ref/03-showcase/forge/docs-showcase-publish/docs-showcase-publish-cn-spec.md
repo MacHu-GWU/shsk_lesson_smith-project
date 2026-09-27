@@ -34,7 +34,7 @@ showcase 通常包括:
 | :--- | :--- |
 | `README-ORIGINAL` 及各语种 | 对外的课程电梯陈述, 只有教学 repo 才有 |
 | `lm.json`, `docs/tasks/`, `docs/showcase/` | lesson-smith 的清单与它生成的汇总视图 |
-| `.claude/skills/` 下四个生成的子 skill | learn, quiz, demo, publish |
+| `.claude/skills/` 与 `.agents/skills/` 下四个生成的子 skill | learn, quiz, demo, publish |
 | `examples/01-*/` 索引 Task | 教学阶段的地图, 不是作品内容 |
 | quiz Task 及其之后的全部 Task | `NN-prove-i-get-it`, `NN-how-i-build-this`, 收尾 Task. 三个连着排在最末, 是自查, 讲故事和回顾, 都不是作品本身 |
 | 各级 `TICKET` 及各语种 | 教学任务卡, 根目录和每个 Task 下都有 |
@@ -80,12 +80,12 @@ publish skill 陪学生共写 README 时 follow 的结构. README 要讲出和 d
 
 | 类别 | 严重度 | 怎么探测 |
 | :--- | :--- | :--- |
-| 铁律删除物残留 | HIGH | glob `README-ORIGINAL*`, `docs/tasks/`, `docs/showcase/`, `.claude/skills/showcase-*`, `**/TICKET*.md` |
+| 铁律删除物残留 | HIGH | glob `README-ORIGINAL*`, `docs/tasks/`, `docs/showcase/`, `.claude/skills/showcase-*`, `.agents/skills/showcase-*`, `**/TICKET*.md` |
 | 还留着带语种后缀的文件 | HIGH | glob `**/*-<locale>.md`. 作品 repo 不该有语种体系 |
 | README 里的教学口吻 | HIGH | grep README 与根目录 `*.md`, 找 "本教程", "这门课", "我们学过", "作为学生" |
 | commit message 里的教学口吻 | MEDIUM | 同一套措辞过一遍 `git log --all --format="%s%n%b"` |
 | git ref 暴露课程来源 | MEDIUM | `git tag --list` 与 `git branch --all`, 找 `01-showcase`, `tutorial-base`, `from-course`, `original` |
-| 残留的子 skill 目录 | HIGH | 任何还在的 `.claude/skills/showcase-*` 或 `docs/showcase/` |
+| 残留的子 skill 目录 | HIGH | 任何还在的 `.claude/skills/showcase-*`, `.agents/skills/showcase-*` 或 `docs/showcase/` |
 | 卫生问题 | LOW | `.DS_Store`, `__pycache__/`, `.venv/`, `*.egg-info/`, `.idea/` |
 | 可疑的雷同 | MEDIUM | 多个文件同模板生成的注释横幅或结构. 报出来即可, 不强制改 |
 

@@ -15,7 +15,7 @@ argument-hint: [random N | topic <关键字> | progressive]
 
 ## 交互基座
 
-动手之前先加载交互基座: 读 `.claude/skills/{{TYPE}}-quiz-cn/ref/agent-skill-interaction-pattern-cn.md` (随本 skill 一起打包) 并照它做. 一句话概括: 开场要引领, 一次只问一个问题, 用有底气的老师口吻, 定位一律用 header 或关键字, 绝不用行号. 下面只写 {{TYPE}}-quiz-cn 特有的部分.
+动手之前先加载交互基座: 读本 skill 目录下的 `ref/agent-skill-interaction-pattern-cn.md` (随本 skill 一起打包) 并照它做. 一句话概括: 开场要引领, 一次只问一个问题, 用有底气的老师口吻, 定位一律用 header 或关键字, 绝不用行号. 下面只写 {{TYPE}}-quiz-cn 特有的部分.
 
 ## 知识来源 (固定, 不许自己编)
 

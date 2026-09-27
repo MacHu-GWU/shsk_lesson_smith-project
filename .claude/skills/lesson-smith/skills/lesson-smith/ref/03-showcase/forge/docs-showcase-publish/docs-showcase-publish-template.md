@@ -12,7 +12,7 @@
 - path: `lm.json`, `docs/tasks/`, `docs/showcase/`
   reason: the lesson-smith manifest and its generated views
   detected_by: file and directory presence
-- path: `.claude/skills/showcase-learn*/`, `.claude/skills/showcase-quiz*/`, `.claude/skills/showcase-demo*/`, `.claude/skills/showcase-publish*/`
+- path: `.claude/skills/showcase-learn*/`, `.claude/skills/showcase-quiz*/`, `.claude/skills/showcase-demo*/`, `.claude/skills/showcase-publish*/`, plus the same four under `.agents/skills/`
   reason: the four generated child skills
   detected_by: directory presence
 - path: `examples/01-title/` (whole directory)
@@ -96,11 +96,11 @@ _(If there is nothing beyond the tasks, write: none found in this repo.)_
 
 [Assume a reader looking for the seam. Each category with a detection method and a severity.]
 
-- Leftover cardinal artifacts (HIGH): glob for `README-ORIGINAL*`, `docs/tasks/`, `docs/showcase/`, `.claude/skills/showcase-*`, `**/TICKET*.md`. Report exact paths.
+- Leftover cardinal artifacts (HIGH): glob for `README-ORIGINAL*`, `docs/tasks/`, `docs/showcase/`, `.claude/skills/showcase-*`, `.agents/skills/showcase-*`, `**/TICKET*.md`. Report exact paths.
 - Surviving language-suffixed files (HIGH): glob for `**/*-<locale>.md`. A portfolio repo has no locale system.
 - Teaching voice in the README (HIGH): grep the README and root `*.md` for "this tutorial", "this course", "in this lesson", "as a student", "we learned".
 - Teaching voice in commit messages (MEDIUM): the same phrases over `git log --all --format="%s%n%b"`.
 - Git refs naming the lesson (MEDIUM): `git tag --list` and `git branch --all` for `01-showcase`, `tutorial-base`, `from-course`, `original`.
-- Leftover child skill directories (HIGH): any surviving `.claude/skills/showcase-*` or `docs/showcase/`.
+- Leftover child skill directories (HIGH): any surviving `.claude/skills/showcase-*`, `.agents/skills/showcase-*` or `docs/showcase/`.
 - Hygiene (LOW): `.DS_Store`, `__pycache__/`, `.venv/`, `*.egg-info/`, `.idea/`.
 - Suspicious symmetry (MEDIUM): identical comment banners or docstring shapes across many files. Surface it, do not enforce.

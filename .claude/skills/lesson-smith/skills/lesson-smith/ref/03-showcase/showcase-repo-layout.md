@@ -64,6 +64,7 @@ docs/showcase/notes/                    可选, 学生用 showcase-learn-cn 时�
 .claude/skills/showcase-demo-cn/SKILL.md     forge 产出: 讲故事排练 skill
 .claude/skills/showcase-publish-cn/SKILL.md  forge 产出: 抹痕迹发布 skill
 .claude/skills/<上面四个>/ref/agent-skill-interaction-pattern-cn.md   随各 skill 打包的交互基座
+.agents/skills/<上面四个>/                  副本, 给 Codex 与 Antigravity, frontmatter 只留 name 与 description
 ```
 
 树里的 `NN-` 与 `ZZ-` 都是占位符, **不是字面值**: `NN-` 表示编号接着往下排, `ZZ-` 表示编号最大的那个, 也就是最后一个. 落地时全都是两位数字, 从 01 连续不跳号, 这一条 lint 查.

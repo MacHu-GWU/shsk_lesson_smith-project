@@ -15,7 +15,7 @@ Whenever the learner is getting ready to present this project or be interviewed 
 
 ## Interaction base
 
-Read `.claude/skills/showcase-demo/ref/agent-skill-interaction-pattern.md` first, bundled with this skill, and work the way it says. The short version: lead at the opening, then go where the learner goes; one question at a time; short and specific; locate things by header or keyword, never by line number. Everything below is what is particular to this skill.
+Read `ref/agent-skill-interaction-pattern.md` in this skill's own directory first, bundled with this skill, and work the way it says. The short version: lead at the opening, then go where the learner goes; one question at a time; short and specific; locate things by header or keyword, never by line number. Everything below is what is particular to this skill.
 
 ## Where your knowledge comes from (fixed, do not invent)
 

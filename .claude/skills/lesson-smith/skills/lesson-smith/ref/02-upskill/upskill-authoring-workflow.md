@@ -191,7 +191,7 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 用 `/lesson-smith-upskill-forge` 产出两样东西:
 
 - `docs/upskill/` 下三份 doc: 学习索引, 跑起来的操作, quiz 薄壳.
-- `.claude/skills/` 下两个子 skill: `upskill-learn-cn` 与 `upskill-quiz-cn`.
+- `.claude/skills/` 下两个子 skill: `upskill-learn-cn` 与 `upskill-quiz-cn`. `.agents/skills/` 下再落一份同名副本给 Codex 与 Antigravity, frontmatter 只留 `name` 与 `description`.
 
 规范与模板都在 [00-common/13-forge-shared/](../00-common/13-forge-shared/) 下 (和 showcase 共用, 里面的 `{{TYPE}}` 落地时换成 `upskill`), 每份中英各一套, **当前只产 `-cn` 那一套**.
 

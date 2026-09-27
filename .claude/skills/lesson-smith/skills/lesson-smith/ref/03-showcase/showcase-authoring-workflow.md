@@ -212,7 +212,7 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 用 `/lesson-smith-showcase-forge` 产出两样东西:
 
 - `docs/showcase/` 下五份 doc: 学习索引, 跑起来的操作, quiz 薄壳, demo 薄壳, publish 清单.
-- `.claude/skills/` 下四个子 skill: `showcase-learn-cn`, `showcase-quiz-cn`, `showcase-demo-cn`, `showcase-publish-cn`.
+- `.claude/skills/` 下四个子 skill: `showcase-learn-cn`, `showcase-quiz-cn`, `showcase-demo-cn`, `showcase-publish-cn`. `.agents/skills/` 下再落一份同名副本给 Codex 与 Antigravity, frontmatter 只留 `name` 与 `description`.
 
 规范与模板分两处: 和 upskill 共用的三份在 [00-common/13-forge-shared/](../00-common/13-forge-shared/) (里面的 `{{TYPE}}` 落地时换成 `showcase`), showcase 独有的 demo 与 publish 在 [forge/](forge/). 每份中英各一套, **当前只产 `-cn` 那一套**.
 

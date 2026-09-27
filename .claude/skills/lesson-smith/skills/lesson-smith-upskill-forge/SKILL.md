@@ -10,7 +10,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 你是 upskill 学习工具链的锻造者. 对着当前这个 upskill 教学仓库跑一次, 产出两样东西:
 
 1. `docs/upskill/` 下 3 份文档: 学习索引, 跑起来的操作, quiz 薄壳.
-2. `.claude/skills/` 下 2 个子 skill: `upskill-learn-cn` 与 `upskill-quiz-cn`.
+2. `.claude/skills/` 下 2 个子 skill: `upskill-learn-cn` 与 `upskill-quiz-cn`; 同一批在 `.agents/skills/` 下再落一份, 给 Codex 与 Antigravity 用.
 
 产出后, 创作者与任何学员都能用 `/upskill-learn-cn` 带着学, `/upskill-quiz-cn` 自测.
 
@@ -101,6 +101,8 @@ upskill 的内容是创作者手写的 Task, 不用像扫陌生代码那样重. 
 
 自由说明里已经给到的直接采纳, 只补没给的.
 
+**学习素材里有 `.claude/skills/` 或 `.claude/agents/` 下的东西时**, 检查 Codex 与 Antigravity 那边有没有对应版本. 缺的话停下, 提醒创作者自己敲 `/port-claude-code-to-codex` 与 `/port-claude-code-to-antigravity`, 只 port 这几个课程资源, 无关的不 port (这两个 skill 禁止模型自动调用, 只能由人敲). port 完再往下走.
+
 ### Phase 4: 写 3 份 doc
 
 按各自规范写到 `docs/upskill/`, 全部带 `-cn` 后缀:
@@ -110,6 +112,8 @@ upskill 的内容是创作者手写的 Task, 不用像扫陌生代码那样重. 
 - `03-upskill-quiz-cn.md`: 指向 Phase 2 定位到的题库真身, 加上考法自定义.
 
 **这三份里所有指向 `examples/` 与 repo 内文档的链接都写 `-cn.md`.** 指到无后缀那一版就是指到空文件.
+
+**提到 skill 或 agent 时, 两边的位置都用 `[]()` 链上**, 并注明 Claude Code 用 `.claude/`, Codex 与 Antigravity 用 `.agents/`. 具体路径以 port skill 实际放的位置为准, 不要自己推.
 
 溯源一律用 markdown 链接加 header 或关键字, **不用 line no**. 猜不准的地方显式标注请创作者确认, 不许凭空编.
 
@@ -134,11 +138,14 @@ ref/agent-skill-interaction-pattern-cn.md        ->  上面两个 skill 各自�
 
 模板近乎全静态, 落地时只有四件事要做: 把 `{{TYPE}}` 全部换成 `upskill`, 让 frontmatter 的 `name` 等于目录名, 让每个 SKILL.md 都固定加载它自己 `ref/` 下那份交互模式, 且对 `docs/upskill/` 的引用路径带 `-cn`.
 
+**再在 `.agents/skills/` 下落一份同名副本** (连同 `ref/` 下的交互模式), 给 Codex 与 Antigravity 用. 正文与 `.claude` 那份一字不差, 只有 frontmatter 不同: 只留 `name` 与 `description`, `allowed-tools`, `argument-hint` 等 Claude Code 私有字段全部删掉.
+
 ### Phase 6: Verify 与汇报
 
-1. 列出创建或更新的文件 (3 份 doc, 2 份 SKILL.md, 2 份随附的交互模式).
+1. 列出创建或更新的文件 (3 份 doc; `.claude` 与 `.agents` 下各 2 份 SKILL.md 与随附的交互模式).
 2. sanity check:
    - 每个 SKILL.md 的 `name` 等于它的目录名.
+   - `.agents/skills/` 下的副本齐全, frontmatter 只有 `name` 与 `description`.
    - 每个 SKILL.md 都引到 `docs/upskill/` 下对应的 `-cn` 文件.
    - 每个生成的 skill 的 `ref/` 下都有交互模式, 且 SKILL.md 加载了它.
    - 3 份 doc 都非空, 且里面指向 `examples/` 的链接都是 `-cn` 的.
@@ -158,6 +165,6 @@ forge 产出的是**索引和指针**, 它们指向 `examples/` 里的文件与�
 
 ## 7. 约束
 
-- 只写 `docs/upskill/` 与 `.claude/skills/upskill-{learn,quiz}-cn/`; 不碰源码, 不动 examples 内容.
+- 只写 `docs/upskill/` 与 `.claude/skills/upskill-{learn,quiz}-cn/`, `.agents/skills/upskill-{learn,quiz}-cn/`; 学习素材的 port 由创作者自己敲; 不碰源码, 不动 examples 内容.
 - **题目本身不在这里出**: 题库真身由创作者在 quiz 那个 Task 里手写 (第 8 步), forge 只负责定位它并写好 `03` 那份薄壳的指针.
 - 遵循 lesson-smith 的创作铁律与 `markdown-style`, `chinese-english-punctuation` 两个 Agent Skill.

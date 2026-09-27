@@ -24,7 +24,7 @@
 
 无
 
-**Agent Skill:**
+**Agent Skill 与 subagent** (`.claude/skills/`, `.claude/agents/` 下的; Codex 与 Antigravity 版本还没有的话, forge 会提醒你自己敲 port):
 
 无
 

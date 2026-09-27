@@ -12,7 +12,7 @@
 - path: `lm.json`, `docs/tasks/`, `docs/showcase/`
   reason: lesson-smith 的清单与它生成的汇总视图
   detected_by: 文件与目录存在性
-- path: `.claude/skills/showcase-learn*/`, `.claude/skills/showcase-quiz*/`, `.claude/skills/showcase-demo*/`, `.claude/skills/showcase-publish*/`
+- path: `.claude/skills/showcase-learn*/`, `.claude/skills/showcase-quiz*/`, `.claude/skills/showcase-demo*/`, `.claude/skills/showcase-publish*/`, 以及 `.agents/skills/` 下的同名四个
   reason: 四个生成的子 skill
   detected_by: 目录存在性
 - path: `examples/01-title/` (整个目录)
@@ -96,11 +96,11 @@ _(除了那些 Task 之外没有别的, 就写: 这个 repo 里没有.)_
 
 [假设读者就是在找破绽. 每一类给探测方式和严重度.]
 
-- 铁律删除物残留 (HIGH): glob `README-ORIGINAL*`, `docs/tasks/`, `docs/showcase/`, `.claude/skills/showcase-*`, `**/TICKET*.md`. 报出确切路径.
+- 铁律删除物残留 (HIGH): glob `README-ORIGINAL*`, `docs/tasks/`, `docs/showcase/`, `.claude/skills/showcase-*`, `.agents/skills/showcase-*`, `**/TICKET*.md`. 报出确切路径.
 - 还留着带语种后缀的文件 (HIGH): glob `**/*-<locale>.md`. 作品 repo 不该有语种体系.
 - README 里的教学口吻 (HIGH): grep README 与根目录 `*.md`, 找 "本教程", "这门课", "我们学过", "作为学生".
 - commit message 里的教学口吻 (MEDIUM): 同一套措辞过 `git log --all --format="%s%n%b"`.
 - git ref 暴露课程来源 (MEDIUM): `git tag --list` 与 `git branch --all`, 找 `01-showcase`, `tutorial-base`, `from-course`, `original`.
-- 残留的子 skill 目录 (HIGH): 任何还在的 `.claude/skills/showcase-*` 或 `docs/showcase/`.
+- 残留的子 skill 目录 (HIGH): 任何还在的 `.claude/skills/showcase-*`, `.agents/skills/showcase-*` 或 `docs/showcase/`.
 - 卫生问题 (LOW): `.DS_Store`, `__pycache__/`, `.venv/`, `*.egg-info/`, `.idea/`.
 - 可疑的雷同 (MEDIUM): 多个文件同模板生成的注释横幅或结构. 报出来即可, 不强制改.

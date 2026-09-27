@@ -17,7 +17,7 @@
 - 根目录有 `lm.json`, 且 `type` 是这个 repo 的实际类型. **先核这一条**: 它一缺, lint 只报一句就短路, 后面所有检查都不跑.
 - `examples/` 下每个 Task 的 `README-cn.md` 与 `TICKET-cn.md` 都在.
 - 根目录 `README-cn.md`, `TICKET-cn.md`, `README-ORIGINAL-cn.md` 都在.
-- upskill 与 showcase: `docs/<type>/` 下的 doc 与 `.claude/skills/<type>-*/` 子 skill 都在 (那是 forge 的产物), **且每个子 skill 的 `ref/` 下那份交互基座也在** (lint 只查 `SKILL.md`, 这一份查不到, 只能人工核).
+- upskill 与 showcase: `docs/<type>/` 下的 doc 与 `.claude/skills/<type>-*/`, `.agents/skills/<type>-*/` 两份子 skill 都在 (那是 forge 的产物), **且每个子 skill 的 `ref/` 下那份交互基座也在** (lint 只查 `.claude` 下的 `SKILL.md`, `.agents` 那份与交互基座都查不到, 只能人工核).
 
 ---
 

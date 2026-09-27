@@ -58,6 +58,7 @@ docs/upskill/notes/                    可选, 学生用 upskill-learn-cn 时它
 .claude/skills/upskill-learn-cn/ref/agent-skill-interaction-pattern-cn.md   随 skill 打包的交互基座
 .claude/skills/upskill-quiz-cn/SKILL.md    forge 产出: 自测 skill
 .claude/skills/upskill-quiz-cn/ref/agent-skill-interaction-pattern-cn.md    随 skill 打包的交互基座
+.agents/skills/upskill-{learn,quiz}-cn/     上面两个的副本, 给 Codex 与 Antigravity, frontmatter 只留 name 与 description
 ```
 
 树里的 `NN-` 与 `ZZ-` 都是占位符, **不是字面值**: `NN-` 表示编号接着往下排, `ZZ-` 表示编号最大的那个, 也就是最后一个. 落地时全都是两位数字, 从 01 连续不跳号, 这一条 lint 查.

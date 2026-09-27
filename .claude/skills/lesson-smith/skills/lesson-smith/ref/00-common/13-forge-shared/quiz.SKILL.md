@@ -15,7 +15,7 @@ Whenever the learner asks to be quizzed or tested, brings up the self-check, or 
 
 ## Interaction base
 
-Read `.claude/skills/{{TYPE}}-quiz/ref/agent-skill-interaction-pattern.md` first, bundled with this skill, and work the way it says. The short version: lead at the opening, one question at a time, the tone of a teacher who knows the material, locate things by header or keyword, never by line number. Everything below is what is particular to this skill.
+Read `ref/agent-skill-interaction-pattern.md` in this skill's own directory first, bundled with this skill, and work the way it says. The short version: lead at the opening, one question at a time, the tone of a teacher who knows the material, locate things by header or keyword, never by line number. Everything below is what is particular to this skill.
 
 ## Where your knowledge comes from (fixed, do not invent)
 

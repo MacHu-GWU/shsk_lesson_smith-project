@@ -25,7 +25,7 @@ argument-hint: "[自由说明...]"
 **这一步的活儿由 `/lesson-smith-upskill-forge` 完成**, 不在这里手写. 它产出两样东西:
 
 - `docs/upskill/` 下三份 doc: 学习索引, 跑起来的操作, quiz 薄壳.
-- `.claude/skills/` 下两个子 skill: `upskill-learn-cn` 与 `upskill-quiz-cn`.
+- `.claude/skills/` 下两个子 skill: `upskill-learn-cn` 与 `upskill-quiz-cn`. `.agents/skills/` 下再落一份同名副本给 Codex 与 Antigravity, frontmatter 只留 `name` 与 `description`.
 
 规范与模板都在 `ref/00-common/13-forge-shared/` 下, 由那个 skill 自己去读, 你不用预读.
 
@@ -38,6 +38,7 @@ argument-hint: "[自由说明...]"
 - **统稿没过不许跑.** forge 产出的是索引和指针, 指向 `examples/` 里的文件与标题, 而统稿会改标题, 会拆篇并篇, 甚至调编号. 早跑一步, 链接和锚点全指在会变的东西上, 而且没有任何检查会报出来.
 - **只产 `-cn` 那一套.** 英文规范和骨架就在 `ref/00-common/13-forge-shared/` 各个 spec 目录里躺着, 但当前不产出, 因为无后缀的英文课程正文留空, 英文索引只会指向一堆空文件.
 - **有三件事机器猜不出, 必须停下来问创作者**: 哪些算学习素材 (以及这门课是情况 A 还是 B), runbook 里有哪些隐性步骤, quiz 想怎么考.
+- **学习素材里有 `.claude/skills/` 或 `.claude/agents/` 下的课程资源, 而 Codex 与 Antigravity 那边还没有对应版本时**, forge 会停下提醒创作者自己敲 `/port-claude-code-to-codex` 与 `/port-claude-code-to-antigravity`, 只 port 这几个, 无关的不 port.
 - **别在这里出题.** 题库真身是第 8 步写的, forge 只负责定位它并写好那份薄壳的指针.
 - 跑完**别急着关 session**: 第 13 步接着在这个 session 里做, 它要的正是刚读进来的这批素材.
 

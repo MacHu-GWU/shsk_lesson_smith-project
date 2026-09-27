@@ -25,7 +25,7 @@ argument-hint: "[自由说明...]"
 **这一步的活儿由 `/lesson-smith-showcase-forge` 完成**, 不在这里手写. 它产出两样东西:
 
 - `docs/showcase/` 下五份 doc: 学习索引, 跑起来的操作, quiz 薄壳, demo 薄壳, publish 清单.
-- `.claude/skills/` 下四个子 skill: `showcase-learn-cn`, `showcase-quiz-cn`, `showcase-demo-cn`, `showcase-publish-cn`.
+- `.claude/skills/` 下四个子 skill: `showcase-learn-cn`, `showcase-quiz-cn`, `showcase-demo-cn`, `showcase-publish-cn`. `.agents/skills/` 下再落一份同名副本给 Codex 与 Antigravity, frontmatter 只留 `name` 与 `description`.
 
 规范与模板**分两处**: 和 upskill 共用的三份 (learn, runbook, quiz) 在 `ref/00-common/13-forge-shared/`, showcase 独有的两份 (demo, publish) 在 `ref/03-showcase/forge/`. 两处都由那个 skill 自己去读, 你不用预读.
 
@@ -49,6 +49,7 @@ argument-hint: "[自由说明...]"
 - **统稿没过不许跑.** forge 产出的是索引和指针, 指向 `examples/` 里的文件与标题, 而统稿会改标题, 会拆篇并篇, 甚至调编号. 早跑一步, 链接和锚点全指在会变的东西上, 而且没有任何检查会报出来.
 - **只产 `-cn` 那一套.** 英文规范和骨架就在上面那两处的同一个目录里躺着, 但当前不产出, 因为无后缀的英文课程正文留空, 英文索引只会指向一堆空文件.
 - **有五件事机器猜不出, 必须停下来问创作者**: 哪些算学习素材 (以及这门课是情况 A 还是 B), runbook 里有哪些隐性步骤, quiz 想怎么考, demo 想怎么排练, publish 清单里哪些算待定项.
+- **学习素材里有 `.claude/skills/` 或 `.claude/agents/` 下的课程资源, 而 Codex 与 Antigravity 那边还没有对应版本时**, forge 会停下提醒创作者自己敲 `/port-claude-code-to-codex` 与 `/port-claude-code-to-antigravity`, 只 port 这几个, 无关的不 port.
 - **别在这里出题, 也别在这里写故事.** 题库真身是第 8 步写的, 讲故事底稿是第 9 步写的, forge 只负责定位它们并写好那两份薄壳的指针.
 - **demo 按名字找, 不按位置找.** `NN-how-i-build-this` 后面还有一个收尾 Task, 它不是 `examples/` 的最后一个.
 - 跑完**别急着关 session**: 第 14 步接着在这个 session 里做, 它要的正是刚读进来的这批素材.
