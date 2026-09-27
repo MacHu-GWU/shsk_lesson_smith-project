@@ -23,6 +23,17 @@ x.y.z (Backlog)
 - ``--version`` is intercepted in ``main()`` before Fire runs, because Fire has no notion of a top-level flag and answers ``ERROR: Could not consume arg: --version``. The short form is a capital ``-V``; lowercase ``-v`` is left alone since Fire claims it as ``--verbose``, and a test pins that boundary.
 
 
+0.3.5 (2026-09-27)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Bugfixes**
+
+- **The specs now state the minimum CLI version correctly.** Every ``uvx --from shsk-lesson-smith==<version>`` command keeps its placeholder, and the text around it says which version ``<version>`` must be. In 0.3.4 that text was wrong in two places. ``01-repo-layout`` section 8 said the current version was 0.3.3, and ``10-ship-spec`` said only to take the latest release. An AI following the 0.3.4 plugin could therefore pin 0.3.3, whose lint knows nothing about ``.agents/skills/``. It passed without checking the ``.agents`` copies of the forge child skills, the bundled interaction patterns or the ``.agents`` frontmatter keys. It did not fail, it just skipped those checks. Both places now say ``<version>`` must be at least 0.3.5, and ``01-repo-layout`` says why older versions miss those checks.
+
+**Miscellaneous**
+
+- No code change since 0.3.4. This version exists so the plugin and the package keep releasing in lockstep.
+
+
 0.3.4 (2026-09-27)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Features and Improvements**

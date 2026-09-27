@@ -270,7 +270,7 @@ uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .
 - `sync`: 快照当前 branch 的 README 与 TICKET 到 `docs/tasks/<branch>/`, 重建 SYLLABUS, 再把各 branch 的预计用时加总写进 `lm.json` 的 `estimated_hours_lower` 与 `estimated_hours_upper` (见第 5 节).
 - `lint`: 只读校验. 目录结构, 语种完整性, 唯一那个带序号 branch 的名字对不对 (`01-<type>`), 特殊 Task 的目录名与位置 (见第 4.3 节那张表), forge 产物在不在 (upskill 与 showcase, 含 `.claude` 与 `.agents` 两份子 skill 及其交互基座, 以及 `.agents` 那份的 frontmatter 只留 `name` 与 `description`), frontmatter 的 description 与 github_about, H1 字符集, TICKET 里有没有相对路径链接, SYLLABUS 内容是否与各 README 的 description 一致, 以及 `lm.json` 那两个时长字段是否等于重算出来的和.
 - **lint 按语种开关.** 只有开着的语种才被检查, 关掉的整个跳过 (既不要求存在, 内容也不检查). 英文当前是关的, 所以留空的英文占位文件不会报错. 开关在 package 的 `constants.py` 里.
-- `<version>` 填创作时的最新发布版本 (**当前是 0.3.3**; 最新版见 https://pypi.org/pypi/shsk-lesson-smith).
+- `<version>` **至少 0.3.5** (最新版见 https://pypi.org/pypi/shsk-lesson-smith). 0.3.3 及更早的 lint 不查 `.agents` 子 skill 与交互基座, 用它们不会报错, 只会悄悄漏查.
 - **lint 的结构性检查一律跳过 fenced code block** (0.3.3 起). 代码块里顶格的 `# 注释` 是注释不是 H1, 示例里的 `[label](../x.md)` 是示范不是活链接, 代码块里的 `**预计用时:**` 也不参与加总. 在此之前这三项都会误报, 而唯一的绕法是去改本来正确的示例代码.
 - **pin 死版本** 是为了让校验规范可复现, 不随新版悄悄漂移. 全局装的那份反过来会随 `uv tool upgrade` 前进, 所以拿它跑出来的结果要对得上时, 先确认版本.
 - **问它自己是哪个版本**: `lesson-smith --version` (等价写法还有 `-V` 和子命令 `lesson-smith version`). 小写 `-v` 不行, 那个被 CLI 框架占作 `--verbose` 了.
