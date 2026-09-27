@@ -23,6 +23,29 @@ x.y.z (Backlog)
 - ``--version`` is intercepted in ``main()`` before Fire runs, because Fire has no notion of a top-level flag and answers ``ERROR: Could not consume arg: --version``. The short form is a capital ``-V``; lowercase ``-v`` is left alone since Fire claims it as ``--verbose``, and a test pins that boundary.
 
 
+0.3.4 (2026-09-27)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Features and Improvements**
+
+- **Forge now writes every child skill for Codex and Antigravity too, not just Claude Code.** Each forge skill writes a second copy of every child skill under ``.agents/skills/`` next to the ``.claude/skills/`` one. The upskill forge writes two child skills and the showcase forge writes four. The body is identical, and so is the bundled ``ref/`` interaction pattern. The frontmatter is cut down to ``name`` and ``description``, since every other key is private to Claude Code. Until now, a course repo had to be ported by hand after every forge before it worked for those two agents. The eight child-skill templates now read their interaction pattern from "this skill's own ``ref/``" instead of a hard-coded ``.claude/skills/...`` path, so one body works in both places.
+- **Course materials that live in ``.claude/skills/`` or ``.claude/agents/`` are ported too, but only the ones the author names.** If a course's learning materials include such an entry and it has no Codex or Antigravity counterpart yet, forge stops and asks the author to run ``/port-claude-code-to-codex`` and ``/port-claude-code-to-antigravity`` for those entries only. Both port skills disable model invocation, so the author has to type these commands. The generated ``docs/upskill/`` and ``docs/showcase/`` docs now link both locations wherever they mention a skill or agent, and use whatever path the port skill actually chose.
+- **The root-docs step now writes an English ``github_about`` into ``pyproject.toml``.** Right after the Chinese ``github_about`` in ``README-ORIGINAL-cn.md`` is final, the step writes an English rewrite of it into ``[project] description``. That line is what gets pasted into the GitHub repo's About box, so it keeps the same one-sentence, 150-character budget, and it goes through the author's sign-off together with the Chinese line. This applies to readup, upskill and showcase alike.
+
+**Minor Improvements**
+
+- ``lesson-smith --version``, ``-V`` and a ``version`` subcommand report which ruleset is installed. ``01-repo-layout`` section 8 now recommends ``uv tool install shsk-lesson-smith`` for a human maintainer and keeps pinned ``uvx`` for AI and one-off runs.
+- The showcase publish checklist now deletes ``.agents/skills/showcase-*`` along with the ``.claude`` copies, and its audit globs look for leftovers there too. Without this, a published portfolio repo would still carry the course's child skills.
+
+**Breaking Changes**
+
+- **``lesson-smith lint`` now checks both copies of every forge child skill.** For each child skill it requires ``SKILL.md`` and ``ref/agent-skill-interaction-pattern*.md`` under ``.claude/skills/`` and under ``.agents/skills/``. It also fails an ``.agents`` copy whose frontmatter carries any key besides ``name`` and ``description``. Any upskill or showcase repo forged before this version fails until forge is re-run with ``refresh``. The interaction-pattern check used to be a manual step in the ship checklist, and the lint now enforces it.
+
+**Miscellaneous**
+
+- The shared check lives in ``linter.lint_forge_skill``, and both the upskill and the showcase ``rule_forge_outputs`` call it. It is built on a new ``check_frontmatter_keys_only`` primitive and a ``MarkdownFile.frontmatter_keys`` property, which reads only top-level keys and skips indented lines, list items and comments.
+- The good fixture repos now carry ``.agents`` copies. Each bad fixture repo carries one ``.agents`` ``SKILL.md`` with a leftover ``allowed-tools``, so the new error is reproduced end to end. ``10-ship-spec``, ``01-repo-layout`` and both repo layouts now describe what the lint actually checks.
+
+
 0.3.3 (2026-08-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Bugfixes**
