@@ -220,6 +220,8 @@ quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get
 
 **publish 那一份要特别认真.** 另外四份产歪了大不了重生成, 而 publish 清单指导的是**删文件**, 而且删的是学生自己那份 repo. 尤其是语种收敛那一节: 留下有内容的那一版, 删掉留空的占位符, 判断哪版是占位符必须去读文件.
 
+**forge 不写 README 正文.** 学生发布时的根 `README.md` 由 `showcase-publish-cn` 陪他写, 按信息块自由组织, 语气与语种都是问他的. forge 只在 `05` 里留素材线索, 并把 [publish-readme-guide-cn.md](forge/publish-readme-guide-cn.md) 拷进那个 skill. 这样每个学生的 README 各不相同, 不会变成一份复制粘贴的模板.
+
 **为什么卡在统稿之后**: forge 产出的是索引和指针, 它们指向 `examples/` 里的文件与标题. 统稿会改标题, 会拆篇并篇, 甚至会调整编号. 统稿之前跑, 产出的链接和锚点全都指在会变的东西上, 而且没有任何检查会报出来.
 
 ---

@@ -127,9 +127,12 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
   docs-showcase-publish/
   showcase-demo{,-cn}.SKILL.md
   showcase-publish{,-cn}.SKILL.md
+  publish-readme-guide-cn.md              单文件, 只拷进 showcase-publish-cn 的 ref/
 ```
 
 **upskill 没有自己的 `forge/`**: 它的 forge 产物和 showcase 完全重合, 所以那套素材整个归了通用层. showcase 只是在同一套之上多两份. 这正好是第 1 节那个子集关系在文件上的样子.
+
+`publish-readme-guide-cn.md` 是一份**单文件参考**: 它不规定某个产物的正文结构, 而是给 `showcase-publish-cn` 写学生 README 时读的信息块菜单, **故意没有 template**, 因为 README 千人千面. forge 把它原样拷进生成 skill 的 `ref/`, 和交互基座是同一类做法. 它目前只有中文版; 因为多语种模块还没做, `showcase-publish{,-cn}.SKILL.md` 与 `docs-showcase-publish/` 下的英文那几份**暂时没有跟上**这次改动 (先写 README 再删除的新顺序, 素材线索, 新增的硬检查), 等多语种模块回来时要照 `-cn` 版重写一遍, 不是逐句翻译.
 
 那些 `*.SKILL.md` 是全套里唯一的**第三种东西**: 既不是 spec 也不是 template, 是可以整份拷成一个真 skill 的成品. 它们不进 spec 目录, 因为它们没有配套规范, 拷过去换掉 `{{TYPE}}` 就能用.
 

@@ -36,6 +36,7 @@ allowed-tools: Read Grep Glob Write Edit Bash(ls *) Bash(cat *) Bash(pwd) Bash(g
 - `ref/03-showcase/forge/docs-showcase-publish/docs-showcase-publish-cn-spec.md`: 写 `05-showcase-publish-cn.md` 的规范, showcase 独有, 自包含的 publish 清单.
 - `ref/00-common/13-forge-shared/{learn,quiz}-cn.SKILL.md` 与 `ref/03-showcase/forge/showcase-{demo,publish}-cn.SKILL.md`: 四个子 skill 的近乎静态模板, 直接拷.
 - `ref/agent-skill-interaction-pattern-cn.md`: 通用交互模式中文版, 生成子 skill 时拷一份进各自的 `ref/` 下.
+- `ref/03-showcase/forge/publish-readme-guide-cn.md`: 作品 README 的信息块指南, 不是模板. 只拷进 `showcase-publish-cn` 的 `ref/` 下, forge 自己不用它写任何 README 正文.
 - `ref/00-common/11-quiz-readme-spec/` 与 `ref/03-showcase/showcase-demo-readme-spec/`: 题库真身与讲故事底稿的格式, 用来核对定位到的那两个 Task 对不对.
 
 ### 素材里的 `{{TYPE}}` 是占位符
@@ -93,7 +94,8 @@ showcase 的内容是创作者手写的 Task, 不用像扫陌生代码那样重.
 - **按固定目录名定位两个特殊 Task**: quiz 是 `NN-prove-i-get-it`, demo 是 `NN-how-i-build-this`. 名字是硬的, 直接找就行. 特征匹配只在名字找不到时当兜底, 兜不住就停下问, 别猜.
 - **demo 按名字找, 不按位置找.** 它后面还有一个收尾 Task, 它不是 `examples/` 的最后一个.
 - 顺带记下 examples 之外看起来是学习素材的东西 (根目录代码, 其它文档, `mise.toml`), 作为学习素材的候选.
-- **为写 publish 清单, 扫一遍当前 repo 的真实文件树**: 把铁律删除的 glob 展开成真实路径, 分清哪一版有内容哪一版是空壳, 并记下可用于 commit plan 的真实文件与依赖顺序.
+- **为写 publish 清单, 扫一遍当前 repo 的真实文件树**: 把铁律删除的 glob 展开成真实路径, 分清哪一版有内容哪一版是空壳 (根目录 `README.md` 也要读一下, 是空占位符还是有内容), 并记下可用于 commit plan 的真实文件与依赖顺序.
+- **顺带记下 README 素材线索** (写进 `05` 第 5 节): demo 底稿路径, `README-ORIGINAL-cn.md` 与根 `TICKET-cn.md` 路径, 保留主线 Task, `mise.toml` 与 `pyproject.toml` 里真实的安装与运行命令, 真实存在的模块与数据流, 已有的截图与图片, `.github/workflows/` 下有哪些文件. 只记读到的.
 
 `examples/` 的位置约定 (01 索引, 02 综述, 03 往后主线, 然后 quiz, 然后 demo, 最后收尾) 见 `ref/00-common/01-repo-layout.md` 第 4.2 节. **引导路径讲的是主线**; 索引与收尾各自是一个 Task, quiz 与 demo 分别归 `03` 和 `04` 那两份薄壳管.
 
@@ -135,6 +137,8 @@ showcase 的内容是创作者手写的 Task, 不用像扫陌生代码那样重.
 - **删除区间**: quiz, demo, 收尾三个连着排在 `examples/` 最末, 一起删. 排在 quiz 之前的主线 Task 是作品内容, 要保留, 归待定项让学生自己判断.
 - **glob 必须展开**: 清单里每个 glob 都要对着真实的树展开成路径. 留着 glob 等于把展开的活推给一个将来没有上下文的 session.
 
+另有一条边界: **`05` 第 5 节是素材线索, 不是 README 大纲, 更不是 README 正文.** README 的信息块, 语气, 语种全在学生发布时按他的意愿定, forge 不预设, 也不替他写. 根目录 README 这一族 (教学版 `README-cn.md`, `README-ORIGINAL*`) 走铁律删除, 不参与语种收敛的改名.
+
 ### Phase 5: 落 4 个子 skill
 
 把四个模板拷成真正的 skill, 并让它们**自包含** (学生 repo 里没有 lesson-smith, 每个 skill 必须自带交互模式).
@@ -154,11 +158,12 @@ ref/00-common/13-forge-shared/quiz-cn.SKILL.md      ->  .claude/skills/showcase-
 ref/03-showcase/forge/showcase-demo-cn.SKILL.md     ->  .claude/skills/showcase-demo-cn/SKILL.md
 ref/03-showcase/forge/showcase-publish-cn.SKILL.md  ->  .claude/skills/showcase-publish-cn/SKILL.md
 ref/agent-skill-interaction-pattern-cn.md           ->  上面四个 skill 各自的 ref/agent-skill-interaction-pattern-cn.md
+ref/03-showcase/forge/publish-readme-guide-cn.md    ->  只拷给 showcase-publish-cn: .claude/skills/showcase-publish-cn/ref/publish-readme-guide-cn.md
 ```
 
 模板近乎全静态, 落地时只有四件事要做: 把 learn 与 quiz 那两份里的 `{{TYPE}}` 全部换成 `showcase` (demo 与 publish 那两份写死 `showcase`, 不带占位符), 让 frontmatter 的 `name` 等于目录名, 让每个 SKILL.md 都固定加载它自己 `ref/` 下那份交互模式, 且对 `docs/showcase/` 的引用路径带 `-cn`.
 
-**再在 `.agents/skills/` 下落一份同名副本** (连同 `ref/` 下的交互模式), 给 Codex 与 Antigravity 用. 正文与 `.claude` 那份一字不差, 只有 frontmatter 不同: 只留 `name` 与 `description`, `allowed-tools`, `argument-hint` 等 Claude Code 私有字段全部删掉.
+**再在 `.agents/skills/` 下落一份同名副本** (连同 `ref/` 下的交互模式, 以及 `showcase-publish-cn` 那份 README 指南), 给 Codex 与 Antigravity 用. 正文与 `.claude` 那份一字不差, 只有 frontmatter 不同: 只留 `name` 与 `description`, `allowed-tools`, `argument-hint` 等 Claude Code 私有字段全部删掉.
 
 ### Phase 6: Verify 与汇报
 
@@ -168,9 +173,10 @@ ref/agent-skill-interaction-pattern-cn.md           ->  上面四个 skill 各�
    - `.agents/skills/` 下的副本齐全, frontmatter 只有 `name` 与 `description`.
    - 每个 SKILL.md 都引到 `docs/showcase/` 下对应的 `-cn` 文件.
    - 每个生成的 skill 的 `ref/` 下都有交互模式, 且 SKILL.md 加载了它.
+   - `showcase-publish-cn` 在 `.claude` 与 `.agents` 两边的 `ref/` 下都有 `publish-readme-guide-cn.md`, 且 SKILL.md 引用了它. lint 不查这一份, 丢了 README 质量会静默下降, 所以靠这条把关.
    - **产出的文件里 grep `{{`, 必须 0 命中.** 有命中就是共享模板的占位符没换干净, 那会产出一条指向不存在路径的链接.
    - 5 份 doc 都非空, 且里面指向 `examples/` 的链接都是 `-cn` 的.
-   - **publish 清单里的铁律删除已经展开成真实路径, 不是停在 glob**, 且语种收敛那一节写明了哪一版留哪一版删.
+   - **publish 清单里的铁律删除已经展开成真实路径, 不是停在 glob**, 且语种收敛那一节写明了哪一版留哪一版删, 以及根目录 README 这一族不参与收敛.
 3. 用 uvx 跑 `lesson-smith lint` 看仓库结构是否仍合规 (`uvx --from shsk-lesson-smith==<version> lesson-smith lint -p .`; `<version>` 与 pin 版本的说明见 `ref/00-common/01-repo-layout.md` 第 8 节, 本地已装 package 则直接 `lesson-smith lint`).
 4. 告诉用户: 用 `/showcase-learn-cn` 开始学, `/showcase-quiz-cn` 自测, `/showcase-demo-cn` 排练讲法, 学完用 `/showcase-publish-cn` 发布; `docs/showcase/` 里哪里不对直接改, 或 `refresh <name>` 重生成一份. **接着做第 14 步, 不要另开 session.**
 
@@ -190,5 +196,5 @@ publish 那一份更糟: 它记的是**要删哪些真实路径**. 对着一棵�
 
 - 只写 `docs/showcase/` 与 `.claude/skills/showcase-{learn,quiz,demo,publish}-cn/`, `.agents/skills/showcase-{learn,quiz,demo,publish}-cn/`; 学习素材的 port 由创作者自己敲; 不碰源码, 不动 examples 内容.
 - **题目本身不在这里出, 讲故事底稿也不在这里写**: 题库真身 (第 8 步) 与讲故事底稿 (第 9 步) 都由创作者手写, forge 只负责定位它们并写好 `03` 与 `04` 的指针.
-- **publish 清单 forge 只生成, 不执行.** 真正的删除, 改名, 重写 README 是学生后来跑 `/showcase-publish-cn` 时的事. 什么时候发布由他自己决定.
+- **publish 清单 forge 只生成, 不执行.** 真正的写 README, 删除, 改名是学生后来跑 `/showcase-publish-cn` 时的事. 什么时候发布由他自己决定. forge 不写 README 正文.
 - 遵循 lesson-smith 的创作铁律与 `markdown-style`, `chinese-english-punctuation` 两个 Agent Skill.

@@ -6,8 +6,8 @@
 
 [下面每一项都一眼暴露教学来源, 发布前必删. 每个 glob 都展开, 真实匹配一条条列出来.]
 
-- path: `README-ORIGINAL-cn.md` (及其余各语种)
-  reason: 对外的课程电梯陈述, 只有教学 repo 才有
+- path: `README-cn.md`, `README-ORIGINAL-cn.md` (及其余各语种, 根目录所有 `README*.md` 除了发布时新写的那份 `README.md`)
+  reason: 教学入口与对外的课程电梯陈述, 只有教学 repo 才有
   detected_by: 文件名匹配
 - path: `lm.json`, `docs/tasks/`, `docs/showcase/`
   reason: lesson-smith 的清单与它生成的汇总视图
@@ -33,13 +33,14 @@
 [作品 repo 只带一个语种. 先定哪一版留下, 删掉其余各版, 最后去掉后缀. 判断哪个是占位符要去读文件内容, 不许只看后缀.]
 
 - 保留的语种: [例如 `-cn`, 因为内容在那一版]
-- 删除 (留空的占位符与其余各版, 列真实路径, 不留 glob):
-- [README.md]
+- 根目录 README 这一族不参与收敛: [根 `README.md` 现在是空占位符还是已有内容 (读过文件确认). 新 README 由 skill 发布时写进这个位置. 教学版 `README-cn.md` 走第 1 节直接删, 不改名]
+- 删除 (留空的占位符与其余各版, 列真实路径, 不留 glob, 根目录 README 除外):
 - [examples/02-title/README.md]
+- [docs/some-doc.md]
 - [...]
 - 删完再改名:
-- [README-cn.md] 改成 [README.md]
 - [examples/02-title/README-cn.md] 改成 [examples/02-title/README.md]
+- [docs/some-doc-cn.md] 改成 [docs/some-doc.md]
 - [...]
 
 ## 3. 待定项
@@ -57,48 +58,38 @@ _(除了那些 Task 之外没有别的, 就写: 这个 repo 里没有.)_
 
 ## 4. 按依赖排序的 commit 计划
 
-[最不依赖别人的先提交, 让 history 读起来像自然长出来的. 用这个 repo 的真实路径. 最后一条永远是手写的 README.]
+[最不依赖别人的先提交, 让 history 读起来像自然长出来的. 用这个 repo 的真实路径. 最后一条永远是 README.]
 
 | # | 文件 | 建议的 commit message (第一人称过去时) | 理由 |
 | :- | :--- | :--- | :--- |
 | 1 | [根配置, 例如 mise.toml, pyproject.toml, .gitignore] | Set up the toolchain | 根配置, 其余全都长在它上面 |
 | 2 | [共用骨架或工具函数] | Add the base structure | 后面的东西依赖它 |
 | ... | [内容文件, 一个 commit 一个] | [Add / Wire up / Document ...] | [谁依赖谁] |
-| N | README.md | Write the project README | 门面, 最后写 |
+| N | README.md | Write the project README | 门面, 最后提交 |
 
-## 5. README 大纲
+## 5. README 素材线索
 
-[publish skill 陪学生共写 README 时 follow 的结构. 干净的作品口吻: 绝不出现 "教程", "本课", "我们学过". 全文 250 到 500 词.]
+[只写这个 repo 特有的素材在哪, 给 skill 当入口. 不是大纲: 信息块, 语气, 语种都在发布时按学生的意愿定. 以发布时读到的文件为准.]
 
-- 语种: [问学生一次. 公开作品用英文很常见, 哪怕课程内容是中文的]
-- section: 项目是什么
-  goal: 这是个什么东西, 谁会在乎, 用学生自己的话说
-  prompts: ["一句话, 这是个什么?", "谁会在乎它?", "它让你能做到什么?"]
-  length: 60 到 100 词
-- section: 怎么装怎么跑
-  goal: 从 clone 到跑出东西的最短路径
-  prompts: ["最短的一串命令是什么, 跑完能出结果?"]
-  length: 40 到 80 词
-- section: 我做了什么, 它怎么工作
-  goal: 这活的形状, 加一个值得说的设计取舍
-  prompts: ["主要有哪几块?", "有哪个决定是你现在还觉得做对了的?"]
-  length: 80 到 140 词
-- section: 我学到了什么
-  goal: 具体的东西, 不是套话
-  prompts: ["什么事让你意外?", "最难的是哪一段, 你怎么过去的?"]
-  length: 60 到 120 词
-- section: 下一步 (可选)
-  goal: 一个诚实的下一步
-  prompts: ["再给你一周, 你会加什么?"]
-  length: 40 到 80 词
+- 故事在哪: [demo 讲故事底稿的真实路径, 以及它偏离默认七幕的地方 (若有)]
+- 定位在哪: [`README-ORIGINAL-cn.md` 与根 `TICKET-cn.md` 的真实路径]
+- 保留的主线 Task: [真实目录, 各一句话主题]
+- 真实可跑的命令: [从 mise.toml, pyproject.toml 等读到的安装与运行命令, 只列读到的]
+- 值得画成图的东西: [这个 repo 里真实存在的模块, 服务, 数据流, 各自在哪]
+- 已有的视觉素材: [截图, 图片, 终端录屏的真实路径; 没有就写: 这个 repo 里没有]
+- 徽章可用的事实: [语言与版本, 许可证, CI workflow 文件是否存在]
 
 ## 6. 敌意扫描规则
 
 [假设读者就是在找破绽. 每一类给探测方式和严重度.]
 
 - 铁律删除物残留 (HIGH): glob `README-ORIGINAL*`, `docs/tasks/`, `docs/showcase/`, `.claude/skills/showcase-*`, `.agents/skills/showcase-*`, `**/TICKET*.md`. 报出确切路径.
+- 根目录 README 不止一份 (HIGH): glob 根目录 `README*.md`, 只该剩一份 `README.md`.
 - 还留着带语种后缀的文件 (HIGH): glob `**/*-<locale>.md`. 作品 repo 不该有语种体系.
-- README 里的教学口吻 (HIGH): grep README 与根目录 `*.md`, 找 "本教程", "这门课", "我们学过", "作为学生".
+- README 顶部还挂着 frontmatter (HIGH): `README.md` 第一行是 `---`.
+- README 里的教学口吻 (HIGH): grep README 与根目录 `*.md`, 中英两套都找: "本教程", "这门课", "我们学过", "作为学生", tutorial, course, lesson, curriculum, syllabus, exercise, quiz, 以及 `showcase-`, `TICKET`, `lesson-smith`.
+- README 里的死链与破图 (HIGH): `README.md` 里每个相对链接与本地图片路径都要解析得到; 指向 `.github/workflows/` 的徽章, 那个文件要存在.
+- 选了英文却留着汉字 (HIGH): 只在学生选英文时查, Grep 搜 `\p{Han}` 查 `README.md`, 必须 0 命中.
 - commit message 里的教学口吻 (MEDIUM): 同一套措辞过 `git log --all --format="%s%n%b"`.
 - git ref 暴露课程来源 (MEDIUM): `git tag --list` 与 `git branch --all`, 找 `01-showcase`, `tutorial-base`, `from-course`, `original`.
 - 残留的子 skill 目录 (HIGH): 任何还在的 `.claude/skills/showcase-*`, `.agents/skills/showcase-*` 或 `docs/showcase/`.

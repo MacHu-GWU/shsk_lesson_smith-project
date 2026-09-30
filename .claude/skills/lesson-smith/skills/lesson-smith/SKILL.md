@@ -118,7 +118,7 @@ LESSON-SMITH-LOADED: v1
 - 写 repo 根目录 TICKET (整门课的验收清单) → [showcase-ticket-spec](ref/03-showcase/showcase-ticket-spec/showcase-ticket-cn-spec.md).
 - 写 quiz 那个 Task → 走通用层那两份 (和 upskill 共用), 见下面 "多类共享" 一段.
 - 写 demo 那个 Task → [showcase-demo-readme-spec](ref/03-showcase/showcase-demo-readme-spec/showcase-demo-readme-cn-spec.md), [showcase-demo-ticket-spec](ref/03-showcase/showcase-demo-ticket-spec/showcase-demo-ticket-cn-spec.md).
-- forge 要读的东西**分两处**. showcase 独有的两份在 `ref/03-showcase/forge/`: 写 `04-showcase-demo-cn.md` → [docs-showcase-demo](ref/03-showcase/forge/docs-showcase-demo/docs-showcase-demo-cn-spec.md), 写 `05-showcase-publish-cn.md` → [docs-showcase-publish](ref/03-showcase/forge/docs-showcase-publish/docs-showcase-publish-cn-spec.md), 加 [showcase-demo-cn.SKILL.md](ref/03-showcase/forge/showcase-demo-cn.SKILL.md) 与 [showcase-publish-cn.SKILL.md](ref/03-showcase/forge/showcase-publish-cn.SKILL.md) 两份 SKILL 模板. 另外三份 doc 与两个子 skill 和 upskill 共用, 见下面 "多类共享" 一段.
+- forge 要读的东西**分两处**. showcase 独有的两份在 `ref/03-showcase/forge/`: 写 `04-showcase-demo-cn.md` → [docs-showcase-demo](ref/03-showcase/forge/docs-showcase-demo/docs-showcase-demo-cn-spec.md), 写 `05-showcase-publish-cn.md` → [docs-showcase-publish](ref/03-showcase/forge/docs-showcase-publish/docs-showcase-publish-cn-spec.md), 加 [showcase-demo-cn.SKILL.md](ref/03-showcase/forge/showcase-demo-cn.SKILL.md) 与 [showcase-publish-cn.SKILL.md](ref/03-showcase/forge/showcase-publish-cn.SKILL.md) 两份 SKILL 模板, 以及 [publish-readme-guide-cn.md](ref/03-showcase/forge/publish-readme-guide-cn.md): 作品 README 的信息块指南 (不是模板), forge 只把它原样拷进 `showcase-publish-cn` 的 `ref/`, 发布时学生的 README 由那个 skill 陪着写. 另外三份 doc 与两个子 skill 和 upskill 共用, 见下面 "多类共享" 一段.
 
 **多类共享 (在 ref/00-common/ 下, upskill 与 showcase 都读):**
 

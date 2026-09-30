@@ -8,13 +8,15 @@
 
 **自包含**: 和 quiz, demo 不一样, publish 在 `examples/` 下没有对应的 Task 撑着. skill 需要的一切都在这一份文件里.
 
+**这份 doc 只装这个 repo 特有的事实.** 不管哪个 repo 都一样的规矩 (根 README 怎么写, 先盘点再写 README 再删除的顺序, README 相关的硬检查) 住在静态的 [showcase-publish-cn.SKILL.md](../showcase-publish-cn.SKILL.md) 和 [publish-readme-guide-cn.md](../publish-readme-guide-cn.md) 里, 不靠这份 doc 每次重新生成, 所以这里不复述.
+
 ---
 
 ## 1. 它是什么
 
 **一份为这一个 repo 量身裁的清单.** publish 把教学 repo 就地转成学生可以放上自己 GitHub 的作品 repo, 而且一个带着敌意的读者看不出它源自教学.
 
-这份 doc 回答的是, 在**这个** repo 里: 什么算教学痕迹, 怎么删, commit 怎么攒, README 怎么写, 最后怎么自查.
+这份 doc 回答的是, 在**这个** repo 里: 什么算教学痕迹, 怎么删, commit 怎么攒, 写 README 的素材在哪, 最后怎么自查.
 
 **要对着真实的树生成.** 每个 glob 都展开成实际匹配到的路径, commit 计划里引真实文件. 一份全是占位符的清单没人能照着执行.
 
@@ -32,7 +34,7 @@ showcase 通常包括:
 
 | 删什么 | 为什么 |
 | :--- | :--- |
-| `README-ORIGINAL` 及各语种 | 对外的课程电梯陈述, 只有教学 repo 才有 |
+| 根目录所有 `README*.md`: `README-cn.md`, `README-ORIGINAL` 及各语种, 其他语种版 | 教学入口与对外的课程电梯陈述, 只有教学 repo 才有. 发布时新写的那份 `README.md` 不在此列, 它由 skill 在删除之前先写好 |
 | `lm.json`, `docs/tasks/`, `docs/showcase/` | lesson-smith 的清单与它生成的汇总视图 |
 | `.claude/skills/` 与 `.agents/skills/` 下四个生成的子 skill | learn, quiz, demo, publish |
 | `examples/01-*/` 索引 Task | 教学阶段的地图, 不是作品内容 |
@@ -50,7 +52,9 @@ showcase 通常包括:
 
 1. **哪个语种留下来.** 内容实际在哪一版就留哪一版. 中文单语种的 repo 里就是 `-cn`, 无后缀的英文文件是留空的占位符.
 2. **其余各版全删**, 包括那些空占位符. 列成真实路径, 不要留 glob.
-3. **留下来的那版去掉后缀.** `README-cn.md` 变 `README.md`, `docs/some-doc-cn.md` 变 `docs/some-doc.md`. **先删后改名**, 免得覆盖掉刚留下的文件.
+3. **留下来的那版去掉后缀.** `docs/some-doc-cn.md` 变 `docs/some-doc.md`, `examples/03-title/README-cn.md` 变 `examples/03-title/README.md`. **先删后改名**, 免得覆盖掉刚留下的文件.
+
+**根目录的 README 这一族不参与收敛.** 教学版 `README-cn.md` 是教学痕迹, 走 2.1 直接删, 不改名成 `README.md`. 根目录的 `README.md` 由 skill 在发布时按学生的意愿新写. 清单里要写明: 根 `README.md` 现在是空占位符 (读过内容确认) 还是已经有内容, 以及新 README 会写进这个位置. README 用什么语种是发布时问学生的, 不在这里定.
 
 **这一步做反了, 后果是把整门课删光, 留下一棵空文件的树, 而且后面没有任何一步会发现.** 所以判断哪个是占位符时**要去读文件内容**, 不许只看后缀就下结论.
 
@@ -64,15 +68,25 @@ showcase 通常包括:
 
 最不依赖别人的先提交, 让 git history 读起来像自然长出来的, 而不是一坨砸下来的. 对着这个 repo 的真实文件生成一张逐条表: commit 号, 要 stage 的文件, 建议的 commit message (第一人称过去时), 一句 rationale.
 
-最后一条永远是手写的 README. 通常 10 到 15 条起.
+最后一条永远是 README. 通常 10 到 15 条起.
 
-### 2.5 README 大纲
+### 2.5 README 素材线索
 
-publish skill 陪学生共写 README 时 follow 的结构. README 要讲出和 demo 底稿一脉相承的故事, 但用干净的作品口吻: **绝不出现 "教程", "本课", "我们在这门课里" 这类措辞.**
+**这一节不是大纲.** README 长什么样, 用哪些信息块, 什么语气, 什么语种, 都不在这里定: 信息块与呈现手段归 [publish-readme-guide-cn.md](../publish-readme-guide-cn.md), 语种与语气是发布时问学生的. 这里只写**这个 repo 特有的、forge 时才知道的素材在哪**, 给 skill 当入口. 不给骨架, 不给提问清单, 不给字数.
 
-每节给: 名字, 一句话目标, 2 到 4 个 skill 会问学生的问题, 长度目标. 常见分节是项目是什么, 怎么装怎么跑, 我做了什么以及它怎么工作, 我学到了什么, 以及可选的下一步. 全文 250 到 500 词.
+要列的:
 
-**要写清 README 用什么语种.** 这件事不是自动的: 学生完全可能想在一个中文内容的 repo 上放一份英文 README, 那是合理的选择, 应该问他一次, 而不是替他定了.
+| 线索 | 写什么 |
+| :--- | :--- |
+| 故事在哪 | demo 讲故事底稿的真实路径 (`examples/NN-how-i-build-this/README-cn.md`), 以及它偏离默认七幕的地方 (若有) |
+| 定位在哪 | `README-ORIGINAL-cn.md` 和根 `TICKET-cn.md` 的真实路径, 后者的 "关键能力" 一节可以当能力清单 |
+| 保留的主线 Task | 作品内容的载体, 列出真实目录和一句话主题 |
+| 真实可跑的命令 | 从 `mise.toml`, `pyproject.toml`, `package.json` 等读到的安装与运行命令. 只列读到的, 不推测 |
+| 值得画成图的东西 | 这个 repo 里真实存在的模块, 服务, 数据流, 各自在哪. 图必须对着它们画 |
+| 已有的视觉素材 | repo 里已有的截图, 图片, 终端录屏的真实路径. 没有就写 "这个 repo 里没有" |
+| 徽章可用的事实 | 语言与版本, 许可证, CI workflow 文件是否真的存在 |
+
+**skill 发布时以读到的文件为准.** 这一节只是入口, 树变了以树为准.
 
 ### 2.6 敌意扫描规则
 
@@ -81,8 +95,12 @@ publish skill 陪学生共写 README 时 follow 的结构. README 要讲出和 d
 | 类别 | 严重度 | 怎么探测 |
 | :--- | :--- | :--- |
 | 铁律删除物残留 | HIGH | glob `README-ORIGINAL*`, `docs/tasks/`, `docs/showcase/`, `.claude/skills/showcase-*`, `.agents/skills/showcase-*`, `**/TICKET*.md` |
+| 根目录 README 不止一份 | HIGH | glob 根目录 `README*.md`, 只该剩一份 `README.md` |
 | 还留着带语种后缀的文件 | HIGH | glob `**/*-<locale>.md`. 作品 repo 不该有语种体系 |
-| README 里的教学口吻 | HIGH | grep README 与根目录 `*.md`, 找 "本教程", "这门课", "我们学过", "作为学生" |
+| README 顶部还挂着 frontmatter | HIGH | `README.md` 第一行是 `---`. GitHub 会把它渲染成一张表 |
+| README 里的教学口吻 | HIGH | grep README 与根目录 `*.md`, 中英两套都找: "本教程", "这门课", "我们学过", "作为学生", tutorial, course, lesson, curriculum, syllabus, exercise, quiz, 以及 `showcase-`, `TICKET`, `lesson-smith` |
+| README 里的死链与破图 | HIGH | `README.md` 里每个相对链接与本地图片路径都要解析得到; 指向 `.github/workflows/` 的徽章, 那个文件要存在 |
+| 选了英文却留着汉字 | HIGH | 只在学生选英文时查: Grep 搜 `\p{Han}` 查 `README.md`, 必须 0 命中 |
 | commit message 里的教学口吻 | MEDIUM | 同一套措辞过一遍 `git log --all --format="%s%n%b"` |
 | git ref 暴露课程来源 | MEDIUM | `git tag --list` 与 `git branch --all`, 找 `01-showcase`, `tutorial-base`, `from-course`, `original` |
 | 残留的子 skill 目录 | HIGH | 任何还在的 `.claude/skills/showcase-*`, `.agents/skills/showcase-*` 或 `docs/showcase/` |

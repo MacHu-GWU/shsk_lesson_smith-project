@@ -64,6 +64,7 @@ docs/showcase/notes/                    可选, 学生用 showcase-learn-cn 时�
 .claude/skills/showcase-demo-cn/SKILL.md     forge 产出: 讲故事排练 skill
 .claude/skills/showcase-publish-cn/SKILL.md  forge 产出: 抹痕迹发布 skill
 .claude/skills/<上面四个>/ref/agent-skill-interaction-pattern-cn.md   随各 skill 打包的交互基座
+.claude/skills/showcase-publish-cn/ref/publish-readme-guide-cn.md    只有 publish 带: 作品 README 的信息块指南
 .agents/skills/<上面四个>/                  副本, 给 Codex 与 Antigravity, frontmatter 只留 name 与 description
 ```
 
@@ -101,6 +102,8 @@ docs/showcase/notes/                    可选, 学生用 showcase-learn-cn 时�
 
 每个子 skill 的 `ref/` 下那份交互基座**不是可选附件**: 四份 SKILL 模板开工第一句就是去读它, 丢了那个 skill 会静默地失去交互规范. 它由 forge 从 lesson-smith 的 `ref/agent-skill-interaction-pattern-cn.md` 原样拷入; `.claude` 与 `.agents` 两份各带一份, lint 会查它在不在.
 
+`showcase-publish-cn` 的 `ref/` 下另有一份 `publish-readme-guide-cn.md`, 同样由 forge 原样拷入 (来源 [forge/publish-readme-guide-cn.md](forge/publish-readme-guide-cn.md)), 两边各一份. 它是作品 README 的信息块指南, **不是模板**. lint 不查它, forge 的 Phase 6 查.
+
 **`docs/showcase/`** 下五份 doc 与四个子 skill 都由 `lesson-smith-showcase-forge` 产出, 它要读的规范与模板**分两处**:
 
 - **和 upskill 共用的三份**在 [00-common/13-forge-shared/](../00-common/13-forge-shared/): [docs-learn](../00-common/13-forge-shared/docs-learn/docs-learn-cn-spec.md), [docs-runbook](../00-common/13-forge-shared/docs-runbook/docs-runbook-cn-spec.md), [docs-quiz](../00-common/13-forge-shared/docs-quiz/docs-quiz-cn-spec.md), 加 learn 与 quiz 两份 SKILL 模板. 里面的 `{{TYPE}}` 落地时换成 `showcase`.
@@ -109,6 +112,8 @@ docs/showcase/notes/                    可选, 学生用 showcase-learn-cn 时�
 两处都**分语种**: 每份 doc 中英各一套 spec 加 template, 子 skill 也是无后缀的英文版与 `-cn` 版各一份. **但 forge 当前只产 `-cn` 那一套**, 因为无后缀的英文课程正文留空, 英文索引只会指向一堆空文件. 英文那一套规范留着, 等多语种模块回来接手.
 
 **publish 那份要特别注意语种**: 作品 repo 只带一个语种, 所以发布时要**留下有内容的那一版 (`-cn`), 删掉留空的占位符, 再把后缀去掉**. 判断哪一版是占位符必须去读文件, 不许看后缀. 做反了就是把整门课删光.
+
+**根目录 README 是例外.** 教学版 `README-cn.md` 与 `README-ORIGINAL*` 是教学痕迹, 直接删, 不改名. 根 `README.md` 由 `showcase-publish-cn` 在发布时按学生的意愿新写 (语种是问他的, 默认英文), 而且**排在删除之前写**, 因为写它要用的 demo 底稿等素材删完就读不到了.
 
 ---
 
