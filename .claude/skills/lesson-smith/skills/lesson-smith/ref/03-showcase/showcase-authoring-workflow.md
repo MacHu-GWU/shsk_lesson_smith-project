@@ -125,6 +125,8 @@ showcase 比 upskill 多两样东西: `examples/` 里多一个 demo 讲故事底
 
 **动笔写题之前先规划.** 扫一遍之前写过的全部主线 Task 和其它教学相关文件, 定出一个问题清单和题量, 写进 `examples/_lm-quiz-plan.md`. AI 提建议, 创作者也给反馈, 讨论几轮, 把题量和方向锁定.
 
+规划时同时给出**题型组合**的建议 (场景加证据题, 短概念题, 讨论题各占多少, 比例没有固定值, 看这门课的内容性质), 由创作者拍板. 题型怎么写见 [00-common/11-quiz-readme-spec/quiz-question-style-cn.md](../00-common/11-quiz-readme-spec/quiz-question-style-cn.md), 它是推荐, 不是强制. 打算写场景题的, 顺便记下证据取自哪个文件或哪段输出.
+
 quiz 是 `examples/` 里靠后的一个 Task, 目录固定命名 `NN-prove-i-get-it` (视角是学生自己检查自己). 它排在主线之后, **demo 之前** (位置约定见 [00-common/01-repo-layout.md](../00-common/01-repo-layout.md) 第 4.2 节).
 
 ---

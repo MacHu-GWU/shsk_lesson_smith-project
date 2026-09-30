@@ -134,6 +134,8 @@ spec 与 template **每个语种各一套**, 各写各的, 不是同一份的翻
 
 `publish-readme-guide-cn.md` 是一份**单文件参考**: 它不规定某个产物的正文结构, 而是给 `showcase-publish-cn` 写学生 README 时读的信息块菜单, **故意没有 template**, 因为 README 千人千面. forge 把它原样拷进生成 skill 的 `ref/`, 和交互基座是同一类做法. 它目前只有中文版; 因为多语种模块还没做, `showcase-publish{,-cn}.SKILL.md` 与 `docs-showcase-publish/` 下的英文那几份**暂时没有跟上**这次改动 (先写 README 再删除的新顺序, 素材线索, 新增的硬检查), 等多语种模块回来时要照 `-cn` 版重写一遍, 不是逐句翻译.
 
+`00-common/11-quiz-readme-spec/quiz-question-style-cn.md` 是 spec 目录里的**配套参考**: 推荐, 不是强制, 讲场景加证据题, 短概念题, 讨论题三种题型怎么写、比例怎么定 (AI 建议, 创作者拍板). 硬规则仍在同目录的 spec 里. 它只有中文版. 同一次改动让 quiz 子 skill 模板 `quiz-cn.SKILL.md` 支持分点题的逐点判分, 英文 `quiz.SKILL.md` **暂时没有跟上**, 等多语种模块回来时照 `-cn` 版重写, 不是逐句翻译.
+
 那些 `*.SKILL.md` 是全套里唯一的**第三种东西**: 既不是 spec 也不是 template, 是可以整份拷成一个真 skill 的成品. 它们不进 spec 目录, 因为它们没有配套规范, 拷过去换掉 `{{TYPE}}` 就能用.
 
 ---

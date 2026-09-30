@@ -124,7 +124,7 @@ LESSON-SMITH-LOADED: v1
 
 这些东西两类逐字相同, 所以住在通用层, **里面的 `{{TYPE}}` 是占位符, 落地时换成实际类型名**.
 
-- 写 quiz 那个 Task 的 README (题库真身) → [11-quiz-readme-spec](ref/00-common/11-quiz-readme-spec/quiz-readme-cn-spec.md); 它的 TICKET → [12-quiz-ticket-spec](ref/00-common/12-quiz-ticket-spec/quiz-ticket-cn-spec.md).
+- 写 quiz 那个 Task 的 README (题库真身) → [11-quiz-readme-spec](ref/00-common/11-quiz-readme-spec/quiz-readme-cn-spec.md); 它的 TICKET → [12-quiz-ticket-spec](ref/00-common/12-quiz-ticket-spec/quiz-ticket-cn-spec.md); 题型与出题调性的推荐 (场景加证据题, 短概念题, 讨论题可混用, 不是强制) → [quiz-question-style-cn.md](ref/00-common/11-quiz-readme-spec/quiz-question-style-cn.md).
 - forge 写 `docs/<type>/` 前三份 doc → [docs-learn](ref/00-common/13-forge-shared/docs-learn/docs-learn-cn-spec.md) (学习索引), [docs-runbook](ref/00-common/13-forge-shared/docs-runbook/docs-runbook-cn-spec.md) (跑起来的操作), [docs-quiz](ref/00-common/13-forge-shared/docs-quiz/docs-quiz-cn-spec.md) (quiz 薄壳).
 - forge 产出 learn 与 quiz 两个子 skill 时 → [learn-cn.SKILL.md](ref/00-common/13-forge-shared/learn-cn.SKILL.md), [quiz-cn.SKILL.md](ref/00-common/13-forge-shared/quiz-cn.SKILL.md): 近乎静态的 SKILL 模板, 换掉 `{{TYPE}}` 就能拷.
 

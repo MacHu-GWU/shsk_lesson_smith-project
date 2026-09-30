@@ -32,6 +32,8 @@
 
 **一个 spec 目录也可以只有 spec 没有 template.** 目前只有一处: `00-common/14-wrap-up-readme-spec/`. 收尾 Task 是一个普通教学 Task, 骨架就是 `03-task-readme-spec/` 那一份, 这里再放一份副本只会漂移; `14` 只补它独有的那两件事 (回望与拔高). **这是例外不是常态**: 新增 spec 时默认配 template, 只有当骨架确实已经由另一份 spec 提供时才省掉, 而且要在 spec 开头的 "配套骨架" 那一行写明指向哪一份.
 
+**一个 spec 目录里也可以多一份配套参考.** 例如 `11-quiz-readme-spec/` 里的 `quiz-question-style-cn.md`: 它既不是 spec 也不是 template, 是写这个产物的人读的**推荐** (题型怎么混, 怎么写得好), 故意不带硬规则, 硬的部分仍由 spec 管. 它规定的是正文怎么写, 所以和 spec 一样分语种, 目前只有中文版.
+
 ---
 
 ## 2. 两份文件的分工
